@@ -1,0 +1,7 @@
+{
+  "name": "types",
+  "version": "0.0.1",
+  "description": "shared Unum ID TypeScript types",
+  "main": "index.js",
+  "license": "MIT"
+}
