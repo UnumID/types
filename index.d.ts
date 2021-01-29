@@ -49,3 +49,20 @@ export interface Presentation {
   proof: Proof;
   presentationRequestUuid: string;
 }
+
+export interface CredentialRequest {
+  type: string;
+  issuers: string[];
+  required?: boolean;
+}
+
+export interface PresentationRequest {
+  uuid: string;
+  createdAt: Date;
+  updatedAt: Date;
+  expiresAt: Date;
+  verifier: string;
+  credentialRequests: CredentialRequest[];
+  proof: Proof;
+  metadata?: any;
+}
