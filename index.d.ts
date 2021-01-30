@@ -77,3 +77,32 @@ export interface PresentationRequest {
   metadata?: any;
   holderAppUuid: string;
 }
+
+export interface Verifier {
+  did: string;
+  uuid: string;
+  createdAt: string;
+  updatedAt: string;
+  name: string;
+  customerUuid: string;
+  url: string;
+  isAuthorized: boolean;
+}
+
+export interface Issuer {
+  did: string;
+  uuid: string;
+  createdAt: string;
+  updatedAt: string;
+  name: string;
+  customerUuid: string;
+  isAuthorized: boolean;
+}
+
+export interface PresentationRequestPostDto {
+  presentationRequest: PresentationRequest;
+  verifier: Pick<Verifier, 'did' | 'name' | 'url'>;
+  issuer: Record<string, Pick<Issuer, 'did' | 'name'>>;
+  deeplink: string;
+  qrCode: string;
+}
