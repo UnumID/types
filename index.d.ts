@@ -50,6 +50,13 @@ export interface Presentation {
   presentationRequestUuid: string;
 }
 
+export interface NoPresentation {
+  type: ['NoPresentation', ...string[]];
+  proof: Proof;
+  holder: string;
+  presentationRequestUuid: string;
+}
+
 export interface CredentialRequest {
   type: string;
   issuers: string[];
