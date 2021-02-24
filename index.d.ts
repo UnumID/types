@@ -77,7 +77,7 @@ export interface PresentationRequest {
   uuid: string;
   createdAt: Date;
   updatedAt: Date;
-  expiresAt: Date;
+  expiresAt?: Date;
   verifier: string;
   credentialRequests: CredentialRequest[];
   proof: Proof;
