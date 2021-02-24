@@ -109,7 +109,7 @@ export interface Issuer {
 export interface PresentationRequestPostDto {
   presentationRequest: PresentationRequest;
   verifier: Pick<Verifier, 'did' | 'name' | 'url'>;
-  issuer: Record<string, Pick<Issuer, 'did' | 'name'>>;
+  issuers: Record<string, Pick<Issuer, 'did' | 'name'>>;
   deeplink: string;
   qrCode: string;
 }
