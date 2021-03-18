@@ -64,13 +64,38 @@ export interface Credential extends UnsignedCredential {
   proof: Proof;
 }
 
-export interface Presentation {
-  '@context': ['https://www.w3.org/2018/credentials/v1', ...string[]];
-  uuid: string;
-  type: ['VerifiablePresentation', ...string[]];
-  verifiableCredential: Credential[];
+/**
+ * Encapsulates a verifiable credential attributes.
+ */
+
+export interface VerifiableCredential {
+  ['@context']: ['https://www.w3.org/2018/credentials/v1', ...string[]];
+  id: string;
+  credentialSubject: any;
+  credentialStatus: { id: string, type: string };
+  issuer: string;
+  type: ['VerifiableCredential', ...string[]];
+  issuanceDate: Date;
+  expirationDate?: Date;
   proof: Proof;
+}
+
+/**
+ * Encapsulates an unsigned presentation attributes.
+ */
+export interface UnsignedPresentation {
+  '@context': ['https://www.w3.org/2018/credentials/v1', ...string[]];
+  type: ['VerifiablePresentation', ...string[]];
+  verifiableCredentials: VerifiableCredential[];
   presentationRequestUuid: string;
+  uuid: string;
+}
+
+/**
+ * Encapsulates addition attributes to the unsigned presentation entity to create a Presentation entity.
+ */
+export interface Presentation extends UnsignedPresentation {
+  proof: Proof;
 }
 
 export interface NoPresentation {
@@ -119,13 +144,16 @@ export interface Verifier {
   isAuthorized: boolean;
 }
 
+/**
+ * Encapsulates Issuer entity attributes.
+ */
 export interface Issuer {
-  did: string;
   uuid: string;
-  createdAt: string;
-  updatedAt: string;
-  name: string;
   customerUuid: string;
+  name: string;
+  did: string;
+  createdAt: Date;
+  updatedAt: Date;
   isAuthorized: boolean;
 }
 
@@ -188,3 +216,14 @@ export interface DidDocument {
  * Type to encapsulate supported key types in did documents.
  */
 export type DidKeyType = 'secp256r1' | 'RSA';
+
+/**
+ * Encapsulates necessary information relating to the encrypted credential data during creation.
+ */
+export interface EncryptedCredentialOptions {
+  credentialId: string;
+  subject: string;
+  issuer: string;
+  type: string[];
+  data: EncryptedData;
+}
