@@ -156,3 +156,35 @@ export interface EncryptedData {
   data: string;
   key: EncryptedKey;
 }
+
+/**
+ * Interface to encapsulate information related to a public key.
+ */
+export interface PublicKeyInfo {
+  id: string;
+  publicKey: string;
+  encoding: 'pem' | 'base58';
+  type: string;
+  status: 'valid' | 'invalid';
+}
+
+/**
+ * Interface to encapsulate Did Document information.
+ */
+export interface DidDocument {
+  '@context': ['https://www.w3.org/ns/did/v1', ...string[]];
+  id: string;
+  created: Date;
+  updated: Date;
+  publicKey: PublicKeyInfo[];
+  service: {
+    id: string;
+    serviceEndpoint: string;
+    type: string;
+  }[];
+}
+
+/**
+ * Type to encapsulate supported key types in did documents.
+ */
+export type DidKeyType = 'secp256r1' | 'RSA';
