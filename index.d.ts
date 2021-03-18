@@ -1,3 +1,6 @@
+/**
+ * Interface to encapsulate cryptographic proof for any signed object: Credentials, Presentations, PresentationRequests.
+ */
 export interface Proof {
   created: string;
   signatureValue: string;
@@ -7,22 +10,39 @@ export interface Proof {
   proofPurpose: string;
 }
 
+/**
+ * Type to encapsulate supported claim primitives.
+ */
 export type ClaimPrimitive = string | number | boolean | Date | null;
 
+/**
+ * Type to encapsulate an array of ClaimValues.
+ */
 export type ClaimList = ClaimValue[];
 
+/**
+ * Interface to encapsulate an arbitrary number (0 to n) of string keys with values of type ClaimValue.
+ */
 export type ClaimDict = {
   [key: string]: ClaimValue
 };
 
+/**
+ * Type to encapsulate valid ClaimValue types.
+ */
 export type ClaimValue = ClaimPrimitive | ClaimList | ClaimDict;
 
+/**
+ * Interface to associate an id attribute to an arbitrary number (0 to n) of string keys with values of type ClaimValue.
+ */
 interface CredentialSubject {
   id: string;
   [claimName: string]: ClaimValue;
 }
 
-
+/**
+ * Interface to encapsulate relevant credential information.
+ */
 export interface UnsignedCredential {
   '@context': ['https://www.w3.org/2018/credentials/v1', ...string[]];
   credentialSubject: CredentialSubject;
@@ -37,6 +57,9 @@ export interface UnsignedCredential {
   expirationDate?: Date;
 }
 
+/**
+ * Interface which incorporates the relevant credential information in addition to a cryptographic proof so that the Credential is verifiable.
+ */
 export interface Credential extends UnsignedCredential {
   proof: Proof;
 }
@@ -112,4 +135,24 @@ export interface PresentationRequestPostDto {
   issuers: Record<string, Pick<Issuer, 'did' | 'name'>>;
   deeplink: string;
   qrCode: string;
+}
+
+/**
+ * Interface to encapsulate an encrypted key.
+ * Note: This is used to encrypted an AES key using RSA so that data can be encrypted with the significantly smaller AES key.
+ */
+export interface EncryptedKey {
+  iv: string;
+  key: string;
+  algorithm: string;
+  did: string;
+}
+
+/**
+ * Interface to encapsulate encrypted information along side its encrypted decryption key.
+ * Note: please see EncryptedKey.
+ */
+export interface EncryptedData {
+  data: string;
+  key: EncryptedKey;
 }
