@@ -98,6 +98,9 @@ export interface Presentation extends UnsignedPresentation {
   proof: Proof;
 }
 
+/**
+ * Encapsulates attributes for a presentation request declined.
+ */
 export interface NoPresentation {
   type: ['NoPresentation', ...string[]];
   proof: Proof;
@@ -121,16 +124,48 @@ export interface PresentationRequestOptions {
   verifier: string;
 }
 
-export interface PresentationRequest {
+/**
+ * Encapsulates addition request attributes to the general presentation request type for the purposes of sending an unsigned presentation request.
+ */
+export interface UnsignedPresentationRequest extends PresentationRequestOptions {
   uuid: string;
+}
+
+/**
+ * Encapsulates addition request attributes to the unsigned presentation request type for the purposes of sending a signed presentation request.
+ */
+export interface SignedPresentationRequest extends UnsignedPresentationRequest {
+  proof: Proof;
+}
+
+/**
+ * Encapsulates addition request attributes to the signed presentation request type for the purposes of valid presentation request with metadata.
+ */
+export interface PresentationRequest extends SignedPresentationRequest {
   createdAt: Date;
   updatedAt: Date;
-  expiresAt?: Date;
-  verifier: string;
-  credentialRequests: CredentialRequest[];
-  proof: Proof;
-  metadata?: any;
-  holderAppUuid: string;
+}
+
+// export interface PresentationRequest {
+//   uuid: string;
+//   createdAt: Date;
+//   updatedAt: Date;
+//   expiresAt?: Date;
+//   verifier: string;
+//   credentialRequests: CredentialRequest[];
+//   proof: Proof;
+//   metadata?: any;
+//   holderAppUuid: string;
+// }
+
+/**
+ * Encapsulates necessary Verifier entity attributes during creation.
+ */
+export interface VerifierOptions {
+  name: string;
+  customerUuid: string;
+  publicKeyInfo: PublicKeyInfo[];
+  url: string;
 }
 
 export interface Verifier {
@@ -226,4 +261,13 @@ export interface EncryptedCredentialOptions {
   issuer: string;
   type: string[];
   data: EncryptedData;
+}
+
+/**
+ * Encapsulates necessary CredentialRequest entity attributes.
+ */
+export interface CredentialRequest {
+  type: string;
+  issuers: string[];
+  required?: boolean;
 }
