@@ -298,3 +298,11 @@ export interface IssuerInfo {
 export interface IssuerInfoMap {
   [did: string]: IssuerInfo;
 }
+
+/**
+ * Interface for Public and Private corresponding key pair
+ */
+export interface KeyPair {
+  privateKey: string;
+  publicKey: string;
+}
