@@ -168,6 +168,9 @@ export interface VerifierOptions {
   url: string;
 }
 
+/**
+ * Encapsulates Verifier entity attributes.
+ */
 export interface Verifier {
   did: string;
   uuid: string;
@@ -270,4 +273,28 @@ export interface CredentialRequest {
   type: string;
   issuers: string[];
   required?: boolean;
+}
+
+/**
+ * Encapsulates Verifier metadata attributes.
+ */
+export interface VerifierInfo {
+  did: string;
+  name: string;
+  url: string;
+}
+
+/**
+ * Encapsulates Issuer metadata attributes.
+ */
+export interface IssuerInfo {
+  did: string;
+  name: string;
+}
+
+/**
+ * Encapsulates a map of Issuer metadata attributes keyed on the corresponding did.
+ */
+export interface IssuerInfoMap {
+  [did: string]: IssuerInfo;
 }
