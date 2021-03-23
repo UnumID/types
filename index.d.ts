@@ -108,6 +108,8 @@ export interface NoPresentation {
   presentationRequestUuid: string;
 }
 
+export type PresentationOrNoPresentation = Presentation | NoPresentation;
+
 export interface CredentialRequest {
   type: string;
   issuers: string[];
