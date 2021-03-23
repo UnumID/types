@@ -111,9 +111,9 @@ export interface NoPresentation {
 export type PresentationOrNoPresentation = Presentation | NoPresentation;
 
 export interface CredentialRequest {
-  type: string;
-  issuers: string[];
-  required?: boolean;
+  type: string; // the string matching the desire credential type
+  issuers: string[]; // list of acceptable issuer DIDs that have issued the credential
+  required?: boolean; // to denote wether this particular credential is required in response to the PresentationRequest. Defaults behavior resolves this to true.
 }
 
 export interface PresentationRequestOptions {
