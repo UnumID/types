@@ -2,7 +2,7 @@
   "name": "@unumid/types",
   "version": "0.0.1",
   "description": "shared Unum ID TypeScript types",
-  "main": "index.d.ts",
+  "main": "index.js",
   "license": "MIT",
   "devDependencies": {
     "typedoc": "^0.20.33",
