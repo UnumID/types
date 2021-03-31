@@ -317,3 +317,26 @@ export interface PresentationReceiptInfo {
   credentialTypes?: string[];
   issuers?: IssuerInfoMap;
 }
+
+/**
+ * Encapsulates the different push notification providers the SaaS supports.
+ */
+export type PushProvider = 'APNS' | 'FCM';
+
+/**
+ * Interface encapsulating an individual push notification token/identifier and its provider.
+ */
+export interface PushToken {
+  value: string;
+  provider: PushProvider;
+}
+
+/**
+ * Interface encapsulating options for sending push notifications via the SaaS.
+ */
+export interface PushNotificationOptions {
+  deeplink: string; // the deep link to be sent as a push notification
+  token?: PushToken; // a single PushToken. Either `token` or `tokens` is required.
+  tokens?: PushToken[]; // a list of one or more PushTokens. Either `token` or `tokens` is required.
+  holderAppUuid: string; // the holder app to send the notification to
+}
