@@ -317,14 +317,3 @@ export interface PresentationReceiptInfo {
   credentialTypes?: string[];
   issuers?: IssuerInfoMap;
 }
-
-/**
- * Type to encapsulate the response that the UnumID SaaS is expecting after forwarding the encrypted presentation to the verifier app for verification
- */
-export interface VerificationResponse {
-  isVerified: boolean;
-  type: 'VerifiablePresentation' | 'NoPresentation';
-  presentationReceiptInfo: PresentationReceiptInfo;
-  presentationRequestUuid: string;
-  presentation: Presentation;
-}
