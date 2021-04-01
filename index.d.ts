@@ -4,10 +4,10 @@
 export interface Proof {
   created: string;
   signatureValue: string;
-  unsignedValue: string;
   type: string;
   verificationMethod: string;
   proofPurpose: string;
+  unsignedValue?: string;
 }
 
 /**
