@@ -88,7 +88,7 @@ export interface UnsignedPresentation {
   type: ['VerifiablePresentation', ...string[]];
   verifiableCredentials: VerifiableCredential[];
   presentationRequestUuid: string;
-  uuid: string;
+  uuid?: string;
 }
 
 /**
