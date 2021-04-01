@@ -336,7 +336,6 @@ export interface PushToken {
  */
 export interface PushNotificationOptions {
   deeplink: string; // the deep link to be sent as a push notification
-  token?: PushToken; // a single PushToken. Either `token` or `tokens` is required.
-  tokens?: PushToken[]; // a list of one or more PushTokens. Either `token` or `tokens` is required.
+  token: PushToken; // PushToken identifying the app + provider a notification should be sent to
   holderAppUuid: string; // the holder app to send the notification to
 }
