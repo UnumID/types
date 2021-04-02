@@ -303,7 +303,7 @@ export interface KeyPair {
  export interface EncryptedPresentation {
   presentationRequestUuid: string;
   encryptedPresentation: EncryptedData;
-  // verifierDid: string // TODO add after added to mobile sdk
+  verifierDid?: string // marking as optional for now until we stop supporting the old demos
 }
 
 
