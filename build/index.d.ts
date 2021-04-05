@@ -31,7 +31,7 @@ export declare type ClaimValue = ClaimPrimitive | ClaimList | ClaimDict;
 /**
  * Interface to associate an id attribute to an arbitrary number (0 to n) of string keys with values of type ClaimValue.
  */
-interface CredentialSubject {
+export interface CredentialSubject {
     id: string;
     [claimName: string]: ClaimValue;
 }
@@ -313,5 +313,4 @@ export declare type CredentialStatusOptions = Static<typeof _CredentialStatusOpt
  * More info here: https://github.com/pelotom/runtypes
  */
 export declare const _CredentialStatusOptions: Union<[Literal<"valid">, Literal<"revoked">]>;
-export {};
 //# sourceMappingURL=index.d.ts.map
