@@ -1,4 +1,4 @@
-import { Literal, Union } from "runtypes";
+import { Literal, Static, Union } from "runtypes";
 
 /**
  * Interface to encapsulate cryptographic proof for any signed object: Credentials, Presentations, PresentationRequests.
@@ -370,7 +370,8 @@ export interface PushNotificationOptions {
  * Credential status value options
  */
 //  export type CredentialStatusOptions = 'valid' | 'revoked';
-export type CredentialStatusOptions = Union(
+export const CredentialStatusOptions = Union(
   Literal('valid'),
   Literal('revoked')
 );
+export type CredentialStatusOptions = Static<typeof CredentialStatusOptions>
