@@ -339,3 +339,12 @@ export interface PushNotificationOptions {
   token: PushToken; // PushToken identifying the app + provider a notification should be sent to
   holderAppUuid: string; // the holder app to send the notification to
 }
+
+/**
+ * Credential status values
+ */
+export type CredentialStatusOptions = 'valid' | 'revoked';
+// export enum CredentialStatusEnum {
+//   valid = "valid",
+//   revoked = "revoked"
+// }
