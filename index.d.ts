@@ -367,11 +367,15 @@ export interface PushNotificationOptions {
 // };
 
 /**
- * Credential status value options
+ * Credential status value options Runtype, which has the benefit of runtime type checking and guards with literals.
+ * More info here: https://github.com/pelotom/runtypes
  */
-//  export type CredentialStatusOptions = 'valid' | 'revoked';
-export const CredentialStatusOptions = Union(
+export const _CredentialStatusOptions = Union(
   Literal('valid'),
   Literal('revoked')
 );
-// export type CredentialStatusOptions = Static<typeof CredentialStatusOptions>
+
+/**
+ * Type to encapsulate Credential status value options 
+ */
+export type CredentialStatusOptions = Static<typeof _CredentialStatusOptions>
