@@ -374,4 +374,4 @@ export const CredentialStatusOptions = Union(
   Literal('valid'),
   Literal('revoked')
 );
-export type CredentialStatusOptions = Static<typeof CredentialStatusOptions>
+// export type CredentialStatusOptions = Static<typeof CredentialStatusOptions>
