@@ -1,8 +1,10 @@
 # UnumID Types
 
-This project contains all of our shared, generic Typescript types that are used through out the [UnumID](https://https://docs.unum.id/) ecosystem.
+This project contains all of our shared, generic Typescript types that are used through out the [UnumID](https://https://docs.unum.id/) ecosystem. 
+
+It as well has shared [runtypes](https://github.com/pelotom/runtypes) which allows for functionality like graceful runtime string literal type checking. To support runtypes we had to use a index.ts instead of just a type declaration index.d.ts file. This also means that a build step is necessary in order for changes to index.ts to be realized.
 
 ## Documentation
 Detailed documentation generated from source can be found [here](https://docs.unum.id/types/index.html) which is served by this repo's Github Pages configuration. It is setup to server via the /docs folder of the main branch.
 
-In order to generate the documentation from the source code run `npx typedoc index.d.ts`.
+In order to generate the documentation from the source code run the `createTypedocs.sh` script.
