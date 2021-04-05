@@ -1,3 +1,5 @@
+import { Literal, Static, Union } from "runtypes";
+
 /**
  * Interface to encapsulate cryptographic proof for any signed object: Credentials, Presentations, PresentationRequests.
  */
@@ -35,7 +37,7 @@ export type ClaimValue = ClaimPrimitive | ClaimList | ClaimDict;
 /**
  * Interface to associate an id attribute to an arbitrary number (0 to n) of string keys with values of type ClaimValue.
  */
-interface CredentialSubject {
+export interface CredentialSubject {
   id: string;
   [claimName: string]: ClaimValue;
 }
@@ -341,6 +343,15 @@ export interface PushNotificationOptions {
 }
 
 /**
- * Credential status value options
+ * Type to encapsulate Credential status value options 
  */
-export type CredentialStatusOptions = 'valid' | 'revoked';
+export type CredentialStatusOptions = Static<typeof _CredentialStatusOptions>
+
+/**
+ * Credential status value options Runtype, which has the benefit of runtime type checking and guards with literals.
+ * More info here: https://github.com/pelotom/runtypes
+ */
+ export const _CredentialStatusOptions = Union(
+    Literal('valid'),
+    Literal('revoked')
+  );
