@@ -10,5 +10,8 @@
   },
   "dependencies": {
     "runtypes": "^6.0.0"
+  }, 
+  "scripts": {
+    "build": "rm -rf build/ && tsc"
   }
 }

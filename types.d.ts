@@ -366,14 +366,14 @@ export interface PushNotificationOptions {
 //   return Object.freeze(unionNamespace as typeof unionNamespace & {type: UnionType});
 // };
 
-/**
- * Credential status value options Runtype, which has the benefit of runtime type checking and guards with literals.
- * More info here: https://github.com/pelotom/runtypes
- */
-export const _CredentialStatusOptions = Union(
-  Literal('valid'),
-  Literal('revoked')
-);
+// /**
+//  * Credential status value options Runtype, which has the benefit of runtime type checking and guards with literals.
+//  * More info here: https://github.com/pelotom/runtypes
+//  */
+// export const _CredentialStatusOptions = Union(
+//   Literal('valid'),
+//   Literal('revoked')
+// );
 
 /**
  * Type to encapsulate Credential status value options 
