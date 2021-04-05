@@ -341,10 +341,6 @@ export interface PushNotificationOptions {
 }
 
 /**
- * Credential status values
+ * Credential status value options
  */
 export type CredentialStatusOptions = 'valid' | 'revoked';
-// export enum CredentialStatusEnum {
-//   valid = "valid",
-//   revoked = "revoked"
-// }
