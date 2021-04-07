@@ -282,7 +282,7 @@ export interface KeyPair {
  * Type to encapsulate an encrypted presentation sent from the UnumID SaaS
  */
 export interface EncryptedPresentation {
-    presentationRequest: PresentationRequestDto;
+    presentationRequestInfo: PresentationRequestDto;
     encryptedPresentation: EncryptedData;
 }
 /**
