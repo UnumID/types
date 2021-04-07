@@ -303,11 +303,18 @@ export interface KeyPair {
  * Type to encapsulate an encrypted presentation sent from the UnumID SaaS
  */
  export interface EncryptedPresentation {
-  presentationRequestUuid: string;
+  presentationRequest: PresentationRequestDto;
   encryptedPresentation: EncryptedData;
-  verifierDid?: string // marking as optional for now until we stop supporting the old demos
 }
 
+/**
+ * Type to encapsulate a PresentationRequest Data Transfer Object for interfacing with other services.
+ */
+export interface PresentationRequestDto {
+  presentationRequest: PresentationRequest;
+  verifier: VerifierInfo;
+  issuers: [IssuerInfo];
+}
 
 /**
  * Type to encapsulate the non sensitive decrypted presentation information to help enrich UnumID's SaaS reporting dashboard.
