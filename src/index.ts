@@ -187,12 +187,24 @@ export interface Issuer {
   isAuthorized: boolean;
 }
 
+/**
+ * Type to encapsulate the post body of a Presentation Request Data Transfer Object, often used for PresentationRequest creation
+ */
 export interface PresentationRequestPostDto {
   presentationRequest: PresentationRequest;
   verifier: Pick<Verifier, 'did' | 'name' | 'url'>;
   issuers: Record<string, Pick<Issuer, 'did' | 'name'>>;
   deeplink: string;
   qrCode: string;
+}
+
+/**
+ * Type to encapsulate a PresentationRequest Data Transfer Object get response used in interfacing services.
+ */
+ export interface PresentationRequestGetDto {
+  presentationRequest: PresentationRequest;
+  verifier: VerifierInfo;
+  issuers: [IssuerInfo];
 }
 
 /**
@@ -303,17 +315,8 @@ export interface KeyPair {
  * Type to encapsulate an encrypted presentation sent from the UnumID SaaS
  */
  export interface EncryptedPresentation {
-  presentationRequest: PresentationRequestDto;
+  presentationRequest: PresentationRequestGetDto;
   encryptedPresentation: EncryptedData;
-}
-
-/**
- * Type to encapsulate a PresentationRequest Data Transfer Object for interfacing with other services.
- */
-export interface PresentationRequestDto {
-  presentationRequest: PresentationRequest;
-  verifier: VerifierInfo;
-  issuers: [IssuerInfo];
 }
 
 /**
