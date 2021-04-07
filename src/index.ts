@@ -285,7 +285,7 @@ export interface CredentialRequest {
 export interface VerifierInfo {
   did: string;
   name: string;
-  url: string;
+  url?: string;
 }
 
 /**
