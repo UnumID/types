@@ -180,7 +180,7 @@ export interface PresentationRequestPostDto {
 /**
  * Type to encapsulate a PresentationRequest Data Transfer Object get response used in interfacing services.
  */
-export interface PresentationRequestGetDto {
+export interface PresentationRequestDto {
     presentationRequest: PresentationRequest;
     verifier: VerifierInfo;
     issuers: [IssuerInfo];
@@ -282,7 +282,7 @@ export interface KeyPair {
  * Type to encapsulate an encrypted presentation sent from the UnumID SaaS
  */
 export interface EncryptedPresentation {
-    presentationRequest: PresentationRequestGetDto;
+    presentationRequest: PresentationRequestDto;
     encryptedPresentation: EncryptedData;
 }
 /**
