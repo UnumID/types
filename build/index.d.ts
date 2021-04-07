@@ -183,7 +183,7 @@ export interface PresentationRequestPostDto {
 export interface PresentationRequestDto {
     presentationRequest: PresentationRequest;
     verifier: VerifierInfo;
-    issuers: [IssuerInfo];
+    issuers: IssuerInfoMap;
 }
 /**
  * Interface to encapsulate an encrypted key.

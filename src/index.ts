@@ -204,7 +204,8 @@ export interface PresentationRequestPostDto {
  export interface PresentationRequestDto {
   presentationRequest: PresentationRequest;
   verifier: VerifierInfo;
-  issuers: [IssuerInfo];
+  // issuers: [IssuerInfo];
+  issuers: IssuerInfoMap;
 }
 
 /**
