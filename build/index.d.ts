@@ -167,12 +167,23 @@ export interface Issuer {
     updatedAt: Date;
     isAuthorized: boolean;
 }
+/**
+ * Type to encapsulate the post body of a Presentation Request Data Transfer Object, often used for PresentationRequest creation
+ */
 export interface PresentationRequestPostDto {
     presentationRequest: PresentationRequest;
     verifier: Pick<Verifier, 'did' | 'name' | 'url'>;
     issuers: Record<string, Pick<Issuer, 'did' | 'name'>>;
     deeplink: string;
     qrCode: string;
+}
+/**
+ * Type to encapsulate a PresentationRequest Data Transfer Object get response used in interfacing services.
+ */
+export interface PresentationRequestDto {
+    presentationRequest: PresentationRequest;
+    verifier: VerifierInfo;
+    issuers: IssuerInfoMap;
 }
 /**
  * Interface to encapsulate an encrypted key.
@@ -245,7 +256,7 @@ export interface CredentialRequest {
 export interface VerifierInfo {
     did: string;
     name: string;
-    url: string;
+    url?: string;
 }
 /**
  * Encapsulates Issuer metadata attributes.
@@ -271,9 +282,8 @@ export interface KeyPair {
  * Type to encapsulate an encrypted presentation sent from the UnumID SaaS
  */
 export interface EncryptedPresentation {
-    presentationRequestUuid: string;
+    presentationRequest: PresentationRequestDto;
     encryptedPresentation: EncryptedData;
-    verifierDid?: string;
 }
 /**
  * Type to encapsulate the non sensitive decrypted presentation information to help enrich UnumID's SaaS reporting dashboard.
