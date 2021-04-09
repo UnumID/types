@@ -168,12 +168,26 @@ export interface Issuer {
     isAuthorized: boolean;
 }
 /**
- * Type to encapsulate the post body of a Presentation Request Data Transfer Object, often used for PresentationRequest creation
+ * Encapsulates HolderApp entity attributes
+ */
+export interface HolderApp {
+    uuid: string;
+    createdAt: Date;
+    updatedAt: Date;
+    name: string;
+    uriScheme: string;
+    isAuthorized: boolean;
+    customerUuid: string;
+    deeplinkButtonImg: string;
+}
+/**
+ * Type to encapsulate the response body returned when a PresentationRequest is created
  */
 export interface PresentationRequestPostDto {
     presentationRequest: PresentationRequest;
     verifier: Pick<Verifier, 'did' | 'name' | 'url'>;
     issuers: Record<string, Pick<Issuer, 'did' | 'name'>>;
+    holderApp: Pick<HolderApp, 'name' | 'uriScheme' | 'deeplinkButtonImg'>;
     deeplink: string;
     qrCode: string;
 }
