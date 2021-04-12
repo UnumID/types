@@ -84,22 +84,22 @@ jobs:
           author_email: admin@unum.id
           message: '[Release] ${{ env.RELEASE_VERSION }}'
           add: '["package.json", "docs/", "build/"]'
-          branch: publish
+          branch: main
 
-      # # ref: https://github.com/actions/create-release
-      # - name: Create Release
-      #   id: create_release
-      #   uses: actions/create-release@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-      #   with:
-      #     tag_name: ${{ env.RELEASE_VERSION }}
-      #     release_name: ${{ env.RELEASE_VERSION }}
-      #     body: ${{ env.TAG_MESSAGE }}
-      #     # body: |
-      #     #   Changes in this Release
-      #     #   - First Change
-      #     #   - Second Change
-      #     draft: false
-      #     prerelease: false
-      #     commitish: main
+      # ref: https://github.com/actions/create-release
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ env.RELEASE_VERSION }}
+          release_name: ${{ env.RELEASE_VERSION }}
+          body: ${{ env.TAG_MESSAGE }}
+          # body: |
+          #   Changes in this Release
+          #   - First Change
+          #   - Second Change
+          draft: false
+          prerelease: false
+          commitish: main
