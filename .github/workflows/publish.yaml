@@ -81,8 +81,8 @@ jobs:
         uses: EndBug/add-and-commit@v7
         with:
           author_name: UnumID Admin
-          author_email: admin@unum.id
-          message: '[Release] ${{ env.RELEASE_VERSION }}'
+          author_email: liam@unum.id
+          message: '[Release ${{ env.RELEASE_VERSION }}] ${{ env.TAG_MESSAGE }}'
           add: '["package.json", "docs/", "build/"]'
           branch: main
 
