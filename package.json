@@ -1,6 +1,6 @@
 {
   "name": "@unumid/types",
-  "version": "0.0.1",
+  "version": "1.3.0",
   "description": "shared Unum ID TypeScript types",
   "main": "build/index.js",
   "license": "MIT",
