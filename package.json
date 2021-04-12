@@ -1,16 +1,20 @@
 {
   "name": "@unumid/types",
-  "version": "0.0.1",
+  "version": "1.3.1",
   "description": "shared Unum ID TypeScript types",
   "main": "build/index.js",
   "license": "MIT",
+  "repository": "git@github.com:UnumID/types.git",
+  "homepage": "https://docs.unum.id/types/",
+  "author": "UnumID <admin@unumid.org>",
+  "private": false,
   "devDependencies": {
     "typedoc": "^0.20.33",
     "typescript": "^4.2.3"
   },
   "dependencies": {
     "runtypes": "^6.0.0"
-  }, 
+  },
   "scripts": {
     "build": "rm -rf build/ && tsc"
   }
