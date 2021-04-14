@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>NoPresentation | @unumid/types</title>
+	<title>MessageInput | @unumid/types</title>
 	<meta name="description" content="Documentation for @unumid/types">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">@unumid/types</a>
 				</li>
 				<li>
-					<a href="nopresentation.html">NoPresentation</a>
+					<a href="messageinput.html">MessageInput</a>
 				</li>
 			</ul>
-			<h1>Interface NoPresentation</h1>
+			<h1>Interface MessageInput</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,8 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Encapsulates attributes for a presentation request declined.</p>
+						<p>Interface to encapsulate the parameters needed for Email or SMS message input.
+						Thanks to created a templated message from the deeplink&#39;s presentation request uuid and in turn the corresponding verifier, no custom message content needed.</p>
 					</div>
 				</div>
 			</section>
@@ -76,7 +77,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">NoPresentation</span>
+						<span class="target">MessageInput</span>
 					</li>
 				</ul>
 			</section>
@@ -87,10 +88,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="nopresentation.html#holder" class="tsd-kind-icon">holder</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="nopresentation.html#presentationrequestuuid" class="tsd-kind-icon">presentation<wbr>Request<wbr>Uuid</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="nopresentation.html#proof" class="tsd-kind-icon">proof</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="nopresentation.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="messageinput.html#deeplink" class="tsd-kind-icon">deeplink</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="messageinput.html#to" class="tsd-kind-icon">to</a></li>
 							</ul>
 						</section>
 					</div>
@@ -99,42 +98,22 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="holder" class="tsd-anchor"></a>
-					<h3>holder</h3>
-					<div class="tsd-signature tsd-kind-icon">holder<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="deeplink" class="tsd-anchor"></a>
+					<h3>deeplink</h3>
+					<div class="tsd-signature tsd-kind-icon">deeplink<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/4c87486/src/index.ts#L109">index.ts:109</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/4c87486/src/index.ts#L390">index.ts:390</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="presentationrequestuuid" class="tsd-anchor"></a>
-					<h3>presentation<wbr>Request<wbr>Uuid</h3>
-					<div class="tsd-signature tsd-kind-icon">presentation<wbr>Request<wbr>Uuid<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="to" class="tsd-anchor"></a>
+					<h3>to</h3>
+					<div class="tsd-signature tsd-kind-icon">to<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/4c87486/src/index.ts#L110">index.ts:110</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="proof" class="tsd-anchor"></a>
-					<h3>proof</h3>
-					<div class="tsd-signature tsd-kind-icon">proof<span class="tsd-signature-symbol">:</span> <a href="proof.html" class="tsd-signature-type" data-tsd-kind="Interface">Proof</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/4c87486/src/index.ts#L108">index.ts:108</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="type" class="tsd-anchor"></a>
-					<h3>type</h3>
-					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">&quot;NoPresentation&quot;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">...</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">]</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/4c87486/src/index.ts#L107">index.ts:107</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/4c87486/src/index.ts#L389">index.ts:389</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -153,19 +132,13 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="nopresentation.html" class="tsd-kind-icon">No<wbr>Presentation</a>
+						<a href="messageinput.html" class="tsd-kind-icon">Message<wbr>Input</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="nopresentation.html#holder" class="tsd-kind-icon">holder</a>
+								<a href="messageinput.html#deeplink" class="tsd-kind-icon">deeplink</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="nopresentation.html#presentationrequestuuid" class="tsd-kind-icon">presentation<wbr>Request<wbr>Uuid</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="nopresentation.html#proof" class="tsd-kind-icon">proof</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="nopresentation.html#type" class="tsd-kind-icon">type</a>
+								<a href="messageinput.html#to" class="tsd-kind-icon">to</a>
 							</li>
 						</ul>
 					</li>
