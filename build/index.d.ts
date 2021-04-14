@@ -337,4 +337,12 @@ export declare type CredentialStatusOptions = Static<typeof _CredentialStatusOpt
  * More info here: https://github.com/pelotom/runtypes
  */
 export declare const _CredentialStatusOptions: Union<[Literal<"valid">, Literal<"revoked">]>;
+/**
+ * Interface to encapsulate the parameters needed for Email or SMS message input.
+ * Thanks to created a templated message from the deeplink's presentation request uuid and in turn the corresponding verifier, no custom message content needed.
+ */
+export interface MessageInput {
+    to: string;
+    deeplink: string;
+}
 //# sourceMappingURL=index.d.ts.map
