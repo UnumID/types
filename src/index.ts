@@ -383,6 +383,7 @@ export type CredentialStatusOptions = Static<typeof _CredentialStatusOptions>
 
   /**
    * Interface to encapsulate the parameters needed for Email or SMS message input.
+   * Thanks to created a templated message from the deeplink's presentation request uuid and in turn the corresponding verifier, no custom message content needed.
    */
   export interface MessageInput {
     to: string; // email address or phone number
