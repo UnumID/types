@@ -380,3 +380,11 @@ export type CredentialStatusOptions = Static<typeof _CredentialStatusOptions>
     Literal('valid'),
     Literal('revoked')
   );
+
+  /**
+   * Interface to encapsulate the parameters needed for Email or SMS message input.
+   */
+  export interface MessageInput {
+    to: string; // email address or phone number
+    deeplink: string;
+  }
