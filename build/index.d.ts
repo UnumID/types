@@ -310,22 +310,26 @@ export interface PresentationReceiptInfo {
     issuers?: IssuerInfoMap;
 }
 /**
- * Encapsulates the different push notification providers the SaaS supports.
+ * A readonly list of push notification providers.
  */
-export declare type PushProvider = 'APNS' | 'FCM';
+export declare const pushProviders: readonly ["FCM", "APNS"];
+/**
+ * A type encapsulating all possible push provider values.
+ */
+export declare type PushProvider = typeof pushProviders[number];
 /**
  * Interface encapsulating an individual push notification token/identifier and its provider.
  */
 export interface PushToken {
     value: string;
-    provider: PushProvider;
+    provider?: PushProvider;
 }
 /**
  * Interface encapsulating options for sending push notifications via the SaaS.
  */
 export interface PushNotificationOptions {
     deeplink: string;
-    token: PushToken;
+    token: PushToken | PushToken[];
     holderAppUuid: string;
 }
 /**
