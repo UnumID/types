@@ -102,33 +102,33 @@ export interface Presentation extends UnsignedPresentation {
   proof: Proof;
 }
 
-/**
- * Encapsulates addition attributes to the unsigned presentation entity to create a Presentation entity.
- */
-// DEPRECATED
- export interface PresentationDeprecated {
-  '@context': ['https://www.w3.org/2018/credentials/v1', ...string[]];
-  proof: Proof;
-  type: ['VerifiablePresentation', ...string[]];
-  presentationRequestUuid: string;
-  verifierDid: string;
-  verifiableCredentials: VerifiableCredential[];
-  uuid?: string; // Optional wether the presentation has been persisted yet or not
-}
+// /**
+//  * Encapsulates addition attributes to the unsigned presentation entity to create a Presentation entity.
+//  */
+// // DEPRECATED
+//  export interface PresentationDeprecated {
+//   '@context': ['https://www.w3.org/2018/credentials/v1', ...string[]];
+//   proof: Proof;
+//   type: ['VerifiablePresentation', ...string[]];
+//   presentationRequestUuid: string;
+//   verifierDid: string;
+//   verifiableCredentials: VerifiableCredential[];
+//   uuid?: string; // Optional wether the presentation has been persisted yet or not
+// }
 
-/**
- * Encapsulates attributes for a presentation request declined.
- */
-// DEPRECATED
-export interface NoPresentationDeprecated {
-  type: ['NoPresentation', ...string[]];
-  proof: Proof;
-  holder: string;
-  presentationRequestUuid: string;
-  verifierDid: string;
-}
+// /**
+//  * Encapsulates attributes for a presentation request declined.
+//  */
+// // DEPRECATED
+// export interface NoPresentationDeprecated {
+//   type: ['NoPresentation', ...string[]];
+//   proof: Proof;
+//   holder: string;
+//   presentationRequestUuid: string;
+//   verifierDid: string;
+// }
 
-export type PresentationOrNoPresentation = PresentationDeprecated | NoPresentationDeprecated;
+// export type PresentationOrNoPresentation = PresentationDeprecated | NoPresentationDeprecated;
 
 export interface CredentialRequest {
   type: string; // the string matching the desire credential type
