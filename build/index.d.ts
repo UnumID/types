@@ -82,6 +82,7 @@ export interface UnsignedPresentation {
     type: ['VerifiablePresentation', ...string[]];
     verifiableCredentials: VerifiableCredential[];
     presentationRequestUuid: string;
+    verifierDid: string;
     uuid?: string;
 }
 /**
@@ -98,6 +99,7 @@ export interface NoPresentation {
     proof: Proof;
     holder: string;
     presentationRequestUuid: string;
+    verifierDid: string;
 }
 export declare type PresentationOrNoPresentation = Presentation | NoPresentation;
 export interface CredentialRequest {
