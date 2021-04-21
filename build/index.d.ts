@@ -1,4 +1,5 @@
 import { Literal, Static, Union } from "runtypes";
+import { SemVer } from 'semver';
 /**
  * Interface to encapsulate cryptographic proof for any signed object: Credentials, Presentations, PresentationRequests.
  */
@@ -144,7 +145,20 @@ export interface Verifier {
     name: string;
     customerUuid: string;
     url: string;
+    versionInfo: [VerifierInfo];
     isAuthorized: boolean;
+}
+export interface VersionMapping {
+    saasApiVersion: SemVer;
+    serverSdkVersion: SemVer;
+}
+export interface VersionInfo {
+    target: TargetInfo;
+    sdkVersion: SemVer;
+}
+export interface TargetInfo {
+    version?: string;
+    url?: string;
 }
 /**
  * Encapsulates Issuer entity attributes.

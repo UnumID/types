@@ -1,4 +1,5 @@
 import { Literal, Static, Union } from "runtypes";
+import { SemVer } from 'semver';
 
 /**
  * Interface to encapsulate cryptographic proof for any signed object: Credentials, Presentations, PresentationRequests.
@@ -189,7 +190,47 @@ export interface Verifier {
   name: string;
   customerUuid: string;
   url: string;
+  versionInfo: [VerifierInfo],
   isAuthorized: boolean;
+}
+
+// const presentationBreakingChange: VersionMapping = {
+//   saasApiVersion: new SemVer('2.0.0'),
+//   // holderSdkVersion: '2.0.0',
+//   serverSdkVersion: new SemVer('2.0.0')
+  
+// }
+
+// // /**
+// //  * Map holder sdk versions (via request "version" headers) to server sdk versions
+// //  */
+// // export const ServerVersionMapping = {
+// //   '2.0.0': '2.0.0' // version 2.0.0 of the SaaS API maps to version 2.0.0 of the Server SDK.
+// // }
+
+// /**
+//  * Map the saas api version to corresponding version mapping
+//  */
+// export const versionMapping = {
+//   '2.0.0': presentationBreakingChange
+// }
+
+
+export interface VersionMapping {
+  saasApiVersion: SemVer, // minimum capable version 
+  // holderSdkVersion: string, // minimum capable version 
+  serverSdkVersion: SemVer // minimum capable version 
+}
+
+export interface VersionInfo {
+  target: TargetInfo,
+  sdkVersion: SemVer // server sdk version
+  // version: VersionMapping
+}
+
+export interface TargetInfo {
+  version?: string, // api version
+  url?: string
 }
 
 /**
