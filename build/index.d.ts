@@ -145,7 +145,7 @@ export interface Verifier {
     name: string;
     customerUuid: string;
     url: string;
-    versionInfo: [VerifierInfo];
+    versionInfo: VerifierInfo[];
     isAuthorized: boolean;
 }
 export interface VersionMapping {
