@@ -88,10 +88,11 @@ export interface VerifiableCredential {
 export interface UnsignedPresentation {
   '@context': ['https://www.w3.org/2018/credentials/v1', ...string[]];
   type: ['VerifiablePresentation', ...string[]];
-  verifiableCredentials: VerifiableCredential[];
   presentationRequestUuid: string;
   verifierDid: string;
-  uuid?: string;
+  // Note: that verifiableCredential is singular but it's of array type. This is thanks to the w3 spec dictating as such, not by choice. ref: https://www.w3.org/TR/vc-data-model/#presentations-0
+  verifiableCredential?: VerifiableCredential[]; // Optional, if undefined then means the presentation request was declined
+  uuid?: string; // Optional wether the presentation has been persisted yet or not
 }
 
 /**
@@ -102,9 +103,24 @@ export interface Presentation extends UnsignedPresentation {
 }
 
 /**
+ * Encapsulates addition attributes to the unsigned presentation entity to create a Presentation entity.
+ */
+// DEPRECATED
+ export interface PresentationDeprecated {
+  '@context': ['https://www.w3.org/2018/credentials/v1', ...string[]];
+  proof: Proof;
+  type: ['VerifiablePresentation', ...string[]];
+  presentationRequestUuid: string;
+  verifierDid: string;
+  verifiableCredentials: VerifiableCredential[];
+  uuid?: string; // Optional wether the presentation has been persisted yet or not
+}
+
+/**
  * Encapsulates attributes for a presentation request declined.
  */
-export interface NoPresentation {
+// DEPRECATED
+export interface NoPresentationDeprecated {
   type: ['NoPresentation', ...string[]];
   proof: Proof;
   holder: string;
@@ -112,7 +128,7 @@ export interface NoPresentation {
   verifierDid: string;
 }
 
-export type PresentationOrNoPresentation = Presentation | NoPresentation;
+export type PresentationOrNoPresentation = PresentationDeprecated | NoPresentationDeprecated;
 
 export interface CredentialRequest {
   type: string; // the string matching the desire credential type
