@@ -154,7 +154,7 @@ export interface VersionMapping {
 }
 export interface VersionInfo {
     target: TargetInfo;
-    sdkVersion: SemVer;
+    sdkVersion: string;
 }
 export interface TargetInfo {
     version?: string;

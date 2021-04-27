@@ -224,7 +224,7 @@ export interface VersionMapping {
 
 export interface VersionInfo {
   target: TargetInfo,
-  sdkVersion: SemVer // server sdk version
+  sdkVersion: string // server sdk version. Opting to keep a string for simpler persisting in db.
   // version: VersionMapping
 }
 
