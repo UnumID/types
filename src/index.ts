@@ -177,6 +177,7 @@ export interface VerifierOptions {
   customerUuid: string;
   publicKeyInfo: PublicKeyInfo[];
   url: string;
+  versionInfo: VersionInfo[],
 }
 
 /**
