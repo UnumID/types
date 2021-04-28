@@ -312,6 +312,7 @@ export interface PresentationReceiptInfo {
     subjectDid: string;
     verifierDid: string;
     holderApp: string;
+    presentationRequestUuid?: string;
     credentialTypes?: string[];
     issuers?: IssuerInfoMap;
 }
@@ -362,7 +363,7 @@ export interface ExternalChannelMessageInput {
  */
 export interface VerificationResponse {
     isVerified: boolean;
-    type: 'VerifiablePresentation' | 'NoPresentation';
+    type: 'VerifiablePresentation' | 'DeclinedPresentation';
     presentationReceiptInfo: PresentationReceiptInfo;
 }
 //# sourceMappingURL=index.d.ts.map

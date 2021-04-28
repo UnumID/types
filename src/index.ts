@@ -351,6 +351,7 @@ export interface PresentationReceiptInfo {
   subjectDid: string;
   verifierDid: string;
   holderApp: string;
+  presentationRequestUuid?: string;
   credentialTypes?: string[];
   issuers?: IssuerInfoMap;
 }
@@ -412,6 +413,6 @@ export type CredentialStatusOptions = Static<typeof _CredentialStatusOptions>
    */
   export interface VerificationResponse {
     isVerified: boolean;
-    type: 'VerifiablePresentation' | 'NoPresentation';
+    type: 'VerifiablePresentation' | 'DeclinedPresentation';
     presentationReceiptInfo: PresentationReceiptInfo;
   }
