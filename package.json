@@ -9,11 +9,13 @@
   "author": "UnumID <admin@unumid.org>",
   "private": false,
   "devDependencies": {
+    "@types/semver": "^7.3.4",
     "typedoc": "^0.20.33",
     "typescript": "^4.2.3"
   },
   "dependencies": {
-    "runtypes": "^6.0.0"
+    "runtypes": "^6.0.0",
+    "semver": "^7.3.5"
   },
   "scripts": {
     "build": "rm -rf build/ && tsc"

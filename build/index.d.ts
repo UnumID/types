@@ -1,4 +1,5 @@
 import { Literal, Static, Union } from "runtypes";
+import { SemVer } from 'semver';
 /**
  * Interface to encapsulate cryptographic proof for any signed object: Credentials, Presentations, PresentationRequests.
  */
@@ -80,9 +81,9 @@ export interface VerifiableCredential {
 export interface UnsignedPresentation {
     '@context': ['https://www.w3.org/2018/credentials/v1', ...string[]];
     type: ['VerifiablePresentation', ...string[]];
-    verifiableCredentials: VerifiableCredential[];
     presentationRequestUuid: string;
     verifierDid: string;
+    verifiableCredential?: VerifiableCredential[];
     uuid?: string;
 }
 /**
@@ -91,17 +92,6 @@ export interface UnsignedPresentation {
 export interface Presentation extends UnsignedPresentation {
     proof: Proof;
 }
-/**
- * Encapsulates attributes for a presentation request declined.
- */
-export interface NoPresentation {
-    type: ['NoPresentation', ...string[]];
-    proof: Proof;
-    holder: string;
-    presentationRequestUuid: string;
-    verifierDid: string;
-}
-export declare type PresentationOrNoPresentation = Presentation | NoPresentation;
 export interface CredentialRequest {
     type: string;
     issuers: string[];
@@ -143,6 +133,7 @@ export interface VerifierOptions {
     customerUuid: string;
     publicKeyInfo: PublicKeyInfo[];
     url: string;
+    versionInfo: VersionInfo[];
 }
 /**
  * Encapsulates Verifier entity attributes.
@@ -155,7 +146,20 @@ export interface Verifier {
     name: string;
     customerUuid: string;
     url: string;
+    versionInfo: VersionInfo[];
     isAuthorized: boolean;
+}
+export interface VersionMapping {
+    saasApiVersion: SemVer;
+    serverSdkVersion: SemVer;
+}
+export interface VersionInfo {
+    target: TargetInfo;
+    sdkVersion: string;
+}
+export interface TargetInfo {
+    version?: string;
+    url?: string;
 }
 /**
  * Encapsulates Issuer entity attributes.

@@ -1,4 +1,5 @@
 import { Literal, Static, Union } from "runtypes";
+import { SemVer } from 'semver';
 
 /**
  * Interface to encapsulate cryptographic proof for any signed object: Credentials, Presentations, PresentationRequests.
@@ -88,10 +89,11 @@ export interface VerifiableCredential {
 export interface UnsignedPresentation {
   '@context': ['https://www.w3.org/2018/credentials/v1', ...string[]];
   type: ['VerifiablePresentation', ...string[]];
-  verifiableCredentials: VerifiableCredential[];
   presentationRequestUuid: string;
   verifierDid: string;
-  uuid?: string;
+  // Note: that verifiableCredential is singular but it's of array type. This is thanks to the w3 spec dictating as such, not by choice. ref: https://www.w3.org/TR/vc-data-model/#presentations-0
+  verifiableCredential?: VerifiableCredential[]; // Optional, if undefined or empty it means the presentation request was declined
+  uuid?: string; // Optional wether the presentation has been persisted yet or not
 }
 
 /**
@@ -100,19 +102,6 @@ export interface UnsignedPresentation {
 export interface Presentation extends UnsignedPresentation {
   proof: Proof;
 }
-
-/**
- * Encapsulates attributes for a presentation request declined.
- */
-export interface NoPresentation {
-  type: ['NoPresentation', ...string[]];
-  proof: Proof;
-  holder: string;
-  presentationRequestUuid: string;
-  verifierDid: string;
-}
-
-export type PresentationOrNoPresentation = Presentation | NoPresentation;
 
 export interface CredentialRequest {
   type: string; // the string matching the desire credential type
@@ -160,6 +149,7 @@ export interface VerifierOptions {
   customerUuid: string;
   publicKeyInfo: PublicKeyInfo[];
   url: string;
+  versionInfo: VersionInfo[],
 }
 
 /**
@@ -173,7 +163,25 @@ export interface Verifier {
   name: string;
   customerUuid: string;
   url: string;
+  versionInfo: VersionInfo[],
   isAuthorized: boolean;
+}
+
+
+export interface VersionMapping {
+  saasApiVersion: SemVer, // minimum capable version 
+  serverSdkVersion: SemVer // minimum capable version
+  // holderSdkVersion: string, // Opting to exclude because inherent via the SaaS API version
+}
+
+export interface VersionInfo {
+  target: TargetInfo,
+  sdkVersion: string // server sdk version. Opting to keep a string for simpler persisting in db.
+}
+
+export interface TargetInfo {
+  version?: string, // api version
+  url?: string
 }
 
 /**
