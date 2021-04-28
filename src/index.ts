@@ -92,7 +92,7 @@ export interface UnsignedPresentation {
   presentationRequestUuid: string;
   verifierDid: string;
   // Note: that verifiableCredential is singular but it's of array type. This is thanks to the w3 spec dictating as such, not by choice. ref: https://www.w3.org/TR/vc-data-model/#presentations-0
-  verifiableCredential?: VerifiableCredential[]; // Optional, if undefined then means the presentation request was declined
+  verifiableCredential?: VerifiableCredential[]; // Optional, if undefined or empty it means the presentation request was declined
   uuid?: string; // Optional wether the presentation has been persisted yet or not
 }
 
@@ -102,34 +102,6 @@ export interface UnsignedPresentation {
 export interface Presentation extends UnsignedPresentation {
   proof: Proof;
 }
-
-// /**
-//  * Encapsulates addition attributes to the unsigned presentation entity to create a Presentation entity.
-//  */
-// // DEPRECATED
-//  export interface PresentationDeprecated {
-//   '@context': ['https://www.w3.org/2018/credentials/v1', ...string[]];
-//   proof: Proof;
-//   type: ['VerifiablePresentation', ...string[]];
-//   presentationRequestUuid: string;
-//   verifierDid: string;
-//   verifiableCredentials: VerifiableCredential[];
-//   uuid?: string; // Optional wether the presentation has been persisted yet or not
-// }
-
-// /**
-//  * Encapsulates attributes for a presentation request declined.
-//  */
-// // DEPRECATED
-// export interface NoPresentationDeprecated {
-//   type: ['NoPresentation', ...string[]];
-//   proof: Proof;
-//   holder: string;
-//   presentationRequestUuid: string;
-//   verifierDid: string;
-// }
-
-// export type PresentationOrNoPresentation = PresentationDeprecated | NoPresentationDeprecated;
 
 export interface CredentialRequest {
   type: string; // the string matching the desire credential type
@@ -195,38 +167,16 @@ export interface Verifier {
   isAuthorized: boolean;
 }
 
-// const presentationBreakingChange: VersionMapping = {
-//   saasApiVersion: new SemVer('2.0.0'),
-//   // holderSdkVersion: '2.0.0',
-//   serverSdkVersion: new SemVer('2.0.0')
-  
-// }
-
-// // /**
-// //  * Map holder sdk versions (via request "version" headers) to server sdk versions
-// //  */
-// // export const ServerVersionMapping = {
-// //   '2.0.0': '2.0.0' // version 2.0.0 of the SaaS API maps to version 2.0.0 of the Server SDK.
-// // }
-
-// /**
-//  * Map the saas api version to corresponding version mapping
-//  */
-// export const versionMapping = {
-//   '2.0.0': presentationBreakingChange
-// }
-
 
 export interface VersionMapping {
   saasApiVersion: SemVer, // minimum capable version 
-  // holderSdkVersion: string, // minimum capable version 
-  serverSdkVersion: SemVer // minimum capable version 
+  serverSdkVersion: SemVer // minimum capable version
+  // holderSdkVersion: string, // Opting to exclude because inherent via the SaaS API version
 }
 
 export interface VersionInfo {
   target: TargetInfo,
   sdkVersion: string // server sdk version. Opting to keep a string for simpler persisting in db.
-  // version: VersionMapping
 }
 
 export interface TargetInfo {
