@@ -41,7 +41,7 @@ export interface CredentialSubject {
  */
 export interface UnsignedCredential {
     '@context': ['https://www.w3.org/2018/credentials/v1', ...string[]];
-    credentialSubject: CredentialSubject;
+    credentialSubject: JSON;
     credentialStatus: {
         id: string;
         type: string;
@@ -61,20 +61,6 @@ export interface Credential extends UnsignedCredential {
 /**
  * Encapsulates a verifiable credential attributes.
  */
-export interface VerifiableCredential {
-    ['@context']: ['https://www.w3.org/2018/credentials/v1', ...string[]];
-    id: string;
-    credentialSubject: any;
-    credentialStatus: {
-        id: string;
-        type: string;
-    };
-    issuer: string;
-    type: ['VerifiableCredential', ...string[]];
-    issuanceDate: Date;
-    expirationDate?: Date;
-    proof: Proof;
-}
 /**
  * Encapsulates an unsigned presentation attributes.
  */
@@ -83,7 +69,7 @@ export interface UnsignedPresentation {
     type: ['VerifiablePresentation', ...string[]];
     presentationRequestUuid: string;
     verifierDid: string;
-    verifiableCredential?: VerifiableCredential[];
+    verifiableCredential?: Credential[];
     uuid?: string;
 }
 /**

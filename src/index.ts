@@ -48,13 +48,14 @@ export interface CredentialSubject {
  */
 export interface UnsignedCredential {
   '@context': ['https://www.w3.org/2018/credentials/v1', ...string[]];
-  credentialSubject: CredentialSubject;
+  // credentialSubject: CredentialSubject;
+  credentialSubject: JSON; // due to its unknown format going to handle as JSON string when passing around
   credentialStatus: {
     id: string;
     type: string;
   }
   issuer: string;
-  type: ['VerifiableCredential', ...string[]];
+  type: ['VerifiableCredential', ...string[]]; // as dictated by the W3 spec. ref: https://www.w3.org/TR/vc-data-model/#example-1-a-simple-example-of-a-verifiable-credential
   id: string;
   issuanceDate: Date;
   expirationDate?: Date;
@@ -71,17 +72,17 @@ export interface Credential extends UnsignedCredential {
  * Encapsulates a verifiable credential attributes.
  */
 
-export interface VerifiableCredential {
-  ['@context']: ['https://www.w3.org/2018/credentials/v1', ...string[]];
-  id: string;
-  credentialSubject: any;
-  credentialStatus: { id: string, type: string };
-  issuer: string;
-  type: ['VerifiableCredential', ...string[]];
-  issuanceDate: Date;
-  expirationDate?: Date;
-  proof: Proof;
-}
+// export interface VerifiableCredential {
+//   ['@context']: ['https://www.w3.org/2018/credentials/v1', ...string[]];
+//   id: string;
+//   credentialSubject: any;
+//   credentialStatus: { id: string, type: string };
+//   issuer: string;
+//   type: ['VerifiableCredential', ...string[]];
+//   issuanceDate: Date;
+//   expirationDate?: Date;
+//   proof: Proof;
+// }
 
 /**
  * Encapsulates an unsigned presentation attributes.
@@ -92,7 +93,8 @@ export interface UnsignedPresentation {
   presentationRequestUuid: string;
   verifierDid: string;
   // Note: that verifiableCredential is singular but it's of array type. This is thanks to the w3 spec dictating as such, not by choice. ref: https://www.w3.org/TR/vc-data-model/#presentations-0
-  verifiableCredential?: VerifiableCredential[]; // Optional, if undefined or empty it means the presentation request was declined
+  // verifiableCredential?: VerifiableCredential[]; // Optional, if undefined or empty it means the presentation request was declined
+  verifiableCredential?: Credential[]; // Optional, if undefined or empty it means the presentation request was declined
   uuid?: string; // Optional wether the presentation has been persisted yet or not
 }
 
