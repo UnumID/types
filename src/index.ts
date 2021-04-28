@@ -56,7 +56,7 @@ export interface CredentialSubject {
 export interface UnsignedCredential {
   '@context': ['https://www.w3.org/2018/credentials/v1', ...string[]];
   // credentialSubject: CredentialSubject;
-  credentialSubject: JSON; // due to its unknown format going to handle as JSON string when passing around
+  credentialSubject: string; // due to its unknown format going to handle as JSON string when passing around
   credentialStatus: {
     id: string;
     type: string;

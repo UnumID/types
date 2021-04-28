@@ -47,7 +47,7 @@ export interface JSONObj {
  */
 export interface UnsignedCredential {
     '@context': ['https://www.w3.org/2018/credentials/v1', ...string[]];
-    credentialSubject: JSON;
+    credentialSubject: string;
     credentialStatus: {
         id: string;
         type: string;
