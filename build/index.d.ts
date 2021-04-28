@@ -355,4 +355,14 @@ export interface ExternalChannelMessageInput {
     to: string;
     deeplink: string;
 }
+/**
+ * Interface to encapsulate a Presentation verification response that is expected as a response to
+ * the UnumID SaaS calling into a customer's verifier app (which is leveraging the Server SDK for presentation verification).
+ * It is not the type the Server SDK returns because the SaaS to never deals with the plaintext presentations.
+ */
+export interface VerificationResponse {
+    isVerified: boolean;
+    type: 'VerifiablePresentation' | 'NoPresentation';
+    presentationReceiptInfo: PresentationReceiptInfo;
+}
 //# sourceMappingURL=index.d.ts.map
