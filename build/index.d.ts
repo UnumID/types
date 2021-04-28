@@ -37,11 +37,17 @@ export interface CredentialSubject {
     [claimName: string]: ClaimValue;
 }
 /**
+ * Interface to encapsulate a JSON object with unknown keys
+ */
+export interface JSONObj {
+    [key: string]: any;
+}
+/**
  * Interface to encapsulate relevant credential information.
  */
 export interface UnsignedCredential {
     '@context': ['https://www.w3.org/2018/credentials/v1', ...string[]];
-    credentialSubject: JSON;
+    credentialSubject: JSONObj;
     credentialStatus: {
         id: string;
         type: string;

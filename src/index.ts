@@ -44,12 +44,19 @@ export interface CredentialSubject {
 }
 
 /**
+ * Interface to encapsulate a JSON object with unknown keys
+ */
+ export interface JSONObj {
+  [key: string]: any;
+}
+
+/**
  * Interface to encapsulate relevant credential information.
  */
 export interface UnsignedCredential {
   '@context': ['https://www.w3.org/2018/credentials/v1', ...string[]];
   // credentialSubject: CredentialSubject;
-  credentialSubject: JSON; // due to its unknown format going to handle as JSON string when passing around
+  credentialSubject: JSONObj; // due to its unknown format going to handle as JSON string when passing around
   credentialStatus: {
     id: string;
     type: string;
