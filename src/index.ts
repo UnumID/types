@@ -172,8 +172,8 @@ export interface Verifier {
   name: string;
   customerUuid: string;
   url: string;
-  versionInfo: VersionInfo[],
   isAuthorized: boolean;
+  versionInfo?: VersionInfo[],
 }
 
 
