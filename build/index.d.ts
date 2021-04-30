@@ -37,11 +37,17 @@ export interface CredentialSubject {
     [claimName: string]: ClaimValue;
 }
 /**
+ * Interface to encapsulate a JSON object with unknown keys
+ */
+export interface JSONObj {
+    [key: string]: any;
+}
+/**
  * Interface to encapsulate relevant credential information.
  */
 export interface UnsignedCredential {
     '@context': ['https://www.w3.org/2018/credentials/v1', ...string[]];
-    credentialSubject: CredentialSubject;
+    credentialSubject: string;
     credentialStatus: {
         id: string;
         type: string;
@@ -59,23 +65,6 @@ export interface Credential extends UnsignedCredential {
     proof: Proof;
 }
 /**
- * Encapsulates a verifiable credential attributes.
- */
-export interface VerifiableCredential {
-    ['@context']: ['https://www.w3.org/2018/credentials/v1', ...string[]];
-    id: string;
-    credentialSubject: any;
-    credentialStatus: {
-        id: string;
-        type: string;
-    };
-    issuer: string;
-    type: ['VerifiableCredential', ...string[]];
-    issuanceDate: Date;
-    expirationDate?: Date;
-    proof: Proof;
-}
-/**
  * Encapsulates an unsigned presentation attributes.
  */
 export interface UnsignedPresentation {
@@ -83,7 +72,7 @@ export interface UnsignedPresentation {
     type: ['VerifiablePresentation', ...string[]];
     presentationRequestUuid: string;
     verifierDid: string;
-    verifiableCredential?: VerifiableCredential[];
+    verifiableCredential?: Credential[];
     uuid?: string;
 }
 /**
@@ -146,8 +135,8 @@ export interface Verifier {
     name: string;
     customerUuid: string;
     url: string;
-    versionInfo: VersionInfo[];
     isAuthorized: boolean;
+    versionInfo: VersionInfo[];
 }
 export interface VersionMapping {
     saasApiVersion: SemVer;
@@ -312,6 +301,7 @@ export interface PresentationReceiptInfo {
     subjectDid: string;
     verifierDid: string;
     holderApp: string;
+    presentationRequestUuid?: string;
     credentialTypes?: string[];
     issuers?: IssuerInfoMap;
 }
@@ -356,13 +346,12 @@ export interface ExternalChannelMessageInput {
     deeplink: string;
 }
 /**
- * Interface to encapsulate a Presentation verification response that is expected as a response to
- * the UnumID SaaS calling into a customer's verifier app (which is leveraging the Server SDK for presentation verification).
- * It is not the type the Server SDK returns because the SaaS to never deals with the plaintext presentations.
+ * Interface to encapsulate the response that the UnumID SaaS is expecting after forwarding the encrypted presentation to the verifier app for verification.
+ * Notably it is not the DecryptedPresentation type from the Server SDK returns because the SaaS to never deals with the plaintext presentations.
  */
 export interface VerificationResponse {
     isVerified: boolean;
-    type: 'VerifiablePresentation' | 'NoPresentation';
+    type: 'VerifiablePresentation' | 'DeclinedPresentation';
     presentationReceiptInfo: PresentationReceiptInfo;
 }
 //# sourceMappingURL=index.d.ts.map
