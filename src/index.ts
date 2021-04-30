@@ -84,7 +84,6 @@ export interface UnsignedPresentation {
   presentationRequestUuid: string;
   verifierDid: string;
   // Note: that verifiableCredential is singular but it's of array type. This is thanks to the w3 spec dictating as such, not by choice. ref: https://www.w3.org/TR/vc-data-model/#presentations-0
-  // verifiableCredential?: VerifiableCredential[]; // Optional, if undefined or empty it means the presentation request was declined
   verifiableCredential?: Credential[]; // Optional, if undefined or empty it means the presentation request was declined
   uuid?: string; // Optional wether the presentation has been persisted yet or not
 }

@@ -65,9 +65,6 @@ export interface Credential extends UnsignedCredential {
     proof: Proof;
 }
 /**
- * Encapsulates a verifiable credential attributes.
- */
-/**
  * Encapsulates an unsigned presentation attributes.
  */
 export interface UnsignedPresentation {
