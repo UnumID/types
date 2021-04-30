@@ -139,7 +139,7 @@ export interface Verifier {
     customerUuid: string;
     url: string;
     isAuthorized: boolean;
-    versionInfo?: VersionInfo[];
+    versionInfo: VersionInfo[];
 }
 export interface VersionMapping {
     saasApiVersion: SemVer;
