@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>VerifierInfo | @unumid/types</title>
+	<title>VersionMapping | @unumid/types</title>
 	<meta name="description" content="Documentation for @unumid/types">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,28 +55,21 @@
 					<a href="../modules.html">@unumid/types</a>
 				</li>
 				<li>
-					<a href="verifierinfo.html">VerifierInfo</a>
+					<a href="versionmapping.html">VersionMapping</a>
 				</li>
 			</ul>
-			<h1>Interface VerifierInfo</h1>
+			<h1>Interface VersionMapping</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Encapsulates Verifier metadata attributes.</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">VerifierInfo</span>
+						<span class="target">VersionMapping</span>
 					</li>
 				</ul>
 			</section>
@@ -87,9 +80,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="verifierinfo.html#did" class="tsd-kind-icon">did</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="verifierinfo.html#name" class="tsd-kind-icon">name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="verifierinfo.html#url" class="tsd-kind-icon">url</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="versionmapping.html#saasapiversion" class="tsd-kind-icon">saas<wbr>Api<wbr>Version</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="versionmapping.html#serversdkversion" class="tsd-kind-icon">server<wbr>Sdk<wbr>Version</a></li>
 							</ul>
 						</section>
 					</div>
@@ -98,32 +90,22 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="did" class="tsd-anchor"></a>
-					<h3>did</h3>
-					<div class="tsd-signature tsd-kind-icon">did<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="saasapiversion" class="tsd-anchor"></a>
+					<h3>saas<wbr>Api<wbr>Version</h3>
+					<div class="tsd-signature tsd-kind-icon">saas<wbr>Api<wbr>Version<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">SemVer</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/10492c1/src/index.ts#L303">index.ts:303</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/10492c1/src/index.ts#L164">index.ts:164</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="name" class="tsd-anchor"></a>
-					<h3>name</h3>
-					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="serversdkversion" class="tsd-anchor"></a>
+					<h3>server<wbr>Sdk<wbr>Version</h3>
+					<div class="tsd-signature tsd-kind-icon">server<wbr>Sdk<wbr>Version<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">SemVer</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/10492c1/src/index.ts#L304">index.ts:304</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="url" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> url</h3>
-					<div class="tsd-signature tsd-kind-icon">url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/10492c1/src/index.ts#L305">index.ts:305</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/10492c1/src/index.ts#L165">index.ts:165</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -142,16 +124,13 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="verifierinfo.html" class="tsd-kind-icon">Verifier<wbr>Info</a>
+						<a href="versionmapping.html" class="tsd-kind-icon">Version<wbr>Mapping</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="verifierinfo.html#did" class="tsd-kind-icon">did</a>
+								<a href="versionmapping.html#saasapiversion" class="tsd-kind-icon">saas<wbr>Api<wbr>Version</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="verifierinfo.html#name" class="tsd-kind-icon">name</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="verifierinfo.html#url" class="tsd-kind-icon">url</a>
+								<a href="versionmapping.html#serversdkversion" class="tsd-kind-icon">server<wbr>Sdk<wbr>Version</a>
 							</li>
 						</ul>
 					</li>
