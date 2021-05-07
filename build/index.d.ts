@@ -251,7 +251,7 @@ export interface EncryptedCredentialOptions {
     type: string[];
     data: EncryptedData;
 }
-declare type WithKeyAndValue<T, K extends string, V> = T & Record<K, V>;
+export declare type WithKeyAndValue<T, K extends string, V> = T & Record<K, V>;
 export declare type WithVersion<T> = WithKeyAndValue<T, 'version', string>;
 /**
  * Encapsulates necessary CredentialRequest entity attributes.
@@ -356,5 +356,4 @@ export interface VerificationResponse {
     type: 'VerifiablePresentation' | 'DeclinedPresentation';
     presentationReceiptInfo: PresentationReceiptInfo;
 }
-export {};
 //# sourceMappingURL=index.d.ts.map
