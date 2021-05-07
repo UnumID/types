@@ -250,6 +250,7 @@ export interface EncryptedCredentialOptions {
     issuer: string;
     type: string[];
     data: EncryptedData;
+    version: string;
 }
 /**
  * Encapsulates necessary CredentialRequest entity attributes.
