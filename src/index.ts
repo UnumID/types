@@ -407,3 +407,9 @@ export type CredentialStatusOptions = Static<typeof _CredentialStatusOptions>
     type: 'VerifiablePresentation' | 'DeclinedPresentation';
     presentationReceiptInfo: PresentationReceiptInfo;
   }
+
+  // helper which adds a named key with a specific value type to an existing type
+export type WithKeyAndValue<T, K extends string, V> = T & Record<K, V>; 
+
+// helper type which adds a version string
+export type WithVersion<T> = WithKeyAndValue<T, 'version', string>;

@@ -354,4 +354,6 @@ export interface VerificationResponse {
     type: 'VerifiablePresentation' | 'DeclinedPresentation';
     presentationReceiptInfo: PresentationReceiptInfo;
 }
+export declare type WithKeyAndValue<T, K extends string, V> = T & Record<K, V>;
+export declare type WithVersion<T> = WithKeyAndValue<T, 'version', string>;
 //# sourceMappingURL=index.d.ts.map
