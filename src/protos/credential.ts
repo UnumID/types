@@ -6,13 +6,15 @@ import { Proof } from "./proof";
 
 export const protobufPackage = "credential.v1";
 
+/** Object to encapsulate Credential status information. */
 export interface CredentialStatus {
   id: string;
   type: string;
 }
 
+/** Object to encapsulate relevant credential information. */
 export interface UnsignedCredential {
-  context: string;
+  context: string[];
   credentialSubject: string;
   credentialStatus: CredentialStatus | undefined;
   issuer: string;
@@ -23,8 +25,12 @@ export interface UnsignedCredential {
   expirationDate: Date | undefined;
 }
 
+/**
+ * Object which incorporates the relevant credential information in addition to a cryptographic proof so that the Credential is verifiable.
+ * Tightly coupled with UnsignedCredential.
+ */
 export interface Credential {
-  context: string;
+  context: string[];
   credentialSubject: string;
   credentialStatus: CredentialStatus | undefined;
   issuer: string;
@@ -36,6 +42,7 @@ export interface Credential {
   expirationDate: Date | undefined;
 }
 
+/** Object that encapsulates Credential information requested. */
 export interface CredentialRequest {
   /** the string matching the desire credential type */
   type: string;
@@ -133,8 +140,8 @@ export const UnsignedCredential = {
     message: UnsignedCredential,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
-    if (message.context !== "") {
-      writer.uint32(10).string(message.context);
+    for (const v of message.context) {
+      writer.uint32(10).string(v!);
     }
     if (message.credentialSubject !== "") {
       writer.uint32(18).string(message.credentialSubject);
@@ -173,12 +180,13 @@ export const UnsignedCredential = {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = { ...baseUnsignedCredential } as UnsignedCredential;
+    message.context = [];
     message.type = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.context = reader.string();
+          message.context.push(reader.string());
           break;
         case 2:
           message.credentialSubject = reader.string();
@@ -218,11 +226,12 @@ export const UnsignedCredential = {
 
   fromJSON(object: any): UnsignedCredential {
     const message = { ...baseUnsignedCredential } as UnsignedCredential;
+    message.context = [];
     message.type = [];
     if (object.context !== undefined && object.context !== null) {
-      message.context = String(object.context);
-    } else {
-      message.context = "";
+      for (const e of object.context) {
+        message.context.push(String(e));
+      }
     }
     if (
       object.credentialSubject !== undefined &&
@@ -272,7 +281,11 @@ export const UnsignedCredential = {
 
   toJSON(message: UnsignedCredential): unknown {
     const obj: any = {};
-    message.context !== undefined && (obj.context = message.context);
+    if (message.context) {
+      obj.context = message.context.map((e) => e);
+    } else {
+      obj.context = [];
+    }
     message.credentialSubject !== undefined &&
       (obj.credentialSubject = message.credentialSubject);
     message.credentialStatus !== undefined &&
@@ -295,11 +308,12 @@ export const UnsignedCredential = {
 
   fromPartial(object: DeepPartial<UnsignedCredential>): UnsignedCredential {
     const message = { ...baseUnsignedCredential } as UnsignedCredential;
+    message.context = [];
     message.type = [];
     if (object.context !== undefined && object.context !== null) {
-      message.context = object.context;
-    } else {
-      message.context = "";
+      for (const e of object.context) {
+        message.context.push(e);
+      }
     }
     if (
       object.credentialSubject !== undefined &&
@@ -361,8 +375,8 @@ export const Credential = {
     message: Credential,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
-    if (message.context !== "") {
-      writer.uint32(10).string(message.context);
+    for (const v of message.context) {
+      writer.uint32(10).string(v!);
     }
     if (message.credentialSubject !== "") {
       writer.uint32(18).string(message.credentialSubject);
@@ -404,12 +418,13 @@ export const Credential = {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = { ...baseCredential } as Credential;
+    message.context = [];
     message.type = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.context = reader.string();
+          message.context.push(reader.string());
           break;
         case 2:
           message.credentialSubject = reader.string();
@@ -452,11 +467,12 @@ export const Credential = {
 
   fromJSON(object: any): Credential {
     const message = { ...baseCredential } as Credential;
+    message.context = [];
     message.type = [];
     if (object.context !== undefined && object.context !== null) {
-      message.context = String(object.context);
-    } else {
-      message.context = "";
+      for (const e of object.context) {
+        message.context.push(String(e));
+      }
     }
     if (
       object.credentialSubject !== undefined &&
@@ -511,7 +527,11 @@ export const Credential = {
 
   toJSON(message: Credential): unknown {
     const obj: any = {};
-    message.context !== undefined && (obj.context = message.context);
+    if (message.context) {
+      obj.context = message.context.map((e) => e);
+    } else {
+      obj.context = [];
+    }
     message.credentialSubject !== undefined &&
       (obj.credentialSubject = message.credentialSubject);
     message.credentialStatus !== undefined &&
@@ -536,11 +556,12 @@ export const Credential = {
 
   fromPartial(object: DeepPartial<Credential>): Credential {
     const message = { ...baseCredential } as Credential;
+    message.context = [];
     message.type = [];
     if (object.context !== undefined && object.context !== null) {
-      message.context = object.context;
-    } else {
-      message.context = "";
+      for (const e of object.context) {
+        message.context.push(e);
+      }
     }
     if (
       object.credentialSubject !== undefined &&

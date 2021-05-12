@@ -6,7 +6,12 @@ import { UnsignedPresentation as UnsignedPresentationPb} from "./protos/presenta
 import { UnsignedCredential as UnsignedCredentialPb} from "./protos/credential";
 import { Proof as ProofPb} from "./protos/proof";
 
-export { UnsignedPresentationPb as UnsignedPresentationPb, UnsignedCredentialPb as UnsignedCredentialPb, ProofPb as ProofPb }
+// Unclear why I needed to alias this twice to be imported as the alias elsewhere...
+export { 
+  UnsignedPresentationPb as UnsignedPresentationPb, 
+  UnsignedCredentialPb as UnsignedCredentialPb, 
+  ProofPb as ProofPb 
+}
 
 // import Schema from "./protos/credential";
 

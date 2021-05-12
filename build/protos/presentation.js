@@ -33,11 +33,12 @@ var baseUnsignedPresentation = {
 exports.UnsignedPresentation = {
     encode: function (message, writer) {
         if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
-        if (message.context !== "") {
-            writer.uint32(10).string(message.context);
-        }
-        for (var _i = 0, _a = message.type; _i < _a.length; _i++) {
+        for (var _i = 0, _a = message.context; _i < _a.length; _i++) {
             var v = _a[_i];
+            writer.uint32(10).string(v);
+        }
+        for (var _b = 0, _c = message.type; _b < _c.length; _b++) {
+            var v = _c[_b];
             writer.uint32(18).string(v);
         }
         if (message.presentationRequestUuid !== "") {
@@ -46,8 +47,8 @@ exports.UnsignedPresentation = {
         if (message.verifierDid !== "") {
             writer.uint32(34).string(message.verifierDid);
         }
-        for (var _b = 0, _c = message.verifiableCredential; _b < _c.length; _b++) {
-            var v = _c[_b];
+        for (var _d = 0, _e = message.verifiableCredential; _d < _e.length; _d++) {
+            var v = _e[_d];
             credential_1.Credential.encode(v, writer.uint32(42).fork()).ldelim();
         }
         if (message.uuid !== "") {
@@ -59,13 +60,14 @@ exports.UnsignedPresentation = {
         var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         var end = length === undefined ? reader.len : reader.pos + length;
         var message = __assign({}, baseUnsignedPresentation);
+        message.context = [];
         message.type = [];
         message.verifiableCredential = [];
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.context = reader.string();
+                    message.context.push(reader.string());
                     break;
                 case 2:
                     message.type.push(reader.string());
@@ -91,17 +93,18 @@ exports.UnsignedPresentation = {
     },
     fromJSON: function (object) {
         var message = __assign({}, baseUnsignedPresentation);
+        message.context = [];
         message.type = [];
         message.verifiableCredential = [];
         if (object.context !== undefined && object.context !== null) {
-            message.context = String(object.context);
-        }
-        else {
-            message.context = "";
+            for (var _i = 0, _a = object.context; _i < _a.length; _i++) {
+                var e = _a[_i];
+                message.context.push(String(e));
+            }
         }
         if (object.type !== undefined && object.type !== null) {
-            for (var _i = 0, _a = object.type; _i < _a.length; _i++) {
-                var e = _a[_i];
+            for (var _b = 0, _c = object.type; _b < _c.length; _b++) {
+                var e = _c[_b];
                 message.type.push(String(e));
             }
         }
@@ -120,8 +123,8 @@ exports.UnsignedPresentation = {
         }
         if (object.verifiableCredential !== undefined &&
             object.verifiableCredential !== null) {
-            for (var _b = 0, _c = object.verifiableCredential; _b < _c.length; _b++) {
-                var e = _c[_b];
+            for (var _d = 0, _e = object.verifiableCredential; _d < _e.length; _d++) {
+                var e = _e[_d];
                 message.verifiableCredential.push(credential_1.Credential.fromJSON(e));
             }
         }
@@ -135,7 +138,12 @@ exports.UnsignedPresentation = {
     },
     toJSON: function (message) {
         var obj = {};
-        message.context !== undefined && (obj.context = message.context);
+        if (message.context) {
+            obj.context = message.context.map(function (e) { return e; });
+        }
+        else {
+            obj.context = [];
+        }
         if (message.type) {
             obj.type = message.type.map(function (e) { return e; });
         }
@@ -159,17 +167,18 @@ exports.UnsignedPresentation = {
     },
     fromPartial: function (object) {
         var message = __assign({}, baseUnsignedPresentation);
+        message.context = [];
         message.type = [];
         message.verifiableCredential = [];
         if (object.context !== undefined && object.context !== null) {
-            message.context = object.context;
-        }
-        else {
-            message.context = "";
+            for (var _i = 0, _a = object.context; _i < _a.length; _i++) {
+                var e = _a[_i];
+                message.context.push(e);
+            }
         }
         if (object.type !== undefined && object.type !== null) {
-            for (var _i = 0, _a = object.type; _i < _a.length; _i++) {
-                var e = _a[_i];
+            for (var _b = 0, _c = object.type; _b < _c.length; _b++) {
+                var e = _c[_b];
                 message.type.push(e);
             }
         }
@@ -188,8 +197,8 @@ exports.UnsignedPresentation = {
         }
         if (object.verifiableCredential !== undefined &&
             object.verifiableCredential !== null) {
-            for (var _b = 0, _c = object.verifiableCredential; _b < _c.length; _b++) {
-                var e = _c[_b];
+            for (var _d = 0, _e = object.verifiableCredential; _d < _e.length; _d++) {
+                var e = _e[_d];
                 message.verifiableCredential.push(credential_1.Credential.fromPartial(e));
             }
         }
@@ -212,11 +221,12 @@ var basePresentation = {
 exports.Presentation = {
     encode: function (message, writer) {
         if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
-        if (message.context !== "") {
-            writer.uint32(10).string(message.context);
-        }
-        for (var _i = 0, _a = message.type; _i < _a.length; _i++) {
+        for (var _i = 0, _a = message.context; _i < _a.length; _i++) {
             var v = _a[_i];
+            writer.uint32(10).string(v);
+        }
+        for (var _b = 0, _c = message.type; _b < _c.length; _b++) {
+            var v = _c[_b];
             writer.uint32(18).string(v);
         }
         if (message.presentationRequestUuid !== "") {
@@ -225,8 +235,8 @@ exports.Presentation = {
         if (message.verifierDid !== "") {
             writer.uint32(34).string(message.verifierDid);
         }
-        for (var _b = 0, _c = message.verifiableCredential; _b < _c.length; _b++) {
-            var v = _c[_b];
+        for (var _d = 0, _e = message.verifiableCredential; _d < _e.length; _d++) {
+            var v = _e[_d];
             credential_1.Credential.encode(v, writer.uint32(42).fork()).ldelim();
         }
         if (message.proof !== undefined) {
@@ -241,13 +251,14 @@ exports.Presentation = {
         var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         var end = length === undefined ? reader.len : reader.pos + length;
         var message = __assign({}, basePresentation);
+        message.context = [];
         message.type = [];
         message.verifiableCredential = [];
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.context = reader.string();
+                    message.context.push(reader.string());
                     break;
                 case 2:
                     message.type.push(reader.string());
@@ -276,17 +287,18 @@ exports.Presentation = {
     },
     fromJSON: function (object) {
         var message = __assign({}, basePresentation);
+        message.context = [];
         message.type = [];
         message.verifiableCredential = [];
         if (object.context !== undefined && object.context !== null) {
-            message.context = String(object.context);
-        }
-        else {
-            message.context = "";
+            for (var _i = 0, _a = object.context; _i < _a.length; _i++) {
+                var e = _a[_i];
+                message.context.push(String(e));
+            }
         }
         if (object.type !== undefined && object.type !== null) {
-            for (var _i = 0, _a = object.type; _i < _a.length; _i++) {
-                var e = _a[_i];
+            for (var _b = 0, _c = object.type; _b < _c.length; _b++) {
+                var e = _c[_b];
                 message.type.push(String(e));
             }
         }
@@ -305,8 +317,8 @@ exports.Presentation = {
         }
         if (object.verifiableCredential !== undefined &&
             object.verifiableCredential !== null) {
-            for (var _b = 0, _c = object.verifiableCredential; _b < _c.length; _b++) {
-                var e = _c[_b];
+            for (var _d = 0, _e = object.verifiableCredential; _d < _e.length; _d++) {
+                var e = _e[_d];
                 message.verifiableCredential.push(credential_1.Credential.fromJSON(e));
             }
         }
@@ -326,7 +338,12 @@ exports.Presentation = {
     },
     toJSON: function (message) {
         var obj = {};
-        message.context !== undefined && (obj.context = message.context);
+        if (message.context) {
+            obj.context = message.context.map(function (e) { return e; });
+        }
+        else {
+            obj.context = [];
+        }
         if (message.type) {
             obj.type = message.type.map(function (e) { return e; });
         }
@@ -352,17 +369,18 @@ exports.Presentation = {
     },
     fromPartial: function (object) {
         var message = __assign({}, basePresentation);
+        message.context = [];
         message.type = [];
         message.verifiableCredential = [];
         if (object.context !== undefined && object.context !== null) {
-            message.context = object.context;
-        }
-        else {
-            message.context = "";
+            for (var _i = 0, _a = object.context; _i < _a.length; _i++) {
+                var e = _a[_i];
+                message.context.push(e);
+            }
         }
         if (object.type !== undefined && object.type !== null) {
-            for (var _i = 0, _a = object.type; _i < _a.length; _i++) {
-                var e = _a[_i];
+            for (var _b = 0, _c = object.type; _b < _c.length; _b++) {
+                var e = _c[_b];
                 message.type.push(e);
             }
         }
@@ -381,8 +399,8 @@ exports.Presentation = {
         }
         if (object.verifiableCredential !== undefined &&
             object.verifiableCredential !== null) {
-            for (var _b = 0, _c = object.verifiableCredential; _b < _c.length; _b++) {
-                var e = _c[_b];
+            for (var _d = 0, _e = object.verifiableCredential; _d < _e.length; _d++) {
+                var e = _e[_d];
                 message.verifiableCredential.push(credential_1.Credential.fromPartial(e));
             }
         }

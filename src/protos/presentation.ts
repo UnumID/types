@@ -8,8 +8,9 @@ import { Any } from "./google/protobuf/any";
 
 export const protobufPackage = "presentation.v1";
 
+/** Encapsulates an unsigned presentation attributes. */
 export interface UnsignedPresentation {
-  context: string;
+  context: string[];
   type: string[];
   presentationRequestUuid: string;
   verifierDid: string;
@@ -18,9 +19,12 @@ export interface UnsignedPresentation {
   uuid: string;
 }
 
-/** Tightly coupled with UnsignedPresentation */
+/**
+ * Encapsulates addition attributes to the unsigned presentation entity to create a Presentation entity.
+ * Tightly coupled with UnsignedPresentation.
+ */
 export interface Presentation {
-  context: string;
+  context: string[];
   type: string[];
   presentationRequestUuid: string;
   verifierDid: string;
@@ -30,6 +34,7 @@ export interface Presentation {
   uuid: string;
 }
 
+/** Encapsulates request attributes for the purposes of requesting presentation of credentials. */
 export interface UnsignedPresentationRequest {
   credentialRequests: CredentialRequest[];
   holderAppUuid: string;
@@ -42,6 +47,10 @@ export interface UnsignedPresentationRequest {
   uuid: string;
 }
 
+/**
+ * Encapsulates request attributes for the purposes of requesting presentation of credentials with the addition of a proof.
+ * Tighting coupled to UnsignedPresentationRequest.
+ */
 export interface PresentationRequest {
   credentialRequests: CredentialRequest[];
   holderAppUuid: string;
@@ -68,8 +77,8 @@ export const UnsignedPresentation = {
     message: UnsignedPresentation,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
-    if (message.context !== "") {
-      writer.uint32(10).string(message.context);
+    for (const v of message.context) {
+      writer.uint32(10).string(v!);
     }
     for (const v of message.type) {
       writer.uint32(18).string(v!);
@@ -96,13 +105,14 @@ export const UnsignedPresentation = {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = { ...baseUnsignedPresentation } as UnsignedPresentation;
+    message.context = [];
     message.type = [];
     message.verifiableCredential = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.context = reader.string();
+          message.context.push(reader.string());
           break;
         case 2:
           message.type.push(reader.string());
@@ -131,12 +141,13 @@ export const UnsignedPresentation = {
 
   fromJSON(object: any): UnsignedPresentation {
     const message = { ...baseUnsignedPresentation } as UnsignedPresentation;
+    message.context = [];
     message.type = [];
     message.verifiableCredential = [];
     if (object.context !== undefined && object.context !== null) {
-      message.context = String(object.context);
-    } else {
-      message.context = "";
+      for (const e of object.context) {
+        message.context.push(String(e));
+      }
     }
     if (object.type !== undefined && object.type !== null) {
       for (const e of object.type) {
@@ -174,7 +185,11 @@ export const UnsignedPresentation = {
 
   toJSON(message: UnsignedPresentation): unknown {
     const obj: any = {};
-    message.context !== undefined && (obj.context = message.context);
+    if (message.context) {
+      obj.context = message.context.map((e) => e);
+    } else {
+      obj.context = [];
+    }
     if (message.type) {
       obj.type = message.type.map((e) => e);
     } else {
@@ -197,12 +212,13 @@ export const UnsignedPresentation = {
 
   fromPartial(object: DeepPartial<UnsignedPresentation>): UnsignedPresentation {
     const message = { ...baseUnsignedPresentation } as UnsignedPresentation;
+    message.context = [];
     message.type = [];
     message.verifiableCredential = [];
     if (object.context !== undefined && object.context !== null) {
-      message.context = object.context;
-    } else {
-      message.context = "";
+      for (const e of object.context) {
+        message.context.push(e);
+      }
     }
     if (object.type !== undefined && object.type !== null) {
       for (const e of object.type) {
@@ -252,8 +268,8 @@ export const Presentation = {
     message: Presentation,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
-    if (message.context !== "") {
-      writer.uint32(10).string(message.context);
+    for (const v of message.context) {
+      writer.uint32(10).string(v!);
     }
     for (const v of message.type) {
       writer.uint32(18).string(v!);
@@ -280,13 +296,14 @@ export const Presentation = {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = { ...basePresentation } as Presentation;
+    message.context = [];
     message.type = [];
     message.verifiableCredential = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.context = reader.string();
+          message.context.push(reader.string());
           break;
         case 2:
           message.type.push(reader.string());
@@ -318,12 +335,13 @@ export const Presentation = {
 
   fromJSON(object: any): Presentation {
     const message = { ...basePresentation } as Presentation;
+    message.context = [];
     message.type = [];
     message.verifiableCredential = [];
     if (object.context !== undefined && object.context !== null) {
-      message.context = String(object.context);
-    } else {
-      message.context = "";
+      for (const e of object.context) {
+        message.context.push(String(e));
+      }
     }
     if (object.type !== undefined && object.type !== null) {
       for (const e of object.type) {
@@ -366,7 +384,11 @@ export const Presentation = {
 
   toJSON(message: Presentation): unknown {
     const obj: any = {};
-    message.context !== undefined && (obj.context = message.context);
+    if (message.context) {
+      obj.context = message.context.map((e) => e);
+    } else {
+      obj.context = [];
+    }
     if (message.type) {
       obj.type = message.type.map((e) => e);
     } else {
@@ -391,12 +413,13 @@ export const Presentation = {
 
   fromPartial(object: DeepPartial<Presentation>): Presentation {
     const message = { ...basePresentation } as Presentation;
+    message.context = [];
     message.type = [];
     message.verifiableCredential = [];
     if (object.context !== undefined && object.context !== null) {
-      message.context = object.context;
-    } else {
-      message.context = "";
+      for (const e of object.context) {
+        message.context.push(e);
+      }
     }
     if (object.type !== undefined && object.type !== null) {
       for (const e of object.type) {

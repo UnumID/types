@@ -3,8 +3,9 @@ import { Credential, CredentialRequest } from "./credential";
 import { Proof } from "./proof";
 import { Any } from "./google/protobuf/any";
 export declare const protobufPackage = "presentation.v1";
+/** Encapsulates an unsigned presentation attributes. */
 export interface UnsignedPresentation {
-    context: string;
+    context: string[];
     type: string[];
     presentationRequestUuid: string;
     verifierDid: string;
@@ -12,9 +13,12 @@ export interface UnsignedPresentation {
     /** optional in the ts types */
     uuid: string;
 }
-/** Tightly coupled with UnsignedPresentation */
+/**
+ * Encapsulates addition attributes to the unsigned presentation entity to create a Presentation entity.
+ * Tightly coupled with UnsignedPresentation.
+ */
 export interface Presentation {
-    context: string;
+    context: string[];
     type: string[];
     presentationRequestUuid: string;
     verifierDid: string;
@@ -23,6 +27,7 @@ export interface Presentation {
     /** optional in the ts types */
     uuid: string;
 }
+/** Encapsulates request attributes for the purposes of requesting presentation of credentials. */
 export interface UnsignedPresentationRequest {
     credentialRequests: CredentialRequest[];
     holderAppUuid: string;
@@ -34,6 +39,10 @@ export interface UnsignedPresentationRequest {
     metadata: Any | undefined;
     uuid: string;
 }
+/**
+ * Encapsulates request attributes for the purposes of requesting presentation of credentials with the addition of a proof.
+ * Tighting coupled to UnsignedPresentationRequest.
+ */
 export interface PresentationRequest {
     credentialRequests: CredentialRequest[];
     holderAppUuid: string;

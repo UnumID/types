@@ -1,12 +1,14 @@
 import _m0 from "protobufjs/minimal";
 import { Proof } from "./proof";
 export declare const protobufPackage = "credential.v1";
+/** Object to encapsulate Credential status information. */
 export interface CredentialStatus {
     id: string;
     type: string;
 }
+/** Object to encapsulate relevant credential information. */
 export interface UnsignedCredential {
-    context: string;
+    context: string[];
     credentialSubject: string;
     credentialStatus: CredentialStatus | undefined;
     issuer: string;
@@ -16,8 +18,12 @@ export interface UnsignedCredential {
     /** optional in the ts types */
     expirationDate: Date | undefined;
 }
+/**
+ * Object which incorporates the relevant credential information in addition to a cryptographic proof so that the Credential is verifiable.
+ * Tightly coupled with UnsignedCredential.
+ */
 export interface Credential {
-    context: string;
+    context: string[];
     credentialSubject: string;
     credentialStatus: CredentialStatus | undefined;
     issuer: string;
@@ -28,6 +34,7 @@ export interface Credential {
     /** optional in the ts types */
     expirationDate: Date | undefined;
 }
+/** Object that encapsulates Credential information requested. */
 export interface CredentialRequest {
     /** the string matching the desire credential type */
     type: string;
