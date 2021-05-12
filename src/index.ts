@@ -1,5 +1,14 @@
 import { Literal, Static, Union } from "runtypes";
 import { SemVer } from 'semver';
+import { Credential as Credential_pb} from "./protos/credential";
+// export { UnsignedPresentation as UnsignedPresentation_pb} from "./protos/presentation";
+import { UnsignedPresentation as UnsignedPresentation_pb} from "./protos/presentation";
+import { UnsignedCredential as UnsignedCredential_pb} from "./protos/credential";
+import { Proof as Proof_pb} from "./protos/proof";
+
+export { UnsignedPresentation_pb, UnsignedCredential_pb, Proof_pb }
+
+// import Schema from "./protos/credential";
 
 /**
  * Interface to encapsulate cryptographic proof for any signed object: Credentials, Presentations, PresentationRequests.
@@ -85,6 +94,7 @@ export interface UnsignedPresentation {
   verifierDid: string;
   // Note: that verifiableCredential is singular but it's of array type. This is thanks to the w3 spec dictating as such, not by choice. ref: https://www.w3.org/TR/vc-data-model/#presentations-0
   verifiableCredential?: Credential[]; // Optional, if undefined or empty it means the presentation request was declined
+  // verifiableCredential?: Credential_pb[]; // Optional, if undefined or empty it means the presentation request was declined
   uuid?: string; // Optional wether the presentation has been persisted yet or not
 }
 
@@ -95,6 +105,9 @@ export interface Presentation extends UnsignedPresentation {
   proof: Proof;
 }
 
+/**
+ * Encapsulates Credential information requested.
+ */
 export interface CredentialRequest {
   type: string; // the string matching the desire credential type
   issuers: string[]; // list of acceptable issuer DIDs that have issued the credential
