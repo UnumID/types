@@ -6,7 +6,7 @@ import { UnsignedPresentation as UnsignedPresentationPb} from "./protos/presenta
 import { UnsignedCredential as UnsignedCredentialPb} from "./protos/credential";
 import { Proof as ProofPb} from "./protos/proof";
 
-export { UnsignedPresentationPb, UnsignedCredentialPb, ProofPb }
+export { UnsignedPresentationPb as UnsignedPresentationPb, UnsignedCredentialPb as UnsignedCredentialPb, ProofPb as ProofPb }
 
 // import Schema from "./protos/credential";
 

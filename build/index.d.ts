@@ -3,7 +3,7 @@ import { SemVer } from 'semver';
 import { UnsignedPresentation as UnsignedPresentationPb } from "./protos/presentation";
 import { UnsignedCredential as UnsignedCredentialPb } from "./protos/credential";
 import { Proof as ProofPb } from "./protos/proof";
-export { UnsignedPresentationPb, UnsignedCredentialPb, ProofPb };
+export { UnsignedPresentationPb as UnsignedPresentationPb, UnsignedCredentialPb as UnsignedCredentialPb, ProofPb as ProofPb };
 /**
  * Interface to encapsulate cryptographic proof for any signed object: Credentials, Presentations, PresentationRequests.
  */
