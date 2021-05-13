@@ -1,12 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports._CredentialStatusOptions = exports.pushProviders = exports.UnsignedPresentationRequestPb = exports.ProofPb = exports.CredentialPb = exports.UnsignedCredentialPb = exports.PresentationPb = exports.UnsignedPresentationPb = void 0;
+exports._CredentialStatusOptions = exports.pushProviders = exports.PresentationRequestPb = exports.UnsignedPresentationRequestPb = exports.ProofPb = exports.CredentialPb = exports.UnsignedCredentialPb = exports.PresentationPb = exports.UnsignedPresentationPb = void 0;
 var runtypes_1 = require("runtypes");
 // export { UnsignedPresentation as UnsignedPresentation_pb} from "./protos/presentation";
 var presentation_1 = require("./protos/presentation");
 Object.defineProperty(exports, "UnsignedPresentationPb", { enumerable: true, get: function () { return presentation_1.UnsignedPresentation; } });
 Object.defineProperty(exports, "PresentationPb", { enumerable: true, get: function () { return presentation_1.Presentation; } });
 Object.defineProperty(exports, "UnsignedPresentationRequestPb", { enumerable: true, get: function () { return presentation_1.UnsignedPresentationRequest; } });
+Object.defineProperty(exports, "PresentationRequestPb", { enumerable: true, get: function () { return presentation_1.PresentationRequest; } });
 var credential_1 = require("./protos/credential");
 Object.defineProperty(exports, "UnsignedCredentialPb", { enumerable: true, get: function () { return credential_1.UnsignedCredential; } });
 Object.defineProperty(exports, "CredentialPb", { enumerable: true, get: function () { return credential_1.Credential; } });
