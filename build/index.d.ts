@@ -3,7 +3,7 @@ import { SemVer } from 'semver';
 import { UnsignedPresentation as UnsignedPresentationPb, Presentation as PresentationPb, UnsignedPresentationRequest as UnsignedPresentationRequestPb } from "./protos/presentation";
 import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb } from "./protos/credential";
 import { Proof as ProofPb } from "./protos/proof";
-export { UnsignedPresentationPb as UnsignedPresentationPb, PresentationPb as PresentationPb, UnsignedCredentialPb as UnsignedCredentialPb, CredentialPb as CredentialPb, ProofPb as ProofPb, UnsignedPresentationRequestPb };
+export { UnsignedPresentationPb, PresentationPb, UnsignedCredentialPb, CredentialPb, ProofPb, UnsignedPresentationRequestPb };
 /**
  * Interface to encapsulate cryptographic proof for any signed object: Credentials, Presentations, PresentationRequests.
  */
@@ -91,7 +91,7 @@ export interface Presentation extends UnsignedPresentation {
 export interface CredentialRequest {
     type: string;
     issuers: string[];
-    required?: boolean;
+    required: boolean;
 }
 export interface PresentationRequestOptions {
     credentialRequests: CredentialRequest[];
@@ -257,14 +257,6 @@ export interface EncryptedCredentialOptions {
     issuer: string;
     type: string[];
     data: EncryptedData;
-}
-/**
- * Encapsulates necessary CredentialRequest entity attributes.
- */
-export interface CredentialRequest {
-    type: string;
-    issuers: string[];
-    required?: boolean;
 }
 /**
  * Encapsulates Verifier metadata attributes.

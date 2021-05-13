@@ -6,13 +6,12 @@ import { UnsignedPresentation as UnsignedPresentationPb, Presentation as Present
 import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb} from "./protos/credential";
 import { Proof as ProofPb} from "./protos/proof";
 
-// Unclear why I needed to alias this twice to be imported as the alias elsewhere...
 export { 
-  UnsignedPresentationPb as UnsignedPresentationPb, 
-  PresentationPb as PresentationPb,
-  UnsignedCredentialPb as UnsignedCredentialPb, 
-  CredentialPb as CredentialPb,
-  ProofPb as ProofPb,
+  UnsignedPresentationPb, 
+  PresentationPb,
+  UnsignedCredentialPb, 
+  CredentialPb,
+  ProofPb,
   UnsignedPresentationRequestPb
 }
 
@@ -119,7 +118,7 @@ export interface Presentation extends UnsignedPresentation {
 export interface CredentialRequest {
   type: string; // the string matching the desire credential type
   issuers: string[]; // list of acceptable issuer DIDs that have issued the credential
-  required?: boolean; // to denote wether this particular credential is required in response to the PresentationRequest. Defaults behavior resolves this to true.
+  required: boolean; // to denote wether this particular credential is required in response to the PresentationRequest. Defaults behavior resolves this to true.
 }
 
 export interface PresentationRequestOptions {
@@ -306,15 +305,6 @@ export interface EncryptedCredentialOptions {
   issuer: string;
   type: string[];
   data: EncryptedData;
-}
-
-/**
- * Encapsulates necessary CredentialRequest entity attributes.
- */
-export interface CredentialRequest {
-  type: string;
-  issuers: string[];
-  required?: boolean;
 }
 
 /**
