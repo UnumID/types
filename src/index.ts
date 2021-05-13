@@ -2,7 +2,7 @@ import { Literal, Static, Union } from "runtypes";
 import { SemVer } from 'semver';
 import { Credential as Credential_pb} from "./protos/credential";
 // export { UnsignedPresentation as UnsignedPresentation_pb} from "./protos/presentation";
-import { UnsignedPresentation as UnsignedPresentationPb, Presentation as PresentationPb} from "./protos/presentation";
+import { UnsignedPresentation as UnsignedPresentationPb, Presentation as PresentationPb, UnsignedPresentationRequest as UnsignedPresentationRequestPb} from "./protos/presentation";
 import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb} from "./protos/credential";
 import { Proof as ProofPb} from "./protos/proof";
 
@@ -12,7 +12,8 @@ export {
   PresentationPb as PresentationPb,
   UnsignedCredentialPb as UnsignedCredentialPb, 
   CredentialPb as CredentialPb,
-  ProofPb as ProofPb 
+  ProofPb as ProofPb,
+  UnsignedPresentationRequestPb
 }
 
 // import Schema from "./protos/credential";
