@@ -2,14 +2,16 @@ import { Literal, Static, Union } from "runtypes";
 import { SemVer } from 'semver';
 import { Credential as Credential_pb} from "./protos/credential";
 // export { UnsignedPresentation as UnsignedPresentation_pb} from "./protos/presentation";
-import { UnsignedPresentation as UnsignedPresentationPb} from "./protos/presentation";
-import { UnsignedCredential as UnsignedCredentialPb} from "./protos/credential";
+import { UnsignedPresentation as UnsignedPresentationPb, Presentation as PresentationPb} from "./protos/presentation";
+import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb} from "./protos/credential";
 import { Proof as ProofPb} from "./protos/proof";
 
 // Unclear why I needed to alias this twice to be imported as the alias elsewhere...
 export { 
   UnsignedPresentationPb as UnsignedPresentationPb, 
+  PresentationPb as PresentationPb,
   UnsignedCredentialPb as UnsignedCredentialPb, 
+  CredentialPb as CredentialPb,
   ProofPb as ProofPb 
 }
 

@@ -1,9 +1,9 @@
 import { Literal, Static, Union } from "runtypes";
 import { SemVer } from 'semver';
-import { UnsignedPresentation as UnsignedPresentationPb } from "./protos/presentation";
-import { UnsignedCredential as UnsignedCredentialPb } from "./protos/credential";
+import { UnsignedPresentation as UnsignedPresentationPb, Presentation as PresentationPb } from "./protos/presentation";
+import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb } from "./protos/credential";
 import { Proof as ProofPb } from "./protos/proof";
-export { UnsignedPresentationPb as UnsignedPresentationPb, UnsignedCredentialPb as UnsignedCredentialPb, ProofPb as ProofPb };
+export { UnsignedPresentationPb as UnsignedPresentationPb, PresentationPb as PresentationPb, UnsignedCredentialPb as UnsignedCredentialPb, CredentialPb as CredentialPb, ProofPb as ProofPb };
 /**
  * Interface to encapsulate cryptographic proof for any signed object: Credentials, Presentations, PresentationRequests.
  */
