@@ -23,7 +23,7 @@ export {
  * Interface to encapsulate cryptographic proof for any signed object: Credentials, Presentations, PresentationRequests.
  */
 export interface Proof {
-  created: Date;
+  created: Date | string;
   signatureValue: string;
   type: string;
   verificationMethod: string;
