@@ -197,7 +197,7 @@ export interface PresentationRequestPostDto {
  * Type to encapsulate a PresentationRequest Data Transfer Object get response used in interfacing services.
  */
 export interface PresentationRequestDto {
-    presentationRequest: PresentationRequest;
+    presentationRequest: PresentationRequestPb;
     verifier: VerifierInfo;
     issuers: IssuerInfoMap;
 }
