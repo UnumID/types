@@ -10,8 +10,6 @@ export interface UnsignedPresentation {
     presentationRequestUuid: string;
     verifierDid: string;
     verifiableCredential: Credential[];
-    /** optional in the ts types */
-    uuid: string;
 }
 /**
  * Encapsulates addition attributes to the unsigned presentation entity to create a Presentation entity.
@@ -24,8 +22,6 @@ export interface Presentation {
     verifierDid: string;
     verifiableCredential: Credential[];
     proof: Proof | undefined;
-    /** optional in the ts types */
-    uuid: string;
 }
 /** Encapsulates request attributes for the purposes of requesting presentation of credentials. */
 export interface UnsignedPresentationRequest {

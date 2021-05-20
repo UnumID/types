@@ -15,8 +15,6 @@ export interface UnsignedPresentation {
   presentationRequestUuid: string;
   verifierDid: string;
   verifiableCredential: Credential[];
-  /** optional in the ts types */
-  uuid: string;
 }
 
 /**
@@ -30,8 +28,6 @@ export interface Presentation {
   verifierDid: string;
   verifiableCredential: Credential[];
   proof: Proof | undefined;
-  /** optional in the ts types */
-  uuid: string;
 }
 
 /** Encapsulates request attributes for the purposes of requesting presentation of credentials. */
@@ -69,7 +65,6 @@ const baseUnsignedPresentation: object = {
   type: "",
   presentationRequestUuid: "",
   verifierDid: "",
-  uuid: "",
 };
 
 export const UnsignedPresentation = {
@@ -91,9 +86,6 @@ export const UnsignedPresentation = {
     }
     for (const v of message.verifiableCredential) {
       Credential.encode(v!, writer.uint32(42).fork()).ldelim();
-    }
-    if (message.uuid !== "") {
-      writer.uint32(130).string(message.uuid);
     }
     return writer;
   },
@@ -127,9 +119,6 @@ export const UnsignedPresentation = {
           message.verifiableCredential.push(
             Credential.decode(reader, reader.uint32())
           );
-          break;
-        case 16:
-          message.uuid = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -175,11 +164,6 @@ export const UnsignedPresentation = {
         message.verifiableCredential.push(Credential.fromJSON(e));
       }
     }
-    if (object.uuid !== undefined && object.uuid !== null) {
-      message.uuid = String(object.uuid);
-    } else {
-      message.uuid = "";
-    }
     return message;
   },
 
@@ -206,7 +190,6 @@ export const UnsignedPresentation = {
     } else {
       obj.verifiableCredential = [];
     }
-    message.uuid !== undefined && (obj.uuid = message.uuid);
     return obj;
   },
 
@@ -246,11 +229,6 @@ export const UnsignedPresentation = {
         message.verifiableCredential.push(Credential.fromPartial(e));
       }
     }
-    if (object.uuid !== undefined && object.uuid !== null) {
-      message.uuid = object.uuid;
-    } else {
-      message.uuid = "";
-    }
     return message;
   },
 };
@@ -260,7 +238,6 @@ const basePresentation: object = {
   type: "",
   presentationRequestUuid: "",
   verifierDid: "",
-  uuid: "",
 };
 
 export const Presentation = {
@@ -285,9 +262,6 @@ export const Presentation = {
     }
     if (message.proof !== undefined) {
       Proof.encode(message.proof, writer.uint32(50).fork()).ldelim();
-    }
-    if (message.uuid !== "") {
-      writer.uint32(130).string(message.uuid);
     }
     return writer;
   },
@@ -321,9 +295,6 @@ export const Presentation = {
           break;
         case 6:
           message.proof = Proof.decode(reader, reader.uint32());
-          break;
-        case 16:
-          message.uuid = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -374,11 +345,6 @@ export const Presentation = {
     } else {
       message.proof = undefined;
     }
-    if (object.uuid !== undefined && object.uuid !== null) {
-      message.uuid = String(object.uuid);
-    } else {
-      message.uuid = "";
-    }
     return message;
   },
 
@@ -407,7 +373,6 @@ export const Presentation = {
     }
     message.proof !== undefined &&
       (obj.proof = message.proof ? Proof.toJSON(message.proof) : undefined);
-    message.uuid !== undefined && (obj.uuid = message.uuid);
     return obj;
   },
 
@@ -451,11 +416,6 @@ export const Presentation = {
       message.proof = Proof.fromPartial(object.proof);
     } else {
       message.proof = undefined;
-    }
-    if (object.uuid !== undefined && object.uuid !== null) {
-      message.uuid = object.uuid;
-    } else {
-      message.uuid = "";
     }
     return message;
   },
