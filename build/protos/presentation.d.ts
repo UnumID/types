@@ -1,7 +1,6 @@
 import _m0 from "protobufjs/minimal";
 import { Credential, CredentialRequest } from "./credential";
 import { Proof } from "./proof";
-import { Any } from "./google/protobuf/any";
 export declare const protobufPackage = "presentation.v1";
 /** Encapsulates an unsigned presentation attributes. */
 export interface UnsignedPresentation {
@@ -31,8 +30,8 @@ export interface UnsignedPresentationRequest {
     createdAt: Date | undefined;
     updatedAt: Date | undefined;
     expiresAt: Date | undefined;
-    /** ref: https://developers.google.com/protocol-buffers/docs/proto3#any */
-    metadata: Any | undefined;
+    /** a string representation of an ambiguous object. Not the Any type does not work because still needs a scheme (but can be assigned dymanically) */
+    metadata: string;
     uuid: string;
 }
 /**
@@ -46,8 +45,8 @@ export interface PresentationRequest {
     createdAt: Date | undefined;
     updatedAt: Date | undefined;
     expiresAt: Date | undefined;
-    /** ref: https://developers.google.com/protocol-buffers/docs/proto3#any */
-    metadata: Any | undefined;
+    /** a string representation of an ambiguous object. Not the Any type does not work because still needs a scheme (but can be assigned dymanically) */
+    metadata: string;
     uuid: string;
     proof: Proof | undefined;
 }

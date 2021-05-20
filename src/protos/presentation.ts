@@ -4,7 +4,6 @@ import _m0 from "protobufjs/minimal";
 import { Timestamp } from "./google/protobuf/timestamp";
 import { Credential, CredentialRequest } from "./credential";
 import { Proof } from "./proof";
-import { Any } from "./google/protobuf/any";
 
 export const protobufPackage = "presentation.v1";
 
@@ -38,8 +37,8 @@ export interface UnsignedPresentationRequest {
   createdAt: Date | undefined;
   updatedAt: Date | undefined;
   expiresAt: Date | undefined;
-  /** ref: https://developers.google.com/protocol-buffers/docs/proto3#any */
-  metadata: Any | undefined;
+  /** a string representation of an ambiguous object. Not the Any type does not work because still needs a scheme (but can be assigned dymanically) */
+  metadata: string;
   uuid: string;
 }
 
@@ -54,8 +53,8 @@ export interface PresentationRequest {
   createdAt: Date | undefined;
   updatedAt: Date | undefined;
   expiresAt: Date | undefined;
-  /** ref: https://developers.google.com/protocol-buffers/docs/proto3#any */
-  metadata: Any | undefined;
+  /** a string representation of an ambiguous object. Not the Any type does not work because still needs a scheme (but can be assigned dymanically) */
+  metadata: string;
   uuid: string;
   proof: Proof | undefined;
 }
@@ -424,6 +423,7 @@ export const Presentation = {
 const baseUnsignedPresentationRequest: object = {
   holderAppUuid: "",
   verifier: "",
+  metadata: "",
   uuid: "",
 };
 
@@ -459,8 +459,8 @@ export const UnsignedPresentationRequest = {
         writer.uint32(50).fork()
       ).ldelim();
     }
-    if (message.metadata !== undefined) {
-      Any.encode(message.metadata, writer.uint32(58).fork()).ldelim();
+    if (message.metadata !== "") {
+      writer.uint32(58).string(message.metadata);
     }
     if (message.uuid !== "") {
       writer.uint32(66).string(message.uuid);
@@ -508,7 +508,7 @@ export const UnsignedPresentationRequest = {
           );
           break;
         case 7:
-          message.metadata = Any.decode(reader, reader.uint32());
+          message.metadata = reader.string();
           break;
         case 8:
           message.uuid = reader.string();
@@ -560,9 +560,9 @@ export const UnsignedPresentationRequest = {
       message.expiresAt = undefined;
     }
     if (object.metadata !== undefined && object.metadata !== null) {
-      message.metadata = Any.fromJSON(object.metadata);
+      message.metadata = String(object.metadata);
     } else {
-      message.metadata = undefined;
+      message.metadata = "";
     }
     if (object.uuid !== undefined && object.uuid !== null) {
       message.uuid = String(object.uuid);
@@ -590,10 +590,7 @@ export const UnsignedPresentationRequest = {
       (obj.updatedAt = message.updatedAt.toISOString());
     message.expiresAt !== undefined &&
       (obj.expiresAt = message.expiresAt.toISOString());
-    message.metadata !== undefined &&
-      (obj.metadata = message.metadata
-        ? Any.toJSON(message.metadata)
-        : undefined);
+    message.metadata !== undefined && (obj.metadata = message.metadata);
     message.uuid !== undefined && (obj.uuid = message.uuid);
     return obj;
   },
@@ -639,9 +636,9 @@ export const UnsignedPresentationRequest = {
       message.expiresAt = undefined;
     }
     if (object.metadata !== undefined && object.metadata !== null) {
-      message.metadata = Any.fromPartial(object.metadata);
+      message.metadata = object.metadata;
     } else {
-      message.metadata = undefined;
+      message.metadata = "";
     }
     if (object.uuid !== undefined && object.uuid !== null) {
       message.uuid = object.uuid;
@@ -655,6 +652,7 @@ export const UnsignedPresentationRequest = {
 const basePresentationRequest: object = {
   holderAppUuid: "",
   verifier: "",
+  metadata: "",
   uuid: "",
 };
 
@@ -690,8 +688,8 @@ export const PresentationRequest = {
         writer.uint32(50).fork()
       ).ldelim();
     }
-    if (message.metadata !== undefined) {
-      Any.encode(message.metadata, writer.uint32(58).fork()).ldelim();
+    if (message.metadata !== "") {
+      writer.uint32(58).string(message.metadata);
     }
     if (message.uuid !== "") {
       writer.uint32(66).string(message.uuid);
@@ -737,7 +735,7 @@ export const PresentationRequest = {
           );
           break;
         case 7:
-          message.metadata = Any.decode(reader, reader.uint32());
+          message.metadata = reader.string();
           break;
         case 8:
           message.uuid = reader.string();
@@ -790,9 +788,9 @@ export const PresentationRequest = {
       message.expiresAt = undefined;
     }
     if (object.metadata !== undefined && object.metadata !== null) {
-      message.metadata = Any.fromJSON(object.metadata);
+      message.metadata = String(object.metadata);
     } else {
-      message.metadata = undefined;
+      message.metadata = "";
     }
     if (object.uuid !== undefined && object.uuid !== null) {
       message.uuid = String(object.uuid);
@@ -825,10 +823,7 @@ export const PresentationRequest = {
       (obj.updatedAt = message.updatedAt.toISOString());
     message.expiresAt !== undefined &&
       (obj.expiresAt = message.expiresAt.toISOString());
-    message.metadata !== undefined &&
-      (obj.metadata = message.metadata
-        ? Any.toJSON(message.metadata)
-        : undefined);
+    message.metadata !== undefined && (obj.metadata = message.metadata);
     message.uuid !== undefined && (obj.uuid = message.uuid);
     message.proof !== undefined &&
       (obj.proof = message.proof ? Proof.toJSON(message.proof) : undefined);
@@ -872,9 +867,9 @@ export const PresentationRequest = {
       message.expiresAt = undefined;
     }
     if (object.metadata !== undefined && object.metadata !== null) {
-      message.metadata = Any.fromPartial(object.metadata);
+      message.metadata = object.metadata;
     } else {
-      message.metadata = undefined;
+      message.metadata = "";
     }
     if (object.uuid !== undefined && object.uuid !== null) {
       message.uuid = object.uuid;
