@@ -193,6 +193,9 @@ export interface PresentationRequestDto {
     presentationRequest: PresentationRequest;
     verifier: VerifierInfo;
     issuers: IssuerInfoMap;
+    holderApp?: Pick<HolderApp, 'name' | 'uriScheme' | 'deeplinkButtonImg'>;
+    deeplink?: string;
+    qrCode?: string;
 }
 /**
  * Interface to encapsulate an encrypted key.
