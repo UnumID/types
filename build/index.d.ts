@@ -197,6 +197,15 @@ export interface PresentationRequestPostDto {
  * Type to encapsulate a PresentationRequest Data Transfer Object get response used in interfacing services.
  */
 export interface PresentationRequestDto {
+    presentationRequest: PresentationRequest;
+    verifier: VerifierInfo;
+    issuers: IssuerInfoMap;
+}
+/**
+ * Type to encapsulate a Protobuf PresentationRequest Data Transfer Object get response used in interfacing services.
+ * Note: this is not used when dealing with json / http network interfaces.
+ */
+export interface PresentationRequestDtoPb {
     presentationRequest: PresentationRequestPb;
     verifier: VerifierInfo;
     issuers: IssuerInfoMap;
