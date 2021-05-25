@@ -8,7 +8,7 @@ export { UnsignedPresentationPb as UnsignedPresentationPb, PresentationPb as Pre
  * Interface to encapsulate cryptographic proof for any signed object: Credentials, Presentations, PresentationRequests.
  */
 export interface Proof {
-    created: Date | string;
+    created: string;
     signatureValue: string;
     type: string;
     verificationMethod: string;
