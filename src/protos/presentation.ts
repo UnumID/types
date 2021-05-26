@@ -38,9 +38,11 @@ export interface UnsignedPresentationRequest {
   createdAt: Date | undefined;
   updatedAt: Date | undefined;
   expiresAt: Date | undefined;
-  /** a string representation of an ambiguous object. Not the Any type does not work because still needs a scheme (but can be assigned dymanically) */
+  /** a string representation of an ambiguous object. Note: the Any type does not work because still needs a scheme (but can be assigned dymanically) */
   metadata: Struct | undefined;
   uuid: string;
+  /** an indentifier for related presetnation requests across versions */
+  id: string;
 }
 
 /**
@@ -54,10 +56,12 @@ export interface PresentationRequest {
   createdAt: Date | undefined;
   updatedAt: Date | undefined;
   expiresAt: Date | undefined;
-  /** a string representation of an ambiguous object. Not the Any type does not work because still needs a scheme (but can be assigned dymanically) */
+  /** a string representation of an ambiguous object. Note: the Any type does not work because still needs a scheme (but can be assigned dymanically) */
   metadata: Struct | undefined;
   uuid: string;
   proof: Proof | undefined;
+  /** an indentifier for related presetnation requests across versions */
+  id: string;
 }
 
 const baseUnsignedPresentation: object = {
@@ -425,6 +429,7 @@ const baseUnsignedPresentationRequest: object = {
   holderAppUuid: "",
   verifier: "",
   uuid: "",
+  id: "",
 };
 
 export const UnsignedPresentationRequest = {
@@ -464,6 +469,9 @@ export const UnsignedPresentationRequest = {
     }
     if (message.uuid !== "") {
       writer.uint32(66).string(message.uuid);
+    }
+    if (message.id !== "") {
+      writer.uint32(74).string(message.id);
     }
     return writer;
   },
@@ -512,6 +520,9 @@ export const UnsignedPresentationRequest = {
           break;
         case 8:
           message.uuid = reader.string();
+          break;
+        case 9:
+          message.id = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -569,6 +580,11 @@ export const UnsignedPresentationRequest = {
     } else {
       message.uuid = "";
     }
+    if (object.id !== undefined && object.id !== null) {
+      message.id = String(object.id);
+    } else {
+      message.id = "";
+    }
     return message;
   },
 
@@ -595,6 +611,7 @@ export const UnsignedPresentationRequest = {
         ? Struct.toJSON(message.metadata)
         : undefined);
     message.uuid !== undefined && (obj.uuid = message.uuid);
+    message.id !== undefined && (obj.id = message.id);
     return obj;
   },
 
@@ -648,6 +665,11 @@ export const UnsignedPresentationRequest = {
     } else {
       message.uuid = "";
     }
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    } else {
+      message.id = "";
+    }
     return message;
   },
 };
@@ -656,6 +678,7 @@ const basePresentationRequest: object = {
   holderAppUuid: "",
   verifier: "",
   uuid: "",
+  id: "",
 };
 
 export const PresentationRequest = {
@@ -698,6 +721,9 @@ export const PresentationRequest = {
     }
     if (message.proof !== undefined) {
       Proof.encode(message.proof, writer.uint32(74).fork()).ldelim();
+    }
+    if (message.id !== "") {
+      writer.uint32(82).string(message.id);
     }
     return writer;
   },
@@ -744,6 +770,9 @@ export const PresentationRequest = {
           break;
         case 9:
           message.proof = Proof.decode(reader, reader.uint32());
+          break;
+        case 10:
+          message.id = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -804,6 +833,11 @@ export const PresentationRequest = {
     } else {
       message.proof = undefined;
     }
+    if (object.id !== undefined && object.id !== null) {
+      message.id = String(object.id);
+    } else {
+      message.id = "";
+    }
     return message;
   },
 
@@ -832,6 +866,7 @@ export const PresentationRequest = {
     message.uuid !== undefined && (obj.uuid = message.uuid);
     message.proof !== undefined &&
       (obj.proof = message.proof ? Proof.toJSON(message.proof) : undefined);
+    message.id !== undefined && (obj.id = message.id);
     return obj;
   },
 
@@ -885,6 +920,11 @@ export const PresentationRequest = {
       message.proof = Proof.fromPartial(object.proof);
     } else {
       message.proof = undefined;
+    }
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    } else {
+      message.id = "";
     }
     return message;
   },

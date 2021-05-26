@@ -31,9 +31,11 @@ export interface UnsignedPresentationRequest {
     createdAt: Date | undefined;
     updatedAt: Date | undefined;
     expiresAt: Date | undefined;
-    /** a string representation of an ambiguous object. Not the Any type does not work because still needs a scheme (but can be assigned dymanically) */
+    /** a string representation of an ambiguous object. Note: the Any type does not work because still needs a scheme (but can be assigned dymanically) */
     metadata: Struct | undefined;
     uuid: string;
+    /** an indentifier for related presetnation requests across versions */
+    id: string;
 }
 /**
  * Encapsulates request attributes for the purposes of requesting presentation of credentials with the addition of a proof.
@@ -46,10 +48,12 @@ export interface PresentationRequest {
     createdAt: Date | undefined;
     updatedAt: Date | undefined;
     expiresAt: Date | undefined;
-    /** a string representation of an ambiguous object. Not the Any type does not work because still needs a scheme (but can be assigned dymanically) */
+    /** a string representation of an ambiguous object. Note: the Any type does not work because still needs a scheme (but can be assigned dymanically) */
     metadata: Struct | undefined;
     uuid: string;
     proof: Proof | undefined;
+    /** an indentifier for related presetnation requests across versions */
+    id: string;
 }
 export declare const UnsignedPresentation: {
     encode(message: UnsignedPresentation, writer?: _m0.Writer): _m0.Writer;
