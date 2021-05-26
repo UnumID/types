@@ -116,6 +116,7 @@ export interface PresentationRequestOptions {
  */
 export interface UnsignedPresentationRequest extends PresentationRequestOptions {
   uuid: string;
+  id?: string; // for related requests across versions
 }
 
 /**
