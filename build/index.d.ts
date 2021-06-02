@@ -107,11 +107,7 @@ export interface PresentationRequestOptions {
  */
 export interface UnsignedPresentationRequest extends PresentationRequestOptions {
     uuid: string;
-<<<<<<< HEAD
     id: string;
-=======
-    id?: string;
->>>>>>> main
 }
 /**
  * Encapsulates addition request attributes to the unsigned presentation request type for the purposes of sending a signed presentation request.
