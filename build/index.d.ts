@@ -107,7 +107,11 @@ export interface PresentationRequestOptions {
  */
 export interface UnsignedPresentationRequest extends PresentationRequestOptions {
     uuid: string;
+<<<<<<< HEAD
     id: string;
+=======
+    id?: string;
+>>>>>>> main
 }
 /**
  * Encapsulates addition request attributes to the unsigned presentation request type for the purposes of sending a signed presentation request.
@@ -201,6 +205,9 @@ export interface PresentationRequestDto {
     presentationRequest: PresentationRequest;
     verifier: VerifierInfo;
     issuers: IssuerInfoMap;
+    holderApp?: Pick<HolderApp, 'name' | 'uriScheme' | 'deeplinkButtonImg'>;
+    deeplink?: string;
+    qrCode?: string;
 }
 /**
  * Type to encapsulate a Protobuf PresentationRequest Data Transfer Object get response used in interfacing services.

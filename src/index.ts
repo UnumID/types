@@ -245,6 +245,9 @@ export interface PresentationRequestPostDto {
   presentationRequest: PresentationRequest;
   verifier: VerifierInfo;
   issuers: IssuerInfoMap;
+  holderApp?: Pick<HolderApp, 'name' | 'uriScheme' | 'deeplinkButtonImg'>;
+  deeplink?: string;
+  qrCode?: string;
 }
 
 /**
