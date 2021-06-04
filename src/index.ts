@@ -1,5 +1,23 @@
 import { Literal, Static, Union } from "runtypes";
 import { SemVer } from 'semver';
+import { Credential as Credential_pb} from "./protos/credential";
+// export { UnsignedPresentation as UnsignedPresentation_pb} from "./protos/presentation";
+import { UnsignedPresentation as UnsignedPresentationPb, Presentation as PresentationPb, UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb} from "./protos/presentation";
+import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb} from "./protos/credential";
+import { Proof as ProofPb} from "./protos/proof";
+
+export { 
+  UnsignedPresentationPb as UnsignedPresentationPb, 
+  PresentationPb as PresentationPb,
+  UnsignedPresentationRequestPb as UnsignedPresentationRequestPb,
+  PresentationRequestPb as PresentationRequestPb,
+  UnsignedCredentialPb as UnsignedCredentialPb, 
+  CredentialPb as CredentialPb,
+  CredentialRequestPb as CredentialRequestPb,
+  ProofPb as ProofPb
+}
+
+// import Schema from "./protos/credential";
 
 /**
  * Interface to encapsulate cryptographic proof for any signed object: Credentials, Presentations, PresentationRequests.
@@ -85,6 +103,7 @@ export interface UnsignedPresentation {
   verifierDid: string;
   // Note: that verifiableCredential is singular but it's of array type. This is thanks to the w3 spec dictating as such, not by choice. ref: https://www.w3.org/TR/vc-data-model/#presentations-0
   verifiableCredential?: Credential[]; // Optional, if undefined or empty it means the presentation request was declined
+  // verifiableCredential?: Credential_pb[]; // Optional, if undefined or empty it means the presentation request was declined
   uuid?: string; // Optional wether the presentation has been persisted yet or not
 }
 
@@ -95,10 +114,13 @@ export interface Presentation extends UnsignedPresentation {
   proof: Proof;
 }
 
+/**
+ * Encapsulates Credential information requested.
+ */
 export interface CredentialRequest {
   type: string; // the string matching the desire credential type
   issuers: string[]; // list of acceptable issuer DIDs that have issued the credential
-  required?: boolean; // to denote wether this particular credential is required in response to the PresentationRequest. Defaults behavior resolves this to true.
+  required: boolean; // to denote wether this particular credential is required in response to the PresentationRequest. Defaults behavior resolves this to true.
 }
 
 export interface PresentationRequestOptions {
@@ -116,7 +138,7 @@ export interface PresentationRequestOptions {
  */
 export interface UnsignedPresentationRequest extends PresentationRequestOptions {
   uuid: string;
-  id?: string; // for related requests across versions
+  id: string; // for related requests across versions
 }
 
 /**
@@ -229,6 +251,16 @@ export interface PresentationRequestPostDto {
 }
 
 /**
+ * Type to encapsulate a Protobuf PresentationRequest Data Transfer Object get response used in interfacing services.
+ * Note: this is not used when dealing with json / http network interfaces.
+ */
+ export interface PresentationRequestDtoPb {
+  presentationRequest: PresentationRequestPb;
+  verifier: VerifierInfo;
+  issuers: IssuerInfoMap;
+}
+
+/**
  * Interface to encapsulate an encrypted key.
  * Note: This is used to encrypted an AES key using RSA so that data can be encrypted with the significantly smaller AES key.
  */
@@ -289,15 +321,6 @@ export interface EncryptedCredentialOptions {
   issuer: string;
   type: string[];
   data: EncryptedData;
-}
-
-/**
- * Encapsulates necessary CredentialRequest entity attributes.
- */
-export interface CredentialRequest {
-  type: string;
-  issuers: string[];
-  required?: boolean;
 }
 
 /**

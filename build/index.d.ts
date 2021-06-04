@@ -1,5 +1,9 @@
 import { Literal, Static, Union } from "runtypes";
 import { SemVer } from 'semver';
+import { UnsignedPresentation as UnsignedPresentationPb, Presentation as PresentationPb, UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentation";
+import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb } from "./protos/credential";
+import { Proof as ProofPb } from "./protos/proof";
+export { UnsignedPresentationPb as UnsignedPresentationPb, PresentationPb as PresentationPb, UnsignedPresentationRequestPb as UnsignedPresentationRequestPb, PresentationRequestPb as PresentationRequestPb, UnsignedCredentialPb as UnsignedCredentialPb, CredentialPb as CredentialPb, CredentialRequestPb as CredentialRequestPb, ProofPb as ProofPb };
 /**
  * Interface to encapsulate cryptographic proof for any signed object: Credentials, Presentations, PresentationRequests.
  */
@@ -81,10 +85,13 @@ export interface UnsignedPresentation {
 export interface Presentation extends UnsignedPresentation {
     proof: Proof;
 }
+/**
+ * Encapsulates Credential information requested.
+ */
 export interface CredentialRequest {
     type: string;
     issuers: string[];
-    required?: boolean;
+    required: boolean;
 }
 export interface PresentationRequestOptions {
     credentialRequests: CredentialRequest[];
@@ -100,7 +107,7 @@ export interface PresentationRequestOptions {
  */
 export interface UnsignedPresentationRequest extends PresentationRequestOptions {
     uuid: string;
-    id?: string;
+    id: string;
 }
 /**
  * Encapsulates addition request attributes to the unsigned presentation request type for the purposes of sending a signed presentation request.
@@ -199,6 +206,15 @@ export interface PresentationRequestDto {
     qrCode?: string;
 }
 /**
+ * Type to encapsulate a Protobuf PresentationRequest Data Transfer Object get response used in interfacing services.
+ * Note: this is not used when dealing with json / http network interfaces.
+ */
+export interface PresentationRequestDtoPb {
+    presentationRequest: PresentationRequestPb;
+    verifier: VerifierInfo;
+    issuers: IssuerInfoMap;
+}
+/**
  * Interface to encapsulate an encrypted key.
  * Note: This is used to encrypted an AES key using RSA so that data can be encrypted with the significantly smaller AES key.
  */
@@ -254,14 +270,6 @@ export interface EncryptedCredentialOptions {
     issuer: string;
     type: string[];
     data: EncryptedData;
-}
-/**
- * Encapsulates necessary CredentialRequest entity attributes.
- */
-export interface CredentialRequest {
-    type: string;
-    issuers: string[];
-    required?: boolean;
 }
 /**
  * Encapsulates Verifier metadata attributes.
