@@ -268,6 +268,11 @@ export interface PresentationRequestPostDto {
 }
 
 /**
+ * Type to encapsulate mapping of versions to PresentationRequestDto.
+ */
+export type VersionedPresentationRequestDto = VersionedDto<PresentationRequestDto>;
+
+/**
  * Interface to encapsulate an encrypted key.
  * Note: This is used to encrypted an AES key using RSA so that data can be encrypted with the significantly smaller AES key.
  */
