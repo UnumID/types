@@ -227,6 +227,13 @@ export interface HolderApp {
 }
 
 /**
+ * Type to encapsulate generic response from SaaS API endpoints which return resources keyed by version.
+ */
+export interface VersionedDto<T = any> {
+  [version: string]: T;
+}
+
+/**
  * Type to encapsulate the response body returned when a PresentationRequest is created
  */
 export interface PresentationRequestPostDto {
@@ -259,6 +266,11 @@ export interface PresentationRequestPostDto {
   verifier: VerifierInfo;
   issuers: IssuerInfoMap;
 }
+
+/**
+ * Type to encapsulate mapping of versions to PresentationRequestDto.
+ */
+export type VersionedPresentationRequestDto = VersionedDto<PresentationRequestDto>;
 
 /**
  * Interface to encapsulate an encrypted key.
