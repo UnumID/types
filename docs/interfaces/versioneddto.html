@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>VersionInfo | @unumid/types</title>
+	<title>VersionedDto | @unumid/types</title>
 	<meta name="description" content="Documentation for @unumid/types">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,60 +55,47 @@
 					<a href="../modules.html">@unumid/types</a>
 				</li>
 				<li>
-					<a href="versioninfo.html">VersionInfo</a>
+					<a href="versioneddto.html">VersionedDto</a>
 				</li>
 			</ul>
-			<h1>Interface VersionInfo</h1>
+			<h1>Interface VersionedDto&lt;T&gt;</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Type to encapsulate generic response from SaaS API endpoints which return resources keyed by version.</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-type-parameters">
+				<h3>Type parameters</h3>
+				<ul class="tsd-type-parameters">
+					<li>
+						<h4>T = <span class="tsd-signature-type">any</span></h4>
+					</li>
+				</ul>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">VersionInfo</span>
+						<span class="target">VersionedDto</span>
 					</li>
 				</ul>
 			</section>
-			<section class="tsd-panel-group tsd-index-group">
-				<h2>Index</h2>
-				<section class="tsd-panel tsd-index-panel">
-					<div class="tsd-index-content">
-						<section class="tsd-index-section ">
-							<h3>Properties</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="versioninfo.html#sdkversion" class="tsd-kind-icon">sdk<wbr>Version</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="versioninfo.html#target" class="tsd-kind-icon">target</a></li>
-							</ul>
-						</section>
+			<section class="tsd-panel tsd-kind-interface tsd-has-type-parameter">
+				<h3 class="tsd-before-signature">Indexable</h3>
+				<div class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">[</span>version: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">T</span></div>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Type to encapsulate generic response from SaaS API endpoints which return resources keyed by version.</p>
 					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="sdkversion" class="tsd-anchor"></a>
-					<h3>sdk<wbr>Version</h3>
-					<div class="tsd-signature tsd-kind-icon">sdk<wbr>Version<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/97ebeb2/src/index.ts#L194">index.ts:194</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="target" class="tsd-anchor"></a>
-					<h3>target</h3>
-					<div class="tsd-signature tsd-kind-icon">target<span class="tsd-signature-symbol">:</span> <a href="targetinfo.html" class="tsd-signature-type" data-tsd-kind="Interface">TargetInfo</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/97ebeb2/src/index.ts#L193">index.ts:193</a></li>
-						</ul>
-					</aside>
-				</section>
+				</div>
 			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -123,16 +110,8 @@
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface">
-						<a href="versioninfo.html" class="tsd-kind-icon">Version<wbr>Info</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="versioninfo.html#sdkversion" class="tsd-kind-icon">sdk<wbr>Version</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="versioninfo.html#target" class="tsd-kind-icon">target</a>
-							</li>
-						</ul>
+					<li class="current tsd-kind-interface tsd-has-type-parameter">
+						<a href="versioneddto.html" class="tsd-kind-icon">Versioned<wbr>Dto</a>
 					</li>
 				</ul>
 				<ul class="after-current">

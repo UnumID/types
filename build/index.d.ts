@@ -184,6 +184,12 @@ export interface HolderApp {
     deeplinkButtonImg: string;
 }
 /**
+ * Type to encapsulate generic response from SaaS API endpoints which return resources keyed by version.
+ */
+export interface VersionedDto<T = any> {
+    [version: string]: T;
+}
+/**
  * Type to encapsulate the response body returned when a PresentationRequest is created
  */
 export interface PresentationRequestPostDto {
@@ -214,6 +220,10 @@ export interface PresentationRequestDtoPb {
     verifier: VerifierInfo;
     issuers: IssuerInfoMap;
 }
+/**
+ * Type to encapsulate mapping of versions to PresentationRequestDto.
+ */
+export declare type VersionedPresentationRequestDto = VersionedDto<PresentationRequestDto>;
 /**
  * Interface to encapsulate an encrypted key.
  * Note: This is used to encrypted an AES key using RSA so that data can be encrypted with the significantly smaller AES key.
