@@ -186,9 +186,11 @@ export interface HolderApp {
 /**
  * Type to encapsulate generic response from SaaS API endpoints which return resources keyed by version.
  */
-export interface VersionedDto<T = any> {
-    [version: string]: T;
-}
+export declare type VersionedDto<N extends string, T = any> = {
+    [n in N]: {
+        [version: string]: T;
+    };
+};
 /**
  * Type to encapsulate the response body returned when a PresentationRequest is created
  */
@@ -223,7 +225,7 @@ export interface PresentationRequestDtoPb {
 /**
  * Type to encapsulate mapping of versions to PresentationRequestDto.
  */
-export declare type VersionedPresentationRequestDto = VersionedDto<PresentationRequestDto>;
+export declare type VersionedPresentationRequestDto = VersionedDto<'presentationRequests', PresentationRequestDto>;
 /**
  * Interface to encapsulate an encrypted key.
  * Note: This is used to encrypted an AES key using RSA so that data can be encrypted with the significantly smaller AES key.
