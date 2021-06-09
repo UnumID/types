@@ -12,7 +12,7 @@ export const protobufPackage = "presentation.v1";
 export interface UnsignedPresentation {
   context: string[];
   type: string[];
-  presentationRequestUuid: string;
+  presentationRequestId: string;
   verifierDid: string;
   verifiableCredential: Credential[];
 }
@@ -24,7 +24,7 @@ export interface UnsignedPresentation {
 export interface Presentation {
   context: string[];
   type: string[];
-  presentationRequestUuid: string;
+  presentationRequestId: string;
   verifierDid: string;
   verifiableCredential: Credential[];
   proof: Proof | undefined;
@@ -67,7 +67,7 @@ export interface PresentationRequest {
 const baseUnsignedPresentation: object = {
   context: "",
   type: "",
-  presentationRequestUuid: "",
+  presentationRequestId: "",
   verifierDid: "",
 };
 
@@ -82,8 +82,8 @@ export const UnsignedPresentation = {
     for (const v of message.type) {
       writer.uint32(18).string(v!);
     }
-    if (message.presentationRequestUuid !== "") {
-      writer.uint32(26).string(message.presentationRequestUuid);
+    if (message.presentationRequestId !== "") {
+      writer.uint32(26).string(message.presentationRequestId);
     }
     if (message.verifierDid !== "") {
       writer.uint32(34).string(message.verifierDid);
@@ -114,7 +114,7 @@ export const UnsignedPresentation = {
           message.type.push(reader.string());
           break;
         case 3:
-          message.presentationRequestUuid = reader.string();
+          message.presentationRequestId = reader.string();
           break;
         case 4:
           message.verifierDid = reader.string();
@@ -148,12 +148,12 @@ export const UnsignedPresentation = {
       }
     }
     if (
-      object.presentationRequestUuid !== undefined &&
-      object.presentationRequestUuid !== null
+      object.presentationRequestId !== undefined &&
+      object.presentationRequestId !== null
     ) {
-      message.presentationRequestUuid = String(object.presentationRequestUuid);
+      message.presentationRequestId = String(object.presentationRequestId);
     } else {
-      message.presentationRequestUuid = "";
+      message.presentationRequestId = "";
     }
     if (object.verifierDid !== undefined && object.verifierDid !== null) {
       message.verifierDid = String(object.verifierDid);
@@ -183,8 +183,8 @@ export const UnsignedPresentation = {
     } else {
       obj.type = [];
     }
-    message.presentationRequestUuid !== undefined &&
-      (obj.presentationRequestUuid = message.presentationRequestUuid);
+    message.presentationRequestId !== undefined &&
+      (obj.presentationRequestId = message.presentationRequestId);
     message.verifierDid !== undefined &&
       (obj.verifierDid = message.verifierDid);
     if (message.verifiableCredential) {
@@ -213,12 +213,12 @@ export const UnsignedPresentation = {
       }
     }
     if (
-      object.presentationRequestUuid !== undefined &&
-      object.presentationRequestUuid !== null
+      object.presentationRequestId !== undefined &&
+      object.presentationRequestId !== null
     ) {
-      message.presentationRequestUuid = object.presentationRequestUuid;
+      message.presentationRequestId = object.presentationRequestId;
     } else {
-      message.presentationRequestUuid = "";
+      message.presentationRequestId = "";
     }
     if (object.verifierDid !== undefined && object.verifierDid !== null) {
       message.verifierDid = object.verifierDid;
@@ -240,7 +240,7 @@ export const UnsignedPresentation = {
 const basePresentation: object = {
   context: "",
   type: "",
-  presentationRequestUuid: "",
+  presentationRequestId: "",
   verifierDid: "",
 };
 
@@ -255,8 +255,8 @@ export const Presentation = {
     for (const v of message.type) {
       writer.uint32(18).string(v!);
     }
-    if (message.presentationRequestUuid !== "") {
-      writer.uint32(26).string(message.presentationRequestUuid);
+    if (message.presentationRequestId !== "") {
+      writer.uint32(26).string(message.presentationRequestId);
     }
     if (message.verifierDid !== "") {
       writer.uint32(34).string(message.verifierDid);
@@ -287,7 +287,7 @@ export const Presentation = {
           message.type.push(reader.string());
           break;
         case 3:
-          message.presentationRequestUuid = reader.string();
+          message.presentationRequestId = reader.string();
           break;
         case 4:
           message.verifierDid = reader.string();
@@ -324,12 +324,12 @@ export const Presentation = {
       }
     }
     if (
-      object.presentationRequestUuid !== undefined &&
-      object.presentationRequestUuid !== null
+      object.presentationRequestId !== undefined &&
+      object.presentationRequestId !== null
     ) {
-      message.presentationRequestUuid = String(object.presentationRequestUuid);
+      message.presentationRequestId = String(object.presentationRequestId);
     } else {
-      message.presentationRequestUuid = "";
+      message.presentationRequestId = "";
     }
     if (object.verifierDid !== undefined && object.verifierDid !== null) {
       message.verifierDid = String(object.verifierDid);
@@ -364,8 +364,8 @@ export const Presentation = {
     } else {
       obj.type = [];
     }
-    message.presentationRequestUuid !== undefined &&
-      (obj.presentationRequestUuid = message.presentationRequestUuid);
+    message.presentationRequestId !== undefined &&
+      (obj.presentationRequestId = message.presentationRequestId);
     message.verifierDid !== undefined &&
       (obj.verifierDid = message.verifierDid);
     if (message.verifiableCredential) {
@@ -396,12 +396,12 @@ export const Presentation = {
       }
     }
     if (
-      object.presentationRequestUuid !== undefined &&
-      object.presentationRequestUuid !== null
+      object.presentationRequestId !== undefined &&
+      object.presentationRequestId !== null
     ) {
-      message.presentationRequestUuid = object.presentationRequestUuid;
+      message.presentationRequestId = object.presentationRequestId;
     } else {
-      message.presentationRequestUuid = "";
+      message.presentationRequestId = "";
     }
     if (object.verifierDid !== undefined && object.verifierDid !== null) {
       message.verifierDid = object.verifierDid;

@@ -13,7 +13,6 @@ export interface Proof {
     type: string;
     verificationMethod: string;
     proofPurpose: string;
-    unsignedValue?: string;
 }
 /**
  * Type to encapsulate supported claim primitives.
@@ -74,7 +73,7 @@ export interface Credential extends UnsignedCredential {
 export interface UnsignedPresentation {
     '@context': ['https://www.w3.org/2018/credentials/v1', ...string[]];
     type: ['VerifiablePresentation', ...string[]];
-    presentationRequestUuid: string;
+    presentationRequestId: string;
     verifierDid: string;
     verifiableCredential?: Credential[];
     uuid?: string;

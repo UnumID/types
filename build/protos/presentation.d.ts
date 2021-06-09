@@ -7,7 +7,7 @@ export declare const protobufPackage = "presentation.v1";
 export interface UnsignedPresentation {
     context: string[];
     type: string[];
-    presentationRequestUuid: string;
+    presentationRequestId: string;
     verifierDid: string;
     verifiableCredential: Credential[];
 }
@@ -18,7 +18,7 @@ export interface UnsignedPresentation {
 export interface Presentation {
     context: string[];
     type: string[];
-    presentationRequestUuid: string;
+    presentationRequestId: string;
     verifierDid: string;
     verifiableCredential: Credential[];
     proof: Proof | undefined;
