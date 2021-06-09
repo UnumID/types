@@ -243,9 +243,6 @@ export interface HolderApp {
  */
 export declare type VersionedDto<N extends string, T = any> = {
     [n in N]: {
-        /**
-         * The version will be the key for the type T.
-         */
         [version: string]: T;
     };
 };
@@ -400,14 +397,26 @@ export declare type PushProvider = typeof pushProviders[number];
  */
 export interface PushToken {
     value: string;
+    /**
+     * If not included, the SaaS will attempt to determine the provider based on the token value.
+     */
     provider?: PushProvider;
 }
 /**
  * Interface encapsulating options for sending push notifications via the SaaS.
  */
 export interface PushNotificationOptions {
+    /**
+     * The deep link to be sent as a push notification.
+     */
     deeplink: string;
+    /**
+     * PushToken(s) identifying the app + provider a notification should be sent to.
+     */
     token: PushToken | PushToken[];
+    /**
+     * The holder app to send the notification to.
+     */
     holderAppUuid: string;
 }
 /**
@@ -424,6 +433,9 @@ export declare const _CredentialStatusOptions: Union<[Literal<"valid">, Literal<
  * Thanks to created a templated message from the deeplink's presentation request uuid and in turn the corresponding verifier, no custom message content needed.
  */
 export interface ExternalChannelMessageInput {
+    /**
+     * Email address or phone number.
+     */
     to: string;
     deeplink: string;
 }
@@ -436,6 +448,12 @@ export interface VerificationResponse {
     type: 'VerifiablePresentation' | 'DeclinedPresentation';
     presentationReceiptInfo: PresentationReceiptInfo;
 }
+/**
+ * Helper which adds a named key with a specific value type to an existing type.
+ */
 export declare type WithKeyAndValue<T, K extends string, V> = T & Record<K, V>;
+/**
+ * Helper type which adds a version string.
+ */
 export declare type WithVersion<T> = WithKeyAndValue<T, 'version', string>;
 //# sourceMappingURL=index.d.ts.map
