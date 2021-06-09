@@ -133,7 +133,10 @@ export interface PresentationRequestOptions {
  */
 export interface UnsignedPresentationRequest extends PresentationRequestOptions {
   uuid: string;
-  id: string; // for related requests across versions
+  /**
+   * For related requests across versions.
+   */
+  id: string;
 }
 
 /**
@@ -177,20 +180,48 @@ export interface Verifier {
   versionInfo: VersionInfo[],
 }
 
-
+/**
+ * Interface to encapsulate corresponding mappings between UnumID Mobile (aka Holder) SDK and Server SDK versions.
+ * 
+ * Ideally the major versions should always be consist however this abstraction is in place in case we need more fine tune control between the compatible versions.
+ */
 export interface VersionMapping {
-  saasApiVersion: SemVer, // minimum capable version 
-  serverSdkVersion: SemVer // minimum capable version
+  /** 
+   * Minimum capable version. In practice it corresponds to the version header used by the Mobile SDK.
+   */
+  saasApiVersion: SemVer,
+  /** 
+   * Minimum capable version
+   */ 
+  serverSdkVersion: SemVer 
   // holderSdkVersion: string, // Opting to exclude because inherent via the SaaS API version
 }
 
+/**
+ * Interface to encapsulate how to target a customer's application version to reach a specific UnumId Server SDK version.
+ */
 export interface VersionInfo {
+  /**
+   * The information of how to target a customer's application to communication with the corresponding Server sdkVersion.
+   */
   target: TargetInfo,
-  sdkVersion: string // server sdk version. Opting to keep a string for simpler persisting in db.
+  /**  
+   * Server sdk version. Ought to be in Semver notation however opting to keep a string type for simplicity.
+   */
+  sdkVersion: string 
 }
 
+/**
+ * Interface to encapsulate wether to a version header or a specific url to differentiate between customer application versions.
+ */
 export interface TargetInfo {
-  version?: string, // api version
+  /**
+   * Api version reachable via the version HTTP header.
+   */
+  version?: string,
+  /**
+   * Versions denoted via a different url.
+   */
   url?: string
 }
 

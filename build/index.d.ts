@@ -106,6 +106,9 @@ export interface PresentationRequestOptions {
  */
 export interface UnsignedPresentationRequest extends PresentationRequestOptions {
     uuid: string;
+    /**
+     * For related requests across versions.
+     */
     id: string;
 }
 /**
@@ -145,16 +148,45 @@ export interface Verifier {
     isAuthorized: boolean;
     versionInfo: VersionInfo[];
 }
+/**
+ * Interface to encapsulate corresponding mappings between UnumID Mobile (aka Holder) SDK and Server SDK versions.
+ *
+ * Ideally the major versions should always be consist however this abstraction is in place in case we need more fine tune control between the compatible versions.
+ */
 export interface VersionMapping {
+    /**
+     * Minimum capable version. In practice it corresponds to the version header used by the Mobile SDK.
+     */
     saasApiVersion: SemVer;
+    /**
+     * Minimum capable version
+     */
     serverSdkVersion: SemVer;
 }
+/**
+ * Interface to encapsulate how to target a customer's application version to reach a specific UnumId Server SDK version.
+ */
 export interface VersionInfo {
+    /**
+     * The information of how to target a customer's application to communication with the corresponding Server sdkVersion.
+     */
     target: TargetInfo;
+    /**
+     * Server sdk version. Ought to be in Semver notation however opting to keep a string type for simplicity.
+     */
     sdkVersion: string;
 }
+/**
+ * Interface to encapsulate wether to a version header or a specific url to differentiate between customer application versions.
+ */
 export interface TargetInfo {
+    /**
+     * Api version reachable via the version HTTP header.
+     */
     version?: string;
+    /**
+     * Versions denoted via a different url.
+     */
     url?: string;
 }
 /**
