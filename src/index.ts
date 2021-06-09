@@ -81,7 +81,7 @@ export interface Credential extends UnsignedCredential {
 export interface UnsignedPresentation {
   '@context': ['https://www.w3.org/2018/credentials/v1', ...string[]];
   type: ['VerifiablePresentation', ...string[]];
-  presentationRequestUuid: string;
+  presentationRequestId: string;
   verifierDid: string;
   // Note: that verifiableCredential is singular but it's of array type. This is thanks to the w3 spec dictating as such, not by choice. ref: https://www.w3.org/TR/vc-data-model/#presentations-0
   verifiableCredential?: Credential[]; // Optional, if undefined or empty it means the presentation request was declined
