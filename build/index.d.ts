@@ -13,7 +13,6 @@ export interface Proof {
     type: string;
     verificationMethod: string;
     proofPurpose: string;
-    unsignedValue?: string;
 }
 /**
  * Type to encapsulate supported claim primitives.

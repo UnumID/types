@@ -1,7 +1,5 @@
 import { Literal, Static, Union } from "runtypes";
 import { SemVer } from 'semver';
-import { Credential as Credential_pb} from "./protos/credential";
-// export { UnsignedPresentation as UnsignedPresentation_pb} from "./protos/presentation";
 import { UnsignedPresentation as UnsignedPresentationPb, Presentation as PresentationPb, UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb} from "./protos/presentation";
 import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb} from "./protos/credential";
 import { Proof as ProofPb} from "./protos/proof";
@@ -17,8 +15,6 @@ export {
   ProofPb as ProofPb
 }
 
-// import Schema from "./protos/credential";
-
 /**
  * Interface to encapsulate cryptographic proof for any signed object: Credentials, Presentations, PresentationRequests.
  */
@@ -28,7 +24,6 @@ export interface Proof {
   type: string;
   verificationMethod: string;
   proofPurpose: string;
-  unsignedValue?: string;
 }
 
 /**
@@ -230,8 +225,8 @@ export interface HolderApp {
  * Type to encapsulate generic response from SaaS API endpoints which return resources keyed by version.
  */
 export type VersionedDto<N extends string, T = any> = {
-  [n in N]: {
-    [version: string]: T
+  [n in N]: { // generic for what key to have a first class version attributes on
+    [version: string]: T // the version will be the key for the type T
   }
 }
 
