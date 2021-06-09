@@ -69,13 +69,19 @@ export interface CredentialSubject {
 export interface UnsignedCredential {
   '@context': ['https://www.w3.org/2018/credentials/v1', ...string[]];
   // credentialSubject: CredentialSubject;
-  credentialSubject: string; // due to its unknown format going to handle as JSON string when passing around
+  /**
+   * Due to its ambiguous format going to handle as JSON string when passing around.
+   */
+  credentialSubject: string; 
   credentialStatus: {
     id: string;
     type: string;
   }
   issuer: string;
-  type: ['VerifiableCredential', ...string[]]; // as dictated by the W3 spec. ref: https://www.w3.org/TR/vc-data-model/#example-1-a-simple-example-of-a-verifiable-credential
+  /**
+   * As dictated by the W3 spec. ref: https://www.w3.org/TR/vc-data-model/#example-1-a-simple-example-of-a-verifiable-credential.
+   */
+  type: ['VerifiableCredential', ...string[]];
   id: string;
   issuanceDate: Date;
   expirationDate?: Date;
@@ -96,10 +102,18 @@ export interface UnsignedPresentation {
   type: ['VerifiablePresentation', ...string[]];
   presentationRequestId: string;
   verifierDid: string;
-  // Note: that verifiableCredential is singular but it's of array type. This is thanks to the w3 spec dictating as such, not by choice. ref: https://www.w3.org/TR/vc-data-model/#presentations-0
-  verifiableCredential?: Credential[]; // Optional, if undefined or empty it means the presentation request was declined
+  /**
+   * Note: that verifiableCredential is singular but it's of array type. This is thanks to the w3 spec dictating as such, not by choice. ref: https://www.w3.org/TR/vc-data-model/#presentations-0.
+   */
+  /**
+   * Optional. If undefined or empty it means the presentation request was declined
+   */
+  verifiableCredential?: Credential[]; 
   // verifiableCredential?: Credential_pb[]; // Optional, if undefined or empty it means the presentation request was declined
-  uuid?: string; // Optional wether the presentation has been persisted yet or not
+  /**
+   * Optional wether the presentation has been persisted yet or not.
+   */
+  uuid?: string;
 }
 
 /**
@@ -113,9 +127,18 @@ export interface Presentation extends UnsignedPresentation {
  * Encapsulates Credential information requested.
  */
 export interface CredentialRequest {
-  type: string; // the string matching the desire credential type
-  issuers: string[]; // list of acceptable issuer DIDs that have issued the credential
-  required: boolean; // to denote wether this particular credential is required in response to the PresentationRequest. Defaults behavior resolves this to true.
+  /**
+   * The string matching the desire credential type.
+   */
+  type: string; 
+  /**
+   * List of acceptable issuer DIDs that have issued the credential.
+   */
+  issuers: string[]; 
+  /**
+   * To denote wether this particular credential is required in response to the PresentationRequest. Defaults behavior resolves this to true.
+   */
+  required: boolean; 
 }
 
 export interface PresentationRequestOptions {
@@ -133,7 +156,10 @@ export interface PresentationRequestOptions {
  */
 export interface UnsignedPresentationRequest extends PresentationRequestOptions {
   uuid: string;
-  id: string; // for related requests across versions
+  /**
+   * For related requests across versions.
+   */
+  id: string;
 }
 
 /**
@@ -177,20 +203,48 @@ export interface Verifier {
   versionInfo: VersionInfo[],
 }
 
-
+/**
+ * Interface to encapsulate corresponding mappings between UnumID Mobile (aka Holder) SDK and Server SDK versions.
+ * 
+ * Ideally the major versions should always be consist however this abstraction is in place in case we need more fine tune control between the compatible versions.
+ */
 export interface VersionMapping {
-  saasApiVersion: SemVer, // minimum capable version 
-  serverSdkVersion: SemVer // minimum capable version
+  /** 
+   * Minimum capable version. In practice it corresponds to the version header used by the Mobile SDK.
+   */
+  saasApiVersion: SemVer,
+  /** 
+   * Minimum capable version
+   */ 
+  serverSdkVersion: SemVer 
   // holderSdkVersion: string, // Opting to exclude because inherent via the SaaS API version
 }
 
+/**
+ * Interface to encapsulate how to target a customer's application version to reach a specific UnumId Server SDK version.
+ */
 export interface VersionInfo {
+  /**
+   * The information of how to target a customer's application to communication with the corresponding Server sdkVersion.
+   */
   target: TargetInfo,
-  sdkVersion: string // server sdk version. Opting to keep a string for simpler persisting in db.
+  /**  
+   * Server sdk version. Ought to be in Semver notation however opting to keep a string type for simplicity.
+   */
+  sdkVersion: string 
 }
 
+/**
+ * Interface to encapsulate wether to a version header or a specific url to differentiate between customer application versions.
+ */
 export interface TargetInfo {
-  version?: string, // api version
+  /**
+   * Api version reachable via the version HTTP header.
+   */
+  version?: string,
+  /**
+   * Versions denoted via a different url.
+   */
   url?: string
 }
 
@@ -399,16 +453,28 @@ export type PushProvider = typeof pushProviders[number];
  */
 export interface PushToken {
   value: string;
-  provider?: PushProvider; // if not included, the SaaS will attempt to determine the provider based on the token value
+  /**
+   * If not included, the SaaS will attempt to determine the provider based on the token value.
+   */
+  provider?: PushProvider; 
 }
 
 /**
  * Interface encapsulating options for sending push notifications via the SaaS.
  */
 export interface PushNotificationOptions {
-  deeplink: string; // the deep link to be sent as a push notification
-  token: PushToken | PushToken[]; // PushToken(s) identifying the app + provider a notification should be sent to
-  holderAppUuid: string; // the holder app to send the notification to
+  /**
+   * The deep link to be sent as a push notification.
+   */
+  deeplink: string; 
+  /**
+   * PushToken(s) identifying the app + provider a notification should be sent to.
+   */
+  token: PushToken | PushToken[]; 
+  /**
+   * The holder app to send the notification to.
+   */
+  holderAppUuid: string; 
 }
 
 /**
@@ -430,7 +496,10 @@ export type CredentialStatusOptions = Static<typeof _CredentialStatusOptions>
    * Thanks to created a templated message from the deeplink's presentation request uuid and in turn the corresponding verifier, no custom message content needed.
    */
   export interface ExternalChannelMessageInput {
-    to: string; // email address or phone number
+    /**
+     * Email address or phone number.
+     */
+    to: string; 
     deeplink: string;
   }
 
@@ -444,8 +513,12 @@ export type CredentialStatusOptions = Static<typeof _CredentialStatusOptions>
     presentationReceiptInfo: PresentationReceiptInfo;
   }
 
-  // helper which adds a named key with a specific value type to an existing type
+/**
+ * Helper which adds a named key with a specific value type to an existing type.
+ */
 export type WithKeyAndValue<T, K extends string, V> = T & Record<K, V>; 
 
-// helper type which adds a version string
+/**
+ * Helper type which adds a version string.
+ */
 export type WithVersion<T> = WithKeyAndValue<T, 'version', string>;

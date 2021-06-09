@@ -50,12 +50,18 @@ export interface JSONObj {
  */
 export interface UnsignedCredential {
     '@context': ['https://www.w3.org/2018/credentials/v1', ...string[]];
+    /**
+     * Due to its ambiguous format going to handle as JSON string when passing around.
+     */
     credentialSubject: string;
     credentialStatus: {
         id: string;
         type: string;
     };
     issuer: string;
+    /**
+     * As dictated by the W3 spec. ref: https://www.w3.org/TR/vc-data-model/#example-1-a-simple-example-of-a-verifiable-credential.
+     */
     type: ['VerifiableCredential', ...string[]];
     id: string;
     issuanceDate: Date;
@@ -75,7 +81,16 @@ export interface UnsignedPresentation {
     type: ['VerifiablePresentation', ...string[]];
     presentationRequestId: string;
     verifierDid: string;
+    /**
+     * Note: that verifiableCredential is singular but it's of array type. This is thanks to the w3 spec dictating as such, not by choice. ref: https://www.w3.org/TR/vc-data-model/#presentations-0.
+     */
+    /**
+     * Optional. If undefined or empty it means the presentation request was declined
+     */
     verifiableCredential?: Credential[];
+    /**
+     * Optional wether the presentation has been persisted yet or not.
+     */
     uuid?: string;
 }
 /**
@@ -88,8 +103,17 @@ export interface Presentation extends UnsignedPresentation {
  * Encapsulates Credential information requested.
  */
 export interface CredentialRequest {
+    /**
+     * The string matching the desire credential type.
+     */
     type: string;
+    /**
+     * List of acceptable issuer DIDs that have issued the credential.
+     */
     issuers: string[];
+    /**
+     * To denote wether this particular credential is required in response to the PresentationRequest. Defaults behavior resolves this to true.
+     */
     required: boolean;
 }
 export interface PresentationRequestOptions {
@@ -106,6 +130,9 @@ export interface PresentationRequestOptions {
  */
 export interface UnsignedPresentationRequest extends PresentationRequestOptions {
     uuid: string;
+    /**
+     * For related requests across versions.
+     */
     id: string;
 }
 /**
@@ -145,16 +172,45 @@ export interface Verifier {
     isAuthorized: boolean;
     versionInfo: VersionInfo[];
 }
+/**
+ * Interface to encapsulate corresponding mappings between UnumID Mobile (aka Holder) SDK and Server SDK versions.
+ *
+ * Ideally the major versions should always be consist however this abstraction is in place in case we need more fine tune control between the compatible versions.
+ */
 export interface VersionMapping {
+    /**
+     * Minimum capable version. In practice it corresponds to the version header used by the Mobile SDK.
+     */
     saasApiVersion: SemVer;
+    /**
+     * Minimum capable version
+     */
     serverSdkVersion: SemVer;
 }
+/**
+ * Interface to encapsulate how to target a customer's application version to reach a specific UnumId Server SDK version.
+ */
 export interface VersionInfo {
+    /**
+     * The information of how to target a customer's application to communication with the corresponding Server sdkVersion.
+     */
     target: TargetInfo;
+    /**
+     * Server sdk version. Ought to be in Semver notation however opting to keep a string type for simplicity.
+     */
     sdkVersion: string;
 }
+/**
+ * Interface to encapsulate wether to a version header or a specific url to differentiate between customer application versions.
+ */
 export interface TargetInfo {
+    /**
+     * Api version reachable via the version HTTP header.
+     */
     version?: string;
+    /**
+     * Versions denoted via a different url.
+     */
     url?: string;
 }
 /**
@@ -187,6 +243,9 @@ export interface HolderApp {
  */
 export declare type VersionedDto<N extends string, T = any> = {
     [n in N]: {
+        /**
+         * The version will be the key for the type T.
+         */
         [version: string]: T;
     };
 };
