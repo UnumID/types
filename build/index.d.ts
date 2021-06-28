@@ -237,6 +237,14 @@ export interface HolderApp {
     isAuthorized: boolean;
     customerUuid: string;
     deeplinkButtonImg: string;
+    isIos: boolean;
+    appleTeamId?: string;
+    appleBundleId?: string;
+    appStoreUrl?: string;
+    isAndroid: boolean;
+    androidPackageName?: string;
+    androidSHA256Fingerprints?: string;
+    playStoreUrl?: string;
 }
 /**
  * Type to encapsulate generic response from SaaS API endpoints which return resources keyed by version.
@@ -264,7 +272,7 @@ export interface PresentationRequestDto {
     presentationRequest: PresentationRequest;
     verifier: VerifierInfo;
     issuers: IssuerInfoMap;
-    holderApp?: Pick<HolderApp, 'name' | 'uriScheme' | 'deeplinkButtonImg'>;
+    holderApp?: Pick<HolderApp, 'name' | 'uriScheme' | 'deeplinkButtonImg' | 'appStoreUrl' | 'playStoreUrl'>;
     deeplink?: string;
     qrCode?: string;
 }
