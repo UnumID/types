@@ -261,7 +261,7 @@ export interface PresentationRequestPostDto {
  * Type to encapsulate a PresentationRequest Data Transfer Object get response used in interfacing services.
  */
 export interface PresentationRequestDto {
-    presentationRequest: PresentationRequest;
+    presentationRequest: WithVersion<PresentationRequest>;
     verifier: VerifierInfo;
     issuers: IssuerInfoMap;
     holderApp?: Pick<HolderApp, 'name' | 'uriScheme' | 'deeplinkButtonImg'>;
