@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Proof | @unumid/types</title>
+	<title>ApiKeyDto | @unumid/types</title>
 	<meta name="description" content="Documentation for @unumid/types">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">@unumid/types</a>
 				</li>
 				<li>
-					<a href="proof.html">Proof</a>
+					<a href="apikeydto.html">ApiKeyDto</a>
 				</li>
 			</ul>
-			<h1>Interface Proof</h1>
+			<h1>Interface ApiKeyDto</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Interface to encapsulate cryptographic proof for any signed object: Credentials, Presentations, PresentationRequests.</p>
+						<p>Interface to encapsulate an ApiKey Data Transfers Object from Unum ID&#39;s SaaS.</p>
 					</div>
 				</div>
 			</section>
@@ -76,7 +76,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Proof</span>
+						<span class="target">ApiKeyDto</span>
 					</li>
 				</ul>
 			</section>
@@ -87,11 +87,13 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="proof.html#created" class="tsd-kind-icon">created</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="proof.html#proofpurpose" class="tsd-kind-icon">proof<wbr>Purpose</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="proof.html#signaturevalue" class="tsd-kind-icon">signature<wbr>Value</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="proof.html#type" class="tsd-kind-icon">type</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="proof.html#verificationmethod" class="tsd-kind-icon">verification<wbr>Method</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="apikeydto.html#createdat" class="tsd-kind-icon">created<wbr>At</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="apikeydto.html#customeruuid" class="tsd-kind-icon">customer<wbr>Uuid</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="apikeydto.html#key" class="tsd-kind-icon">key</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="apikeydto.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="apikeydto.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="apikeydto.html#updatedat" class="tsd-kind-icon">updated<wbr>At</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="apikeydto.html#uuid" class="tsd-kind-icon">uuid</a></li>
 							</ul>
 						</section>
 					</div>
@@ -100,32 +102,42 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="created" class="tsd-anchor"></a>
-					<h3>created</h3>
-					<div class="tsd-signature tsd-kind-icon">created<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="createdat" class="tsd-anchor"></a>
+					<h3>created<wbr>At</h3>
+					<div class="tsd-signature tsd-kind-icon">created<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/26dfc38/src/index.ts#L22">index.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/26dfc38/src/index.ts#L346">index.ts:346</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="proofpurpose" class="tsd-anchor"></a>
-					<h3>proof<wbr>Purpose</h3>
-					<div class="tsd-signature tsd-kind-icon">proof<wbr>Purpose<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="customeruuid" class="tsd-anchor"></a>
+					<h3>customer<wbr>Uuid</h3>
+					<div class="tsd-signature tsd-kind-icon">customer<wbr>Uuid<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/26dfc38/src/index.ts#L26">index.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/26dfc38/src/index.ts#L350">index.ts:350</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="signaturevalue" class="tsd-anchor"></a>
-					<h3>signature<wbr>Value</h3>
-					<div class="tsd-signature tsd-kind-icon">signature<wbr>Value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="key" class="tsd-anchor"></a>
+					<h3>key</h3>
+					<div class="tsd-signature tsd-kind-icon">key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/26dfc38/src/index.ts#L23">index.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/26dfc38/src/index.ts#L349">index.ts:349</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="name" class="tsd-anchor"></a>
+					<h3>name</h3>
+					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/26dfc38/src/index.ts#L351">index.ts:351</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -135,17 +147,27 @@
 					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/26dfc38/src/index.ts#L24">index.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/26dfc38/src/index.ts#L348">index.ts:348</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="verificationmethod" class="tsd-anchor"></a>
-					<h3>verification<wbr>Method</h3>
-					<div class="tsd-signature tsd-kind-icon">verification<wbr>Method<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="updatedat" class="tsd-anchor"></a>
+					<h3>updated<wbr>At</h3>
+					<div class="tsd-signature tsd-kind-icon">updated<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/26dfc38/src/index.ts#L25">index.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/26dfc38/src/index.ts#L347">index.ts:347</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="uuid" class="tsd-anchor"></a>
+					<h3>uuid</h3>
+					<div class="tsd-signature tsd-kind-icon">uuid<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/26dfc38/src/index.ts#L345">index.ts:345</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -164,22 +186,28 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="proof.html" class="tsd-kind-icon">Proof</a>
+						<a href="apikeydto.html" class="tsd-kind-icon">Api<wbr>Key<wbr>Dto</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="proof.html#created" class="tsd-kind-icon">created</a>
+								<a href="apikeydto.html#createdat" class="tsd-kind-icon">created<wbr>At</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="proof.html#proofpurpose" class="tsd-kind-icon">proof<wbr>Purpose</a>
+								<a href="apikeydto.html#customeruuid" class="tsd-kind-icon">customer<wbr>Uuid</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="proof.html#signaturevalue" class="tsd-kind-icon">signature<wbr>Value</a>
+								<a href="apikeydto.html#key" class="tsd-kind-icon">key</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="proof.html#type" class="tsd-kind-icon">type</a>
+								<a href="apikeydto.html#name" class="tsd-kind-icon">name</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="proof.html#verificationmethod" class="tsd-kind-icon">verification<wbr>Method</a>
+								<a href="apikeydto.html#type" class="tsd-kind-icon">type</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="apikeydto.html#updatedat" class="tsd-kind-icon">updated<wbr>At</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="apikeydto.html#uuid" class="tsd-kind-icon">uuid</a>
 							</li>
 						</ul>
 					</li>

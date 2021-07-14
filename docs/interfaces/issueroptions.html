@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>CredentialSubject | @unumid/types</title>
+	<title>IssuerOptions | @unumid/types</title>
 	<meta name="description" content="Documentation for @unumid/types">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">@unumid/types</a>
 				</li>
 				<li>
-					<a href="credentialsubject.html">CredentialSubject</a>
+					<a href="issueroptions.html">IssuerOptions</a>
 				</li>
 			</ul>
-			<h1>Interface CredentialSubject</h1>
+			<h1>Interface IssuerOptions</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Interface to associate an id attribute to an arbitrary number (0 to n) of string keys with values of type ClaimValue.</p>
+						<p>Encapsulates necessary Issuer entity attributes during creation.</p>
 					</div>
 				</div>
 			</section>
@@ -76,18 +76,9 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">CredentialSubject</span>
+						<span class="target">IssuerOptions</span>
 					</li>
 				</ul>
-			</section>
-			<section class="tsd-panel tsd-kind-interface">
-				<h3 class="tsd-before-signature">Indexable</h3>
-				<div class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">[</span>claimName: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><a href="../modules.html#claimvalue" class="tsd-signature-type" data-tsd-kind="Type alias">ClaimValue</a></div>
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Interface to associate an id attribute to an arbitrary number (0 to n) of string keys with values of type ClaimValue.</p>
-					</div>
-				</div>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
@@ -96,7 +87,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="credentialsubject.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="issueroptions.html#customeruuid" class="tsd-kind-icon">customer<wbr>Uuid</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="issueroptions.html#publickeyinfo" class="tsd-kind-icon">public<wbr>Key<wbr>Info</a></li>
 							</ul>
 						</section>
 					</div>
@@ -105,12 +97,22 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="id" class="tsd-anchor"></a>
-					<h3>id</h3>
-					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="customeruuid" class="tsd-anchor"></a>
+					<h3>customer<wbr>Uuid</h3>
+					<div class="tsd-signature tsd-kind-icon">customer<wbr>Uuid<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/26dfc38/src/index.ts#L55">index.ts:55</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/26dfc38/src/index.ts#L184">index.ts:184</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="publickeyinfo" class="tsd-anchor"></a>
+					<h3>public<wbr>Key<wbr>Info</h3>
+					<div class="tsd-signature tsd-kind-icon">public<wbr>Key<wbr>Info<span class="tsd-signature-symbol">:</span> <a href="publickeyinfo.html" class="tsd-signature-type" data-tsd-kind="Interface">PublicKeyInfo</a><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/26dfc38/src/index.ts#L185">index.ts:185</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -129,10 +131,13 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="credentialsubject.html" class="tsd-kind-icon">Credential<wbr>Subject</a>
+						<a href="issueroptions.html" class="tsd-kind-icon">Issuer<wbr>Options</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="credentialsubject.html#id" class="tsd-kind-icon">id</a>
+								<a href="issueroptions.html#customeruuid" class="tsd-kind-icon">customer<wbr>Uuid</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="issueroptions.html#publickeyinfo" class="tsd-kind-icon">public<wbr>Key<wbr>Info</a>
 							</li>
 						</ul>
 					</li>
