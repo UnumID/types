@@ -149,10 +149,16 @@ export interface PresentationRequest extends SignedPresentationRequest {
     updatedAt: Date;
 }
 /**
+ * Encapsulates necessary Issuer entity attributes during creation.
+ */
+export interface IssuerOptions {
+    customerUuid: string;
+    publicKeyInfo: Array<PublicKeyInfo>;
+}
+/**
  * Encapsulates necessary Verifier entity attributes during creation.
  */
 export interface VerifierOptions {
-    name: string;
     customerUuid: string;
     publicKeyInfo: PublicKeyInfo[];
     url: string;
@@ -289,6 +295,18 @@ export interface PresentationRequestDtoPb {
  * Type to encapsulate mapping of versions to PresentationRequestDto.
  */
 export declare type VersionedPresentationRequestDto = VersionedDto<'presentationRequests', PresentationRequestDto>;
+/**
+ * Interface to encapsulate an ApiKey Data Transfers Object from Unum ID's SaaS.
+ */
+export interface ApiKeyDto {
+    uuid: string;
+    createdAt: string;
+    updatedAt: string;
+    type: string;
+    key: string;
+    customerUuid: string;
+    name: string;
+}
 /**
  * Interface to encapsulate an encrypted key.
  * Note: This is used to encrypted an AES key using RSA so that data can be encrypted with the significantly smaller AES key.
