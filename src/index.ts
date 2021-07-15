@@ -291,6 +291,17 @@ export interface HolderApp {
 }
 
 /**
+ * Encapsulates Customer entity attributes
+ */
+export interface Customer {
+  uuid: string;
+  createdAt: string;
+  updatedAt: string;
+  name: string;
+  isAuthorized: boolean;
+}
+
+/**
  * Type to encapsulate generic response from SaaS API endpoints which return resources keyed by version.
  */
 export type VersionedDto<N extends string, T = any> = {

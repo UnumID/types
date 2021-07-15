@@ -253,6 +253,16 @@ export interface HolderApp {
     playStoreUrl?: string;
 }
 /**
+ * Encapsulates Customer entity attributes
+ */
+export interface Customer {
+    uuid: string;
+    createdAt: string;
+    updatedAt: string;
+    name: string;
+    isAuthorized: boolean;
+}
+/**
  * Type to encapsulate generic response from SaaS API endpoints which return resources keyed by version.
  */
 export declare type VersionedDto<N extends string, T = any> = {
