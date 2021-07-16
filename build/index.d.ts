@@ -177,6 +177,7 @@ export interface Verifier {
     url: string;
     isAuthorized: boolean;
     versionInfo: VersionInfo[];
+    apiKey: string;
 }
 /**
  * Interface to encapsulate corresponding mappings between UnumID Mobile (aka Holder) SDK and Server SDK versions.
@@ -230,6 +231,7 @@ export interface Issuer {
     createdAt: Date;
     updatedAt: Date;
     isAuthorized: boolean;
+    apiKey: string;
 }
 /**
  * Encapsulates HolderApp entity attributes
@@ -244,6 +246,7 @@ export interface HolderApp {
     customerUuid: string;
     deeplinkButtonImg: string;
     isIos: boolean;
+    apiKey: string;
     appleTeamId?: string;
     appleBundleId?: string;
     appStoreUrl?: string;
@@ -251,6 +254,16 @@ export interface HolderApp {
     androidPackageName?: string;
     androidSHA256Fingerprints?: string;
     playStoreUrl?: string;
+}
+/**
+ * Encapsulates Customer entity attributes
+ */
+export interface Customer {
+    uuid: string;
+    createdAt: string;
+    updatedAt: string;
+    name: string;
+    isAuthorized: boolean;
 }
 /**
  * Type to encapsulate generic response from SaaS API endpoints which return resources keyed by version.
@@ -296,9 +309,9 @@ export interface PresentationRequestDtoPb {
  */
 export declare type VersionedPresentationRequestDto = VersionedDto<'presentationRequests', PresentationRequestDto>;
 /**
- * Interface to encapsulate an ApiKey Data Transfers Object from Unum ID's SaaS.
+ * Interface to encapsulate an ApiKey Entity from Unum ID's SaaS.
  */
-export interface ApiKeyDto {
+export interface ApiKey {
     uuid: string;
     createdAt: string;
     updatedAt: string;

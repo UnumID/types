@@ -208,6 +208,7 @@ export interface Verifier {
   url: string;
   isAuthorized: boolean;
   versionInfo: VersionInfo[],
+  apiKey: string;
 }
 
 /**
@@ -266,6 +267,7 @@ export interface Issuer {
   createdAt: Date;
   updatedAt: Date;
   isAuthorized: boolean;
+  apiKey: string;
 }
 
 /**
@@ -281,6 +283,7 @@ export interface HolderApp {
   customerUuid: string;
   deeplinkButtonImg: string;
   isIos: boolean;
+  apiKey: string;
   appleTeamId?: string;
   appleBundleId?: string;
   appStoreUrl?: string;
@@ -288,6 +291,17 @@ export interface HolderApp {
   androidPackageName?: string;
   androidSHA256Fingerprints?: string;
   playStoreUrl?: string;
+}
+
+/**
+ * Encapsulates Customer entity attributes
+ */
+export interface Customer {
+  uuid: string;
+  createdAt: string;
+  updatedAt: string;
+  name: string;
+  isAuthorized: boolean;
 }
 
 /**
@@ -339,9 +353,9 @@ export interface PresentationRequestPostDto {
 export type VersionedPresentationRequestDto = VersionedDto<'presentationRequests', PresentationRequestDto>;
 
 /**
- * Interface to encapsulate an ApiKey Data Transfers Object from Unum ID's SaaS.
+ * Interface to encapsulate an ApiKey Entity from Unum ID's SaaS.
  */
-export interface ApiKeyDto {
+export interface ApiKey {
   uuid: string,
   createdAt: string,
   updatedAt:string,
