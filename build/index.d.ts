@@ -241,16 +241,17 @@ export interface HolderApp {
     createdAt: Date;
     updatedAt: Date;
     name: string;
-    uriScheme: string;
+    apiKey: string;
     isAuthorized: boolean;
     customerUuid: string;
     deeplinkButtonImg: string;
     isIos: boolean;
-    apiKey: string;
+    apnsConfig?: string;
     appleTeamId?: string;
     appleBundleId?: string;
     appStoreUrl?: string;
     isAndroid: boolean;
+    fcmConfig?: string;
     androidPackageName?: string;
     androidSHA256Fingerprints?: string;
     playStoreUrl?: string;
@@ -280,7 +281,7 @@ export interface PresentationRequestPostDto {
     presentationRequest: PresentationRequest;
     verifier: Pick<Verifier, 'did' | 'name' | 'url'>;
     issuers: Record<string, Pick<Issuer, 'did' | 'name'>>;
-    holderApp: Pick<HolderApp, 'name' | 'uriScheme' | 'deeplinkButtonImg'>;
+    holderApp: Pick<HolderApp, 'name' | 'deeplinkButtonImg'>;
     deeplink: string;
     qrCode: string;
 }
@@ -291,7 +292,7 @@ export interface PresentationRequestDto {
     presentationRequest: WithVersion<PresentationRequest>;
     verifier: VerifierInfo;
     issuers: IssuerInfoMap;
-    holderApp?: Pick<HolderApp, 'name' | 'uriScheme' | 'deeplinkButtonImg' | 'appStoreUrl' | 'playStoreUrl'>;
+    holderApp?: Pick<HolderApp, 'name' | 'deeplinkButtonImg' | 'appStoreUrl' | 'playStoreUrl'>;
     deeplink?: string;
     qrCode?: string;
 }
