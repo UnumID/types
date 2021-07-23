@@ -267,6 +267,19 @@ export interface Customer {
     isAuthorized: boolean;
 }
 /**
+ * Encapsulates Subject entity attributes
+ */
+export interface Subject {
+    uuid: string;
+    createdAt: string;
+    updatedAt: string;
+    did: string;
+    isAuthorized: boolean;
+    updateKey: string;
+    customerUuid: string;
+    holderAppUuid: string;
+}
+/**
  * Type to encapsulate generic response from SaaS API endpoints which return resources keyed by version.
  */
 export declare type VersionedDto<N extends string, T = any> = {
