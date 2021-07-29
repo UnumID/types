@@ -18,7 +18,7 @@ export {
 /**
  * Interface to encapsulate a base Unum Entity.
  */
-interface BaseEntity {
+export interface BaseEntity {
   uuid: string;
   createdAt: string;
   updatedAt: string;
@@ -306,7 +306,10 @@ export interface HolderApp {
 /**
  * Encapsulates FCMConfig entity attributes
  */
- export interface FCMConfig extends BaseEntity{
+ export interface FCMConfig {
+  uuid: string;
+  createdAt: string;
+  updatedAt: string;
   config: Record<string, string>;
   holderApp: string; // holderApp uuid
   bundleId: string;
