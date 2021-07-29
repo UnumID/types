@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>PresentationPb | @unumid/types</title>
+	<title>APNSConfig | @unumid/types</title>
 	<meta name="description" content="Documentation for @unumid/types">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">@unumid/types</a>
 				</li>
 				<li>
-					<a href="presentationpb.html">PresentationPb</a>
+					<a href="apnsconfig.html">APNSConfig</a>
 				</li>
 			</ul>
-			<h1>Interface PresentationPb</h1>
+			<h1>Interface APNSConfig</h1>
 		</div>
 	</div>
 </header>
@@ -68,8 +68,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Encapsulates addition attributes to the unsigned presentation entity to create a Presentation entity.
-						Tightly coupled with UnsignedPresentation.</p>
+						<p>Encapsulates APNSConfig entity attributes</p>
 					</div>
 				</div>
 			</section>
@@ -77,7 +76,12 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">PresentationPb</span>
+						<span class="tsd-signature-type">BaseEntity</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">APNSConfig</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -88,12 +92,12 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationpb.html#context" class="tsd-kind-icon">context</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationpb.html#presentationrequestid" class="tsd-kind-icon">presentation<wbr>Request<wbr>Id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationpb.html#proof" class="tsd-kind-icon">proof</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationpb.html#type" class="tsd-kind-icon">type</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationpb.html#verifiablecredential" class="tsd-kind-icon">verifiable<wbr>Credential</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationpb.html#verifierdid" class="tsd-kind-icon">verifier<wbr>Did</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="apnsconfig.html#bundleid" class="tsd-kind-icon">bundle<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="apnsconfig.html#certificate" class="tsd-kind-icon">certificate</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="apnsconfig.html#createdat" class="tsd-kind-icon">created<wbr>At</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="apnsconfig.html#holderapp" class="tsd-kind-icon">holder<wbr>App</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="apnsconfig.html#updatedat" class="tsd-kind-icon">updated<wbr>At</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="apnsconfig.html#uuid" class="tsd-kind-icon">uuid</a></li>
 							</ul>
 						</section>
 					</div>
@@ -102,62 +106,65 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="context" class="tsd-anchor"></a>
-					<h3>context</h3>
-					<div class="tsd-signature tsd-kind-icon">context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<a name="bundleid" class="tsd-anchor"></a>
+					<h3>bundle<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">bundle<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/055446d/src/protos/presentation.ts#L25">protos/presentation.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/055446d/src/index.ts#L321">index.ts:321</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="presentationrequestid" class="tsd-anchor"></a>
-					<h3>presentation<wbr>Request<wbr>Id</h3>
-					<div class="tsd-signature tsd-kind-icon">presentation<wbr>Request<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="certificate" class="tsd-anchor"></a>
+					<h3>certificate</h3>
+					<div class="tsd-signature tsd-kind-icon">certificate<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Buffer</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/055446d/src/protos/presentation.ts#L27">protos/presentation.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/055446d/src/index.ts#L319">index.ts:319</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="createdat" class="tsd-anchor"></a>
+					<h3>created<wbr>At</h3>
+					<div class="tsd-signature tsd-kind-icon">created<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from BaseEntity.createdAt</p>
+						<ul>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/055446d/src/index.ts#L23">index.ts:23</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="proof" class="tsd-anchor"></a>
-					<h3>proof</h3>
-					<div class="tsd-signature tsd-kind-icon">proof<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="../modules.html#proofpb" class="tsd-signature-type" data-tsd-kind="Variable">ProofPb</a></div>
+					<a name="holderapp" class="tsd-anchor"></a>
+					<h3>holder<wbr>App</h3>
+					<div class="tsd-signature tsd-kind-icon">holder<wbr>App<span class="tsd-signature-symbol">:</span> <a href="holderapp.html" class="tsd-signature-type" data-tsd-kind="Interface">HolderApp</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/055446d/src/protos/presentation.ts#L30">protos/presentation.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/055446d/src/index.ts#L320">index.ts:320</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="type" class="tsd-anchor"></a>
-					<h3>type</h3>
-					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="updatedat" class="tsd-anchor"></a>
+					<h3>updated<wbr>At</h3>
+					<div class="tsd-signature tsd-kind-icon">updated<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from BaseEntity.updatedAt</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/055446d/src/protos/presentation.ts#L26">protos/presentation.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/055446d/src/index.ts#L24">index.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="verifiablecredential" class="tsd-anchor"></a>
-					<h3>verifiable<wbr>Credential</h3>
-					<div class="tsd-signature tsd-kind-icon">verifiable<wbr>Credential<span class="tsd-signature-symbol">:</span> <a href="../modules.html#credentialpb" class="tsd-signature-type" data-tsd-kind="Variable">CredentialPb</a><span class="tsd-signature-symbol">[]</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="uuid" class="tsd-anchor"></a>
+					<h3>uuid</h3>
+					<div class="tsd-signature tsd-kind-icon">uuid<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from BaseEntity.uuid</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/055446d/src/protos/presentation.ts#L29">protos/presentation.ts:29</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="verifierdid" class="tsd-anchor"></a>
-					<h3>verifier<wbr>Did</h3>
-					<div class="tsd-signature tsd-kind-icon">verifier<wbr>Did<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/055446d/src/protos/presentation.ts#L28">protos/presentation.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/055446d/src/index.ts#L22">index.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -176,25 +183,25 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="presentationpb.html" class="tsd-kind-icon">Presentation<wbr>Pb</a>
+						<a href="apnsconfig.html" class="tsd-kind-icon">APNSConfig</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="presentationpb.html#context" class="tsd-kind-icon">context</a>
+								<a href="apnsconfig.html#bundleid" class="tsd-kind-icon">bundle<wbr>Id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="presentationpb.html#presentationrequestid" class="tsd-kind-icon">presentation<wbr>Request<wbr>Id</a>
+								<a href="apnsconfig.html#certificate" class="tsd-kind-icon">certificate</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="apnsconfig.html#createdat" class="tsd-kind-icon">created<wbr>At</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="presentationpb.html#proof" class="tsd-kind-icon">proof</a>
+								<a href="apnsconfig.html#holderapp" class="tsd-kind-icon">holder<wbr>App</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="presentationpb.html#type" class="tsd-kind-icon">type</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="apnsconfig.html#updatedat" class="tsd-kind-icon">updated<wbr>At</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="presentationpb.html#verifiablecredential" class="tsd-kind-icon">verifiable<wbr>Credential</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="presentationpb.html#verifierdid" class="tsd-kind-icon">verifier<wbr>Did</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="apnsconfig.html#uuid" class="tsd-kind-icon">uuid</a>
 							</li>
 						</ul>
 					</li>
