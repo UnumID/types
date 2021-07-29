@@ -16,6 +16,15 @@ export {
 }
 
 /**
+ * Interface to encapsulate a base Unum Entity.
+ */
+interface BaseEntity {
+  uuid: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+/**
  * Interface to encapsulate cryptographic proof for any signed object: Credentials, Presentations, PresentationRequests.
  */
 export interface Proof {
@@ -293,6 +302,24 @@ export interface HolderApp {
   androidSHA256Fingerprints?: string;
   playStoreUrl?: string;
 }
+
+/**
+ * Encapsulates FCMConfig entity attributes
+ */
+ export interface FCMConfig extends BaseEntity{
+  config: Record<string, string>;
+  holderApp: string; // holderApp uuid
+  bundleId: string;
+ }
+
+ /**
+ * Encapsulates APNSConfig entity attributes
+ */
+  export interface APNSConfig extends BaseEntity{
+    certificate: Buffer;
+    holderApp: HolderApp;
+    bundleId: string;
+   }
 
 /**
  * Encapsulates Customer entity attributes
