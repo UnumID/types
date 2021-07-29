@@ -290,6 +290,7 @@ export interface Customer {
     updatedAt: string;
     name: string;
     isAuthorized: boolean;
+    apiKey: string;
 }
 /**
  * Encapsulates Subject entity attributes
