@@ -1,9 +1,18 @@
+/// <reference types="node" />
 import { Literal, Static, Union } from "runtypes";
 import { SemVer } from 'semver';
 import { UnsignedPresentation as UnsignedPresentationPb, Presentation as PresentationPb, UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentation";
 import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb } from "./protos/credential";
 import { Proof as ProofPb } from "./protos/proof";
 export { UnsignedPresentationPb as UnsignedPresentationPb, PresentationPb as PresentationPb, UnsignedPresentationRequestPb as UnsignedPresentationRequestPb, PresentationRequestPb as PresentationRequestPb, UnsignedCredentialPb as UnsignedCredentialPb, CredentialPb as CredentialPb, CredentialRequestPb as CredentialRequestPb, ProofPb as ProofPb };
+/**
+ * Interface to encapsulate a base Unum Entity.
+ */
+interface BaseEntity {
+    uuid: string;
+    createdAt: string;
+    updatedAt: string;
+}
 /**
  * Interface to encapsulate cryptographic proof for any signed object: Credentials, Presentations, PresentationRequests.
  */
@@ -257,6 +266,22 @@ export interface HolderApp {
     playStoreUrl?: string;
 }
 /**
+ * Encapsulates FCMConfig entity attributes
+ */
+export interface FCMConfig extends BaseEntity {
+    config: Record<string, string>;
+    holderApp: string;
+    bundleId: string;
+}
+/**
+* Encapsulates APNSConfig entity attributes
+*/
+export interface APNSConfig extends BaseEntity {
+    certificate: Buffer;
+    holderApp: HolderApp;
+    bundleId: string;
+}
+/**
  * Encapsulates Customer entity attributes
  */
 export interface Customer {
@@ -265,6 +290,7 @@ export interface Customer {
     updatedAt: string;
     name: string;
     isAuthorized: boolean;
+    apiKey: string;
 }
 /**
  * Encapsulates Subject entity attributes
