@@ -4,7 +4,6 @@ import _m0 from "protobufjs/minimal";
 import { Timestamp } from "./google/protobuf/timestamp";
 import { Credential, CredentialRequest } from "./credential";
 import { Proof } from "./proof";
-import { Struct } from "./google/protobuf/struct";
 
 export const protobufPackage = "presentation.v1";
 
@@ -38,8 +37,7 @@ export interface UnsignedPresentationRequest {
   createdAt: Date | undefined;
   updatedAt: Date | undefined;
   expiresAt: Date | undefined;
-  /** a string representation of an ambiguous object. Note: the Any type does not work because still needs a scheme (but can be assigned dymanically) */
-  metadata: Struct | undefined;
+  /** google.protobuf.Struct metadata = 7; // a string representation of an ambiguous object. Note: the Any type does not work because still needs a scheme (but can be assigned dymanically) */
   uuid: string;
   /** an indentifier for related presetnation requests across versions */
   id: string;
@@ -56,8 +54,7 @@ export interface PresentationRequest {
   createdAt: Date | undefined;
   updatedAt: Date | undefined;
   expiresAt: Date | undefined;
-  /** a string representation of an ambiguous object. Note: the Any type does not work because still needs a scheme (but can be assigned dymanically) */
-  metadata: Struct | undefined;
+  /** google.protobuf.Struct metadata = 7; // a string representation of an ambiguous object. Note: the Any type does not work because still needs a scheme (but can be assigned dymanically) */
   uuid: string;
   proof: Proof | undefined;
   /** an indentifier for related presetnation requests across versions */
@@ -464,9 +461,6 @@ export const UnsignedPresentationRequest = {
         writer.uint32(50).fork()
       ).ldelim();
     }
-    if (message.metadata !== undefined) {
-      Struct.encode(message.metadata, writer.uint32(58).fork()).ldelim();
-    }
     if (message.uuid !== "") {
       writer.uint32(66).string(message.uuid);
     }
@@ -514,9 +508,6 @@ export const UnsignedPresentationRequest = {
           message.expiresAt = fromTimestamp(
             Timestamp.decode(reader, reader.uint32())
           );
-          break;
-        case 7:
-          message.metadata = Struct.decode(reader, reader.uint32());
           break;
         case 8:
           message.uuid = reader.string();
@@ -570,11 +561,6 @@ export const UnsignedPresentationRequest = {
     } else {
       message.expiresAt = undefined;
     }
-    if (object.metadata !== undefined && object.metadata !== null) {
-      message.metadata = Struct.fromJSON(object.metadata);
-    } else {
-      message.metadata = undefined;
-    }
     if (object.uuid !== undefined && object.uuid !== null) {
       message.uuid = String(object.uuid);
     } else {
@@ -606,10 +592,6 @@ export const UnsignedPresentationRequest = {
       (obj.updatedAt = message.updatedAt.toISOString());
     message.expiresAt !== undefined &&
       (obj.expiresAt = message.expiresAt.toISOString());
-    message.metadata !== undefined &&
-      (obj.metadata = message.metadata
-        ? Struct.toJSON(message.metadata)
-        : undefined);
     message.uuid !== undefined && (obj.uuid = message.uuid);
     message.id !== undefined && (obj.id = message.id);
     return obj;
@@ -654,11 +636,6 @@ export const UnsignedPresentationRequest = {
       message.expiresAt = object.expiresAt;
     } else {
       message.expiresAt = undefined;
-    }
-    if (object.metadata !== undefined && object.metadata !== null) {
-      message.metadata = Struct.fromPartial(object.metadata);
-    } else {
-      message.metadata = undefined;
     }
     if (object.uuid !== undefined && object.uuid !== null) {
       message.uuid = object.uuid;
@@ -713,9 +690,6 @@ export const PresentationRequest = {
         writer.uint32(50).fork()
       ).ldelim();
     }
-    if (message.metadata !== undefined) {
-      Struct.encode(message.metadata, writer.uint32(58).fork()).ldelim();
-    }
     if (message.uuid !== "") {
       writer.uint32(66).string(message.uuid);
     }
@@ -761,9 +735,6 @@ export const PresentationRequest = {
           message.expiresAt = fromTimestamp(
             Timestamp.decode(reader, reader.uint32())
           );
-          break;
-        case 7:
-          message.metadata = Struct.decode(reader, reader.uint32());
           break;
         case 8:
           message.uuid = reader.string();
@@ -818,11 +789,6 @@ export const PresentationRequest = {
     } else {
       message.expiresAt = undefined;
     }
-    if (object.metadata !== undefined && object.metadata !== null) {
-      message.metadata = Struct.fromJSON(object.metadata);
-    } else {
-      message.metadata = undefined;
-    }
     if (object.uuid !== undefined && object.uuid !== null) {
       message.uuid = String(object.uuid);
     } else {
@@ -859,10 +825,6 @@ export const PresentationRequest = {
       (obj.updatedAt = message.updatedAt.toISOString());
     message.expiresAt !== undefined &&
       (obj.expiresAt = message.expiresAt.toISOString());
-    message.metadata !== undefined &&
-      (obj.metadata = message.metadata
-        ? Struct.toJSON(message.metadata)
-        : undefined);
     message.uuid !== undefined && (obj.uuid = message.uuid);
     message.proof !== undefined &&
       (obj.proof = message.proof ? Proof.toJSON(message.proof) : undefined);
@@ -905,11 +867,6 @@ export const PresentationRequest = {
       message.expiresAt = object.expiresAt;
     } else {
       message.expiresAt = undefined;
-    }
-    if (object.metadata !== undefined && object.metadata !== null) {
-      message.metadata = Struct.fromPartial(object.metadata);
-    } else {
-      message.metadata = undefined;
     }
     if (object.uuid !== undefined && object.uuid !== null) {
       message.uuid = object.uuid;
