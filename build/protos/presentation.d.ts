@@ -36,6 +36,7 @@ export interface UnsignedPresentationRequest {
     uuid: string;
     /** an indentifier for related presetnation requests across versions */
     id: string;
+    version: string;
 }
 /**
  * Encapsulates request attributes for the purposes of requesting presentation of credentials with the addition of a proof.
@@ -54,6 +55,7 @@ export interface PresentationRequest {
     proof: Proof | undefined;
     /** an indentifier for related presetnation requests across versions */
     id: string;
+    version: string;
 }
 export declare const UnsignedPresentation: {
     encode(message: UnsignedPresentation, writer?: _m0.Writer): _m0.Writer;
