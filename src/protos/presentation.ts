@@ -43,6 +43,7 @@ export interface UnsignedPresentationRequest {
   uuid: string;
   /** an indentifier for related presetnation requests across versions */
   id: string;
+  version: string;
 }
 
 /**
@@ -62,6 +63,7 @@ export interface PresentationRequest {
   proof: Proof | undefined;
   /** an indentifier for related presetnation requests across versions */
   id: string;
+  version: string;
 }
 
 const baseUnsignedPresentation: object = {
@@ -430,6 +432,7 @@ const baseUnsignedPresentationRequest: object = {
   verifier: "",
   uuid: "",
   id: "",
+  version: "",
 };
 
 export const UnsignedPresentationRequest = {
@@ -472,6 +475,9 @@ export const UnsignedPresentationRequest = {
     }
     if (message.id !== "") {
       writer.uint32(74).string(message.id);
+    }
+    if (message.version !== "") {
+      writer.uint32(82).string(message.version);
     }
     return writer;
   },
@@ -523,6 +529,9 @@ export const UnsignedPresentationRequest = {
           break;
         case 9:
           message.id = reader.string();
+          break;
+        case 10:
+          message.version = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -585,6 +594,11 @@ export const UnsignedPresentationRequest = {
     } else {
       message.id = "";
     }
+    if (object.version !== undefined && object.version !== null) {
+      message.version = String(object.version);
+    } else {
+      message.version = "";
+    }
     return message;
   },
 
@@ -612,6 +626,7 @@ export const UnsignedPresentationRequest = {
         : undefined);
     message.uuid !== undefined && (obj.uuid = message.uuid);
     message.id !== undefined && (obj.id = message.id);
+    message.version !== undefined && (obj.version = message.version);
     return obj;
   },
 
@@ -670,6 +685,11 @@ export const UnsignedPresentationRequest = {
     } else {
       message.id = "";
     }
+    if (object.version !== undefined && object.version !== null) {
+      message.version = object.version;
+    } else {
+      message.version = "";
+    }
     return message;
   },
 };
@@ -679,6 +699,7 @@ const basePresentationRequest: object = {
   verifier: "",
   uuid: "",
   id: "",
+  version: "",
 };
 
 export const PresentationRequest = {
@@ -724,6 +745,9 @@ export const PresentationRequest = {
     }
     if (message.id !== "") {
       writer.uint32(82).string(message.id);
+    }
+    if (message.version !== "") {
+      writer.uint32(90).string(message.version);
     }
     return writer;
   },
@@ -773,6 +797,9 @@ export const PresentationRequest = {
           break;
         case 10:
           message.id = reader.string();
+          break;
+        case 11:
+          message.version = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -838,6 +865,11 @@ export const PresentationRequest = {
     } else {
       message.id = "";
     }
+    if (object.version !== undefined && object.version !== null) {
+      message.version = String(object.version);
+    } else {
+      message.version = "";
+    }
     return message;
   },
 
@@ -867,6 +899,7 @@ export const PresentationRequest = {
     message.proof !== undefined &&
       (obj.proof = message.proof ? Proof.toJSON(message.proof) : undefined);
     message.id !== undefined && (obj.id = message.id);
+    message.version !== undefined && (obj.version = message.version);
     return obj;
   },
 
@@ -925,6 +958,11 @@ export const PresentationRequest = {
       message.id = object.id;
     } else {
       message.id = "";
+    }
+    if (object.version !== undefined && object.version !== null) {
+      message.version = object.version;
+    } else {
+      message.version = "";
     }
     return message;
   },
