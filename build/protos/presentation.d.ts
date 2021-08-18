@@ -1,7 +1,6 @@
 import _m0 from "protobufjs/minimal";
 import { Credential, CredentialRequest } from "./credential";
 import { Proof } from "./proof";
-import { Struct } from "./google/protobuf/struct";
 export declare const protobufPackage = "presentation.v1";
 /** Encapsulates an unsigned presentation attributes. */
 export interface UnsignedPresentation {
@@ -31,8 +30,8 @@ export interface UnsignedPresentationRequest {
     createdAt: Date | undefined;
     updatedAt: Date | undefined;
     expiresAt: Date | undefined;
-    /** a string representation of an ambiguous object. Note: the Any type does not work because still needs a scheme (but can be assigned dymanically) */
-    metadata: Struct | undefined;
+    /** a string representation of an ambiguous object. Note: the Any type does not work because still needs a scheme (but can be assigned dymanically) & Struct does not work becuase not determinsitcally serialzied across langauges */
+    metadata: string;
     uuid: string;
     /** an indentifier for related presetnation requests across versions */
     id: string;
@@ -49,8 +48,8 @@ export interface PresentationRequest {
     createdAt: Date | undefined;
     updatedAt: Date | undefined;
     expiresAt: Date | undefined;
-    /** a string representation of an ambiguous object. Note: the Any type does not work because still needs a scheme (but can be assigned dymanically) */
-    metadata: Struct | undefined;
+    /** a string representation of an ambiguous object. Note: the Any type does not work because still needs a scheme (but can be assigned dymanically) & Struct does not work becuase not determinsitcally serialzied across langauges */
+    metadata: string;
     uuid: string;
     proof: Proof | undefined;
     /** an indentifier for related presetnation requests across versions */

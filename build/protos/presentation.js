@@ -21,7 +21,6 @@ var minimal_1 = __importDefault(require("protobufjs/minimal"));
 var timestamp_1 = require("./google/protobuf/timestamp");
 var credential_1 = require("./credential");
 var proof_1 = require("./proof");
-var struct_1 = require("./google/protobuf/struct");
 exports.protobufPackage = "presentation.v1";
 var baseUnsignedPresentation = {
     context: "",
@@ -382,6 +381,7 @@ exports.Presentation = {
 var baseUnsignedPresentationRequest = {
     holderAppUuid: "",
     verifier: "",
+    metadata: "",
     uuid: "",
     id: "",
     version: "",
@@ -408,8 +408,8 @@ exports.UnsignedPresentationRequest = {
         if (message.expiresAt !== undefined) {
             timestamp_1.Timestamp.encode(toTimestamp(message.expiresAt), writer.uint32(50).fork()).ldelim();
         }
-        if (message.metadata !== undefined) {
-            struct_1.Struct.encode(message.metadata, writer.uint32(58).fork()).ldelim();
+        if (message.metadata !== "") {
+            writer.uint32(58).string(message.metadata);
         }
         if (message.uuid !== "") {
             writer.uint32(66).string(message.uuid);
@@ -449,7 +449,7 @@ exports.UnsignedPresentationRequest = {
                     message.expiresAt = fromTimestamp(timestamp_1.Timestamp.decode(reader, reader.uint32()));
                     break;
                 case 7:
-                    message.metadata = struct_1.Struct.decode(reader, reader.uint32());
+                    message.metadata = reader.string();
                     break;
                 case 8:
                     message.uuid = reader.string();
@@ -508,10 +508,10 @@ exports.UnsignedPresentationRequest = {
             message.expiresAt = undefined;
         }
         if (object.metadata !== undefined && object.metadata !== null) {
-            message.metadata = struct_1.Struct.fromJSON(object.metadata);
+            message.metadata = String(object.metadata);
         }
         else {
-            message.metadata = undefined;
+            message.metadata = "";
         }
         if (object.uuid !== undefined && object.uuid !== null) {
             message.uuid = String(object.uuid);
@@ -552,10 +552,7 @@ exports.UnsignedPresentationRequest = {
             (obj.updatedAt = message.updatedAt.toISOString());
         message.expiresAt !== undefined &&
             (obj.expiresAt = message.expiresAt.toISOString());
-        message.metadata !== undefined &&
-            (obj.metadata = message.metadata
-                ? struct_1.Struct.toJSON(message.metadata)
-                : undefined);
+        message.metadata !== undefined && (obj.metadata = message.metadata);
         message.uuid !== undefined && (obj.uuid = message.uuid);
         message.id !== undefined && (obj.id = message.id);
         message.version !== undefined && (obj.version = message.version);
@@ -602,10 +599,10 @@ exports.UnsignedPresentationRequest = {
             message.expiresAt = undefined;
         }
         if (object.metadata !== undefined && object.metadata !== null) {
-            message.metadata = struct_1.Struct.fromPartial(object.metadata);
+            message.metadata = object.metadata;
         }
         else {
-            message.metadata = undefined;
+            message.metadata = "";
         }
         if (object.uuid !== undefined && object.uuid !== null) {
             message.uuid = object.uuid;
@@ -631,6 +628,7 @@ exports.UnsignedPresentationRequest = {
 var basePresentationRequest = {
     holderAppUuid: "",
     verifier: "",
+    metadata: "",
     uuid: "",
     id: "",
     version: "",
@@ -657,8 +655,8 @@ exports.PresentationRequest = {
         if (message.expiresAt !== undefined) {
             timestamp_1.Timestamp.encode(toTimestamp(message.expiresAt), writer.uint32(50).fork()).ldelim();
         }
-        if (message.metadata !== undefined) {
-            struct_1.Struct.encode(message.metadata, writer.uint32(58).fork()).ldelim();
+        if (message.metadata !== "") {
+            writer.uint32(58).string(message.metadata);
         }
         if (message.uuid !== "") {
             writer.uint32(66).string(message.uuid);
@@ -701,7 +699,7 @@ exports.PresentationRequest = {
                     message.expiresAt = fromTimestamp(timestamp_1.Timestamp.decode(reader, reader.uint32()));
                     break;
                 case 7:
-                    message.metadata = struct_1.Struct.decode(reader, reader.uint32());
+                    message.metadata = reader.string();
                     break;
                 case 8:
                     message.uuid = reader.string();
@@ -763,10 +761,10 @@ exports.PresentationRequest = {
             message.expiresAt = undefined;
         }
         if (object.metadata !== undefined && object.metadata !== null) {
-            message.metadata = struct_1.Struct.fromJSON(object.metadata);
+            message.metadata = String(object.metadata);
         }
         else {
-            message.metadata = undefined;
+            message.metadata = "";
         }
         if (object.uuid !== undefined && object.uuid !== null) {
             message.uuid = String(object.uuid);
@@ -813,10 +811,7 @@ exports.PresentationRequest = {
             (obj.updatedAt = message.updatedAt.toISOString());
         message.expiresAt !== undefined &&
             (obj.expiresAt = message.expiresAt.toISOString());
-        message.metadata !== undefined &&
-            (obj.metadata = message.metadata
-                ? struct_1.Struct.toJSON(message.metadata)
-                : undefined);
+        message.metadata !== undefined && (obj.metadata = message.metadata);
         message.uuid !== undefined && (obj.uuid = message.uuid);
         message.proof !== undefined &&
             (obj.proof = message.proof ? proof_1.Proof.toJSON(message.proof) : undefined);
@@ -865,10 +860,10 @@ exports.PresentationRequest = {
             message.expiresAt = undefined;
         }
         if (object.metadata !== undefined && object.metadata !== null) {
-            message.metadata = struct_1.Struct.fromPartial(object.metadata);
+            message.metadata = object.metadata;
         }
         else {
-            message.metadata = undefined;
+            message.metadata = "";
         }
         if (object.uuid !== undefined && object.uuid !== null) {
             message.uuid = object.uuid;
