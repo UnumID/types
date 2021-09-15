@@ -358,6 +358,7 @@ export type VersionedDto<N extends string, T = any> = {
 
 /**
  * Type to encapsulate the response body returned when a PresentationRequest is created
+ * AKA PresentationRequestEnriched
  */
 export interface PresentationRequestPostDto {
   presentationRequest: PresentationRequest;
@@ -370,6 +371,7 @@ export interface PresentationRequestPostDto {
 
 /**
  * Type to encapsulate a PresentationRequest Data Transfer Object get response used in interfacing services.
+ * AKA PresentationRequestEnriched
  */
  export interface PresentationRequestDto {
   presentationRequest: WithVersion<PresentationRequest>;
@@ -469,7 +471,7 @@ export interface EncryptedCredentialOptions {
   credentialId: string;
   subject: string;
   issuer: string;
-  type: string[];
+  type: string;
   data: EncryptedData;
 }
 
