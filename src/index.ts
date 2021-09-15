@@ -120,7 +120,7 @@ export interface UnsignedPresentation {
   verifiableCredential?: Credential[]; 
   // verifiableCredential?: Credential_pb[]; // Optional, if undefined or empty it means the presentation request was declined
   /**
-   * Optional wether the presentation has been persisted yet or not.
+   * Optional nonce
    */
   uuid?: string;
 }

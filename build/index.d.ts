@@ -98,7 +98,7 @@ export interface UnsignedPresentation {
      */
     verifiableCredential?: Credential[];
     /**
-     * Optional wether the presentation has been persisted yet or not.
+     * Optional nonce
      */
     uuid?: string;
 }
