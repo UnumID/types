@@ -117,8 +117,8 @@ export interface UnsignedPresentation {
   /**
    * Optional. If undefined or empty it means the presentation request was declined
    */
-  verifiableCredential?: Credential[]; 
-  // verifiableCredential?: Credential_pb[]; // Optional, if undefined or empty it means the presentation request was declined
+  verifiableCredential?: Credential[]; // Optional, if undefined or empty it means the presentation request was declined
+  // verifiableCredential?: Credential_pb[]; 
   /**
    * Optional nonce
    */
