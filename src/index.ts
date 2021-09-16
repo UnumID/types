@@ -528,6 +528,31 @@ export interface PresentationReceiptInfo {
 }
 
 /**
+ * Types of receipts that are stored in UnumID SaaS
+ */
+export const receiptTypes = [
+  'CredentialIssued',
+  'CredentialShared',
+  'CredentialReceived',
+  'RequestCreated',
+  'RequestShared',
+  'RequestReceived', // not used currently
+  'PresentationPosted',
+  'PresentationVerified',
+  'CredentialStatusChanged',
+  'NotificationSent'
+];
+
+/**
+ * Types of the PresentationVerified Receipt reply attribute
+ */
+export const presentationVerifiedReplyTypes = [
+  'approved',
+  'declined',
+  'flagged'
+];
+
+/**
  * A readonly list of push notification providers.
  */
 export const pushProviders = ['FCM', 'APNS'] as const;

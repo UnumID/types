@@ -468,6 +468,14 @@ export interface PresentationReceiptInfo {
     issuers?: IssuerInfoMap;
 }
 /**
+ * Types of receipts that are stored in UnumID SaaS
+ */
+export declare const receiptTypes: string[];
+/**
+ * Types of the PresentationVerified Receipt reply attribute
+ */
+export declare const presentationVerifiedReplyTypes: string[];
+/**
  * A readonly list of push notification providers.
  */
 export declare const pushProviders: readonly ["FCM", "APNS"];
