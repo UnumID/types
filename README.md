@@ -15,4 +15,7 @@ Types that are used for cryptographic purposes should have a unsigned and signed
 ## Documentation
 Detailed documentation generated from source can be found [here](https://docs.unum.id/types/index.html) which is served by this [repo](https://github.com/UnumID/types)'s Github Pages configuration. It is setup to server via the /docs folder of the main branch.
 
-In order to generate the documentation from the source code run the `createTypedocs.sh` script.
+In order to generate the documentation from the source code run the `createTypedocs.sh` script. However, note that this is now handled automatically by the release CI job.
+
+## Release
+Releases are handled programmatically via Github Actions CI. Simply push a tag with a preceding 'v' followed by the semver version of the release, i.e. v3.4.3. The CI job will then handle updating the package version, creating new typedocs, and creating a Github release.
