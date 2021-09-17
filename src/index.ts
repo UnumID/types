@@ -527,46 +527,6 @@ export interface PresentationReceiptInfo {
   issuers?: IssuerInfoMap;
 }
 
-// /**
-//  * Types of receipts that are stored in UnumID SaaS
-//  */
-// export const receiptTypes = [
-//   'CredentialIssued',
-//   'CredentialShared',
-//   'CredentialReceived',
-//   'RequestCreated',
-//   'RequestShared',
-//   'RequestReceived', // not used currently
-//   'PresentationPosted',
-//   'PresentationVerified',
-//   'CredentialStatusChanged',
-//   'NotificationSent'
-// ];
-
-// /**
-//  * Types of the PresentationVerified Receipt reply attribute
-//  */
-// export const presentationVerifiedReplyTypes = [
-//   'approved',
-//   'declined',
-//   'flagged'
-// ];
-
-/**
- * PresentationVerified reply value options Runtype, which has the benefit of runtime type checking and guards with literals.
- * More info here: https://github.com/pelotom/runtypes
- */
- export const _presentationVerifiedReplyOptions = Union(
-  Literal('approved'),
-  Literal('declined'),
-  Literal('flagged')
-);
-
-/**
- * Types of the PresentationVerified Receipt reply attribute
- */
- export type PresentationVerifiedReplyOptions = Static<typeof _CredentialStatusOptions>
-
 /**
  * A readonly list of push notification providers.
  */
