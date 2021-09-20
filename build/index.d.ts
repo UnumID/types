@@ -347,6 +347,12 @@ export interface PresentationRequestDtoPb {
     issuers: IssuerInfoMap;
 }
 /**
+ * Type to encapsulate a PresentationRequest Data Transfer Object from the PresentationRequestRepository service.
+ */
+export interface PresentationRequestRepoDto {
+    presentationRequests: Record<string, PresentationRequestDto>;
+}
+/**
  * Type to encapsulate mapping of versions to PresentationRequestDto.
  */
 export declare type VersionedPresentationRequestDto = VersionedDto<'presentationRequests', PresentationRequestDto>;
