@@ -393,6 +393,13 @@ export interface PresentationRequestPostDto {
 }
 
 /**
+ * Type to encapsulate a PresentationRequest Data Transfer Object from the PresentationRequestRepository service.
+ */
+export interface PresentationRequestRepoDto {
+  presentationRequests: Record<string, PresentationRequestDto> ;
+}
+
+/**
  * Type to encapsulate mapping of versions to PresentationRequestDto.
  */
 export type VersionedPresentationRequestDto = VersionedDto<'presentationRequests', PresentationRequestDto>;
