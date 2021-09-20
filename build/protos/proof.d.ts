@@ -1,6 +1,5 @@
 import _m0 from "protobufjs/minimal";
-export declare const protobufPackage = "proof.v1";
-/** Object to encapsulate cryptographic proof for any signed object: Credentials, Presentations, PresentationRequests. */
+export declare const protobufPackage = "crypto.v1";
 export interface Proof {
     signatureValue: string;
     type: string;

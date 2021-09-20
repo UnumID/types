@@ -1,6 +1,5 @@
 import _m0 from "protobufjs/minimal";
 import { Proof } from "./proof";
-import { EncryptedData } from "./crypto";
 export declare const protobufPackage = "credential.v1";
 /** Object to encapsulate Credential status information. */
 export interface CredentialStatus {
@@ -21,7 +20,7 @@ export interface UnsignedCredential {
 }
 /**
  * Object which incorporates the relevant credential information in addition to a cryptographic proof so that the Credential is verifiable.
- * aka "SignedCredential". Tightly coupled with UnsignedCredential.
+ * Tightly coupled with UnsignedCredential.
  */
 export interface Credential {
     context: string[];
@@ -43,35 +42,6 @@ export interface CredentialRequest {
     issuers: string[];
     /** to denote wether this particular credential is required in response to the PresentationRequest. Defaults behavior resolves this to true. */
     required: boolean;
-}
-/** Object that encapsulates an EncryptedCredential. */
-export interface EncryptedCredential {
-    credentialId: string;
-    subject: string;
-    issuer: string;
-    type: string;
-    data: EncryptedData | undefined;
-}
-/**
- * Object that encapsulates a request to Unum ID SaaS to issue credentials.
- * Note: that the while can handle multiple EncryptedCredentials that is for the edge case of
- * the same credential (id, type, subject, issuer) being encrypted with different holder public keys
- */
-export interface IssueCredentialRequest {
-    credentialId: string;
-    subject: string;
-    issuer: string;
-    type: string;
-    encryptedCredentials: EncryptedCredential[];
-}
-/** Object that encapsulates CredentialStatus information. */
-export interface CredentialStatusInfo {
-    uuid: string;
-    createdAt: Date | undefined;
-    updatedAt: Date | undefined;
-    credentialId: string;
-    /** note could be an enum but just simplier this way... only valid values are: revoked, valid */
-    status: string;
 }
 export declare const CredentialStatus: {
     encode(message: CredentialStatus, writer?: _m0.Writer): _m0.Writer;
@@ -100,27 +70,6 @@ export declare const CredentialRequest: {
     fromJSON(object: any): CredentialRequest;
     toJSON(message: CredentialRequest): unknown;
     fromPartial(object: DeepPartial<CredentialRequest>): CredentialRequest;
-};
-export declare const EncryptedCredential: {
-    encode(message: EncryptedCredential, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): EncryptedCredential;
-    fromJSON(object: any): EncryptedCredential;
-    toJSON(message: EncryptedCredential): unknown;
-    fromPartial(object: DeepPartial<EncryptedCredential>): EncryptedCredential;
-};
-export declare const IssueCredentialRequest: {
-    encode(message: IssueCredentialRequest, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): IssueCredentialRequest;
-    fromJSON(object: any): IssueCredentialRequest;
-    toJSON(message: IssueCredentialRequest): unknown;
-    fromPartial(object: DeepPartial<IssueCredentialRequest>): IssueCredentialRequest;
-};
-export declare const CredentialStatusInfo: {
-    encode(message: CredentialStatusInfo, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): CredentialStatusInfo;
-    fromJSON(object: any): CredentialStatusInfo;
-    toJSON(message: CredentialStatusInfo): unknown;
-    fromPartial(object: DeepPartial<CredentialStatusInfo>): CredentialStatusInfo;
 };
 declare type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 export declare type DeepPartial<T> = T extends Builtin ? T : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {

@@ -1,7 +1,6 @@
 import { Literal, Static, Union } from "runtypes";
 import { SemVer } from 'semver';
-import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest";
-import { UnsignedPresentation as UnsignedPresentationPb, Presentation as PresentationPb} from "./protos/presentation";
+import { UnsignedPresentation as UnsignedPresentationPb, Presentation as PresentationPb, UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb} from "./protos/presentation";
 import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb} from "./protos/credential";
 import { Proof as ProofPb} from "./protos/proof";
 

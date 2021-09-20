@@ -3,9 +3,8 @@ import Long from "long";
 import _m0 from "protobufjs/minimal";
 import { Timestamp } from "./google/protobuf/timestamp";
 
-export const protobufPackage = "proof.v1";
+export const protobufPackage = "crypto.v1";
 
-/** Object to encapsulate cryptographic proof for any signed object: Credentials, Presentations, PresentationRequests. */
 export interface Proof {
   signatureValue: string;
   type: string;
