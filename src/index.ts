@@ -280,6 +280,19 @@ export interface Issuer {
 }
 
 /**
+ * Encapsulates Receipt entity attributes.
+ */
+export interface Receipt {
+  uuid: string;
+  createdAt: Date;
+  updatedAt: Date;
+  type: string;
+  subject: string;
+  issuer: string;
+  data: object;
+}
+
+/**
  * Encapsulates HolderApp entity attributes
  */
 export interface HolderApp {
