@@ -252,7 +252,7 @@ export interface Receipt {
     type: string;
     subject: string;
     issuer: string;
-    data: object;
+    data: any;
 }
 /**
  * Encapsulates HolderApp entity attributes
@@ -557,4 +557,13 @@ export declare type WithKeyAndValue<T, K extends string, V> = T & Record<K, V>;
  * Helper type which adds a version string.
  */
 export declare type WithVersion<T> = WithKeyAndValue<T, 'version', string>;
+/**
+ * Type to encapsulate result from Unum ID SaaS feather service upon a query with pagination
+ */
+export interface PaginatedUnumDto<T> {
+    total: number;
+    limit: string;
+    skip: string;
+    data: T[];
+}
 //# sourceMappingURL=index.d.ts.map
