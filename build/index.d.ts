@@ -245,7 +245,7 @@ export interface Issuer {
 /**
  * Encapsulates Receipt entity attributes with generic type for the data variance between receipt types.
  */
-export interface Receipt<T> {
+export interface Receipt<T = ReceiptDataOptions> {
     uuid: string;
     createdAt: Date;
     updatedAt: Date;
@@ -272,6 +272,29 @@ export interface ReceiptDataOptions {
     reason?: string;
     isVerified?: boolean;
     reply?: string;
+}
+/**
+ * Type to encapsulate specific Receipt data fields for PresentationRequest related receipts.
+ */
+export interface ReceiptPresentationRequestData {
+    credentialTypes: string[];
+    issuers: string[];
+    version: string;
+    holderAppUuid: string;
+    uuid: string;
+    id: string;
+}
+/**
+ * Type to encapsulate specific Receipt data fields for Presentation related receipts.
+ */
+export interface ReceiptPresentationRequestData {
+    credentialTypes: string[];
+    issuers: string[];
+    version: string;
+    holderAppUuid: string;
+    uuid: string;
+    id: string;
+    subject: string;
 }
 /**
  * Encapsulates HolderApp entity attributes
