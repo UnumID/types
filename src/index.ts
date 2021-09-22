@@ -280,17 +280,43 @@ export interface Issuer {
 }
 
 /**
- * Encapsulates Receipt entity attributes.
+ * Encapsulates Receipt entity attributes with generic type for the data variance between receipt types. 
  */
-export interface Receipt {
+export interface Receipt<T> {
   uuid: string;
   createdAt: Date;
   updatedAt: Date;
   type: string;
   subject: string;
   issuer: string;
-  data: any;
+  data: T;
 }
+
+/**
+ * Type to encapsulate possible Receipt data fields. 
+ */
+export interface ReceiptDataOptions {
+  required?: boolean;
+  subject?: string;
+  credentialTypes?: string[];
+  issuers?: string[];
+  holderAppUuid?: string;
+  status?: string;
+  uuid?: string;
+  id?: string;
+  version?: string;
+  credentialId?: string;
+  reason?: string;
+  isVerified?: boolean;
+  reply?: string;
+}
+
+// /**
+//  * Type to encapsulate specific Receipt data fields for PresentationRequest related receipts. 
+//  */
+// export interface ReceiptPresentationRequestData {
+//   required: boolean;
+// }
 
 /**
  * Encapsulates HolderApp entity attributes
