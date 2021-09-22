@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>FCMConfig | @unumid/types</title>
+	<title>ReceiptPresentationData | @unumid/types</title>
 	<meta name="description" content="Documentation for @unumid/types">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">@unumid/types</a>
 				</li>
 				<li>
-					<a href="fcmconfig.html">FCMConfig</a>
+					<a href="receiptpresentationdata.html">ReceiptPresentationData</a>
 				</li>
 			</ul>
-			<h1>Interface FCMConfig</h1>
+			<h1>Interface ReceiptPresentationData</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Encapsulates FCMConfig entity attributes</p>
+						<p>Type to encapsulate specific Receipt data fields for Presentation related receipts.</p>
 					</div>
 				</div>
 			</section>
@@ -76,12 +76,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="tsd-signature-type">BaseEntity</span>
-						<ul class="tsd-hierarchy">
-							<li>
-								<span class="target">FCMConfig</span>
-							</li>
-						</ul>
+						<span class="target">ReceiptPresentationData</span>
 					</li>
 				</ul>
 			</section>
@@ -92,12 +87,13 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="fcmconfig.html#bundleid" class="tsd-kind-icon">bundle<wbr>Id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="fcmconfig.html#config" class="tsd-kind-icon">config</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="fcmconfig.html#createdat" class="tsd-kind-icon">created<wbr>At</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="fcmconfig.html#holderapp" class="tsd-kind-icon">holder<wbr>App</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="fcmconfig.html#updatedat" class="tsd-kind-icon">updated<wbr>At</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="fcmconfig.html#uuid" class="tsd-kind-icon">uuid</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="receiptpresentationdata.html#credentialtypes" class="tsd-kind-icon">credential<wbr>Types</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="receiptpresentationdata.html#holderappuuid" class="tsd-kind-icon">holder<wbr>App<wbr>Uuid</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="receiptpresentationdata.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="receiptpresentationdata.html#issuers" class="tsd-kind-icon">issuers</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="receiptpresentationdata.html#subject" class="tsd-kind-icon">subject</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="receiptpresentationdata.html#uuid" class="tsd-kind-icon">uuid</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="receiptpresentationdata.html#version" class="tsd-kind-icon">version</a></li>
 							</ul>
 						</section>
 					</div>
@@ -106,65 +102,72 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="bundleid" class="tsd-anchor"></a>
-					<h3>bundle<wbr>Id</h3>
-					<div class="tsd-signature tsd-kind-icon">bundle<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="credentialtypes" class="tsd-anchor"></a>
+					<h3>credential<wbr>Types</h3>
+					<div class="tsd-signature tsd-kind-icon">credential<wbr>Types<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/b92ec56/src/index.ts#L379">index.ts:379</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/b92ec56/src/index.ts#L340">index.ts:340</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="config" class="tsd-anchor"></a>
-					<h3>config</h3>
-					<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<a name="holderappuuid" class="tsd-anchor"></a>
+					<h3>holder<wbr>App<wbr>Uuid</h3>
+					<div class="tsd-signature tsd-kind-icon">holder<wbr>App<wbr>Uuid<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/b92ec56/src/index.ts#L377">index.ts:377</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="createdat" class="tsd-anchor"></a>
-					<h3>created<wbr>At</h3>
-					<div class="tsd-signature tsd-kind-icon">created<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from BaseEntity.createdAt</p>
-						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/b92ec56/src/index.ts#L23">index.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/b92ec56/src/index.ts#L343">index.ts:343</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="holderapp" class="tsd-anchor"></a>
-					<h3>holder<wbr>App</h3>
-					<div class="tsd-signature tsd-kind-icon">holder<wbr>App<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="id" class="tsd-anchor"></a>
+					<h3>id</h3>
+					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/b92ec56/src/index.ts#L378">index.ts:378</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/b92ec56/src/index.ts#L345">index.ts:345</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="updatedat" class="tsd-anchor"></a>
-					<h3>updated<wbr>At</h3>
-					<div class="tsd-signature tsd-kind-icon">updated<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="issuers" class="tsd-anchor"></a>
+					<h3>issuers</h3>
+					<div class="tsd-signature tsd-kind-icon">issuers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from BaseEntity.updatedAt</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/b92ec56/src/index.ts#L24">index.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/b92ec56/src/index.ts#L341">index.ts:341</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="subject" class="tsd-anchor"></a>
+					<h3>subject</h3>
+					<div class="tsd-signature tsd-kind-icon">subject<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/b92ec56/src/index.ts#L346">index.ts:346</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="uuid" class="tsd-anchor"></a>
 					<h3>uuid</h3>
 					<div class="tsd-signature tsd-kind-icon">uuid<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from BaseEntity.uuid</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/b92ec56/src/index.ts#L22">index.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/b92ec56/src/index.ts#L344">index.ts:344</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="version" class="tsd-anchor"></a>
+					<h3>version</h3>
+					<div class="tsd-signature tsd-kind-icon">version<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/b92ec56/src/index.ts#L342">index.ts:342</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -183,25 +186,28 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="fcmconfig.html" class="tsd-kind-icon">FCMConfig</a>
+						<a href="receiptpresentationdata.html" class="tsd-kind-icon">Receipt<wbr>Presentation<wbr>Data</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="fcmconfig.html#bundleid" class="tsd-kind-icon">bundle<wbr>Id</a>
+								<a href="receiptpresentationdata.html#credentialtypes" class="tsd-kind-icon">credential<wbr>Types</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="fcmconfig.html#config" class="tsd-kind-icon">config</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="fcmconfig.html#createdat" class="tsd-kind-icon">created<wbr>At</a>
+								<a href="receiptpresentationdata.html#holderappuuid" class="tsd-kind-icon">holder<wbr>App<wbr>Uuid</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="fcmconfig.html#holderapp" class="tsd-kind-icon">holder<wbr>App</a>
+								<a href="receiptpresentationdata.html#id" class="tsd-kind-icon">id</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="fcmconfig.html#updatedat" class="tsd-kind-icon">updated<wbr>At</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="receiptpresentationdata.html#issuers" class="tsd-kind-icon">issuers</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="fcmconfig.html#uuid" class="tsd-kind-icon">uuid</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="receiptpresentationdata.html#subject" class="tsd-kind-icon">subject</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="receiptpresentationdata.html#uuid" class="tsd-kind-icon">uuid</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="receiptpresentationdata.html#version" class="tsd-kind-icon">version</a>
 							</li>
 						</ul>
 					</li>

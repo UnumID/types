@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>PushNotificationOptions | @unumid/types</title>
+	<title>ReceiptPresentationRequestData | @unumid/types</title>
 	<meta name="description" content="Documentation for @unumid/types">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">@unumid/types</a>
 				</li>
 				<li>
-					<a href="pushnotificationoptions.html">PushNotificationOptions</a>
+					<a href="receiptpresentationrequestdata.html">ReceiptPresentationRequestData</a>
 				</li>
 			</ul>
-			<h1>Interface PushNotificationOptions</h1>
+			<h1>Interface ReceiptPresentationRequestData</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Interface encapsulating options for sending push notifications via the SaaS.</p>
+						<p>Type to encapsulate specific Receipt data fields for PresentationRequest related receipts.</p>
 					</div>
 				</div>
 			</section>
@@ -76,7 +76,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">PushNotificationOptions</span>
+						<span class="target">ReceiptPresentationRequestData</span>
 					</li>
 				</ul>
 			</section>
@@ -87,9 +87,12 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="pushnotificationoptions.html#deeplink" class="tsd-kind-icon">deeplink</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="pushnotificationoptions.html#holderappuuid" class="tsd-kind-icon">holder<wbr>App<wbr>Uuid</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="pushnotificationoptions.html#token" class="tsd-kind-icon">token</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="receiptpresentationrequestdata.html#credentialtypes" class="tsd-kind-icon">credential<wbr>Types</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="receiptpresentationrequestdata.html#holderappuuid" class="tsd-kind-icon">holder<wbr>App<wbr>Uuid</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="receiptpresentationrequestdata.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="receiptpresentationrequestdata.html#issuers" class="tsd-kind-icon">issuers</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="receiptpresentationrequestdata.html#uuid" class="tsd-kind-icon">uuid</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="receiptpresentationrequestdata.html#version" class="tsd-kind-icon">version</a></li>
 							</ul>
 						</section>
 					</div>
@@ -98,19 +101,14 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="deeplink" class="tsd-anchor"></a>
-					<h3>deeplink</h3>
-					<div class="tsd-signature tsd-kind-icon">deeplink<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="credentialtypes" class="tsd-anchor"></a>
+					<h3>credential<wbr>Types</h3>
+					<div class="tsd-signature tsd-kind-icon">credential<wbr>Types<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/b92ec56/src/index.ts#L632">index.ts:632</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/b92ec56/src/index.ts#L328">index.ts:328</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The deep link to be sent as a push notification.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="holderappuuid" class="tsd-anchor"></a>
@@ -118,29 +116,49 @@
 					<div class="tsd-signature tsd-kind-icon">holder<wbr>App<wbr>Uuid<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/b92ec56/src/index.ts#L640">index.ts:640</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/b92ec56/src/index.ts#L331">index.ts:331</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The holder app to send the notification to.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="token" class="tsd-anchor"></a>
-					<h3>token</h3>
-					<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <a href="pushtoken.html" class="tsd-signature-type" data-tsd-kind="Interface">PushToken</a><span class="tsd-signature-symbol"> | </span><a href="pushtoken.html" class="tsd-signature-type" data-tsd-kind="Interface">PushToken</a><span class="tsd-signature-symbol">[]</span></div>
+					<a name="id" class="tsd-anchor"></a>
+					<h3>id</h3>
+					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/b92ec56/src/index.ts#L636">index.ts:636</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/b92ec56/src/index.ts#L333">index.ts:333</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>PushToken(s) identifying the app + provider a notification should be sent to.</p>
-						</div>
-					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="issuers" class="tsd-anchor"></a>
+					<h3>issuers</h3>
+					<div class="tsd-signature tsd-kind-icon">issuers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/b92ec56/src/index.ts#L329">index.ts:329</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="uuid" class="tsd-anchor"></a>
+					<h3>uuid</h3>
+					<div class="tsd-signature tsd-kind-icon">uuid<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/b92ec56/src/index.ts#L332">index.ts:332</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="version" class="tsd-anchor"></a>
+					<h3>version</h3>
+					<div class="tsd-signature tsd-kind-icon">version<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/b92ec56/src/index.ts#L330">index.ts:330</a></li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 		</div>
@@ -157,16 +175,25 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="pushnotificationoptions.html" class="tsd-kind-icon">Push<wbr>Notification<wbr>Options</a>
+						<a href="receiptpresentationrequestdata.html" class="tsd-kind-icon">Receipt<wbr>Presentation<wbr>Request<wbr>Data</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="pushnotificationoptions.html#deeplink" class="tsd-kind-icon">deeplink</a>
+								<a href="receiptpresentationrequestdata.html#credentialtypes" class="tsd-kind-icon">credential<wbr>Types</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="pushnotificationoptions.html#holderappuuid" class="tsd-kind-icon">holder<wbr>App<wbr>Uuid</a>
+								<a href="receiptpresentationrequestdata.html#holderappuuid" class="tsd-kind-icon">holder<wbr>App<wbr>Uuid</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="pushnotificationoptions.html#token" class="tsd-kind-icon">token</a>
+								<a href="receiptpresentationrequestdata.html#id" class="tsd-kind-icon">id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="receiptpresentationrequestdata.html#issuers" class="tsd-kind-icon">issuers</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="receiptpresentationrequestdata.html#uuid" class="tsd-kind-icon">uuid</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="receiptpresentationrequestdata.html#version" class="tsd-kind-icon">version</a>
 							</li>
 						</ul>
 					</li>

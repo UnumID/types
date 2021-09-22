@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>PushNotificationOptions | @unumid/types</title>
+	<title>PaginatedUnumDto | @unumid/types</title>
 	<meta name="description" content="Documentation for @unumid/types">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">@unumid/types</a>
 				</li>
 				<li>
-					<a href="pushnotificationoptions.html">PushNotificationOptions</a>
+					<a href="paginatedunumdto.html">PaginatedUnumDto</a>
 				</li>
 			</ul>
-			<h1>Interface PushNotificationOptions</h1>
+			<h1>Interface PaginatedUnumDto&lt;T&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -68,15 +68,23 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Interface encapsulating options for sending push notifications via the SaaS.</p>
+						<p>Type to encapsulate result from Unum ID SaaS feather service upon a query with pagination</p>
 					</div>
 				</div>
+			</section>
+			<section class="tsd-panel tsd-type-parameters">
+				<h3>Type parameters</h3>
+				<ul class="tsd-type-parameters">
+					<li>
+						<h4>T</h4>
+					</li>
+				</ul>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">PushNotificationOptions</span>
+						<span class="target">PaginatedUnumDto</span>
 					</li>
 				</ul>
 			</section>
@@ -87,9 +95,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="pushnotificationoptions.html#deeplink" class="tsd-kind-icon">deeplink</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="pushnotificationoptions.html#holderappuuid" class="tsd-kind-icon">holder<wbr>App<wbr>Uuid</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="pushnotificationoptions.html#token" class="tsd-kind-icon">token</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="paginatedunumdto.html#data" class="tsd-kind-icon">data</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="paginatedunumdto.html#limit" class="tsd-kind-icon">limit</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="paginatedunumdto.html#skip" class="tsd-kind-icon">skip</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="paginatedunumdto.html#total" class="tsd-kind-icon">total</a></li>
 							</ul>
 						</section>
 					</div>
@@ -98,49 +107,44 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="deeplink" class="tsd-anchor"></a>
-					<h3>deeplink</h3>
-					<div class="tsd-signature tsd-kind-icon">deeplink<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="data" class="tsd-anchor"></a>
+					<h3>data</h3>
+					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/b92ec56/src/index.ts#L632">index.ts:632</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/b92ec56/src/index.ts#L696">index.ts:696</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The deep link to be sent as a push notification.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="holderappuuid" class="tsd-anchor"></a>
-					<h3>holder<wbr>App<wbr>Uuid</h3>
-					<div class="tsd-signature tsd-kind-icon">holder<wbr>App<wbr>Uuid<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="limit" class="tsd-anchor"></a>
+					<h3>limit</h3>
+					<div class="tsd-signature tsd-kind-icon">limit<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/b92ec56/src/index.ts#L640">index.ts:640</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/b92ec56/src/index.ts#L694">index.ts:694</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The holder app to send the notification to.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="token" class="tsd-anchor"></a>
-					<h3>token</h3>
-					<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <a href="pushtoken.html" class="tsd-signature-type" data-tsd-kind="Interface">PushToken</a><span class="tsd-signature-symbol"> | </span><a href="pushtoken.html" class="tsd-signature-type" data-tsd-kind="Interface">PushToken</a><span class="tsd-signature-symbol">[]</span></div>
+					<a name="skip" class="tsd-anchor"></a>
+					<h3>skip</h3>
+					<div class="tsd-signature tsd-kind-icon">skip<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/b92ec56/src/index.ts#L636">index.ts:636</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/b92ec56/src/index.ts#L695">index.ts:695</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>PushToken(s) identifying the app + provider a notification should be sent to.</p>
-						</div>
-					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="total" class="tsd-anchor"></a>
+					<h3>total</h3>
+					<div class="tsd-signature tsd-kind-icon">total<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/b92ec56/src/index.ts#L693">index.ts:693</a></li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 		</div>
@@ -156,17 +160,20 @@
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface">
-						<a href="pushnotificationoptions.html" class="tsd-kind-icon">Push<wbr>Notification<wbr>Options</a>
+					<li class="current tsd-kind-interface tsd-has-type-parameter">
+						<a href="paginatedunumdto.html" class="tsd-kind-icon">Paginated<wbr>Unum<wbr>Dto</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="pushnotificationoptions.html#deeplink" class="tsd-kind-icon">deeplink</a>
+								<a href="paginatedunumdto.html#data" class="tsd-kind-icon">data</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="pushnotificationoptions.html#holderappuuid" class="tsd-kind-icon">holder<wbr>App<wbr>Uuid</a>
+								<a href="paginatedunumdto.html#limit" class="tsd-kind-icon">limit</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="pushnotificationoptions.html#token" class="tsd-kind-icon">token</a>
+								<a href="paginatedunumdto.html#skip" class="tsd-kind-icon">skip</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="paginatedunumdto.html#total" class="tsd-kind-icon">total</a>
 							</li>
 						</ul>
 					</li>
