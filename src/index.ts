@@ -327,7 +327,7 @@ export interface ReceiptPresentationRequestData {
 /**
  * Type to encapsulate specific Receipt data fields for Presentation related receipts. 
  */
- export interface ReceiptPresentationRequestData {
+ export interface ReceiptPresentationData {
   credentialTypes: string[];
   issuers: string[];
   version: string;
