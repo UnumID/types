@@ -313,6 +313,15 @@ export interface ReceiptDataOptions {
 }
 
 /**
+ * Type to encapsulate specific Receipt data fields for Credential related receipts. 
+ */
+ export interface ReceiptCredentialData {
+  type: string; // credential type
+  version: string; // credential version
+  credentialId: string; // credential id
+}
+
+/**
  * Type to encapsulate specific Receipt data fields for PresentationRequest related receipts. 
  */
 export interface ReceiptPresentationRequestData {
