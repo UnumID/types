@@ -243,6 +243,68 @@ export interface Issuer {
     apiKey: string;
 }
 /**
+ * Encapsulates Receipt entity attributes with generic type for the data variance between receipt types.
+ */
+export interface Receipt<T = ReceiptDataOptions> {
+    uuid: string;
+    createdAt: Date;
+    updatedAt: Date;
+    type: string;
+    subject: string;
+    issuer: string;
+    verifier: string;
+    data: T;
+}
+/**
+ * Type to encapsulate possible Receipt data fields.
+ */
+export interface ReceiptDataOptions {
+    required?: boolean;
+    subject?: string;
+    credentialTypes?: string[];
+    issuers?: string[];
+    holderAppUuid?: string;
+    status?: string;
+    uuid?: string;
+    id?: string;
+    version?: string;
+    credentialId?: string;
+    reason?: string;
+    isVerified?: boolean;
+    reply?: string;
+}
+/**
+ * Type to encapsulate specific Receipt data fields for Credential related receipts.
+ */
+export interface ReceiptCredentialData {
+    type: string;
+    version: string;
+    credentialId: string;
+}
+/**
+ * Type to encapsulate specific Receipt data fields for PresentationRequest related receipts.
+ */
+export interface ReceiptPresentationRequestData {
+    credentialTypes: string[];
+    issuers: string[];
+    version: string;
+    holderAppUuid: string;
+    uuid: string;
+    id: string;
+}
+/**
+ * Type to encapsulate specific Receipt data fields for Presentation related receipts.
+ */
+export interface ReceiptPresentationData {
+    credentialTypes: string[];
+    issuers: string[];
+    version: string;
+    holderAppUuid: string;
+    uuid: string;
+    id: string;
+    subject: string;
+}
+/**
  * Encapsulates HolderApp entity attributes
  */
 export interface HolderApp {
@@ -545,4 +607,13 @@ export declare type WithKeyAndValue<T, K extends string, V> = T & Record<K, V>;
  * Helper type which adds a version string.
  */
 export declare type WithVersion<T> = WithKeyAndValue<T, 'version', string>;
+/**
+ * Type to encapsulate result from Unum ID SaaS feather service upon a query with pagination
+ */
+export interface PaginatedUnumDto<T> {
+    total: number;
+    limit: string;
+    skip: string;
+    data: T[];
+}
 //# sourceMappingURL=index.d.ts.map
