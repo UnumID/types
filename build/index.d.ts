@@ -252,6 +252,7 @@ export interface Receipt<T> {
     type: string;
     subject: string;
     issuer: string;
+    verifier: string;
     data: T;
 }
 /**
