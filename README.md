@@ -18,4 +18,4 @@ Detailed documentation generated from source can be found [here](https://docs.un
 In order to generate the documentation from the source code run the `createTypedocs.sh` script. However, note that this is now handled automatically by the release CI job.
 
 ## Release
-Releases are handled programmatically via Github Actions CI. Simply push a tag with a preceding 'v' followed by the semver version of the release, i.e. v3.4.3. The CI job will then handle updating the package version, creating new typedocs, and creating a Github release.
+Releases are handled programmatically via Github Actions CI. Simply push a tag with a preceding 'v' followed by the semver version of the release, i.e. v3.4.3. The CI job will then handle updating the package version, creating new typedocs, creating a Github release, and publishing the package to NPM and Github Packages.
