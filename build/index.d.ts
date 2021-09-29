@@ -457,8 +457,8 @@ export interface PublicKeyInfo {
     encoding: 'pem' | 'base58';
     type: string;
     status: 'valid' | 'invalid';
-    createdAt: string;
-    updatedAt: string;
+    createdAt: Date;
+    updatedAt: Date;
 }
 /**
  * Interface to encapsulate Did Document information.
