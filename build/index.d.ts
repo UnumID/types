@@ -1,7 +1,8 @@
 /// <reference types="node" />
 import { Literal, Static, Union } from "runtypes";
 import { SemVer } from 'semver';
-import { UnsignedPresentation as UnsignedPresentationPb, Presentation as PresentationPb, UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentation";
+import { UnsignedPresentation as UnsignedPresentationPb, Presentation as PresentationPb } from "./protos/presentation";
+import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest";
 import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb } from "./protos/credential";
 import { Proof as ProofPb } from "./protos/proof";
 export { UnsignedPresentationPb as UnsignedPresentationPb, PresentationPb as PresentationPb, UnsignedPresentationRequestPb as UnsignedPresentationRequestPb, PresentationRequestPb as PresentationRequestPb, UnsignedCredentialPb as UnsignedCredentialPb, CredentialPb as CredentialPb, CredentialRequestPb as CredentialRequestPb, ProofPb as ProofPb };
@@ -46,6 +47,12 @@ export declare type ClaimValue = ClaimPrimitive | ClaimList | ClaimDict;
  */
 export interface CredentialSubject {
     id: string;
+    [claimName: string]: ClaimValue;
+}
+/**
+ * Interface for an arbitrary number (0 to n) of string keys with values of type ClaimValue.
+ */
+export interface CredentialData {
     [claimName: string]: ClaimValue;
 }
 /**
