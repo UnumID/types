@@ -5,8 +5,8 @@ import { UnsignedPresentation as UnsignedPresentationPb, Presentation as Present
 import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest";
 import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb } from "./protos/credential";
 import { Proof as ProofPb } from "./protos/proof";
-import { IssueCredentialRequest } from "./protos/credential";
-export { UnsignedPresentationPb as UnsignedPresentationPb, PresentationPb as PresentationPb, UnsignedPresentationRequestPb as UnsignedPresentationRequestPb, PresentationRequestPb as PresentationRequestPb, UnsignedCredentialPb as UnsignedCredentialPb, CredentialPb as CredentialPb, CredentialRequestPb as CredentialRequestPb, ProofPb as ProofPb, IssueCredentialRequest };
+export * from "./protos/credential";
+export { UnsignedPresentationPb as UnsignedPresentationPb, PresentationPb as PresentationPb, UnsignedPresentationRequestPb as UnsignedPresentationRequestPb, PresentationRequestPb as PresentationRequestPb, UnsignedCredentialPb as UnsignedCredentialPb, CredentialPb as CredentialPb, CredentialRequestPb as CredentialRequestPb, ProofPb as ProofPb, };
 /**
  * Interface to encapsulate a base Unum Entity.
  */

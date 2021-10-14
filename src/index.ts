@@ -6,6 +6,8 @@ import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb,
 import { Proof as ProofPb} from "./protos/proof";
 import { IssueCredentialRequest } from "./protos/credential"
 
+export * from "./protos/credential";
+
 export { 
   UnsignedPresentationPb as UnsignedPresentationPb, 
   PresentationPb as PresentationPb,
@@ -15,7 +17,7 @@ export {
   CredentialPb as CredentialPb,
   CredentialRequestPb as CredentialRequestPb,
   ProofPb as ProofPb,
-  IssueCredentialRequest
+  // IssueCredentialRequest
 }
 
 /**
