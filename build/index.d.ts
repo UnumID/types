@@ -9,7 +9,7 @@ export { UnsignedPresentationPb as UnsignedPresentationPb, PresentationPb as Pre
 /**
  * Interface to encapsulate a base Unum Entity.
  */
-interface BaseEntity {
+export interface BaseEntity {
     uuid: string;
     createdAt: string;
     updatedAt: string;
