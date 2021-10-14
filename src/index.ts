@@ -4,6 +4,7 @@ import { UnsignedPresentation as UnsignedPresentationPb, Presentation as Present
 import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest"
 import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb} from "./protos/credential";
 import { Proof as ProofPb} from "./protos/proof";
+import { IssueCredentialRequest } from "./protos/credential"
 
 export { 
   UnsignedPresentationPb as UnsignedPresentationPb, 
@@ -13,7 +14,8 @@ export {
   UnsignedCredentialPb as UnsignedCredentialPb, 
   CredentialPb as CredentialPb,
   CredentialRequestPb as CredentialRequestPb,
-  ProofPb as ProofPb
+  ProofPb as ProofPb,
+  IssueCredentialRequest
 }
 
 /**
@@ -555,6 +557,19 @@ export interface EncryptedCredentialOptions {
   issuer: string;
   type: string;
   data: EncryptedData;
+}
+
+/**
+ * Object that encapsulates a request to Unum ID SaaS to issue credentials.
+ * Note: that the while can handle multiple EncryptedCredentials that is for the edge case of 
+ * the same credential (id, type, subject, issuer) being encrypted with different holder public keys
+ */
+export interface EncryptedCredentialUploadOptions {
+  credentialId: string;
+  subject: string;
+  issuer: string;
+  type: ['VerifiableCredential', ...string[]];
+  encryptedCredentials: EncryptedCredentialOptions[];
 }
 
 /**
