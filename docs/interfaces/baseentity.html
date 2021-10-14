@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>PresentationRequestDtoPb | @unumid/types</title>
+	<title>BaseEntity | @unumid/types</title>
 	<meta name="description" content="Documentation for @unumid/types">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">@unumid/types</a>
 				</li>
 				<li>
-					<a href="presentationrequestdtopb.html">PresentationRequestDtoPb</a>
+					<a href="baseentity.html">BaseEntity</a>
 				</li>
 			</ul>
-			<h1>Interface PresentationRequestDtoPb</h1>
+			<h1>Interface BaseEntity</h1>
 		</div>
 	</div>
 </header>
@@ -68,8 +68,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Type to encapsulate a Protobuf PresentationRequest Data Transfer Object get response used in interfacing services.
-						Note: this is not used when dealing with json / http network interfaces.</p>
+						<p>Interface to encapsulate a base Unum Entity.</p>
 					</div>
 				</div>
 			</section>
@@ -77,7 +76,15 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">PresentationRequestDtoPb</span>
+						<span class="target">BaseEntity</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<a href="fcmconfig.html" class="tsd-signature-type" data-tsd-kind="Interface">FCMConfig</a>
+							</li>
+							<li>
+								<a href="apnsconfig.html" class="tsd-signature-type" data-tsd-kind="Interface">APNSConfig</a>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -88,9 +95,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationrequestdtopb.html#issuers" class="tsd-kind-icon">issuers</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationrequestdtopb.html#presentationrequest" class="tsd-kind-icon">presentation<wbr>Request</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationrequestdtopb.html#verifier" class="tsd-kind-icon">verifier</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="baseentity.html#createdat" class="tsd-kind-icon">created<wbr>At</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="baseentity.html#updatedat" class="tsd-kind-icon">updated<wbr>At</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="baseentity.html#uuid" class="tsd-kind-icon">uuid</a></li>
 							</ul>
 						</section>
 					</div>
@@ -99,32 +106,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="issuers" class="tsd-anchor"></a>
-					<h3>issuers</h3>
-					<div class="tsd-signature tsd-kind-icon">issuers<span class="tsd-signature-symbol">:</span> <a href="issuerinfomap.html" class="tsd-signature-type" data-tsd-kind="Interface">IssuerInfoMap</a></div>
+					<a name="createdat" class="tsd-anchor"></a>
+					<h3>created<wbr>At</h3>
+					<div class="tsd-signature tsd-kind-icon">created<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/3e2fd75/src/index.ts#L467">index.ts:467</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/3e2fd75/src/index.ts#L24">index.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="presentationrequest" class="tsd-anchor"></a>
-					<h3>presentation<wbr>Request</h3>
-					<div class="tsd-signature tsd-kind-icon">presentation<wbr>Request<span class="tsd-signature-symbol">:</span> <a href="../modules.html#presentationrequestpb" class="tsd-signature-type" data-tsd-kind="Variable">PresentationRequestPb</a></div>
+					<a name="updatedat" class="tsd-anchor"></a>
+					<h3>updated<wbr>At</h3>
+					<div class="tsd-signature tsd-kind-icon">updated<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/3e2fd75/src/index.ts#L465">index.ts:465</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/3e2fd75/src/index.ts#L25">index.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="verifier" class="tsd-anchor"></a>
-					<h3>verifier</h3>
-					<div class="tsd-signature tsd-kind-icon">verifier<span class="tsd-signature-symbol">:</span> <a href="verifierinfo.html" class="tsd-signature-type" data-tsd-kind="Interface">VerifierInfo</a></div>
+					<a name="uuid" class="tsd-anchor"></a>
+					<h3>uuid</h3>
+					<div class="tsd-signature tsd-kind-icon">uuid<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/3e2fd75/src/index.ts#L466">index.ts:466</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/3e2fd75/src/index.ts#L23">index.ts:23</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -143,16 +150,16 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="presentationrequestdtopb.html" class="tsd-kind-icon">Presentation<wbr>Request<wbr>Dto<wbr>Pb</a>
+						<a href="baseentity.html" class="tsd-kind-icon">Base<wbr>Entity</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="presentationrequestdtopb.html#issuers" class="tsd-kind-icon">issuers</a>
+								<a href="baseentity.html#createdat" class="tsd-kind-icon">created<wbr>At</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="presentationrequestdtopb.html#presentationrequest" class="tsd-kind-icon">presentation<wbr>Request</a>
+								<a href="baseentity.html#updatedat" class="tsd-kind-icon">updated<wbr>At</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="presentationrequestdtopb.html#verifier" class="tsd-kind-icon">verifier</a>
+								<a href="baseentity.html#uuid" class="tsd-kind-icon">uuid</a>
 							</li>
 						</ul>
 					</li>
