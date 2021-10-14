@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports._CredentialStatusOptions = exports.pushProviders = exports.IssueCredentialRequest = exports.ProofPb = exports.CredentialRequestPb = exports.CredentialPb = exports.UnsignedCredentialPb = exports.PresentationRequestPb = exports.UnsignedPresentationRequestPb = exports.PresentationPb = exports.UnsignedPresentationPb = void 0;
+exports._CredentialStatusOptions = exports.pushProviders = exports.IssueCredentialsRequest = exports.IssueCredentialRequest = exports.ProofPb = exports.CredentialRequestPb = exports.CredentialPb = exports.UnsignedCredentialPb = exports.PresentationRequestPb = exports.UnsignedPresentationRequestPb = exports.PresentationPb = exports.UnsignedPresentationPb = void 0;
 var runtypes_1 = require("runtypes");
 var presentation_1 = require("./protos/presentation");
 Object.defineProperty(exports, "UnsignedPresentationPb", { enumerable: true, get: function () { return presentation_1.UnsignedPresentation; } });
@@ -16,6 +16,7 @@ var proof_1 = require("./protos/proof");
 Object.defineProperty(exports, "ProofPb", { enumerable: true, get: function () { return proof_1.Proof; } });
 var credential_2 = require("./protos/credential");
 Object.defineProperty(exports, "IssueCredentialRequest", { enumerable: true, get: function () { return credential_2.IssueCredentialRequest; } });
+Object.defineProperty(exports, "IssueCredentialsRequest", { enumerable: true, get: function () { return credential_2.IssueCredentialsRequest; } });
 /**
  * A readonly list of push notification providers.
  */

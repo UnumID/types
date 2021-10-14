@@ -4,18 +4,23 @@ import { UnsignedPresentation as UnsignedPresentationPb, Presentation as Present
 import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest"
 import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb} from "./protos/credential";
 import { Proof as ProofPb} from "./protos/proof";
-import { IssueCredentialRequest } from "./protos/credential"
+import { IssueCredentialRequest, IssueCredentialsRequest } from "./protos/credential"
 
+// proto defined types that also have older, vanilla ts types defined - hence the proceeding "Pb"
 export { 
-  UnsignedPresentationPb as UnsignedPresentationPb, 
-  PresentationPb as PresentationPb,
-  UnsignedPresentationRequestPb as UnsignedPresentationRequestPb,
-  PresentationRequestPb as PresentationRequestPb,
-  UnsignedCredentialPb as UnsignedCredentialPb, 
-  CredentialPb as CredentialPb,
-  CredentialRequestPb as CredentialRequestPb,
-  ProofPb as ProofPb,
-  IssueCredentialRequest
+  UnsignedPresentationPb, 
+  PresentationPb,
+  UnsignedPresentationRequestPb,
+  PresentationRequestPb,
+  UnsignedCredentialPb, 
+  CredentialPb,
+  CredentialRequestPb,
+  ProofPb,
+}
+
+export {
+  // protos/credential
+  IssueCredentialRequest, IssueCredentialsRequest
 }
 
 /**
