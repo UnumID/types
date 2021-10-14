@@ -19,7 +19,7 @@ exports.Proof = exports.protobufPackage = void 0;
 var long_1 = __importDefault(require("long"));
 var minimal_1 = __importDefault(require("protobufjs/minimal"));
 var timestamp_1 = require("./google/protobuf/timestamp");
-exports.protobufPackage = "crypto.v1";
+exports.protobufPackage = "proof.v1";
 var baseProof = {
     signatureValue: "",
     type: "",
