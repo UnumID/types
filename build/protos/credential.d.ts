@@ -66,7 +66,7 @@ export interface IssueCredentialRequest {
 }
 /** Object that encapsulates a request to Unum ID SaaS to issue multiple credentials of various types. */
 export interface IssueCredentialsRequest {
-    credentialsRequests: IssueCredentialRequest[];
+    credentialRequests: IssueCredentialRequest[];
 }
 /** Object that encapsulates CredentialStatus information. */
 export interface CredentialStatusInfo {

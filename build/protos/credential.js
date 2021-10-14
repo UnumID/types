@@ -942,7 +942,7 @@ var baseIssueCredentialsRequest = {};
 exports.IssueCredentialsRequest = {
     encode: function (message, writer) {
         if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
-        for (var _i = 0, _a = message.credentialsRequests; _i < _a.length; _i++) {
+        for (var _i = 0, _a = message.credentialRequests; _i < _a.length; _i++) {
             var v = _a[_i];
             exports.IssueCredentialRequest.encode(v, writer.uint32(10).fork()).ldelim();
         }
@@ -952,12 +952,12 @@ exports.IssueCredentialsRequest = {
         var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         var end = length === undefined ? reader.len : reader.pos + length;
         var message = __assign({}, baseIssueCredentialsRequest);
-        message.credentialsRequests = [];
+        message.credentialRequests = [];
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.credentialsRequests.push(exports.IssueCredentialRequest.decode(reader, reader.uint32()));
+                    message.credentialRequests.push(exports.IssueCredentialRequest.decode(reader, reader.uint32()));
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -968,36 +968,36 @@ exports.IssueCredentialsRequest = {
     },
     fromJSON: function (object) {
         var message = __assign({}, baseIssueCredentialsRequest);
-        message.credentialsRequests = [];
-        if (object.credentialsRequests !== undefined &&
-            object.credentialsRequests !== null) {
-            for (var _i = 0, _a = object.credentialsRequests; _i < _a.length; _i++) {
+        message.credentialRequests = [];
+        if (object.credentialRequests !== undefined &&
+            object.credentialRequests !== null) {
+            for (var _i = 0, _a = object.credentialRequests; _i < _a.length; _i++) {
                 var e = _a[_i];
-                message.credentialsRequests.push(exports.IssueCredentialRequest.fromJSON(e));
+                message.credentialRequests.push(exports.IssueCredentialRequest.fromJSON(e));
             }
         }
         return message;
     },
     toJSON: function (message) {
         var obj = {};
-        if (message.credentialsRequests) {
-            obj.credentialsRequests = message.credentialsRequests.map(function (e) {
+        if (message.credentialRequests) {
+            obj.credentialRequests = message.credentialRequests.map(function (e) {
                 return e ? exports.IssueCredentialRequest.toJSON(e) : undefined;
             });
         }
         else {
-            obj.credentialsRequests = [];
+            obj.credentialRequests = [];
         }
         return obj;
     },
     fromPartial: function (object) {
         var message = __assign({}, baseIssueCredentialsRequest);
-        message.credentialsRequests = [];
-        if (object.credentialsRequests !== undefined &&
-            object.credentialsRequests !== null) {
-            for (var _i = 0, _a = object.credentialsRequests; _i < _a.length; _i++) {
+        message.credentialRequests = [];
+        if (object.credentialRequests !== undefined &&
+            object.credentialRequests !== null) {
+            for (var _i = 0, _a = object.credentialRequests; _i < _a.length; _i++) {
                 var e = _a[_i];
-                message.credentialsRequests.push(exports.IssueCredentialRequest.fromPartial(e));
+                message.credentialRequests.push(exports.IssueCredentialRequest.fromPartial(e));
             }
         }
         return message;

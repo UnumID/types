@@ -77,7 +77,7 @@ export interface IssueCredentialRequest {
 
 /** Object that encapsulates a request to Unum ID SaaS to issue multiple credentials of various types. */
 export interface IssueCredentialsRequest {
-  credentialsRequests: IssueCredentialRequest[];
+  credentialRequests: IssueCredentialRequest[];
 }
 
 /** Object that encapsulates CredentialStatus information. */
@@ -1052,7 +1052,7 @@ export const IssueCredentialsRequest = {
     message: IssueCredentialsRequest,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
-    for (const v of message.credentialsRequests) {
+    for (const v of message.credentialRequests) {
       IssueCredentialRequest.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     return writer;
@@ -1067,12 +1067,12 @@ export const IssueCredentialsRequest = {
     const message = {
       ...baseIssueCredentialsRequest,
     } as IssueCredentialsRequest;
-    message.credentialsRequests = [];
+    message.credentialRequests = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.credentialsRequests.push(
+          message.credentialRequests.push(
             IssueCredentialRequest.decode(reader, reader.uint32())
           );
           break;
@@ -1088,13 +1088,13 @@ export const IssueCredentialsRequest = {
     const message = {
       ...baseIssueCredentialsRequest,
     } as IssueCredentialsRequest;
-    message.credentialsRequests = [];
+    message.credentialRequests = [];
     if (
-      object.credentialsRequests !== undefined &&
-      object.credentialsRequests !== null
+      object.credentialRequests !== undefined &&
+      object.credentialRequests !== null
     ) {
-      for (const e of object.credentialsRequests) {
-        message.credentialsRequests.push(IssueCredentialRequest.fromJSON(e));
+      for (const e of object.credentialRequests) {
+        message.credentialRequests.push(IssueCredentialRequest.fromJSON(e));
       }
     }
     return message;
@@ -1102,12 +1102,12 @@ export const IssueCredentialsRequest = {
 
   toJSON(message: IssueCredentialsRequest): unknown {
     const obj: any = {};
-    if (message.credentialsRequests) {
-      obj.credentialsRequests = message.credentialsRequests.map((e) =>
+    if (message.credentialRequests) {
+      obj.credentialRequests = message.credentialRequests.map((e) =>
         e ? IssueCredentialRequest.toJSON(e) : undefined
       );
     } else {
-      obj.credentialsRequests = [];
+      obj.credentialRequests = [];
     }
     return obj;
   },
@@ -1118,13 +1118,13 @@ export const IssueCredentialsRequest = {
     const message = {
       ...baseIssueCredentialsRequest,
     } as IssueCredentialsRequest;
-    message.credentialsRequests = [];
+    message.credentialRequests = [];
     if (
-      object.credentialsRequests !== undefined &&
-      object.credentialsRequests !== null
+      object.credentialRequests !== undefined &&
+      object.credentialRequests !== null
     ) {
-      for (const e of object.credentialsRequests) {
-        message.credentialsRequests.push(IssueCredentialRequest.fromPartial(e));
+      for (const e of object.credentialRequests) {
+        message.credentialRequests.push(IssueCredentialRequest.fromPartial(e));
       }
     }
     return message;
