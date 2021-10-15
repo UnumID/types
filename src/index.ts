@@ -565,19 +565,6 @@ export interface EncryptedCredentialOptions {
 }
 
 /**
- * Object that encapsulates a request to Unum ID SaaS to issue credentials.
- * Note: that the while can handle multiple EncryptedCredentials that is for the edge case of 
- * the same credential (id, type, subject, issuer) being encrypted with different holder public keys
- */
-export interface EncryptedCredentialUploadOptions {
-  credentialId: string;
-  subject: string;
-  issuer: string;
-  type: ['VerifiableCredential', ...string[]];
-  encryptedCredentials: EncryptedCredentialOptions[];
-}
-
-/**
  * Encapsulates Verifier metadata attributes.
  */
 export interface VerifierInfo {
