@@ -75,6 +75,11 @@ export interface IssueCredentialRequest {
   encryptedCredentials: EncryptedCredential[];
 }
 
+/** Object that encapsulates a request to Unum ID SaaS to issue multiple credentials of various types. */
+export interface IssueCredentialsRequest {
+  credentialRequests: IssueCredentialRequest[];
+}
+
 /** Object that encapsulates CredentialStatus information. */
 export interface CredentialStatusInfo {
   uuid: string;
@@ -1034,6 +1039,92 @@ export const IssueCredentialRequest = {
     ) {
       for (const e of object.encryptedCredentials) {
         message.encryptedCredentials.push(EncryptedCredential.fromPartial(e));
+      }
+    }
+    return message;
+  },
+};
+
+const baseIssueCredentialsRequest: object = {};
+
+export const IssueCredentialsRequest = {
+  encode(
+    message: IssueCredentialsRequest,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    for (const v of message.credentialRequests) {
+      IssueCredentialRequest.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): IssueCredentialsRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseIssueCredentialsRequest,
+    } as IssueCredentialsRequest;
+    message.credentialRequests = [];
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.credentialRequests.push(
+            IssueCredentialRequest.decode(reader, reader.uint32())
+          );
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): IssueCredentialsRequest {
+    const message = {
+      ...baseIssueCredentialsRequest,
+    } as IssueCredentialsRequest;
+    message.credentialRequests = [];
+    if (
+      object.credentialRequests !== undefined &&
+      object.credentialRequests !== null
+    ) {
+      for (const e of object.credentialRequests) {
+        message.credentialRequests.push(IssueCredentialRequest.fromJSON(e));
+      }
+    }
+    return message;
+  },
+
+  toJSON(message: IssueCredentialsRequest): unknown {
+    const obj: any = {};
+    if (message.credentialRequests) {
+      obj.credentialRequests = message.credentialRequests.map((e) =>
+        e ? IssueCredentialRequest.toJSON(e) : undefined
+      );
+    } else {
+      obj.credentialRequests = [];
+    }
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<IssueCredentialsRequest>
+  ): IssueCredentialsRequest {
+    const message = {
+      ...baseIssueCredentialsRequest,
+    } as IssueCredentialsRequest;
+    message.credentialRequests = [];
+    if (
+      object.credentialRequests !== undefined &&
+      object.credentialRequests !== null
+    ) {
+      for (const e of object.credentialRequests) {
+        message.credentialRequests.push(IssueCredentialRequest.fromPartial(e));
       }
     }
     return message;

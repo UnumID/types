@@ -64,6 +64,10 @@ export interface IssueCredentialRequest {
     type: string;
     encryptedCredentials: EncryptedCredential[];
 }
+/** Object that encapsulates a request to Unum ID SaaS to issue multiple credentials of various types. */
+export interface IssueCredentialsRequest {
+    credentialRequests: IssueCredentialRequest[];
+}
 /** Object that encapsulates CredentialStatus information. */
 export interface CredentialStatusInfo {
     uuid: string;
@@ -114,6 +118,13 @@ export declare const IssueCredentialRequest: {
     fromJSON(object: any): IssueCredentialRequest;
     toJSON(message: IssueCredentialRequest): unknown;
     fromPartial(object: DeepPartial<IssueCredentialRequest>): IssueCredentialRequest;
+};
+export declare const IssueCredentialsRequest: {
+    encode(message: IssueCredentialsRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): IssueCredentialsRequest;
+    fromJSON(object: any): IssueCredentialsRequest;
+    toJSON(message: IssueCredentialsRequest): unknown;
+    fromPartial(object: DeepPartial<IssueCredentialsRequest>): IssueCredentialsRequest;
 };
 export declare const CredentialStatusInfo: {
     encode(message: CredentialStatusInfo, writer?: _m0.Writer): _m0.Writer;

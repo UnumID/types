@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CredentialStatusInfo = exports.IssueCredentialRequest = exports.EncryptedCredential = exports.CredentialRequest = exports.Credential = exports.UnsignedCredential = exports.CredentialStatus = exports.protobufPackage = void 0;
+exports.CredentialStatusInfo = exports.IssueCredentialsRequest = exports.IssueCredentialRequest = exports.EncryptedCredential = exports.CredentialRequest = exports.Credential = exports.UnsignedCredential = exports.CredentialStatus = exports.protobufPackage = void 0;
 /* eslint-disable */
 var long_1 = __importDefault(require("long"));
 var minimal_1 = __importDefault(require("protobufjs/minimal"));
@@ -933,6 +933,71 @@ exports.IssueCredentialRequest = {
             for (var _i = 0, _a = object.encryptedCredentials; _i < _a.length; _i++) {
                 var e = _a[_i];
                 message.encryptedCredentials.push(exports.EncryptedCredential.fromPartial(e));
+            }
+        }
+        return message;
+    },
+};
+var baseIssueCredentialsRequest = {};
+exports.IssueCredentialsRequest = {
+    encode: function (message, writer) {
+        if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
+        for (var _i = 0, _a = message.credentialRequests; _i < _a.length; _i++) {
+            var v = _a[_i];
+            exports.IssueCredentialRequest.encode(v, writer.uint32(10).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode: function (input, length) {
+        var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
+        var end = length === undefined ? reader.len : reader.pos + length;
+        var message = __assign({}, baseIssueCredentialsRequest);
+        message.credentialRequests = [];
+        while (reader.pos < end) {
+            var tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.credentialRequests.push(exports.IssueCredentialRequest.decode(reader, reader.uint32()));
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON: function (object) {
+        var message = __assign({}, baseIssueCredentialsRequest);
+        message.credentialRequests = [];
+        if (object.credentialRequests !== undefined &&
+            object.credentialRequests !== null) {
+            for (var _i = 0, _a = object.credentialRequests; _i < _a.length; _i++) {
+                var e = _a[_i];
+                message.credentialRequests.push(exports.IssueCredentialRequest.fromJSON(e));
+            }
+        }
+        return message;
+    },
+    toJSON: function (message) {
+        var obj = {};
+        if (message.credentialRequests) {
+            obj.credentialRequests = message.credentialRequests.map(function (e) {
+                return e ? exports.IssueCredentialRequest.toJSON(e) : undefined;
+            });
+        }
+        else {
+            obj.credentialRequests = [];
+        }
+        return obj;
+    },
+    fromPartial: function (object) {
+        var message = __assign({}, baseIssueCredentialsRequest);
+        message.credentialRequests = [];
+        if (object.credentialRequests !== undefined &&
+            object.credentialRequests !== null) {
+            for (var _i = 0, _a = object.credentialRequests; _i < _a.length; _i++) {
+                var e = _a[_i];
+                message.credentialRequests.push(exports.IssueCredentialRequest.fromPartial(e));
             }
         }
         return message;
