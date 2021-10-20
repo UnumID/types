@@ -77,6 +77,7 @@ export interface CredentialSubject {
  * Interface for an arbitrary number (0 to n) of string keys with values of type ClaimValue.
  */
  export interface CredentialData {
+   type: string; // credential type
   [claimName: string]: ClaimValue;
 }
 
