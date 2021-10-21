@@ -10,7 +10,7 @@ export const protobufPackage = "presentationRequest.v1";
 /** Encapsulates request attributes for the purposes of requesting presentation of credentials. */
 export interface UnsignedPresentationRequest {
   credentialRequests: CredentialRequest[];
-  holderAppUuid: string;
+  holderAppUuid: string | undefined;
   verifier: string;
   createdAt: Date | undefined;
   updatedAt: Date | undefined;
@@ -29,7 +29,7 @@ export interface UnsignedPresentationRequest {
  */
 export interface PresentationRequest {
   credentialRequests: CredentialRequest[];
-  holderAppUuid: string;
+  holderAppUuid: string | undefined;
   verifier: string;
   createdAt: Date | undefined;
   updatedAt: Date | undefined;
@@ -44,7 +44,6 @@ export interface PresentationRequest {
 }
 
 const baseUnsignedPresentationRequest: object = {
-  holderAppUuid: "",
   verifier: "",
   metadata: "",
   uuid: "",
@@ -60,7 +59,7 @@ export const UnsignedPresentationRequest = {
     for (const v of message.credentialRequests) {
       CredentialRequest.encode(v!, writer.uint32(10).fork()).ldelim();
     }
-    if (message.holderAppUuid !== "") {
+    if (message.holderAppUuid !== undefined) {
       writer.uint32(18).string(message.holderAppUuid);
     }
     if (message.verifier !== "") {
@@ -174,7 +173,7 @@ export const UnsignedPresentationRequest = {
     if (object.holderAppUuid !== undefined && object.holderAppUuid !== null) {
       message.holderAppUuid = String(object.holderAppUuid);
     } else {
-      message.holderAppUuid = "";
+      message.holderAppUuid = undefined;
     }
     if (object.verifier !== undefined && object.verifier !== null) {
       message.verifier = String(object.verifier);
@@ -262,7 +261,7 @@ export const UnsignedPresentationRequest = {
     if (object.holderAppUuid !== undefined && object.holderAppUuid !== null) {
       message.holderAppUuid = object.holderAppUuid;
     } else {
-      message.holderAppUuid = "";
+      message.holderAppUuid = undefined;
     }
     if (object.verifier !== undefined && object.verifier !== null) {
       message.verifier = object.verifier;
@@ -309,7 +308,6 @@ export const UnsignedPresentationRequest = {
 };
 
 const basePresentationRequest: object = {
-  holderAppUuid: "",
   verifier: "",
   metadata: "",
   uuid: "",
@@ -325,7 +323,7 @@ export const PresentationRequest = {
     for (const v of message.credentialRequests) {
       CredentialRequest.encode(v!, writer.uint32(10).fork()).ldelim();
     }
-    if (message.holderAppUuid !== "") {
+    if (message.holderAppUuid !== undefined) {
       writer.uint32(18).string(message.holderAppUuid);
     }
     if (message.verifier !== "") {
@@ -438,7 +436,7 @@ export const PresentationRequest = {
     if (object.holderAppUuid !== undefined && object.holderAppUuid !== null) {
       message.holderAppUuid = String(object.holderAppUuid);
     } else {
-      message.holderAppUuid = "";
+      message.holderAppUuid = undefined;
     }
     if (object.verifier !== undefined && object.verifier !== null) {
       message.verifier = String(object.verifier);
@@ -529,7 +527,7 @@ export const PresentationRequest = {
     if (object.holderAppUuid !== undefined && object.holderAppUuid !== null) {
       message.holderAppUuid = object.holderAppUuid;
     } else {
-      message.holderAppUuid = "";
+      message.holderAppUuid = undefined;
     }
     if (object.verifier !== undefined && object.verifier !== null) {
       message.verifier = object.verifier;

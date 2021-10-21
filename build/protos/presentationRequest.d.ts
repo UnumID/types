@@ -5,7 +5,7 @@ export declare const protobufPackage = "presentationRequest.v1";
 /** Encapsulates request attributes for the purposes of requesting presentation of credentials. */
 export interface UnsignedPresentationRequest {
     credentialRequests: CredentialRequest[];
-    holderAppUuid: string;
+    holderAppUuid: string | undefined;
     verifier: string;
     createdAt: Date | undefined;
     updatedAt: Date | undefined;
@@ -23,7 +23,7 @@ export interface UnsignedPresentationRequest {
  */
 export interface PresentationRequest {
     credentialRequests: CredentialRequest[];
-    holderAppUuid: string;
+    holderAppUuid: string | undefined;
     verifier: string;
     createdAt: Date | undefined;
     updatedAt: Date | undefined;

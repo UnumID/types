@@ -171,7 +171,7 @@ export interface PresentationRequestOptions {
   createdAt?: Date;
   updatedAt?: Date;
   expiresAt?: Date;
-  holderAppUuid: string;
+  holderAppUuid?: string;
   metadata?: any;
   verifier: string;
 }

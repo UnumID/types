@@ -23,7 +23,6 @@ var credential_1 = require("./credential");
 var proof_1 = require("./proof");
 exports.protobufPackage = "presentationRequest.v1";
 var baseUnsignedPresentationRequest = {
-    holderAppUuid: "",
     verifier: "",
     metadata: "",
     uuid: "",
@@ -37,7 +36,7 @@ exports.UnsignedPresentationRequest = {
             var v = _a[_i];
             credential_1.CredentialRequest.encode(v, writer.uint32(10).fork()).ldelim();
         }
-        if (message.holderAppUuid !== "") {
+        if (message.holderAppUuid !== undefined) {
             writer.uint32(18).string(message.holderAppUuid);
         }
         if (message.verifier !== "") {
@@ -125,7 +124,7 @@ exports.UnsignedPresentationRequest = {
             message.holderAppUuid = String(object.holderAppUuid);
         }
         else {
-            message.holderAppUuid = "";
+            message.holderAppUuid = undefined;
         }
         if (object.verifier !== undefined && object.verifier !== null) {
             message.verifier = String(object.verifier);
@@ -216,7 +215,7 @@ exports.UnsignedPresentationRequest = {
             message.holderAppUuid = object.holderAppUuid;
         }
         else {
-            message.holderAppUuid = "";
+            message.holderAppUuid = undefined;
         }
         if (object.verifier !== undefined && object.verifier !== null) {
             message.verifier = object.verifier;
@@ -270,7 +269,6 @@ exports.UnsignedPresentationRequest = {
     },
 };
 var basePresentationRequest = {
-    holderAppUuid: "",
     verifier: "",
     metadata: "",
     uuid: "",
@@ -284,7 +282,7 @@ exports.PresentationRequest = {
             var v = _a[_i];
             credential_1.CredentialRequest.encode(v, writer.uint32(10).fork()).ldelim();
         }
-        if (message.holderAppUuid !== "") {
+        if (message.holderAppUuid !== undefined) {
             writer.uint32(18).string(message.holderAppUuid);
         }
         if (message.verifier !== "") {
@@ -378,7 +376,7 @@ exports.PresentationRequest = {
             message.holderAppUuid = String(object.holderAppUuid);
         }
         else {
-            message.holderAppUuid = "";
+            message.holderAppUuid = undefined;
         }
         if (object.verifier !== undefined && object.verifier !== null) {
             message.verifier = String(object.verifier);
@@ -477,7 +475,7 @@ exports.PresentationRequest = {
             message.holderAppUuid = object.holderAppUuid;
         }
         else {
-            message.holderAppUuid = "";
+            message.holderAppUuid = undefined;
         }
         if (object.verifier !== undefined && object.verifier !== null) {
             message.verifier = object.verifier;
