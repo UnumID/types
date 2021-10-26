@@ -306,6 +306,7 @@ export interface Receipt<T = ReceiptDataOptions> {
   subject?: string;
   issuer?: string;
   verifier?: string;
+  group?: string;
   data?: T;
 }
 
