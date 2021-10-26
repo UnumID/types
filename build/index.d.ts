@@ -260,10 +260,10 @@ export interface Receipt<T = ReceiptDataOptions> {
     createdAt: Date;
     updatedAt: Date;
     type: string;
-    subject: string;
-    issuer: string;
-    verifier: string;
-    data: T;
+    subject?: string;
+    issuer?: string;
+    verifier?: string;
+    data?: T;
 }
 /**
  * Type to encapsulate possible Receipt data fields.
