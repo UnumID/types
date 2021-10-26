@@ -345,8 +345,8 @@ export interface ReceiptPresentationRequestData {
   issuers: string[];
   version: string;
   holderAppUuid: string;
-  uuid: string;
-  id: string;
+  requestUuid: string;
+  requestId: string;
 }
 
 /**
@@ -357,8 +357,8 @@ export interface ReceiptPresentationRequestData {
   issuers: string[];
   version: string;
   holderAppUuid: string;
-  uuid: string;
-  id: string;
+  requestUuid: string;
+  requestId: string;
   subject: string;
 }
 

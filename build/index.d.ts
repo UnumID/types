@@ -299,8 +299,8 @@ export interface ReceiptPresentationRequestData {
     issuers: string[];
     version: string;
     holderAppUuid: string;
-    uuid: string;
-    id: string;
+    requestUuid: string;
+    requestId: string;
 }
 /**
  * Type to encapsulate specific Receipt data fields for Presentation related receipts.
@@ -310,8 +310,8 @@ export interface ReceiptPresentationData {
     issuers: string[];
     version: string;
     holderAppUuid: string;
-    uuid: string;
-    id: string;
+    requestUuid: string;
+    requestId: string;
     subject: string;
 }
 /**
