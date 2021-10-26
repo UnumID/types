@@ -3,11 +3,11 @@ import { Literal, Static, Union } from "runtypes";
 import { SemVer } from 'semver';
 import { UnsignedPresentation as UnsignedPresentationPb, Presentation as PresentationPb } from "./protos/presentation";
 import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest";
-import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb } from "./protos/credential";
+import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb, CredentialStatusInfo } from "./protos/credential";
 import { Proof as ProofPb } from "./protos/proof";
 import { IssueCredentialRequest, IssueCredentialsRequest } from "./protos/credential";
 export { UnsignedPresentationPb, PresentationPb, UnsignedPresentationRequestPb, PresentationRequestPb, UnsignedCredentialPb, CredentialPb, CredentialRequestPb, ProofPb, };
-export { IssueCredentialRequest, IssueCredentialsRequest };
+export { IssueCredentialRequest, IssueCredentialsRequest, CredentialStatusInfo };
 /**
  * Interface to encapsulate a base Unum Entity.
  */
