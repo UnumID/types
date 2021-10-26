@@ -345,8 +345,8 @@ export interface ReceiptPresentationRequestData {
   issuers: string[];
   version: string;
   holderAppUuid: string;
-  uuid: string;
-  id: string;
+  requestUuid: string;
+  requestId: string;
 }
 
 /**
@@ -357,9 +357,29 @@ export interface ReceiptPresentationRequestData {
   issuers: string[];
   version: string;
   holderAppUuid: string;
-  uuid: string;
-  id: string;
+  requestUuid: string;
+  requestId: string;
   subject: string;
+}
+
+/**
+ * Type to encapsulate a Credential ReceiptGroup's data attribute
+ */
+export interface CredentialReceiptInfo {
+  issuer: IssuerInfo;
+  subject: string;
+  type: string;
+  dateIssued: Date; 
+  status: CredentialStatusOptions 
+}
+
+/**
+ * Type to encapsulate enriched CredentialRequest info.
+ */
+ export interface CredentialRequestInfo {
+ type: string;
+ issuer: IssuerInfo;
+ required: boolean;
 }
 
 /**
@@ -613,7 +633,8 @@ export interface PresentationReceiptInfo {
   subjectDid: string;
   verifierDid: string;
   holderApp: string;
-  presentationRequestUuid?: string;
+  presentationRequestUuid?: string; 
+  presentationRequestId: string; 
   credentialTypes?: string[];
   issuers?: IssuerInfoMap;
 }
