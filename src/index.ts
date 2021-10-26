@@ -632,7 +632,8 @@ export interface PresentationReceiptInfo {
   subjectDid: string;
   verifierDid: string;
   holderApp: string;
-  presentationRequestUuid?: string;
+  presentationRequestUuid?: string; 
+  presentationRequestId: string; 
   credentialTypes?: string[];
   issuers?: IssuerInfoMap;
 }
