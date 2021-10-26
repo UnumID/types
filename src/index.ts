@@ -369,8 +369,8 @@ export interface CredentialReceiptInfo {
   issuer: IssuerInfo;
   subject: string;
   type: string;
-  // dateIssued: Date; //todo
-  // status: CredentialStatusOptions //todo
+  dateIssued: Date; 
+  status: CredentialStatusOptions 
 }
 
 /**

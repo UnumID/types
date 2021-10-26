@@ -321,6 +321,8 @@ export interface CredentialReceiptInfo {
     issuer: IssuerInfo;
     subject: string;
     type: string;
+    dateIssued: Date;
+    status: CredentialStatusOptions;
 }
 /**
  * Type to encapsulate enriched CredentialRequest info.
