@@ -365,7 +365,7 @@ export interface ReceiptPresentationRequestData {
 /**
  * Type to encapsulate a Credential ReceiptGroup's data attribute
  */
-interface CredentialReceiptInfo {
+export interface CredentialReceiptInfo {
   issuer: IssuerInfo;
   subject: string;
   type: string;
@@ -376,7 +376,7 @@ interface CredentialReceiptInfo {
 /**
  * Type to encapsulate enriched CredentialRequest info.
  */
-interface CredentialRequestInfo {
+ export interface CredentialRequestInfo {
  type: string;
  issuer: IssuerInfo;
  required: boolean;

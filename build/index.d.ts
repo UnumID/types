@@ -315,6 +315,22 @@ export interface ReceiptPresentationData {
     subject: string;
 }
 /**
+ * Type to encapsulate a Credential ReceiptGroup's data attribute
+ */
+export interface CredentialReceiptInfo {
+    issuer: IssuerInfo;
+    subject: string;
+    type: string;
+}
+/**
+ * Type to encapsulate enriched CredentialRequest info.
+ */
+export interface CredentialRequestInfo {
+    type: string;
+    issuer: IssuerInfo;
+    required: boolean;
+}
+/**
  * Encapsulates HolderApp entity attributes
  */
 export interface HolderApp {
