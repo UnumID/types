@@ -363,6 +363,26 @@ export interface ReceiptPresentationRequestData {
 }
 
 /**
+ * Type to encapsulate a Credential ReceiptGroup's data attribute
+ */
+interface CredentialReceiptInfo {
+  issuer: IssuerInfo;
+  subject: string;
+  type: string;
+  // dateIssued: Date; //todo
+  // status: CredentialStatusOptions //todo
+}
+
+/**
+ * Type to encapsulate enriched CredentialRequest info.
+ */
+interface CredentialRequestInfo {
+ type: string;
+ issuer: IssuerInfo;
+ required: boolean;
+}
+
+/**
  * Encapsulates HolderApp entity attributes
  */
 export interface HolderApp {
