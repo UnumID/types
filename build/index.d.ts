@@ -5,9 +5,9 @@ import { UnsignedPresentation as UnsignedPresentationPb, Presentation as Present
 import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest";
 import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb, CredentialStatusInfo } from "./protos/credential";
 import { Proof as ProofPb } from "./protos/proof";
-import { IssueCredentialRequest, IssueCredentialsRequest } from "./protos/credential";
-export { UnsignedPresentationPb, PresentationPb, UnsignedPresentationRequestPb, PresentationRequestPb, UnsignedCredentialPb, CredentialPb, CredentialRequestPb, ProofPb, };
-export { IssueCredentialRequest, IssueCredentialsRequest, CredentialStatusInfo };
+import { IssueCredentialRequest, IssueCredentialsRequest, EncryptedCredential } from "./protos/credential";
+export { UnsignedPresentationPb, PresentationPb, UnsignedPresentationRequestPb, PresentationRequestPb, UnsignedCredentialPb, CredentialPb, CredentialRequestPb, ProofPb };
+export { IssueCredentialRequest, IssueCredentialsRequest, CredentialStatusInfo, EncryptedCredential };
 /**
  * Interface to encapsulate a base Unum Entity.
  */
@@ -91,6 +91,25 @@ export interface UnsignedCredential {
  */
 export interface Credential extends UnsignedCredential {
     proof: Proof;
+}
+/**
+ * Data transfer object for a single EncryptedCredential
+ */
+export interface EncryptedCredentialDto<id = string> {
+    uuid: string;
+    createdAt: string;
+    updatedAt: string;
+    credentialId: id;
+    issuer: string;
+    type: string;
+    data: EncryptedData;
+    version: string;
+}
+/**
+ * Data transfer object for multiple EncryptedCredentials, keyed by credential id
+ */
+export interface EncryptedCredentialsDto {
+    [credentialId: string]: EncryptedCredentialDto;
 }
 /**
  * Encapsulates an unsigned presentation attributes.
