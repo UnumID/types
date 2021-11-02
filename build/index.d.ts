@@ -95,11 +95,12 @@ export interface Credential extends UnsignedCredential {
 /**
  * Data transfer object for a single EncryptedCredential
  */
-export interface EncryptedCredentialDto<id = string> {
+export interface EncryptedCredentialDto {
     uuid: string;
     createdAt: string;
     updatedAt: string;
-    credentialId: id;
+    credentialId: string;
+    subject: string;
     issuer: string;
     type: string;
     data: EncryptedData;

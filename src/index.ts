@@ -125,11 +125,12 @@ export interface Credential extends UnsignedCredential {
 /**
  * Data transfer object for a single EncryptedCredential
  */
-export interface EncryptedCredentialDto<id = string> {
+export interface EncryptedCredentialDto {
   uuid: string;
   createdAt: string; // dates should be converted to ISO strings, since this is how they will be represented in the JSON at runtime
   updatedAt: string; // dates should be converted to ISO strings, since this is how they will be represented in the JSON at runtime
-  credentialId: id;
+  credentialId: string;
+  subject: string;
   issuer: string;
   type: string;
   data: EncryptedData;
