@@ -286,7 +286,7 @@ export interface Receipt<T = ReceiptDataOptions> {
     issuer?: string;
     verifier?: string;
     group?: string;
-    data?: T;
+    data: T;
 }
 /**
  * Type to encapsulate possible Receipt data fields.
@@ -352,7 +352,7 @@ export interface ReceiptGroup<T = ReceiptGroupDataOptions> {
     credentialId?: string;
     presentationRequestId?: string;
     customer?: string;
-    data?: T;
+    data: T;
 }
 /**
  * Type to encapsulate possible ReceiptGroup data fields.

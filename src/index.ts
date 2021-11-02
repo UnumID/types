@@ -335,7 +335,7 @@ export interface Receipt<T = ReceiptDataOptions> {
   issuer?: string;
   verifier?: string;
   group?: string;
-  data?: T;
+  data: T;
 }
 
 /**
@@ -410,7 +410,7 @@ export interface ReceiptPresentationRequestData {
   credentialId?: string;
   presentationRequestId?: string;
   customer?: string; // customer uuid from saas
-  data?: T;
+  data: T;
 }
 
 
