@@ -363,6 +363,10 @@ export interface ReceiptDataOptions {
   type: string; // credential type
   version: string; // credential version
   credentialId: string; // credential id
+  status: string; // credential status
+  credentialIssued: Date; // credential issued date
+  credentialStatusUpdated?: Date; // credential status modified date
+  credentialStatusUpdatedBy: string // did of the issuer that modified the credential status (or "admin", signifying we used the admin key to update)
 }
 
 /**

@@ -313,6 +313,10 @@ export interface ReceiptCredentialData {
     type: string;
     version: string;
     credentialId: string;
+    status: string;
+    credentialIssued: Date;
+    credentialStatusUpdated?: Date;
+    credentialStatusUpdatedBy: string;
 }
 /**
  * Type to encapsulate specific Receipt data fields for PresentationRequest related receipts.
