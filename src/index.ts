@@ -4,7 +4,7 @@ import { UnsignedPresentation as UnsignedPresentationPb, Presentation as Present
 import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest"
 import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb, CredentialStatusInfo} from "./protos/credential";
 import { Proof as ProofPb} from "./protos/proof";
-import { IssueCredentialRequest, IssueCredentialsRequest } from "./protos/credential"
+import { IssueCredentialRequest, IssueCredentialsRequest, EncryptedCredential } from "./protos/credential"
 
 // proto defined types that also have older, vanilla ts types defined - hence the proceeding "Pb"
 export { 
@@ -15,12 +15,15 @@ export {
   UnsignedCredentialPb, 
   CredentialPb,
   CredentialRequestPb,
-  ProofPb,
+  ProofPb
 }
 
 export {
   // protos/credential
-  IssueCredentialRequest, IssueCredentialsRequest, CredentialStatusInfo
+  IssueCredentialRequest,
+  IssueCredentialsRequest,
+  CredentialStatusInfo,
+  EncryptedCredential
 }
 
 /**
@@ -117,6 +120,30 @@ export interface UnsignedCredential {
  */
 export interface Credential extends UnsignedCredential {
   proof: Proof;
+}
+
+/**
+ * Data transfer object for a single EncryptedCredential
+ */
+export interface EncryptedCredentialDto {
+  uuid: string;
+  createdAt: string; // dates should be converted to ISO strings, since this is how they will be represented in the JSON at runtime
+  updatedAt: string; // dates should be converted to ISO strings, since this is how they will be represented in the JSON at runtime
+  credentialId: string;
+  subject: string;
+  issuer: string;
+  type: string;
+  data: EncryptedData;
+  version: string;
+}
+
+/**
+ * Data transfer object for multiple EncryptedCredentials, keyed by credential id
+ */
+export interface EncryptedCredentialsDto {
+  encryptedCredentials: {
+    [credentialId: string]: EncryptedCredentialDto[];
+  }
 }
 
 /**
