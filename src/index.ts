@@ -141,7 +141,9 @@ export interface EncryptedCredentialDto {
  * Data transfer object for multiple EncryptedCredentials, keyed by credential id
  */
 export interface EncryptedCredentialsDto {
-  [credentialId: string]: EncryptedCredentialDto
+  encryptedCredentials: {
+    [credentialId: string]: EncryptedCredentialDto
+  }
 }
 
 /**
