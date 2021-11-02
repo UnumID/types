@@ -395,10 +395,10 @@ export interface ReceiptGroupPresentationRequestData {
  * Type to encapsulate a Presentation ReceiptGroup's data attribute
  */
 export interface ReceiptGroupPresentationData {
-    verifier?: VerifierInfo;
-    holderApp?: Pick<HolderApp, 'name' | 'uuid'>;
-    isVerified: boolean;
-    credentialInfo: CredentialReceiptInfo[];
+    verifier: VerifierInfo;
+    holderApp: Pick<HolderApp, 'name' | 'uuid'>;
+    isVerified?: boolean;
+    credentialInfo?: CredentialReceiptInfo[];
 }
 /**
  * Type to encapsulate a Credential ReceiptGroup's credentialInfo data attribute
