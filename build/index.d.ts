@@ -313,7 +313,7 @@ export interface ReceiptCredentialData {
     type: string;
     version: string;
     credentialId: string;
-    status: string;
+    status: CredentialStatusOptions;
     credentialIssued: Date;
     credentialStatusUpdated?: Date;
     credentialStatusUpdatedBy: string;
