@@ -387,9 +387,9 @@ export interface ReceiptGroupCredentialData {
  */
 export interface ReceiptGroupPresentationRequestData {
     credentialRequestInfo: CredentialRequestInfo[];
-    requestReceived: Date;
-    verifier?: VerifierInfo;
-    holderApp?: Pick<HolderApp, 'name' | 'uuid'>;
+    requestReceived?: Date;
+    verifier: VerifierInfo;
+    holderApp: Pick<HolderApp, 'name' | 'uuid'>;
 }
 /**
  * Type to encapsulate a Presentation ReceiptGroup's data attribute

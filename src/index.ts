@@ -449,9 +449,9 @@ export interface ReceiptGroupCredentialData {
  */
  export interface ReceiptGroupPresentationRequestData {
   credentialRequestInfo: CredentialRequestInfo[] // request group receipts; credential request info
-  requestReceived: Date; // request group receipts; date request received
-  verifier?: VerifierInfo; //  request and presentation group receipts
-  holderApp?: Pick<HolderApp, 'name' | 'uuid'>; // request and presentation group receipts
+  requestReceived?: Date; // request group receipts; date request received
+  verifier: VerifierInfo; //  request and presentation group receipts
+  holderApp: Pick<HolderApp, 'name' | 'uuid'>; // request and presentation group receipts
 }
 
 /**
