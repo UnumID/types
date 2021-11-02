@@ -313,10 +313,6 @@ export interface ReceiptCredentialData {
     type: string;
     version: string;
     credentialId: string;
-    status: CredentialStatusOptions;
-    credentialIssued: Date;
-    credentialStatusUpdated?: Date;
-    credentialStatusUpdatedBy: string;
 }
 /**
  * Type to encapsulate specific Receipt data fields for PresentationRequest related receipts.
@@ -342,7 +338,70 @@ export interface ReceiptPresentationData {
     subject: string;
 }
 /**
+ * Encapsulates ReceiptGroup entity attributes with generic type for the data variance between receipt group types.
+ */
+export interface ReceiptGroup<T = ReceiptGroupDataOptions> {
+    uuid: string;
+    createdAt: Date;
+    updatedAt: Date;
+    type: string;
+    subject?: string;
+    issuer?: string;
+    verifier?: string;
+    presentationIssuers?: string[];
+    credentialId?: string;
+    presentationRequestId?: string;
+    customer?: string;
+    data?: T;
+}
+/**
+ * Type to encapsulate possible ReceiptGroup data fields.
+ */
+export interface ReceiptGroupDataOptions {
+    type?: string;
+    credentialIssued?: Date;
+    status: CredentialStatusOptions;
+    credentialStatusUpdated?: Date;
+    credentialStatusUpdatedBy?: string;
+    credentialRequestInfo: CredentialRequestInfo[];
+    requestReceived: Date;
+    verifier?: VerifierInfo;
+    holderApp?: Pick<HolderApp, 'name' | 'uuid'>;
+    isVerified: boolean;
+    credentialInfo: CredentialReceiptInfo[];
+}
+/**
  * Type to encapsulate a Credential ReceiptGroup's data attribute
+ */
+export interface ReceiptGroupCredentialData {
+    type: string;
+    version: string;
+    credentialId: string;
+    status: CredentialStatusOptions;
+    credentialIssued: Date;
+    credentialStatusUpdated?: Date;
+    credentialStatusUpdatedBy: string;
+}
+/**
+ * Type to encapsulate a PresentationRequest ReceiptGroup's data attribute
+ */
+export interface ReceiptGroupPresentationRequestData {
+    credentialRequestInfo: CredentialRequestInfo[];
+    requestReceived: Date;
+    verifier?: VerifierInfo;
+    holderApp?: Pick<HolderApp, 'name' | 'uuid'>;
+}
+/**
+ * Type to encapsulate a Presentation ReceiptGroup's data attribute
+ */
+export interface ReceiptGroupPresentationData {
+    verifier?: VerifierInfo;
+    holderApp?: Pick<HolderApp, 'name' | 'uuid'>;
+    isVerified: boolean;
+    credentialInfo: CredentialReceiptInfo[];
+}
+/**
+ * Type to encapsulate a Credential ReceiptGroup's credentialInfo data attribute
  */
 export interface CredentialReceiptInfo {
     issuer: IssuerInfo;
