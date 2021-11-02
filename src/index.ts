@@ -441,7 +441,7 @@ export interface ReceiptGroupCredentialData {
   status: CredentialStatusOptions; // credential status
   credentialIssued: Date; // credential issued date
   credentialStatusUpdated?: Date; // credential status modified date
-  credentialStatusUpdatedBy: string // did of the issuer that modified the credential status (or "admin", signifying we used the admin key to update)
+  credentialStatusUpdatedBy?: string // did of the issuer that modified the credential status (or "admin", signifying we used the admin key to update)
 }
 
 /**

@@ -380,7 +380,7 @@ export interface ReceiptGroupCredentialData {
     status: CredentialStatusOptions;
     credentialIssued: Date;
     credentialStatusUpdated?: Date;
-    credentialStatusUpdatedBy: string;
+    credentialStatusUpdatedBy?: string;
 }
 /**
  * Type to encapsulate a PresentationRequest ReceiptGroup's data attribute
