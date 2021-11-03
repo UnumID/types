@@ -63,12 +63,20 @@
 				</a>
 				<p>This project contains all of our shared, generic Typescript types that are used through out the <a href="https://https://docs.unum.id/">UnumID</a> ecosystem. </p>
 				<p>It as well has shared <a href="https://github.com/pelotom/runtypes">runtypes</a> which allows for functionality like graceful runtime string literal type checking. To support runtypes we had to use a index.ts instead of just a type declaration index.d.ts file. This also means that a build step is necessary in order for changes to index.ts to be realized.</p>
-				<a href="#naming-conventions" id="naming-conventions" style="color: inherit; text-decoration: none;">
-					<h2>Naming Conventions</h2>
+				<a href="#conventions" id="conventions" style="color: inherit; text-decoration: none;">
+					<h2>Conventions</h2>
+				</a>
+				<a href="#naming" id="naming" style="color: inherit; text-decoration: none;">
+					<h3>Naming</h3>
 				</a>
 				<p>Generic types such as <code>PresentationRequest</code>, as defined here, ought to be the simplest naming conventions. For example, the PresentationRequest entity definition types ought to go by <code>PresentationRequestEntity</code>.</p>
 				<p>Types explicitly for HTTP interfaces ought have a trailing <code>Dto</code>, i.e. <code>PresentationRequestDto</code>. Furthermore, if the Data Transfer Object is different between the HTTP request verbs, i.e. GET and POST, then include in the type as such, <code>PresentationRequestPostDto</code>.</p>
 				<p>Types that are used for cryptographic purposes should have a unsigned and signed version. However, the signed type should have the simpler naming convention, i.e. <code>Credential</code> is the signed type of <code>UnsignedCredential</code>.</p>
+				<a href="#protocol-buffers" id="protocol-buffers" style="color: inherit; text-decoration: none;">
+					<h3>Protocol Buffers</h3>
+				</a>
+				<p>Ideally all types core to UnumID ought to be defined in the <a href="https://github.com/UnumID/protobufs">protobufs</a> repo and imported into this project. That migration is an ongoing effort. While we migrate to using all Protocol Buffer defined objects and gRPC, we are still using JSON and HTTP for the transport layer. As such attributes defined in protos that go over the network are serialized to JSON which can cause some typing side effects at run time. An example of this is are Date attributes. </p>
+				<p>For this reason we have adopted a convention of extending the proto defined interface here to make the Date attributes strings. One such example is of the EncryptedCredentialDto defined in index.ts which extends the proto defined interface, EncryptedCredential.</p>
 				<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
 					<h2>Documentation</h2>
 				</a>
@@ -163,10 +171,13 @@
 						<a href="interfaces/holderapp.html" class="tsd-kind-icon">Holder<wbr>App</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/issuecredentialrequest.html" class="tsd-kind-icon">Issue<wbr>Credential<wbr>Request</a>
+						<a href="interfaces/holderappinfo.html" class="tsd-kind-icon">Holder<wbr>App<wbr>Info</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/issuecredentialsrequest.html" class="tsd-kind-icon">Issue<wbr>Credentials<wbr>Request</a>
+						<a href="interfaces/issuecredentialdto.html" class="tsd-kind-icon">Issue<wbr>Credential<wbr>Dto</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/issuecredentialsdto.html" class="tsd-kind-icon">Issue<wbr>Credentials<wbr>Dto</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/issuer.html" class="tsd-kind-icon">Issuer</a>
@@ -355,10 +366,19 @@
 						<a href="modules.html#encryptedcredential" class="tsd-kind-icon">Encrypted<wbr>Credential</a>
 					</li>
 					<li class=" tsd-kind-variable">
-						<a href="modules.html#issuecredentialrequest" class="tsd-kind-icon">Issue<wbr>Credential<wbr>Request</a>
+						<a href="modules.html#encrypteddata" class="tsd-kind-icon">Encrypted<wbr>Data</a>
 					</li>
 					<li class=" tsd-kind-variable">
-						<a href="modules.html#issuecredentialsrequest" class="tsd-kind-icon">Issue<wbr>Credentials<wbr>Request</a>
+						<a href="modules.html#encryptedkey" class="tsd-kind-icon">Encrypted<wbr>Key</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#holderappinfo" class="tsd-kind-icon">Holder<wbr>App<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#issuecredentialdto" class="tsd-kind-icon">Issue<wbr>Credential<wbr>Dto</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#issuecredentialsdto" class="tsd-kind-icon">Issue<wbr>Credentials<wbr>Dto</a>
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="modules.html#presentationpb" class="tsd-kind-icon">Presentation<wbr>Pb</a>

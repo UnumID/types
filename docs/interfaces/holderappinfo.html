@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>VerifierOptions | @unumid/types</title>
+	<title>HolderAppInfo | @unumid/types</title>
 	<meta name="description" content="Documentation for @unumid/types">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">@unumid/types</a>
 				</li>
 				<li>
-					<a href="verifieroptions.html">VerifierOptions</a>
+					<a href="holderappinfo.html">HolderAppInfo</a>
 				</li>
 			</ul>
-			<h1>Interface VerifierOptions</h1>
+			<h1>Interface HolderAppInfo</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Encapsulates necessary Verifier entity attributes during creation.</p>
+						<p>Object to encapsulate basic Holder App entity info</p>
 					</div>
 				</div>
 			</section>
@@ -76,7 +76,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">VerifierOptions</span>
+						<span class="target">HolderAppInfo</span>
 					</li>
 				</ul>
 			</section>
@@ -87,10 +87,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="verifieroptions.html#customeruuid" class="tsd-kind-icon">customer<wbr>Uuid</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="verifieroptions.html#publickeyinfo" class="tsd-kind-icon">public<wbr>Key<wbr>Info</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="verifieroptions.html#url" class="tsd-kind-icon">url</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="verifieroptions.html#versioninfo" class="tsd-kind-icon">version<wbr>Info</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="holderappinfo.html#appstoreurl" class="tsd-kind-icon">app<wbr>Store<wbr>Url</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="holderappinfo.html#deeplinkbuttonimg" class="tsd-kind-icon">deeplink<wbr>Button<wbr>Img</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="holderappinfo.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="holderappinfo.html#playstoreurl" class="tsd-kind-icon">play<wbr>Store<wbr>Url</a></li>
 							</ul>
 						</section>
 					</div>
@@ -99,42 +99,47 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="customeruuid" class="tsd-anchor"></a>
-					<h3>customer<wbr>Uuid</h3>
-					<div class="tsd-signature tsd-kind-icon">customer<wbr>Uuid<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="appstoreurl" class="tsd-anchor"></a>
+					<h3>app<wbr>Store<wbr>Url</h3>
+					<div class="tsd-signature tsd-kind-icon">app<wbr>Store<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/be8a004/src/index.ts#L253">index.ts:253</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/be8a004/src/protos/holderApp.ts#L12">protos/holderApp.ts:12</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="publickeyinfo" class="tsd-anchor"></a>
-					<h3>public<wbr>Key<wbr>Info</h3>
-					<div class="tsd-signature tsd-kind-icon">public<wbr>Key<wbr>Info<span class="tsd-signature-symbol">:</span> <a href="publickeyinfo.html" class="tsd-signature-type" data-tsd-kind="Interface">PublicKeyInfo</a><span class="tsd-signature-symbol">[]</span></div>
+					<a name="deeplinkbuttonimg" class="tsd-anchor"></a>
+					<h3>deeplink<wbr>Button<wbr>Img</h3>
+					<div class="tsd-signature tsd-kind-icon">deeplink<wbr>Button<wbr>Img<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/be8a004/src/index.ts#L254">index.ts:254</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/be8a004/src/protos/holderApp.ts#L11">protos/holderApp.ts:11</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>base64 string representation of image</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="name" class="tsd-anchor"></a>
+					<h3>name</h3>
+					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/be8a004/src/protos/holderApp.ts#L9">protos/holderApp.ts:9</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="url" class="tsd-anchor"></a>
-					<h3>url</h3>
-					<div class="tsd-signature tsd-kind-icon">url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="playstoreurl" class="tsd-anchor"></a>
+					<h3>play<wbr>Store<wbr>Url</h3>
+					<div class="tsd-signature tsd-kind-icon">play<wbr>Store<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/be8a004/src/index.ts#L255">index.ts:255</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="versioninfo" class="tsd-anchor"></a>
-					<h3>version<wbr>Info</h3>
-					<div class="tsd-signature tsd-kind-icon">version<wbr>Info<span class="tsd-signature-symbol">:</span> <a href="versioninfo.html" class="tsd-signature-type" data-tsd-kind="Interface">VersionInfo</a><span class="tsd-signature-symbol">[]</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/be8a004/src/index.ts#L256">index.ts:256</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/be8a004/src/protos/holderApp.ts#L13">protos/holderApp.ts:13</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -153,19 +158,19 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="verifieroptions.html" class="tsd-kind-icon">Verifier<wbr>Options</a>
+						<a href="holderappinfo.html" class="tsd-kind-icon">Holder<wbr>App<wbr>Info</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="verifieroptions.html#customeruuid" class="tsd-kind-icon">customer<wbr>Uuid</a>
+								<a href="holderappinfo.html#appstoreurl" class="tsd-kind-icon">app<wbr>Store<wbr>Url</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="verifieroptions.html#publickeyinfo" class="tsd-kind-icon">public<wbr>Key<wbr>Info</a>
+								<a href="holderappinfo.html#deeplinkbuttonimg" class="tsd-kind-icon">deeplink<wbr>Button<wbr>Img</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="verifieroptions.html#url" class="tsd-kind-icon">url</a>
+								<a href="holderappinfo.html#name" class="tsd-kind-icon">name</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="verifieroptions.html#versioninfo" class="tsd-kind-icon">version<wbr>Info</a>
+								<a href="holderappinfo.html#playstoreurl" class="tsd-kind-icon">play<wbr>Store<wbr>Url</a>
 							</li>
 						</ul>
 					</li>
