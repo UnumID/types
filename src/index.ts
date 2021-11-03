@@ -4,7 +4,8 @@ import { UnsignedPresentation as UnsignedPresentationPb, Presentation as Present
 import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest"
 import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb, CredentialStatusInfo} from "./protos/credential";
 import { Proof as ProofPb} from "./protos/proof";
-import { IssueCredentialRequest, IssueCredentialsRequest, EncryptedCredential } from "./protos/credential"
+import { IssueCredentialRequest, IssueCredentialsRequest, EncryptedCredential} from "./protos/credential"
+import { EncryptedData, EncryptedKey } from "./protos/crypto"
 import { HolderAppInfo } from "./protos/holderApp";
 
 // proto defined types that also have older, vanilla ts types defined - hence the proceeding "Pb"
@@ -25,6 +26,12 @@ export {
   IssueCredentialsRequest,
   CredentialStatusInfo,
   EncryptedCredential
+}
+
+export {
+  // protos/crypto
+  EncryptedData,
+  EncryptedKey
 }
 
 /**
@@ -619,25 +626,25 @@ export interface ApiKey {
   name: string
 }
 
-/**
- * Interface to encapsulate an encrypted key.
- * Note: This is used to encrypted an AES key using RSA so that data can be encrypted with the significantly smaller AES key.
- */
-export interface EncryptedKey {
-  iv: string;
-  key: string;
-  algorithm: string;
-  did: string;
-}
+// /**
+//  * Interface to encapsulate an encrypted key.
+//  * Note: This is used to encrypted an AES key using RSA so that data can be encrypted with the significantly smaller AES key.
+//  */
+// export interface EncryptedKey {
+//   iv: string;
+//   key: string;
+//   algorithm: string;
+//   did: string;
+// }
 
-/**
- * Interface to encapsulate encrypted information along side its encrypted decryption key.
- * Note: please see EncryptedKey.
- */
-export interface EncryptedData {
-  data: string;
-  key: EncryptedKey;
-}
+// /**
+//  * Interface to encapsulate encrypted information along side its encrypted decryption key.
+//  * Note: please see EncryptedKey.
+//  */
+// export interface EncryptedData {
+//   data: string;
+//   key: EncryptedKey;
+// }
 
 /**
  * Interface to encapsulate information related to a public key.
