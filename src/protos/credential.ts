@@ -53,7 +53,10 @@ export interface CredentialRequest {
   required: boolean;
 }
 
-/** Object that encapsulates an EncryptedCredential. */
+/**
+ * Object that encapsulates an EncryptedCredential.
+ * Note: this is more of the DTO to persist an EncryptedCredential in the saas because no uuid is defined here.
+ */
 export interface EncryptedCredential {
   credentialId: string;
   subject: string;

@@ -94,16 +94,12 @@ export interface Credential extends UnsignedCredential {
 }
 /**
  * Data transfer object for a single EncryptedCredential
+ * Note: extending the protobuf definition of EncryptedCredential in order to make the date fields string for json serialization
  */
-export interface EncryptedCredentialDto {
+export interface EncryptedCredentialDto extends EncryptedCredential {
     uuid: string;
     createdAt: string;
     updatedAt: string;
-    credentialId: string;
-    subject: string;
-    issuer: string;
-    type: string;
-    data: EncryptedData;
     version: string;
 }
 /**

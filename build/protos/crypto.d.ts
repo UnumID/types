@@ -1,13 +1,19 @@
 import _m0 from "protobufjs/minimal";
 export declare const protobufPackage = "crypto.v1";
-/** Object to encapsulate encrypted data */
+/**
+ * Interface to encapsulate an encrypted key.
+ * Note: This is used to encrypted an AES key using RSA so that data can be encrypted with the significantly smaller AES key.
+ */
 export interface EncryptedKey {
     iv: string;
     key: string;
     algorithm: string;
     did: string;
 }
-/** Object to encapsulate encrypted data */
+/**
+ * Interface to encapsulate encrypted information along side its encrypted decryption key.
+ * Note: please see EncryptedKey.
+ */
 export interface EncryptedData {
     data: string;
     key: EncryptedKey | undefined;
