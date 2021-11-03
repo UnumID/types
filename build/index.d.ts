@@ -374,6 +374,7 @@ export interface ReceiptGroupDataOptions {
  * Type to encapsulate a Credential ReceiptGroup's data attribute
  */
 export interface ReceiptGroupCredentialData {
+    issuer: IssuerInfo;
     type: string;
     version: string;
     credentialId: string;

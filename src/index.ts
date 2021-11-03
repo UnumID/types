@@ -435,6 +435,7 @@ export interface ReceiptPresentationRequestData {
  * Type to encapsulate a Credential ReceiptGroup's data attribute
  */
 export interface ReceiptGroupCredentialData {
+  issuer: IssuerInfo;
   type: string; // credential type
   version: string; // credential version
   credentialId: string; // credential id
