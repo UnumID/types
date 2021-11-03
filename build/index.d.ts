@@ -5,11 +5,13 @@ import { UnsignedPresentation as UnsignedPresentationPb, Presentation as Present
 import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest";
 import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb, CredentialStatusInfo } from "./protos/credential";
 import { Proof as ProofPb } from "./protos/proof";
-import { IssueCredentialRequest, IssueCredentialsRequest, EncryptedCredential } from "./protos/credential";
+import { IssueCredentialDto, IssueCredentialsDto, EncryptedCredential } from "./protos/credential";
 import { EncryptedData, EncryptedKey } from "./protos/crypto";
+import { HolderAppInfo } from "./protos/holderApp";
 export { UnsignedPresentationPb, PresentationPb, UnsignedPresentationRequestPb, PresentationRequestPb, UnsignedCredentialPb, CredentialPb, CredentialRequestPb, ProofPb };
-export { IssueCredentialRequest, IssueCredentialsRequest, CredentialStatusInfo, EncryptedCredential };
+export { IssueCredentialDto, IssueCredentialsDto, CredentialStatusInfo, EncryptedCredential };
 export { EncryptedData, EncryptedKey };
+export { HolderAppInfo };
 /**
  * Interface to encapsulate a base Unum Entity.
  */

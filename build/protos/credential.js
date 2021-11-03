@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CredentialStatusInfo = exports.IssueCredentialsRequest = exports.IssueCredentialRequest = exports.EncryptedCredential = exports.CredentialRequest = exports.Credential = exports.UnsignedCredential = exports.CredentialStatus = exports.protobufPackage = void 0;
+exports.CredentialStatusInfo = exports.IssueCredentialsDto = exports.IssueCredentialDto = exports.EncryptedCredential = exports.CredentialRequest = exports.Credential = exports.UnsignedCredential = exports.CredentialStatus = exports.protobufPackage = void 0;
 /* eslint-disable */
 var long_1 = __importDefault(require("long"));
 var minimal_1 = __importDefault(require("protobufjs/minimal"));
@@ -791,13 +791,13 @@ exports.EncryptedCredential = {
         return message;
     },
 };
-var baseIssueCredentialRequest = {
+var baseIssueCredentialDto = {
     credentialId: "",
     subject: "",
     issuer: "",
     type: "",
 };
-exports.IssueCredentialRequest = {
+exports.IssueCredentialDto = {
     encode: function (message, writer) {
         if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
         if (message.credentialId !== "") {
@@ -821,7 +821,7 @@ exports.IssueCredentialRequest = {
     decode: function (input, length) {
         var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         var end = length === undefined ? reader.len : reader.pos + length;
-        var message = __assign({}, baseIssueCredentialRequest);
+        var message = __assign({}, baseIssueCredentialDto);
         message.encryptedCredentials = [];
         while (reader.pos < end) {
             var tag = reader.uint32();
@@ -849,7 +849,7 @@ exports.IssueCredentialRequest = {
         return message;
     },
     fromJSON: function (object) {
-        var message = __assign({}, baseIssueCredentialRequest);
+        var message = __assign({}, baseIssueCredentialDto);
         message.encryptedCredentials = [];
         if (object.credentialId !== undefined && object.credentialId !== null) {
             message.credentialId = String(object.credentialId);
@@ -902,7 +902,7 @@ exports.IssueCredentialRequest = {
         return obj;
     },
     fromPartial: function (object) {
-        var message = __assign({}, baseIssueCredentialRequest);
+        var message = __assign({}, baseIssueCredentialDto);
         message.encryptedCredentials = [];
         if (object.credentialId !== undefined && object.credentialId !== null) {
             message.credentialId = object.credentialId;
@@ -938,26 +938,26 @@ exports.IssueCredentialRequest = {
         return message;
     },
 };
-var baseIssueCredentialsRequest = {};
-exports.IssueCredentialsRequest = {
+var baseIssueCredentialsDto = {};
+exports.IssueCredentialsDto = {
     encode: function (message, writer) {
         if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
         for (var _i = 0, _a = message.credentialRequests; _i < _a.length; _i++) {
             var v = _a[_i];
-            exports.IssueCredentialRequest.encode(v, writer.uint32(10).fork()).ldelim();
+            exports.IssueCredentialDto.encode(v, writer.uint32(10).fork()).ldelim();
         }
         return writer;
     },
     decode: function (input, length) {
         var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         var end = length === undefined ? reader.len : reader.pos + length;
-        var message = __assign({}, baseIssueCredentialsRequest);
+        var message = __assign({}, baseIssueCredentialsDto);
         message.credentialRequests = [];
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.credentialRequests.push(exports.IssueCredentialRequest.decode(reader, reader.uint32()));
+                    message.credentialRequests.push(exports.IssueCredentialDto.decode(reader, reader.uint32()));
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -967,13 +967,13 @@ exports.IssueCredentialsRequest = {
         return message;
     },
     fromJSON: function (object) {
-        var message = __assign({}, baseIssueCredentialsRequest);
+        var message = __assign({}, baseIssueCredentialsDto);
         message.credentialRequests = [];
         if (object.credentialRequests !== undefined &&
             object.credentialRequests !== null) {
             for (var _i = 0, _a = object.credentialRequests; _i < _a.length; _i++) {
                 var e = _a[_i];
-                message.credentialRequests.push(exports.IssueCredentialRequest.fromJSON(e));
+                message.credentialRequests.push(exports.IssueCredentialDto.fromJSON(e));
             }
         }
         return message;
@@ -982,7 +982,7 @@ exports.IssueCredentialsRequest = {
         var obj = {};
         if (message.credentialRequests) {
             obj.credentialRequests = message.credentialRequests.map(function (e) {
-                return e ? exports.IssueCredentialRequest.toJSON(e) : undefined;
+                return e ? exports.IssueCredentialDto.toJSON(e) : undefined;
             });
         }
         else {
@@ -991,13 +991,13 @@ exports.IssueCredentialsRequest = {
         return obj;
     },
     fromPartial: function (object) {
-        var message = __assign({}, baseIssueCredentialsRequest);
+        var message = __assign({}, baseIssueCredentialsDto);
         message.credentialRequests = [];
         if (object.credentialRequests !== undefined &&
             object.credentialRequests !== null) {
             for (var _i = 0, _a = object.credentialRequests; _i < _a.length; _i++) {
                 var e = _a[_i];
-                message.credentialRequests.push(exports.IssueCredentialRequest.fromPartial(e));
+                message.credentialRequests.push(exports.IssueCredentialDto.fromPartial(e));
             }
         }
         return message;
