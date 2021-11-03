@@ -5,6 +5,7 @@ import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, Presentat
 import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb, CredentialStatusInfo} from "./protos/credential";
 import { Proof as ProofPb} from "./protos/proof";
 import { IssueCredentialRequest, IssueCredentialsRequest, EncryptedCredential } from "./protos/credential"
+import { HolderAppInfo } from "./protos/holderApp";
 
 // proto defined types that also have older, vanilla ts types defined - hence the proceeding "Pb"
 export { 
@@ -334,7 +335,7 @@ export interface Receipt<T = ReceiptDataOptions> {
   issuer?: string;
   verifier?: string;
   group?: string;
-  data?: T;
+  data: T;
 }
 
 /**
@@ -363,6 +364,10 @@ export interface ReceiptDataOptions {
   type: string; // credential type
   version: string; // credential version
   credentialId: string; // credential id
+  // status: CredentialStatusOptions; // credential status
+  // credentialIssued: Date; // credential issued date
+  // credentialStatusUpdated?: Date; // credential status modified date
+  // credentialStatusUpdatedBy: string // did of the issuer that modified the credential status (or "admin", signifying we used the admin key to update)
 }
 
 /**
@@ -391,7 +396,77 @@ export interface ReceiptPresentationRequestData {
 }
 
 /**
+ * Encapsulates ReceiptGroup entity attributes with generic type for the data variance between receipt group types. 
+ */
+ export interface ReceiptGroup<T = ReceiptGroupDataOptions> {
+  uuid: string;
+  createdAt: Date;
+  updatedAt: Date;
+  type: string;
+  subject?: string;
+  issuer?: string;
+  verifier?: string;
+  presentationIssuers?: string[];
+  credentialId?: string;
+  presentationRequestId?: string;
+  customer?: string; // customer uuid from saas
+  data: T;
+}
+
+
+/**
+ * Type to encapsulate possible ReceiptGroup data fields. 
+ */
+ export interface ReceiptGroupDataOptions {
+  type?: string; // credential group receipts; credential type
+  credentialIssued?: Date; // credential group receipts; date issued
+  status: CredentialStatusOptions; // credential group receipts; status
+  credentialStatusUpdated?: Date; // credential group receipts; date status updated
+  credentialStatusUpdatedBy?: string; // credential group receipts; did of issuer updated by or "admin" if admin key used
+  credentialRequestInfo: CredentialRequestInfo[] // request group receipts; credential request info
+  requestReceived: Date; // request group receipts; date request received
+  verifier?: VerifierInfo; //  request and presentation group receipts
+  holderApp?: Pick<HolderApp, 'name' | 'uuid'>; // request and presentation group receipts
+  isVerified: boolean; // presentation group receipts; is presentation verified
+  credentialInfo: CredentialReceiptInfo[]; // presentation group receipts; presentation's credentials info
+}
+
+/**
  * Type to encapsulate a Credential ReceiptGroup's data attribute
+ */
+export interface ReceiptGroupCredentialData {
+  issuer: IssuerInfo;
+  type: string; // credential type
+  version: string; // credential version
+  credentialId: string; // credential id
+  status: CredentialStatusOptions; // credential status
+  credentialIssued: Date; // credential issued date
+  credentialStatusUpdated?: Date; // credential status modified date
+  credentialStatusUpdatedBy?: string // did of the issuer that modified the credential status (or "admin", signifying we used the admin key to update)
+}
+
+/**
+ * Type to encapsulate a PresentationRequest ReceiptGroup's data attribute
+ */
+ export interface ReceiptGroupPresentationRequestData {
+  credentialRequestInfo: CredentialRequestInfo[] // request group receipts; credential request info
+  requestReceived?: Date; // request group receipts; date request received
+  verifier: VerifierInfo; //  request and presentation group receipts
+  holderApp: Pick<HolderApp, 'name' | 'uuid'>; // request and presentation group receipts
+}
+
+/**
+ * Type to encapsulate a Presentation ReceiptGroup's data attribute
+ */
+ export interface ReceiptGroupPresentationData {
+  verifier: VerifierInfo; //  request and presentation group receipts
+  holderApp: Pick<HolderApp, 'name' | 'uuid'>; // request and presentation group receipts
+  isVerified?: boolean; // presentation group receipts; is presentation verified
+  credentialInfo?: CredentialReceiptInfo[]; // presentation group receipts; presentation's credentials info
+}
+
+/**
+ * Type to encapsulate a Credential ReceiptGroup's credentialInfo data attribute
  */
 export interface CredentialReceiptInfo {
   issuer: IssuerInfo;
