@@ -44,7 +44,10 @@ export interface CredentialRequest {
     /** to denote wether this particular credential is required in response to the PresentationRequest. Defaults behavior resolves this to true. */
     required: boolean;
 }
-/** Object that encapsulates an EncryptedCredential. */
+/**
+ * Object that encapsulates an EncryptedCredential.
+ * Note: this is more of the DTO to persist an EncryptedCredential in the saas because no uuid is defined here.
+ */
 export interface EncryptedCredential {
     credentialId: string;
     subject: string;
@@ -57,7 +60,7 @@ export interface EncryptedCredential {
  * Note: that the while can handle multiple EncryptedCredentials that is for the edge case of
  * the same credential (id, type, subject, issuer) being encrypted with different holder public keys
  */
-export interface IssueCredentialRequest {
+export interface IssueCredentialDto {
     credentialId: string;
     subject: string;
     issuer: string;
@@ -65,8 +68,8 @@ export interface IssueCredentialRequest {
     encryptedCredentials: EncryptedCredential[];
 }
 /** Object that encapsulates a request to Unum ID SaaS to issue multiple credentials of various types. */
-export interface IssueCredentialsRequest {
-    credentialRequests: IssueCredentialRequest[];
+export interface IssueCredentialsDto {
+    credentialRequests: IssueCredentialDto[];
 }
 /** Object that encapsulates CredentialStatus information. */
 export interface CredentialStatusInfo {
@@ -112,19 +115,19 @@ export declare const EncryptedCredential: {
     toJSON(message: EncryptedCredential): unknown;
     fromPartial(object: DeepPartial<EncryptedCredential>): EncryptedCredential;
 };
-export declare const IssueCredentialRequest: {
-    encode(message: IssueCredentialRequest, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): IssueCredentialRequest;
-    fromJSON(object: any): IssueCredentialRequest;
-    toJSON(message: IssueCredentialRequest): unknown;
-    fromPartial(object: DeepPartial<IssueCredentialRequest>): IssueCredentialRequest;
+export declare const IssueCredentialDto: {
+    encode(message: IssueCredentialDto, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): IssueCredentialDto;
+    fromJSON(object: any): IssueCredentialDto;
+    toJSON(message: IssueCredentialDto): unknown;
+    fromPartial(object: DeepPartial<IssueCredentialDto>): IssueCredentialDto;
 };
-export declare const IssueCredentialsRequest: {
-    encode(message: IssueCredentialsRequest, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): IssueCredentialsRequest;
-    fromJSON(object: any): IssueCredentialsRequest;
-    toJSON(message: IssueCredentialsRequest): unknown;
-    fromPartial(object: DeepPartial<IssueCredentialsRequest>): IssueCredentialsRequest;
+export declare const IssueCredentialsDto: {
+    encode(message: IssueCredentialsDto, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): IssueCredentialsDto;
+    fromJSON(object: any): IssueCredentialsDto;
+    toJSON(message: IssueCredentialsDto): unknown;
+    fromPartial(object: DeepPartial<IssueCredentialsDto>): IssueCredentialsDto;
 };
 export declare const CredentialStatusInfo: {
     encode(message: CredentialStatusInfo, writer?: _m0.Writer): _m0.Writer;

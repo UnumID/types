@@ -53,7 +53,10 @@ export interface CredentialRequest {
   required: boolean;
 }
 
-/** Object that encapsulates an EncryptedCredential. */
+/**
+ * Object that encapsulates an EncryptedCredential.
+ * Note: this is more of the DTO to persist an EncryptedCredential in the saas because no uuid is defined here.
+ */
 export interface EncryptedCredential {
   credentialId: string;
   subject: string;
@@ -67,7 +70,7 @@ export interface EncryptedCredential {
  * Note: that the while can handle multiple EncryptedCredentials that is for the edge case of
  * the same credential (id, type, subject, issuer) being encrypted with different holder public keys
  */
-export interface IssueCredentialRequest {
+export interface IssueCredentialDto {
   credentialId: string;
   subject: string;
   issuer: string;
@@ -76,8 +79,8 @@ export interface IssueCredentialRequest {
 }
 
 /** Object that encapsulates a request to Unum ID SaaS to issue multiple credentials of various types. */
-export interface IssueCredentialsRequest {
-  credentialRequests: IssueCredentialRequest[];
+export interface IssueCredentialsDto {
+  credentialRequests: IssueCredentialDto[];
 }
 
 /** Object that encapsulates CredentialStatus information. */
@@ -891,16 +894,16 @@ export const EncryptedCredential = {
   },
 };
 
-const baseIssueCredentialRequest: object = {
+const baseIssueCredentialDto: object = {
   credentialId: "",
   subject: "",
   issuer: "",
   type: "",
 };
 
-export const IssueCredentialRequest = {
+export const IssueCredentialDto = {
   encode(
-    message: IssueCredentialRequest,
+    message: IssueCredentialDto,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
     if (message.credentialId !== "") {
@@ -921,13 +924,10 @@ export const IssueCredentialRequest = {
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): IssueCredentialRequest {
+  decode(input: _m0.Reader | Uint8Array, length?: number): IssueCredentialDto {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = { ...baseIssueCredentialRequest } as IssueCredentialRequest;
+    const message = { ...baseIssueCredentialDto } as IssueCredentialDto;
     message.encryptedCredentials = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
@@ -957,8 +957,8 @@ export const IssueCredentialRequest = {
     return message;
   },
 
-  fromJSON(object: any): IssueCredentialRequest {
-    const message = { ...baseIssueCredentialRequest } as IssueCredentialRequest;
+  fromJSON(object: any): IssueCredentialDto {
+    const message = { ...baseIssueCredentialDto } as IssueCredentialDto;
     message.encryptedCredentials = [];
     if (object.credentialId !== undefined && object.credentialId !== null) {
       message.credentialId = String(object.credentialId);
@@ -991,7 +991,7 @@ export const IssueCredentialRequest = {
     return message;
   },
 
-  toJSON(message: IssueCredentialRequest): unknown {
+  toJSON(message: IssueCredentialDto): unknown {
     const obj: any = {};
     message.credentialId !== undefined &&
       (obj.credentialId = message.credentialId);
@@ -1008,10 +1008,8 @@ export const IssueCredentialRequest = {
     return obj;
   },
 
-  fromPartial(
-    object: DeepPartial<IssueCredentialRequest>
-  ): IssueCredentialRequest {
-    const message = { ...baseIssueCredentialRequest } as IssueCredentialRequest;
+  fromPartial(object: DeepPartial<IssueCredentialDto>): IssueCredentialDto {
+    const message = { ...baseIssueCredentialDto } as IssueCredentialDto;
     message.encryptedCredentials = [];
     if (object.credentialId !== undefined && object.credentialId !== null) {
       message.credentialId = object.credentialId;
@@ -1045,35 +1043,30 @@ export const IssueCredentialRequest = {
   },
 };
 
-const baseIssueCredentialsRequest: object = {};
+const baseIssueCredentialsDto: object = {};
 
-export const IssueCredentialsRequest = {
+export const IssueCredentialsDto = {
   encode(
-    message: IssueCredentialsRequest,
+    message: IssueCredentialsDto,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
     for (const v of message.credentialRequests) {
-      IssueCredentialRequest.encode(v!, writer.uint32(10).fork()).ldelim();
+      IssueCredentialDto.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): IssueCredentialsRequest {
+  decode(input: _m0.Reader | Uint8Array, length?: number): IssueCredentialsDto {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = {
-      ...baseIssueCredentialsRequest,
-    } as IssueCredentialsRequest;
+    const message = { ...baseIssueCredentialsDto } as IssueCredentialsDto;
     message.credentialRequests = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
           message.credentialRequests.push(
-            IssueCredentialRequest.decode(reader, reader.uint32())
+            IssueCredentialDto.decode(reader, reader.uint32())
           );
           break;
         default:
@@ -1084,27 +1077,25 @@ export const IssueCredentialsRequest = {
     return message;
   },
 
-  fromJSON(object: any): IssueCredentialsRequest {
-    const message = {
-      ...baseIssueCredentialsRequest,
-    } as IssueCredentialsRequest;
+  fromJSON(object: any): IssueCredentialsDto {
+    const message = { ...baseIssueCredentialsDto } as IssueCredentialsDto;
     message.credentialRequests = [];
     if (
       object.credentialRequests !== undefined &&
       object.credentialRequests !== null
     ) {
       for (const e of object.credentialRequests) {
-        message.credentialRequests.push(IssueCredentialRequest.fromJSON(e));
+        message.credentialRequests.push(IssueCredentialDto.fromJSON(e));
       }
     }
     return message;
   },
 
-  toJSON(message: IssueCredentialsRequest): unknown {
+  toJSON(message: IssueCredentialsDto): unknown {
     const obj: any = {};
     if (message.credentialRequests) {
       obj.credentialRequests = message.credentialRequests.map((e) =>
-        e ? IssueCredentialRequest.toJSON(e) : undefined
+        e ? IssueCredentialDto.toJSON(e) : undefined
       );
     } else {
       obj.credentialRequests = [];
@@ -1112,19 +1103,15 @@ export const IssueCredentialsRequest = {
     return obj;
   },
 
-  fromPartial(
-    object: DeepPartial<IssueCredentialsRequest>
-  ): IssueCredentialsRequest {
-    const message = {
-      ...baseIssueCredentialsRequest,
-    } as IssueCredentialsRequest;
+  fromPartial(object: DeepPartial<IssueCredentialsDto>): IssueCredentialsDto {
+    const message = { ...baseIssueCredentialsDto } as IssueCredentialsDto;
     message.credentialRequests = [];
     if (
       object.credentialRequests !== undefined &&
       object.credentialRequests !== null
     ) {
       for (const e of object.credentialRequests) {
-        message.credentialRequests.push(IssueCredentialRequest.fromPartial(e));
+        message.credentialRequests.push(IssueCredentialDto.fromPartial(e));
       }
     }
     return message;
