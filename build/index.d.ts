@@ -111,7 +111,7 @@ export interface EncryptedCredentialDto {
  */
 export interface EncryptedCredentialsDto {
     encryptedCredentials: {
-        [credentialId: string]: EncryptedCredentialDto[];
+        [version: string]: EncryptedCredentialDto[];
     };
 }
 /**
