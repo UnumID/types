@@ -151,6 +151,25 @@ export interface EncryptedCredentialDto extends EncryptedCredential {
 }
 
 /**
+ * Data transfer object for a single CredentialRepositoryResponse
+ * Note: extending the protobuf definition of CredentialRepositoryResponse in order to make the date fields string for json serialization and did document align with @context
+ */
+// TODO use in v4 instead of EncryptedCredentialDto. Not using now because all service would need to be using the proto didDoc def, which does not have @context, instead just context... break change
+//  export interface CredentialRepositoryDto extends CredentialRepositoryResponse {
+//   createdAt: string; // dates should be converted to ISO strings, since this is how they will be represented in the JSON at runtime
+//   updatedAt: string; // dates should be converted to ISO strings, since this is how they will be represented in the JSON at runtime
+// }
+
+/**
+ * Interface to encapsulate a single CredentialRepositoryDto response
+ * Note: ought to be deprecated in v4 in favor of CredentialRepositoryResponse.
+ */
+export interface CredentialRepositoryDto {
+  encryptedCredential: EncryptedCredentialDto;
+  didDocument: DidDocument;
+}
+
+/**
  * Data transfer object for multiple EncryptedCredentials, keyed by credential id
  */
 export interface EncryptedCredentialsDto {

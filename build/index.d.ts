@@ -108,6 +108,18 @@ export interface EncryptedCredentialDto extends EncryptedCredential {
     version: string;
 }
 /**
+ * Data transfer object for a single CredentialRepositoryResponse
+ * Note: extending the protobuf definition of CredentialRepositoryResponse in order to make the date fields string for json serialization and did document align with @context
+ */
+/**
+ * Interface to encapsulate a single CredentialRepositoryDto response
+ * Note: ought to be deprecated in v4 in favor of CredentialRepositoryResponse.
+ */
+export interface CredentialRepositoryDto {
+    encryptedCredential: EncryptedCredentialDto;
+    didDocument: DidDocument;
+}
+/**
  * Data transfer object for multiple EncryptedCredentials, keyed by credential id
  */
 export interface EncryptedCredentialsDto {
