@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports._CredentialStatusOptions = exports.pushProviders = exports.HolderAppInfo = exports.EncryptedKey = exports.EncryptedData = exports.EncryptedCredential = exports.CredentialStatusInfo = exports.IssueCredentialsDto = exports.IssueCredentialDto = exports.ProofPb = exports.CredentialRequestPb = exports.CredentialPb = exports.UnsignedCredentialPb = exports.PresentationRequestPb = exports.UnsignedPresentationRequestPb = exports.PresentationPb = exports.UnsignedPresentationPb = void 0;
+exports._CredentialStatusOptions = exports.pushProviders = exports.RSAPadding = exports.HolderAppInfo = exports.EncryptedKey = exports.EncryptedData = exports.EncryptedCredential = exports.CredentialStatusInfo = exports.IssueCredentialsDto = exports.IssueCredentialDto = exports.ProofPb = exports.CredentialRequestPb = exports.CredentialPb = exports.UnsignedCredentialPb = exports.PresentationRequestPb = exports.UnsignedPresentationRequestPb = exports.PresentationPb = exports.UnsignedPresentationPb = void 0;
 var runtypes_1 = require("runtypes");
 var presentation_1 = require("./protos/presentation");
 Object.defineProperty(exports, "UnsignedPresentationPb", { enumerable: true, get: function () { return presentation_1.UnsignedPresentation; } });
@@ -24,6 +24,14 @@ Object.defineProperty(exports, "EncryptedData", { enumerable: true, get: functio
 Object.defineProperty(exports, "EncryptedKey", { enumerable: true, get: function () { return crypto_1.EncryptedKey; } });
 var holderApp_1 = require("./protos/holderApp");
 Object.defineProperty(exports, "HolderAppInfo", { enumerable: true, get: function () { return holderApp_1.HolderAppInfo; } });
+/**
+ * Enum containing all of the RSA padding types that we use
+ */
+var RSAPadding;
+(function (RSAPadding) {
+    RSAPadding["PKCS"] = "PKCS1-1_5";
+    RSAPadding["OAEP"] = "OAEP";
+})(RSAPadding = exports.RSAPadding || (exports.RSAPadding = {}));
 /**
  * A readonly list of push notification providers.
  */

@@ -632,6 +632,14 @@ export interface ApiKey {
 }
 
 /**
+ * Enum containing all of the RSA padding types that we use
+ */
+export enum RSAPadding {
+  PKCS = 'PKCS1-1_5',
+  OAEP = 'OAEP'
+}
+
+/**
  * Interface to encapsulate information related to a public key.
  */
 export interface PublicKeyInfo {
@@ -645,7 +653,7 @@ export interface PublicKeyInfo {
   // for RSA keys.
   // encrypt/decrypt implementations should default to 'PKCS1-v1_5' for backwards compatibilty
   // if possible (web crypto only allows OAEP padding for encrypt/decrypt operations)
-  rsaPadding?: 'PKCS1-1_5' | 'OAEP';
+  rsaPadding?: RSAPadding;
 }
 
 /**
