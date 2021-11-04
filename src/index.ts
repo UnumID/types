@@ -642,6 +642,10 @@ export interface PublicKeyInfo {
   status: 'valid' | 'invalid';
   createdAt: Date;
   updatedAt: Date;
+  // for RSA keys.
+  // encrypt/decrypt implementations should default to 'PKCS1-v1_5' for backwards compatibilty
+  // if possible (web crypto only allows OAEP padding for encrypt/decrypt operations)
+  rsaPadding?: 'PKCS1-1_5' | 'OAEP';
 }
 
 /**
