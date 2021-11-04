@@ -546,6 +546,13 @@ export interface ApiKey {
     name: string;
 }
 /**
+ * Enum containing all of the RSA padding types that we use
+ */
+export declare enum RSAPadding {
+    PKCS = "PKCS1-1_5",
+    OAEP = "OAEP"
+}
+/**
  * Interface to encapsulate information related to a public key.
  */
 export interface PublicKeyInfo {
@@ -556,7 +563,7 @@ export interface PublicKeyInfo {
     status: 'valid' | 'invalid';
     createdAt: Date;
     updatedAt: Date;
-    rsaPadding?: 'PKCS1-1_5' | 'OAEP';
+    rsaPadding?: RSAPadding;
 }
 /**
  * Interface to encapsulate Did Document information.
