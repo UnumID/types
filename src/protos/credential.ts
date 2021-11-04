@@ -4,6 +4,7 @@ import _m0 from "protobufjs/minimal";
 import { Timestamp } from "./google/protobuf/timestamp";
 import { Proof } from "./proof";
 import { EncryptedData } from "./crypto";
+import { DidDocument } from "./didDocument";
 
 export const protobufPackage = "credential.v1";
 
@@ -88,9 +89,34 @@ export interface CredentialStatusInfo {
   uuid: string;
   createdAt: Date | undefined;
   updatedAt: Date | undefined;
-  credentialId: string;
+  credentialiId: string;
   /** note could be an enum but just simplier this way... only valid values are: revoked, valid */
   status: string;
+}
+
+/**
+ * Object that encapsulates an EncryptedCredentialRespose.
+ * Note: this is the SaaS' response of EncryptedCredential from the SaaS DB.
+ */
+export interface EncryptedCredentialResponse {
+  uuid: string;
+  credentialId: string;
+  subject: string;
+  issuer: string;
+  type: string;
+  data: EncryptedData | undefined;
+  version: string;
+  createdAt: Date | undefined;
+  updatedAt: Date | undefined;
+}
+
+/**
+ * Object that encapsulates an EncryptedCredential.
+ * Note: this is more of the DTO to persist an EncryptedCredential in the saas because no uuid is defined here.
+ */
+export interface CredentialRepositoryResponse {
+  encryptedCredential: EncryptedCredentialResponse | undefined;
+  didDocument: DidDocument | undefined;
 }
 
 const baseCredentialStatus: object = { id: "", type: "" };
@@ -1120,7 +1146,7 @@ export const IssueCredentialsDto = {
 
 const baseCredentialStatusInfo: object = {
   uuid: "",
-  credentialId: "",
+  credentialiId: "",
   status: "",
 };
 
@@ -1144,8 +1170,8 @@ export const CredentialStatusInfo = {
         writer.uint32(26).fork()
       ).ldelim();
     }
-    if (message.credentialId !== "") {
-      writer.uint32(34).string(message.credentialId);
+    if (message.credentialiId !== "") {
+      writer.uint32(34).string(message.credentialiId);
     }
     if (message.status !== "") {
       writer.uint32(42).string(message.status);
@@ -1177,7 +1203,7 @@ export const CredentialStatusInfo = {
           );
           break;
         case 4:
-          message.credentialId = reader.string();
+          message.credentialiId = reader.string();
           break;
         case 5:
           message.status = reader.string();
@@ -1207,10 +1233,10 @@ export const CredentialStatusInfo = {
     } else {
       message.updatedAt = undefined;
     }
-    if (object.credentialId !== undefined && object.credentialId !== null) {
-      message.credentialId = String(object.credentialId);
+    if (object.credentialiId !== undefined && object.credentialiId !== null) {
+      message.credentialiId = String(object.credentialiId);
     } else {
-      message.credentialId = "";
+      message.credentialiId = "";
     }
     if (object.status !== undefined && object.status !== null) {
       message.status = String(object.status);
@@ -1227,8 +1253,8 @@ export const CredentialStatusInfo = {
       (obj.createdAt = message.createdAt.toISOString());
     message.updatedAt !== undefined &&
       (obj.updatedAt = message.updatedAt.toISOString());
-    message.credentialId !== undefined &&
-      (obj.credentialId = message.credentialId);
+    message.credentialiId !== undefined &&
+      (obj.credentialiId = message.credentialiId);
     message.status !== undefined && (obj.status = message.status);
     return obj;
   },
@@ -1250,15 +1276,354 @@ export const CredentialStatusInfo = {
     } else {
       message.updatedAt = undefined;
     }
-    if (object.credentialId !== undefined && object.credentialId !== null) {
-      message.credentialId = object.credentialId;
+    if (object.credentialiId !== undefined && object.credentialiId !== null) {
+      message.credentialiId = object.credentialiId;
     } else {
-      message.credentialId = "";
+      message.credentialiId = "";
     }
     if (object.status !== undefined && object.status !== null) {
       message.status = object.status;
     } else {
       message.status = "";
+    }
+    return message;
+  },
+};
+
+const baseEncryptedCredentialResponse: object = {
+  uuid: "",
+  credentialId: "",
+  subject: "",
+  issuer: "",
+  type: "",
+  version: "",
+};
+
+export const EncryptedCredentialResponse = {
+  encode(
+    message: EncryptedCredentialResponse,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.uuid !== "") {
+      writer.uint32(10).string(message.uuid);
+    }
+    if (message.credentialId !== "") {
+      writer.uint32(18).string(message.credentialId);
+    }
+    if (message.subject !== "") {
+      writer.uint32(26).string(message.subject);
+    }
+    if (message.issuer !== "") {
+      writer.uint32(34).string(message.issuer);
+    }
+    if (message.type !== "") {
+      writer.uint32(42).string(message.type);
+    }
+    if (message.data !== undefined) {
+      EncryptedData.encode(message.data, writer.uint32(50).fork()).ldelim();
+    }
+    if (message.version !== "") {
+      writer.uint32(58).string(message.version);
+    }
+    if (message.createdAt !== undefined) {
+      Timestamp.encode(
+        toTimestamp(message.createdAt),
+        writer.uint32(66).fork()
+      ).ldelim();
+    }
+    if (message.updatedAt !== undefined) {
+      Timestamp.encode(
+        toTimestamp(message.updatedAt),
+        writer.uint32(74).fork()
+      ).ldelim();
+    }
+    return writer;
+  },
+
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): EncryptedCredentialResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseEncryptedCredentialResponse,
+    } as EncryptedCredentialResponse;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.uuid = reader.string();
+          break;
+        case 2:
+          message.credentialId = reader.string();
+          break;
+        case 3:
+          message.subject = reader.string();
+          break;
+        case 4:
+          message.issuer = reader.string();
+          break;
+        case 5:
+          message.type = reader.string();
+          break;
+        case 6:
+          message.data = EncryptedData.decode(reader, reader.uint32());
+          break;
+        case 7:
+          message.version = reader.string();
+          break;
+        case 8:
+          message.createdAt = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
+          break;
+        case 9:
+          message.updatedAt = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): EncryptedCredentialResponse {
+    const message = {
+      ...baseEncryptedCredentialResponse,
+    } as EncryptedCredentialResponse;
+    if (object.uuid !== undefined && object.uuid !== null) {
+      message.uuid = String(object.uuid);
+    } else {
+      message.uuid = "";
+    }
+    if (object.credentialId !== undefined && object.credentialId !== null) {
+      message.credentialId = String(object.credentialId);
+    } else {
+      message.credentialId = "";
+    }
+    if (object.subject !== undefined && object.subject !== null) {
+      message.subject = String(object.subject);
+    } else {
+      message.subject = "";
+    }
+    if (object.issuer !== undefined && object.issuer !== null) {
+      message.issuer = String(object.issuer);
+    } else {
+      message.issuer = "";
+    }
+    if (object.type !== undefined && object.type !== null) {
+      message.type = String(object.type);
+    } else {
+      message.type = "";
+    }
+    if (object.data !== undefined && object.data !== null) {
+      message.data = EncryptedData.fromJSON(object.data);
+    } else {
+      message.data = undefined;
+    }
+    if (object.version !== undefined && object.version !== null) {
+      message.version = String(object.version);
+    } else {
+      message.version = "";
+    }
+    if (object.createdAt !== undefined && object.createdAt !== null) {
+      message.createdAt = fromJsonTimestamp(object.createdAt);
+    } else {
+      message.createdAt = undefined;
+    }
+    if (object.updatedAt !== undefined && object.updatedAt !== null) {
+      message.updatedAt = fromJsonTimestamp(object.updatedAt);
+    } else {
+      message.updatedAt = undefined;
+    }
+    return message;
+  },
+
+  toJSON(message: EncryptedCredentialResponse): unknown {
+    const obj: any = {};
+    message.uuid !== undefined && (obj.uuid = message.uuid);
+    message.credentialId !== undefined &&
+      (obj.credentialId = message.credentialId);
+    message.subject !== undefined && (obj.subject = message.subject);
+    message.issuer !== undefined && (obj.issuer = message.issuer);
+    message.type !== undefined && (obj.type = message.type);
+    message.data !== undefined &&
+      (obj.data = message.data
+        ? EncryptedData.toJSON(message.data)
+        : undefined);
+    message.version !== undefined && (obj.version = message.version);
+    message.createdAt !== undefined &&
+      (obj.createdAt = message.createdAt.toISOString());
+    message.updatedAt !== undefined &&
+      (obj.updatedAt = message.updatedAt.toISOString());
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<EncryptedCredentialResponse>
+  ): EncryptedCredentialResponse {
+    const message = {
+      ...baseEncryptedCredentialResponse,
+    } as EncryptedCredentialResponse;
+    if (object.uuid !== undefined && object.uuid !== null) {
+      message.uuid = object.uuid;
+    } else {
+      message.uuid = "";
+    }
+    if (object.credentialId !== undefined && object.credentialId !== null) {
+      message.credentialId = object.credentialId;
+    } else {
+      message.credentialId = "";
+    }
+    if (object.subject !== undefined && object.subject !== null) {
+      message.subject = object.subject;
+    } else {
+      message.subject = "";
+    }
+    if (object.issuer !== undefined && object.issuer !== null) {
+      message.issuer = object.issuer;
+    } else {
+      message.issuer = "";
+    }
+    if (object.type !== undefined && object.type !== null) {
+      message.type = object.type;
+    } else {
+      message.type = "";
+    }
+    if (object.data !== undefined && object.data !== null) {
+      message.data = EncryptedData.fromPartial(object.data);
+    } else {
+      message.data = undefined;
+    }
+    if (object.version !== undefined && object.version !== null) {
+      message.version = object.version;
+    } else {
+      message.version = "";
+    }
+    if (object.createdAt !== undefined && object.createdAt !== null) {
+      message.createdAt = object.createdAt;
+    } else {
+      message.createdAt = undefined;
+    }
+    if (object.updatedAt !== undefined && object.updatedAt !== null) {
+      message.updatedAt = object.updatedAt;
+    } else {
+      message.updatedAt = undefined;
+    }
+    return message;
+  },
+};
+
+const baseCredentialRepositoryResponse: object = {};
+
+export const CredentialRepositoryResponse = {
+  encode(
+    message: CredentialRepositoryResponse,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.encryptedCredential !== undefined) {
+      EncryptedCredentialResponse.encode(
+        message.encryptedCredential,
+        writer.uint32(10).fork()
+      ).ldelim();
+    }
+    if (message.didDocument !== undefined) {
+      DidDocument.encode(
+        message.didDocument,
+        writer.uint32(18).fork()
+      ).ldelim();
+    }
+    return writer;
+  },
+
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): CredentialRepositoryResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseCredentialRepositoryResponse,
+    } as CredentialRepositoryResponse;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.encryptedCredential = EncryptedCredentialResponse.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+        case 2:
+          message.didDocument = DidDocument.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): CredentialRepositoryResponse {
+    const message = {
+      ...baseCredentialRepositoryResponse,
+    } as CredentialRepositoryResponse;
+    if (
+      object.encryptedCredential !== undefined &&
+      object.encryptedCredential !== null
+    ) {
+      message.encryptedCredential = EncryptedCredentialResponse.fromJSON(
+        object.encryptedCredential
+      );
+    } else {
+      message.encryptedCredential = undefined;
+    }
+    if (object.didDocument !== undefined && object.didDocument !== null) {
+      message.didDocument = DidDocument.fromJSON(object.didDocument);
+    } else {
+      message.didDocument = undefined;
+    }
+    return message;
+  },
+
+  toJSON(message: CredentialRepositoryResponse): unknown {
+    const obj: any = {};
+    message.encryptedCredential !== undefined &&
+      (obj.encryptedCredential = message.encryptedCredential
+        ? EncryptedCredentialResponse.toJSON(message.encryptedCredential)
+        : undefined);
+    message.didDocument !== undefined &&
+      (obj.didDocument = message.didDocument
+        ? DidDocument.toJSON(message.didDocument)
+        : undefined);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<CredentialRepositoryResponse>
+  ): CredentialRepositoryResponse {
+    const message = {
+      ...baseCredentialRepositoryResponse,
+    } as CredentialRepositoryResponse;
+    if (
+      object.encryptedCredential !== undefined &&
+      object.encryptedCredential !== null
+    ) {
+      message.encryptedCredential = EncryptedCredentialResponse.fromPartial(
+        object.encryptedCredential
+      );
+    } else {
+      message.encryptedCredential = undefined;
+    }
+    if (object.didDocument !== undefined && object.didDocument !== null) {
+      message.didDocument = DidDocument.fromPartial(object.didDocument);
+    } else {
+      message.didDocument = undefined;
     }
     return message;
   },

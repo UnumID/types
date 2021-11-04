@@ -14,13 +14,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CredentialStatusInfo = exports.IssueCredentialsDto = exports.IssueCredentialDto = exports.EncryptedCredential = exports.CredentialRequest = exports.Credential = exports.UnsignedCredential = exports.CredentialStatus = exports.protobufPackage = void 0;
+exports.CredentialRepositoryResponse = exports.EncryptedCredentialResponse = exports.CredentialStatusInfo = exports.IssueCredentialsDto = exports.IssueCredentialDto = exports.EncryptedCredential = exports.CredentialRequest = exports.Credential = exports.UnsignedCredential = exports.CredentialStatus = exports.protobufPackage = void 0;
 /* eslint-disable */
 var long_1 = __importDefault(require("long"));
 var minimal_1 = __importDefault(require("protobufjs/minimal"));
 var timestamp_1 = require("./google/protobuf/timestamp");
 var proof_1 = require("./proof");
 var crypto_1 = require("./crypto");
+var didDocument_1 = require("./didDocument");
 exports.protobufPackage = "credential.v1";
 var baseCredentialStatus = { id: "", type: "" };
 exports.CredentialStatus = {
@@ -1005,7 +1006,7 @@ exports.IssueCredentialsDto = {
 };
 var baseCredentialStatusInfo = {
     uuid: "",
-    credentialId: "",
+    credentialiId: "",
     status: "",
 };
 exports.CredentialStatusInfo = {
@@ -1020,8 +1021,8 @@ exports.CredentialStatusInfo = {
         if (message.updatedAt !== undefined) {
             timestamp_1.Timestamp.encode(toTimestamp(message.updatedAt), writer.uint32(26).fork()).ldelim();
         }
-        if (message.credentialId !== "") {
-            writer.uint32(34).string(message.credentialId);
+        if (message.credentialiId !== "") {
+            writer.uint32(34).string(message.credentialiId);
         }
         if (message.status !== "") {
             writer.uint32(42).string(message.status);
@@ -1045,7 +1046,7 @@ exports.CredentialStatusInfo = {
                     message.updatedAt = fromTimestamp(timestamp_1.Timestamp.decode(reader, reader.uint32()));
                     break;
                 case 4:
-                    message.credentialId = reader.string();
+                    message.credentialiId = reader.string();
                     break;
                 case 5:
                     message.status = reader.string();
@@ -1077,11 +1078,11 @@ exports.CredentialStatusInfo = {
         else {
             message.updatedAt = undefined;
         }
-        if (object.credentialId !== undefined && object.credentialId !== null) {
-            message.credentialId = String(object.credentialId);
+        if (object.credentialiId !== undefined && object.credentialiId !== null) {
+            message.credentialiId = String(object.credentialiId);
         }
         else {
-            message.credentialId = "";
+            message.credentialiId = "";
         }
         if (object.status !== undefined && object.status !== null) {
             message.status = String(object.status);
@@ -1098,8 +1099,8 @@ exports.CredentialStatusInfo = {
             (obj.createdAt = message.createdAt.toISOString());
         message.updatedAt !== undefined &&
             (obj.updatedAt = message.updatedAt.toISOString());
-        message.credentialId !== undefined &&
-            (obj.credentialId = message.credentialId);
+        message.credentialiId !== undefined &&
+            (obj.credentialiId = message.credentialiId);
         message.status !== undefined && (obj.status = message.status);
         return obj;
     },
@@ -1123,17 +1124,313 @@ exports.CredentialStatusInfo = {
         else {
             message.updatedAt = undefined;
         }
-        if (object.credentialId !== undefined && object.credentialId !== null) {
-            message.credentialId = object.credentialId;
+        if (object.credentialiId !== undefined && object.credentialiId !== null) {
+            message.credentialiId = object.credentialiId;
         }
         else {
-            message.credentialId = "";
+            message.credentialiId = "";
         }
         if (object.status !== undefined && object.status !== null) {
             message.status = object.status;
         }
         else {
             message.status = "";
+        }
+        return message;
+    },
+};
+var baseEncryptedCredentialResponse = {
+    uuid: "",
+    credentialId: "",
+    subject: "",
+    issuer: "",
+    type: "",
+    version: "",
+};
+exports.EncryptedCredentialResponse = {
+    encode: function (message, writer) {
+        if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
+        if (message.uuid !== "") {
+            writer.uint32(10).string(message.uuid);
+        }
+        if (message.credentialId !== "") {
+            writer.uint32(18).string(message.credentialId);
+        }
+        if (message.subject !== "") {
+            writer.uint32(26).string(message.subject);
+        }
+        if (message.issuer !== "") {
+            writer.uint32(34).string(message.issuer);
+        }
+        if (message.type !== "") {
+            writer.uint32(42).string(message.type);
+        }
+        if (message.data !== undefined) {
+            crypto_1.EncryptedData.encode(message.data, writer.uint32(50).fork()).ldelim();
+        }
+        if (message.version !== "") {
+            writer.uint32(58).string(message.version);
+        }
+        if (message.createdAt !== undefined) {
+            timestamp_1.Timestamp.encode(toTimestamp(message.createdAt), writer.uint32(66).fork()).ldelim();
+        }
+        if (message.updatedAt !== undefined) {
+            timestamp_1.Timestamp.encode(toTimestamp(message.updatedAt), writer.uint32(74).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode: function (input, length) {
+        var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
+        var end = length === undefined ? reader.len : reader.pos + length;
+        var message = __assign({}, baseEncryptedCredentialResponse);
+        while (reader.pos < end) {
+            var tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.uuid = reader.string();
+                    break;
+                case 2:
+                    message.credentialId = reader.string();
+                    break;
+                case 3:
+                    message.subject = reader.string();
+                    break;
+                case 4:
+                    message.issuer = reader.string();
+                    break;
+                case 5:
+                    message.type = reader.string();
+                    break;
+                case 6:
+                    message.data = crypto_1.EncryptedData.decode(reader, reader.uint32());
+                    break;
+                case 7:
+                    message.version = reader.string();
+                    break;
+                case 8:
+                    message.createdAt = fromTimestamp(timestamp_1.Timestamp.decode(reader, reader.uint32()));
+                    break;
+                case 9:
+                    message.updatedAt = fromTimestamp(timestamp_1.Timestamp.decode(reader, reader.uint32()));
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON: function (object) {
+        var message = __assign({}, baseEncryptedCredentialResponse);
+        if (object.uuid !== undefined && object.uuid !== null) {
+            message.uuid = String(object.uuid);
+        }
+        else {
+            message.uuid = "";
+        }
+        if (object.credentialId !== undefined && object.credentialId !== null) {
+            message.credentialId = String(object.credentialId);
+        }
+        else {
+            message.credentialId = "";
+        }
+        if (object.subject !== undefined && object.subject !== null) {
+            message.subject = String(object.subject);
+        }
+        else {
+            message.subject = "";
+        }
+        if (object.issuer !== undefined && object.issuer !== null) {
+            message.issuer = String(object.issuer);
+        }
+        else {
+            message.issuer = "";
+        }
+        if (object.type !== undefined && object.type !== null) {
+            message.type = String(object.type);
+        }
+        else {
+            message.type = "";
+        }
+        if (object.data !== undefined && object.data !== null) {
+            message.data = crypto_1.EncryptedData.fromJSON(object.data);
+        }
+        else {
+            message.data = undefined;
+        }
+        if (object.version !== undefined && object.version !== null) {
+            message.version = String(object.version);
+        }
+        else {
+            message.version = "";
+        }
+        if (object.createdAt !== undefined && object.createdAt !== null) {
+            message.createdAt = fromJsonTimestamp(object.createdAt);
+        }
+        else {
+            message.createdAt = undefined;
+        }
+        if (object.updatedAt !== undefined && object.updatedAt !== null) {
+            message.updatedAt = fromJsonTimestamp(object.updatedAt);
+        }
+        else {
+            message.updatedAt = undefined;
+        }
+        return message;
+    },
+    toJSON: function (message) {
+        var obj = {};
+        message.uuid !== undefined && (obj.uuid = message.uuid);
+        message.credentialId !== undefined &&
+            (obj.credentialId = message.credentialId);
+        message.subject !== undefined && (obj.subject = message.subject);
+        message.issuer !== undefined && (obj.issuer = message.issuer);
+        message.type !== undefined && (obj.type = message.type);
+        message.data !== undefined &&
+            (obj.data = message.data
+                ? crypto_1.EncryptedData.toJSON(message.data)
+                : undefined);
+        message.version !== undefined && (obj.version = message.version);
+        message.createdAt !== undefined &&
+            (obj.createdAt = message.createdAt.toISOString());
+        message.updatedAt !== undefined &&
+            (obj.updatedAt = message.updatedAt.toISOString());
+        return obj;
+    },
+    fromPartial: function (object) {
+        var message = __assign({}, baseEncryptedCredentialResponse);
+        if (object.uuid !== undefined && object.uuid !== null) {
+            message.uuid = object.uuid;
+        }
+        else {
+            message.uuid = "";
+        }
+        if (object.credentialId !== undefined && object.credentialId !== null) {
+            message.credentialId = object.credentialId;
+        }
+        else {
+            message.credentialId = "";
+        }
+        if (object.subject !== undefined && object.subject !== null) {
+            message.subject = object.subject;
+        }
+        else {
+            message.subject = "";
+        }
+        if (object.issuer !== undefined && object.issuer !== null) {
+            message.issuer = object.issuer;
+        }
+        else {
+            message.issuer = "";
+        }
+        if (object.type !== undefined && object.type !== null) {
+            message.type = object.type;
+        }
+        else {
+            message.type = "";
+        }
+        if (object.data !== undefined && object.data !== null) {
+            message.data = crypto_1.EncryptedData.fromPartial(object.data);
+        }
+        else {
+            message.data = undefined;
+        }
+        if (object.version !== undefined && object.version !== null) {
+            message.version = object.version;
+        }
+        else {
+            message.version = "";
+        }
+        if (object.createdAt !== undefined && object.createdAt !== null) {
+            message.createdAt = object.createdAt;
+        }
+        else {
+            message.createdAt = undefined;
+        }
+        if (object.updatedAt !== undefined && object.updatedAt !== null) {
+            message.updatedAt = object.updatedAt;
+        }
+        else {
+            message.updatedAt = undefined;
+        }
+        return message;
+    },
+};
+var baseCredentialRepositoryResponse = {};
+exports.CredentialRepositoryResponse = {
+    encode: function (message, writer) {
+        if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
+        if (message.encryptedCredential !== undefined) {
+            exports.EncryptedCredentialResponse.encode(message.encryptedCredential, writer.uint32(10).fork()).ldelim();
+        }
+        if (message.didDocument !== undefined) {
+            didDocument_1.DidDocument.encode(message.didDocument, writer.uint32(18).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode: function (input, length) {
+        var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
+        var end = length === undefined ? reader.len : reader.pos + length;
+        var message = __assign({}, baseCredentialRepositoryResponse);
+        while (reader.pos < end) {
+            var tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.encryptedCredential = exports.EncryptedCredentialResponse.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.didDocument = didDocument_1.DidDocument.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON: function (object) {
+        var message = __assign({}, baseCredentialRepositoryResponse);
+        if (object.encryptedCredential !== undefined &&
+            object.encryptedCredential !== null) {
+            message.encryptedCredential = exports.EncryptedCredentialResponse.fromJSON(object.encryptedCredential);
+        }
+        else {
+            message.encryptedCredential = undefined;
+        }
+        if (object.didDocument !== undefined && object.didDocument !== null) {
+            message.didDocument = didDocument_1.DidDocument.fromJSON(object.didDocument);
+        }
+        else {
+            message.didDocument = undefined;
+        }
+        return message;
+    },
+    toJSON: function (message) {
+        var obj = {};
+        message.encryptedCredential !== undefined &&
+            (obj.encryptedCredential = message.encryptedCredential
+                ? exports.EncryptedCredentialResponse.toJSON(message.encryptedCredential)
+                : undefined);
+        message.didDocument !== undefined &&
+            (obj.didDocument = message.didDocument
+                ? didDocument_1.DidDocument.toJSON(message.didDocument)
+                : undefined);
+        return obj;
+    },
+    fromPartial: function (object) {
+        var message = __assign({}, baseCredentialRepositoryResponse);
+        if (object.encryptedCredential !== undefined &&
+            object.encryptedCredential !== null) {
+            message.encryptedCredential = exports.EncryptedCredentialResponse.fromPartial(object.encryptedCredential);
+        }
+        else {
+            message.encryptedCredential = undefined;
+        }
+        if (object.didDocument !== undefined && object.didDocument !== null) {
+            message.didDocument = didDocument_1.DidDocument.fromPartial(object.didDocument);
+        }
+        else {
+            message.didDocument = undefined;
         }
         return message;
     },
