@@ -556,6 +556,7 @@ export interface PublicKeyInfo {
     status: 'valid' | 'invalid';
     createdAt: Date;
     updatedAt: Date;
+    rsaPadding?: 'PKCS1-1_5' | 'OAEP';
 }
 /**
  * Interface to encapsulate Did Document information.
