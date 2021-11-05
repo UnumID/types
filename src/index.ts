@@ -150,6 +150,9 @@ export interface EncryptedData extends EncryptedDataPb {
   key: EncryptedKey
 }
 
+/**
+ * Extends protobuf definition to make fields required
+ */
 export interface EncryptedCredential extends EncryptedCredentialPb {
   encryptedData: EncryptedData;
   createdAt: Date;
