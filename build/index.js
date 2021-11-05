@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports._CredentialStatusOptions = exports.pushProviders = exports.HolderAppInfo = exports.EncryptedKey = exports.EncryptedData = exports.CredentialRepositoryResponse = exports.EncryptedCredentialResponse = exports.EncryptedCredential = exports.CredentialStatusInfo = exports.IssueCredentialsDto = exports.IssueCredentialDto = exports.DidDocumentPb = exports.ProofPb = exports.CredentialRequestPb = exports.CredentialPb = exports.UnsignedCredentialPb = exports.PresentationRequestPb = exports.UnsignedPresentationRequestPb = exports.PresentationPb = exports.UnsignedPresentationPb = void 0;
+exports._CredentialStatusOptions = exports.pushProviders = exports.HolderAppInfo = exports.EncryptedKey = exports.EncryptedData = exports.CredentialRepositoryResponse = exports.EncryptedCredentialResponse = exports.EncryptedCredential = exports.CredentialStatusInfo = exports.IssueCredentialsDto = exports.IssueCredentialDto = exports.PublicKeyInfoPb = exports.DidDocumentPb = exports.ProofPb = exports.CredentialRequestPb = exports.CredentialPb = exports.UnsignedCredentialPb = exports.PresentationRequestPb = exports.UnsignedPresentationRequestPb = exports.PresentationPb = exports.UnsignedPresentationPb = void 0;
 var runtypes_1 = require("runtypes");
 var presentation_1 = require("./protos/presentation");
 Object.defineProperty(exports, "UnsignedPresentationPb", { enumerable: true, get: function () { return presentation_1.UnsignedPresentation; } });
@@ -26,6 +26,7 @@ Object.defineProperty(exports, "CredentialRepositoryResponse", { enumerable: tru
 var crypto_1 = require("./protos/crypto");
 Object.defineProperty(exports, "EncryptedData", { enumerable: true, get: function () { return crypto_1.EncryptedData; } });
 Object.defineProperty(exports, "EncryptedKey", { enumerable: true, get: function () { return crypto_1.EncryptedKey; } });
+Object.defineProperty(exports, "PublicKeyInfoPb", { enumerable: true, get: function () { return crypto_1.PublicKeyInfo; } });
 var holderApp_1 = require("./protos/holderApp");
 Object.defineProperty(exports, "HolderAppInfo", { enumerable: true, get: function () { return holderApp_1.HolderAppInfo; } });
 /**

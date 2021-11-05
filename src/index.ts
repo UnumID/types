@@ -6,10 +6,10 @@ import { DidDocument as DidDocumentPb } from "./protos/didDocument"
 import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb, CredentialStatusInfo} from "./protos/credential";
 import { Proof as ProofPb} from "./protos/proof";
 import { IssueCredentialDto, IssueCredentialsDto, EncryptedCredential, EncryptedCredentialResponse, CredentialRepositoryResponse} from "./protos/credential"
-import { EncryptedData, EncryptedKey } from "./protos/crypto"
+import { EncryptedData, EncryptedKey, PublicKeyInfo as PublicKeyInfoPb } from "./protos/crypto"
 import { HolderAppInfo } from "./protos/holderApp";
 
-// proto defined types that also have older, vanilla ts types defined - hence the proceeding "Pb"
+// proto defined types that also have older, vanilla ts types defined - hence the succeeding "Pb"
 export { 
   UnsignedPresentationPb, 
   PresentationPb,
@@ -19,7 +19,8 @@ export {
   CredentialPb,
   CredentialRequestPb,
   ProofPb,
-  DidDocumentPb
+  DidDocumentPb,
+  PublicKeyInfoPb
 }
 
 export {
