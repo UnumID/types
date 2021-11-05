@@ -815,7 +815,7 @@ exports.IssueCredentialOptions = {
         }
         for (var _i = 0, _a = message.encryptedCredentials; _i < _a.length; _i++) {
             var v = _a[_i];
-            exports.EncryptedCredential.encode(v, writer.uint32(42).fork()).ldelim();
+            exports.EncryptedCredentialOptions.encode(v, writer.uint32(42).fork()).ldelim();
         }
         return writer;
     },
@@ -840,7 +840,7 @@ exports.IssueCredentialOptions = {
                     message.type = reader.string();
                     break;
                 case 5:
-                    message.encryptedCredentials.push(exports.EncryptedCredential.decode(reader, reader.uint32()));
+                    message.encryptedCredentials.push(exports.EncryptedCredentialOptions.decode(reader, reader.uint32()));
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -880,7 +880,7 @@ exports.IssueCredentialOptions = {
             object.encryptedCredentials !== null) {
             for (var _i = 0, _a = object.encryptedCredentials; _i < _a.length; _i++) {
                 var e = _a[_i];
-                message.encryptedCredentials.push(exports.EncryptedCredential.fromJSON(e));
+                message.encryptedCredentials.push(exports.EncryptedCredentialOptions.fromJSON(e));
             }
         }
         return message;
@@ -894,7 +894,7 @@ exports.IssueCredentialOptions = {
         message.type !== undefined && (obj.type = message.type);
         if (message.encryptedCredentials) {
             obj.encryptedCredentials = message.encryptedCredentials.map(function (e) {
-                return e ? exports.EncryptedCredential.toJSON(e) : undefined;
+                return e ? exports.EncryptedCredentialOptions.toJSON(e) : undefined;
             });
         }
         else {
@@ -933,7 +933,7 @@ exports.IssueCredentialOptions = {
             object.encryptedCredentials !== null) {
             for (var _i = 0, _a = object.encryptedCredentials; _i < _a.length; _i++) {
                 var e = _a[_i];
-                message.encryptedCredentials.push(exports.EncryptedCredential.fromPartial(e));
+                message.encryptedCredentials.push(exports.EncryptedCredentialOptions.fromPartial(e));
             }
         }
         return message;
@@ -945,7 +945,7 @@ exports.IssueCredentialsOptions = {
         if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
         for (var _i = 0, _a = message.credentialRequests; _i < _a.length; _i++) {
             var v = _a[_i];
-            exports.IssueCredentialOptions.encode(v, writer.uint32(10).fork()).ldelim();
+            exports.EncryptedCredentialOptions.encode(v, writer.uint32(10).fork()).ldelim();
         }
         return writer;
     },
@@ -958,7 +958,7 @@ exports.IssueCredentialsOptions = {
             var tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.credentialRequests.push(exports.IssueCredentialOptions.decode(reader, reader.uint32()));
+                    message.credentialRequests.push(exports.EncryptedCredentialOptions.decode(reader, reader.uint32()));
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -974,7 +974,7 @@ exports.IssueCredentialsOptions = {
             object.credentialRequests !== null) {
             for (var _i = 0, _a = object.credentialRequests; _i < _a.length; _i++) {
                 var e = _a[_i];
-                message.credentialRequests.push(exports.IssueCredentialOptions.fromJSON(e));
+                message.credentialRequests.push(exports.EncryptedCredentialOptions.fromJSON(e));
             }
         }
         return message;
@@ -983,7 +983,7 @@ exports.IssueCredentialsOptions = {
         var obj = {};
         if (message.credentialRequests) {
             obj.credentialRequests = message.credentialRequests.map(function (e) {
-                return e ? exports.IssueCredentialOptions.toJSON(e) : undefined;
+                return e ? exports.EncryptedCredentialOptions.toJSON(e) : undefined;
             });
         }
         else {
@@ -998,7 +998,7 @@ exports.IssueCredentialsOptions = {
             object.credentialRequests !== null) {
             for (var _i = 0, _a = object.credentialRequests; _i < _a.length; _i++) {
                 var e = _a[_i];
-                message.credentialRequests.push(exports.IssueCredentialOptions.fromPartial(e));
+                message.credentialRequests.push(exports.EncryptedCredentialOptions.fromPartial(e));
             }
         }
         return message;
