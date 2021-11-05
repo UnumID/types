@@ -6,12 +6,21 @@ import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, Presentat
 import { DidDocument as DidDocumentPb } from "./protos/didDocument";
 import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb, CredentialStatusInfo } from "./protos/credential";
 import { Proof as ProofPb } from "./protos/proof";
+<<<<<<< HEAD
 import { IssueCredentialOptions, IssueCredentialsOptions, EncryptedCredential, EncryptedCredentialOptions as EncryptedCredentialOptionsPb, EncryptedCredentialEnriched } from "./protos/credential";
 import { EncryptedData, EncryptedKey, PublicKeyInfo as PublicKeyInfoPb } from "./protos/crypto";
 import { HolderAppInfo } from "./protos/holderApp";
 export { UnsignedPresentationPb, PresentationPb, UnsignedPresentationRequestPb, PresentationRequestPb, UnsignedCredentialPb, CredentialPb, CredentialRequestPb, ProofPb, DidDocumentPb, PublicKeyInfoPb };
 export { IssueCredentialOptions, IssueCredentialsOptions, CredentialStatusInfo, EncryptedCredential, EncryptedCredentialOptionsPb, EncryptedCredentialEnriched };
 export { EncryptedData, EncryptedKey };
+=======
+import { IssueCredentialDto, IssueCredentialsDto, EncryptedCredential as EncryptedCredentialPb } from "./protos/credential";
+import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding } from "./protos/crypto";
+import { HolderAppInfo } from "./protos/holderApp";
+export { UnsignedPresentationPb, PresentationPb, UnsignedPresentationRequestPb, PresentationRequestPb, UnsignedCredentialPb, CredentialPb, CredentialRequestPb, ProofPb };
+export { IssueCredentialDto, IssueCredentialsDto, CredentialStatusInfo, RSAPadding };
+export { EncryptedKey };
+>>>>>>> main
 export { HolderAppInfo };
 /**
  * Interface to encapsulate a base Unum Entity.
@@ -98,12 +107,27 @@ export interface Credential extends UnsignedCredential {
     proof: Proof;
 }
 /**
+ * Extends protobuf definition to make field required
+ */
+export interface EncryptedData extends EncryptedDataPb {
+    key: EncryptedKey;
+}
+/**
+ * Extends protobuf definition to make fields required
+ */
+export interface EncryptedCredential extends EncryptedCredentialPb {
+    encryptedData: EncryptedData;
+    createdAt: Date;
+    updatedAt: Date;
+}
+/**
  * Data transfer object for a single EncryptedCredential
  * Note: extending the protobuf definition of EncryptedCredential in order to make the date fields string for json serialization
  */
 export interface EncryptedCredentialDto extends Omit<EncryptedCredential, 'createdAt' | 'updatedAt'> {
     createdAt: string;
     updatedAt: string;
+<<<<<<< HEAD
 }
 /**
  * Data transfer object for a single EncryptedCredentialEnriched
@@ -116,6 +140,8 @@ export interface EncryptedCredentialDto extends Omit<EncryptedCredential, 'creat
 export interface EncryptedCredentialEnrichedDto {
     encryptedCredential: EncryptedCredentialDto;
     didDocument: DidDocument;
+=======
+>>>>>>> main
 }
 /**
  * Data transfer object for multiple EncryptedCredentials, keyed by credential id
@@ -567,6 +593,7 @@ export interface PublicKeyInfo {
     status: 'valid' | 'invalid';
     createdAt: Date;
     updatedAt: Date;
+    rsaPadding?: RSAPadding;
 }
 /**
  * Interface to encapsulate Did Document information.

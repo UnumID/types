@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>PresentationRequestRepoDto | @unumid/types</title>
+	<title>RSAPadding | @unumid/types</title>
 	<meta name="description" content="Documentation for @unumid/types">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">@unumid/types</a>
 				</li>
 				<li>
-					<a href="presentationrequestrepodto.html">PresentationRequestRepoDto</a>
+					<a href="rsapadding.html">RSAPadding</a>
 				</li>
 			</ul>
-			<h1>Interface PresentationRequestRepoDto</h1>
+			<h1>Enumeration RSAPadding</h1>
 		</div>
 	</div>
 </header>
@@ -68,40 +68,54 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Type to encapsulate a PresentationRequest Data Transfer Object from the PresentationRequestRepository service.</p>
+						<p>Enum containing all of the RSA padding types that we use</p>
 					</div>
 				</div>
-			</section>
-			<section class="tsd-panel tsd-hierarchy">
-				<h3>Hierarchy</h3>
-				<ul class="tsd-hierarchy">
-					<li>
-						<span class="target">PresentationRequestRepoDto</span>
-					</li>
-				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Properties</h3>
+							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationrequestrepodto.html#presentationrequests" class="tsd-kind-icon">presentation<wbr>Requests</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="rsapadding.html#oaep" class="tsd-kind-icon">OAEP</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="rsapadding.html#pkcs" class="tsd-kind-icon">PKCS</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="rsapadding.html#unrecognized" class="tsd-kind-icon">UNRECOGNIZED</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="presentationrequests" class="tsd-anchor"></a>
-					<h3>presentation<wbr>Requests</h3>
-					<div class="tsd-signature tsd-kind-icon">presentation<wbr>Requests<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="presentationrequestdto.html" class="tsd-signature-type" data-tsd-kind="Interface">PresentationRequestDto</a><span class="tsd-signature-symbol">&gt;</span></div>
+				<h2>Enumeration members</h2>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="oaep" class="tsd-anchor"></a>
+					<h3>OAEP</h3>
+					<div class="tsd-signature tsd-kind-icon">OAEP<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 1</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/b4bcf71/src/index.ts#L635">index.ts:635</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/b4bcf71/src/protos/crypto.ts#L11">protos/crypto.ts:11</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="pkcs" class="tsd-anchor"></a>
+					<h3>PKCS</h3>
+					<div class="tsd-signature tsd-kind-icon">PKCS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 0</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/b4bcf71/src/protos/crypto.ts#L10">protos/crypto.ts:10</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="unrecognized" class="tsd-anchor"></a>
+					<h3>UNRECOGNIZED</h3>
+					<div class="tsd-signature tsd-kind-icon">UNRECOGNIZED<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = -1</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/b4bcf71/src/protos/crypto.ts#L12">protos/crypto.ts:12</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -119,11 +133,17 @@
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface">
-						<a href="presentationrequestrepodto.html" class="tsd-kind-icon">Presentation<wbr>Request<wbr>Repo<wbr>Dto</a>
+					<li class="current tsd-kind-enum">
+						<a href="rsapadding.html" class="tsd-kind-icon">RSAPadding</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="presentationrequestrepodto.html#presentationrequests" class="tsd-kind-icon">presentation<wbr>Requests</a>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="rsapadding.html#oaep" class="tsd-kind-icon">OAEP</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="rsapadding.html#pkcs" class="tsd-kind-icon">PKCS</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="rsapadding.html#unrecognized" class="tsd-kind-icon">UNRECOGNIZED</a>
 							</li>
 						</ul>
 					</li>

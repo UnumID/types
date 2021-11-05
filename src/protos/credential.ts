@@ -61,6 +61,10 @@ export interface EncryptedCredentialOptions {
   issuer: string;
   type: string;
   data: EncryptedData | undefined;
+  uuid: string;
+  createdAt: Date | undefined;
+  updatedAt: Date | undefined;
+  version: string;
 }
 
 /**
@@ -784,6 +788,8 @@ const baseEncryptedCredentialOptions: object = {
   subject: "",
   issuer: "",
   type: "",
+  uuid: "",
+  version: "",
 };
 
 export const EncryptedCredentialOptions = {
@@ -805,6 +811,24 @@ export const EncryptedCredentialOptions = {
     }
     if (message.data !== undefined) {
       EncryptedData.encode(message.data, writer.uint32(42).fork()).ldelim();
+    }
+    if (message.uuid !== "") {
+      writer.uint32(50).string(message.uuid);
+    }
+    if (message.createdAt !== undefined) {
+      Timestamp.encode(
+        toTimestamp(message.createdAt),
+        writer.uint32(58).fork()
+      ).ldelim();
+    }
+    if (message.updatedAt !== undefined) {
+      Timestamp.encode(
+        toTimestamp(message.updatedAt),
+        writer.uint32(66).fork()
+      ).ldelim();
+    }
+    if (message.version !== "") {
+      writer.uint32(74).string(message.version);
     }
     return writer;
   },
@@ -835,6 +859,22 @@ export const EncryptedCredentialOptions = {
           break;
         case 5:
           message.data = EncryptedData.decode(reader, reader.uint32());
+          break;
+        case 6:
+          message.uuid = reader.string();
+          break;
+        case 7:
+          message.createdAt = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
+          break;
+        case 8:
+          message.updatedAt = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
+          break;
+        case 9:
+          message.version = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -873,6 +913,26 @@ export const EncryptedCredentialOptions = {
     } else {
       message.data = undefined;
     }
+    if (object.uuid !== undefined && object.uuid !== null) {
+      message.uuid = String(object.uuid);
+    } else {
+      message.uuid = "";
+    }
+    if (object.createdAt !== undefined && object.createdAt !== null) {
+      message.createdAt = fromJsonTimestamp(object.createdAt);
+    } else {
+      message.createdAt = undefined;
+    }
+    if (object.updatedAt !== undefined && object.updatedAt !== null) {
+      message.updatedAt = fromJsonTimestamp(object.updatedAt);
+    } else {
+      message.updatedAt = undefined;
+    }
+    if (object.version !== undefined && object.version !== null) {
+      message.version = String(object.version);
+    } else {
+      message.version = "";
+    }
     return message;
   },
 
@@ -887,6 +947,12 @@ export const EncryptedCredentialOptions = {
       (obj.data = message.data
         ? EncryptedData.toJSON(message.data)
         : undefined);
+    message.uuid !== undefined && (obj.uuid = message.uuid);
+    message.createdAt !== undefined &&
+      (obj.createdAt = message.createdAt.toISOString());
+    message.updatedAt !== undefined &&
+      (obj.updatedAt = message.updatedAt.toISOString());
+    message.version !== undefined && (obj.version = message.version);
     return obj;
   },
 
@@ -920,6 +986,26 @@ export const EncryptedCredentialOptions = {
       message.data = EncryptedData.fromPartial(object.data);
     } else {
       message.data = undefined;
+    }
+    if (object.uuid !== undefined && object.uuid !== null) {
+      message.uuid = object.uuid;
+    } else {
+      message.uuid = "";
+    }
+    if (object.createdAt !== undefined && object.createdAt !== null) {
+      message.createdAt = object.createdAt;
+    } else {
+      message.createdAt = undefined;
+    }
+    if (object.updatedAt !== undefined && object.updatedAt !== null) {
+      message.updatedAt = object.updatedAt;
+    } else {
+      message.updatedAt = undefined;
+    }
+    if (object.version !== undefined && object.version !== null) {
+      message.version = object.version;
+    } else {
+      message.version = "";
     }
     return message;
   },

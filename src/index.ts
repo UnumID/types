@@ -3,10 +3,21 @@ import { SemVer } from 'semver';
 import { UnsignedPresentation as UnsignedPresentationPb, Presentation as PresentationPb} from "./protos/presentation";
 import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest"
 import { DidDocument as DidDocumentPb } from "./protos/didDocument"
-import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb, CredentialStatusInfo} from "./protos/credential";
 import { Proof as ProofPb} from "./protos/proof";
-import { IssueCredentialOptions, IssueCredentialsOptions, EncryptedCredential, EncryptedCredentialOptions as EncryptedCredentialOptionsPb, EncryptedCredentialEnriched} from "./protos/credential"
-import { EncryptedData, EncryptedKey, PublicKeyInfo as PublicKeyInfoPb } from "./protos/crypto"
+import {
+  UnsignedCredential as UnsignedCredentialPb,
+  Credential as CredentialPb,
+  CredentialRequest as CredentialRequestPb,
+  CredentialStatusInfo
+} from "./protos/credential";
+import {
+  IssueCredentialOptions,
+  IssueCredentialsOptions,
+  EncryptedCredential as EncryptedCredentialPb,
+  EncryptedCredentialOptions as EncryptedCredentialOptionsPb, 
+  EncryptedCredentialEnriched
+} from "./protos/credential"
+import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb } from "./protos/crypto"
 import { HolderAppInfo } from "./protos/holderApp";
 
 // proto defined types that also have older, vanilla ts types defined - hence the succeeding "Pb"
@@ -28,14 +39,14 @@ export {
   IssueCredentialOptions,
   IssueCredentialsOptions,
   CredentialStatusInfo,
-  EncryptedCredential,
+  EncryptedCredentialPb,
   EncryptedCredentialOptionsPb,
-  EncryptedCredentialEnriched
+  EncryptedCredentialEnriched,
+  RSAPadding
 }
 
 export {
   // protos/crypto
-  EncryptedData,
   EncryptedKey
 }
 
@@ -141,10 +152,25 @@ export interface Credential extends UnsignedCredential {
 }
 
 /**
+ * Extends protobuf definition to make field required
+ */
+export interface EncryptedData extends EncryptedDataPb {
+  key: EncryptedKey
+}
+
+/**
+ * Extends protobuf definition to make fields required
+ */
+export interface EncryptedCredential extends EncryptedCredentialPb {
+  encryptedData: EncryptedData;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+/**
  * Data transfer object for a single EncryptedCredential
  * Note: extending the protobuf definition of EncryptedCredential in order to make the date fields string for json serialization
  */
-// ref: https://stackoverflow.com/questions/41285211/overriding-interface-property-type-defined-in-typescript-d-ts-file
   export interface EncryptedCredentialDto extends Omit<EncryptedCredential, 'createdAt' | 'updatedAt'> {
   createdAt: string; // dates should be converted to ISO strings, since this is how they will be represented in the JSON at runtime
   updatedAt: string; // dates should be converted to ISO strings, since this is how they will be represented in the JSON at runtime
@@ -665,6 +691,10 @@ export interface PublicKeyInfo {
   status: 'valid' | 'invalid';
   createdAt: Date;
   updatedAt: Date;
+  // for RSA keys.
+  // encrypt/decrypt implementations should default to 'PKCS1-v1_5' for backwards compatibilty
+  // if possible (web crypto only allows OAEP padding for encrypt/decrypt operations)
+  rsaPadding?: RSAPadding;
 }
 
 /**
