@@ -14,7 +14,7 @@ import {
   IssueCredentialsDto,
   EncryptedCredential as EncryptedCredentialPb
 } from "./protos/credential"
-import { EncryptedData as EncryptedDataPb, EncryptedKey } from "./protos/crypto"
+import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding } from "./protos/crypto"
 import { HolderAppInfo } from "./protos/holderApp";
 
 // proto defined types that also have older, vanilla ts types defined - hence the proceeding "Pb"
@@ -33,7 +33,8 @@ export {
   // protos/credential
   IssueCredentialDto,
   IssueCredentialsDto,
-  CredentialStatusInfo
+  CredentialStatusInfo,
+  RSAPadding
 }
 
 export {
@@ -647,14 +648,6 @@ export interface ApiKey {
   key: string,
   customerUuid: string,
   name: string
-}
-
-/**
- * Enum containing all of the RSA padding types that we use
- */
-export enum RSAPadding {
-  PKCS = 'PKCS1-1_5',
-  OAEP = 'OAEP'
 }
 
 /**
