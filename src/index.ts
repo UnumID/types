@@ -155,7 +155,7 @@ export interface Credential extends UnsignedCredential {
  * Extends protobuf definition to make field required
  */
 export interface EncryptedData extends EncryptedDataPb {
-  key: EncryptedKey
+  key: EncryptedKey // to force non undefined type
 }
 
 /**
@@ -721,12 +721,8 @@ export type DidKeyType = 'secp256r1' | 'RSA';
 /**
  * Encapsulates necessary information relating to the encrypted credential data during creation.
  */
-export interface EncryptedCredentialOptions {
-  credentialId: string;
-  subject: string;
-  issuer: string;
-  type: string;
-  data: EncryptedData;
+export interface EncryptedCredentialOptions extends EncryptedCredentialOptionsPb{
+  data: EncryptedData; // to force non undefined type
 }
 
 /**

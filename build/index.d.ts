@@ -605,11 +605,7 @@ export declare type DidKeyType = 'secp256r1' | 'RSA';
 /**
  * Encapsulates necessary information relating to the encrypted credential data during creation.
  */
-export interface EncryptedCredentialOptions {
-    credentialId: string;
-    subject: string;
-    issuer: string;
-    type: string;
+export interface EncryptedCredentialOptions extends EncryptedCredentialOptionsPb {
     data: EncryptedData;
 }
 /**
