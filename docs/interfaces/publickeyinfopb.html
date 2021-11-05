@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>CredentialStatusInfo | @unumid/types</title>
+	<title>PublicKeyInfoPb | @unumid/types</title>
 	<meta name="description" content="Documentation for @unumid/types">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">@unumid/types</a>
 				</li>
 				<li>
-					<a href="credentialstatusinfo.html">CredentialStatusInfo</a>
+					<a href="publickeyinfopb.html">PublicKeyInfoPb</a>
 				</li>
 			</ul>
-			<h1>Interface CredentialStatusInfo</h1>
+			<h1>Interface PublicKeyInfoPb</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Object that encapsulates CredentialStatus information.</p>
+						<p>Object to encapsulate public key info</p>
 					</div>
 				</div>
 			</section>
@@ -76,7 +76,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">CredentialStatusInfo</span>
+						<span class="target">PublicKeyInfoPb</span>
 					</li>
 				</ul>
 			</section>
@@ -87,11 +87,14 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="credentialstatusinfo.html#createdat" class="tsd-kind-icon">created<wbr>At</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="credentialstatusinfo.html#credentialiid" class="tsd-kind-icon">credentiali<wbr>Id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="credentialstatusinfo.html#status" class="tsd-kind-icon">status</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="credentialstatusinfo.html#updatedat" class="tsd-kind-icon">updated<wbr>At</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="credentialstatusinfo.html#uuid" class="tsd-kind-icon">uuid</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="publickeyinfopb.html#createdat" class="tsd-kind-icon">created<wbr>At</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="publickeyinfopb.html#encoding" class="tsd-kind-icon">encoding</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="publickeyinfopb.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="publickeyinfopb.html#publickey" class="tsd-kind-icon">public<wbr>Key</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="publickeyinfopb.html#rsapadding" class="tsd-kind-icon">rsa<wbr>Padding</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="publickeyinfopb.html#status" class="tsd-kind-icon">status</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="publickeyinfopb.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="publickeyinfopb.html#updatedat" class="tsd-kind-icon">updated<wbr>At</a></li>
 							</ul>
 						</section>
 					</div>
@@ -105,17 +108,47 @@
 					<div class="tsd-signature tsd-kind-icon">created<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Date</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/157d98c/src/protos/credential.ts#L87">protos/credential.ts:87</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/157d98c/src/protos/crypto.ts#L69">protos/crypto.ts:69</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="credentialiid" class="tsd-anchor"></a>
-					<h3>credentiali<wbr>Id</h3>
-					<div class="tsd-signature tsd-kind-icon">credentiali<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="encoding" class="tsd-anchor"></a>
+					<h3>encoding</h3>
+					<div class="tsd-signature tsd-kind-icon">encoding<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/157d98c/src/protos/credential.ts#L89">protos/credential.ts:89</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/157d98c/src/protos/crypto.ts#L66">protos/crypto.ts:66</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="id" class="tsd-anchor"></a>
+					<h3>id</h3>
+					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/157d98c/src/protos/crypto.ts#L64">protos/crypto.ts:64</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="publickey" class="tsd-anchor"></a>
+					<h3>public<wbr>Key</h3>
+					<div class="tsd-signature tsd-kind-icon">public<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/157d98c/src/protos/crypto.ts#L65">protos/crypto.ts:65</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="rsapadding" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> rsa<wbr>Padding</h3>
+					<div class="tsd-signature tsd-kind-icon">rsa<wbr>Padding<span class="tsd-signature-symbol">:</span> <a href="../enums/rsapadding.html" class="tsd-signature-type" data-tsd-kind="Enumeration">RSAPadding</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/157d98c/src/protos/crypto.ts#L71">protos/crypto.ts:71</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -125,14 +158,19 @@
 					<div class="tsd-signature tsd-kind-icon">status<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/157d98c/src/protos/credential.ts#L91">protos/credential.ts:91</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/157d98c/src/protos/crypto.ts#L68">protos/crypto.ts:68</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>note could be an enum but just simplier this way... only valid values are: revoked, valid</p>
-						</div>
-					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="type" class="tsd-anchor"></a>
+					<h3>type</h3>
+					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/157d98c/src/protos/crypto.ts#L67">protos/crypto.ts:67</a></li>
+						</ul>
+					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="updatedat" class="tsd-anchor"></a>
@@ -140,17 +178,7 @@
 					<div class="tsd-signature tsd-kind-icon">updated<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Date</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/157d98c/src/protos/credential.ts#L88">protos/credential.ts:88</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="uuid" class="tsd-anchor"></a>
-					<h3>uuid</h3>
-					<div class="tsd-signature tsd-kind-icon">uuid<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/157d98c/src/protos/credential.ts#L86">protos/credential.ts:86</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/157d98c/src/protos/crypto.ts#L70">protos/crypto.ts:70</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -169,22 +197,31 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="credentialstatusinfo.html" class="tsd-kind-icon">Credential<wbr>Status<wbr>Info</a>
+						<a href="publickeyinfopb.html" class="tsd-kind-icon">Public<wbr>Key<wbr>Info<wbr>Pb</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="credentialstatusinfo.html#createdat" class="tsd-kind-icon">created<wbr>At</a>
+								<a href="publickeyinfopb.html#createdat" class="tsd-kind-icon">created<wbr>At</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="credentialstatusinfo.html#credentialiid" class="tsd-kind-icon">credentiali<wbr>Id</a>
+								<a href="publickeyinfopb.html#encoding" class="tsd-kind-icon">encoding</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="credentialstatusinfo.html#status" class="tsd-kind-icon">status</a>
+								<a href="publickeyinfopb.html#id" class="tsd-kind-icon">id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="credentialstatusinfo.html#updatedat" class="tsd-kind-icon">updated<wbr>At</a>
+								<a href="publickeyinfopb.html#publickey" class="tsd-kind-icon">public<wbr>Key</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="credentialstatusinfo.html#uuid" class="tsd-kind-icon">uuid</a>
+								<a href="publickeyinfopb.html#rsapadding" class="tsd-kind-icon">rsa<wbr>Padding</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="publickeyinfopb.html#status" class="tsd-kind-icon">status</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="publickeyinfopb.html#type" class="tsd-kind-icon">type</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="publickeyinfopb.html#updatedat" class="tsd-kind-icon">updated<wbr>At</a>
 							</li>
 						</ul>
 					</li>

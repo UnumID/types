@@ -66,17 +66,22 @@
 				<a href="#conventions" id="conventions" style="color: inherit; text-decoration: none;">
 					<h2>Conventions</h2>
 				</a>
-				<a href="#naming" id="naming" style="color: inherit; text-decoration: none;">
-					<h3>Naming</h3>
-				</a>
-				<p>Generic types such as <code>PresentationRequest</code>, as defined here, ought to be the simplest naming conventions. For example, the PresentationRequest entity definition types ought to go by <code>PresentationRequestEntity</code>.</p>
-				<p>Types explicitly for HTTP interfaces ought have a trailing <code>Dto</code>, i.e. <code>PresentationRequestDto</code>. Furthermore, if the Data Transfer Object is different between the HTTP request verbs, i.e. GET and POST, then include in the type as such, <code>PresentationRequestPostDto</code>.</p>
-				<p>Types that are used for cryptographic purposes should have a unsigned and signed version. However, the signed type should have the simpler naming convention, i.e. <code>Credential</code> is the signed type of <code>UnsignedCredential</code>.</p>
 				<a href="#protocol-buffers" id="protocol-buffers" style="color: inherit; text-decoration: none;">
 					<h3>Protocol Buffers</h3>
 				</a>
 				<p>Ideally all types core to UnumID ought to be defined in the <a href="https://github.com/UnumID/protobufs">protobufs</a> repo and imported into this project. That migration is an ongoing effort. While we migrate to using all Protocol Buffer defined objects and gRPC, we are still using JSON and HTTP for the transport layer. As such attributes defined in protos that go over the network are serialized to JSON which can cause some typing side effects at run time. An example of this is are Date attributes. </p>
-				<p>For this reason we have adopted a convention of extending the proto defined interface here to make the Date attributes strings. One such example is of the EncryptedCredentialDto defined in index.ts which extends the proto defined interface, EncryptedCredential.</p>
+				<p>For this reason we have adopted a convention of extending the proto defined interface here to make the Date attributes strings. One such example is of the EncryptedCredentialDto defined in index.ts which extends the proto defined interface, EncryptedCredential. <em>Note the use of the Omit function. Reference material can be found <a href="https://stackoverflow.com/questions/41285211/overriding-interface-property-type-defined-in-typescript-d-ts-file">here</a></em></p>
+				<a href="#naming" id="naming" style="color: inherit; text-decoration: none;">
+					<h3>Naming</h3>
+				</a>
+				<p>a) Generic types such as <code>PresentationRequest</code>, as defined here, ought to be the simplest naming conventions. The generic type represents the domain type definition. If the object is used for persistence this generic type includes the persisted metadata, i.e. <code>uuid</code>, <code>createdAt</code>, and <code>updatedAt</code>. </p>
+				<p>b) For generic types that are not directly persisted, i.e. <code>CredentialRequest</code>, the naming convention also ought to be the simplest.</p>
+				<p>c) For generic types that represent a object consisting options for creating a persisted entity they should have succeeding <code>Options</code> naming convention. For example, <code>IssueCredentialOptions</code> or <code>EncryptedCredentialOptions</code>.</p>
+				<p>d) Types explicitly for HTTP interfaces ought have a trailing <code>Dto</code>, i.e. <code>PresentationRequestDto</code>. This is often used to better represent for the JSON serialized attributes <code>createdAt</code> and <code>updatedAt</code> from <code>Date</code> to <code>string</code>. Furthermore, if the Data Transfer Object is different between the HTTP request verbs, i.e. GET and POST, then include in the type as such, <code>PresentationRequestPostDto</code>.</p>
+				<p>e) HTTP types that encompass other DTOs, that are not just a serialization of one object, should use the naming convention &quot;EnrichedDto&quot;. For example the <code>PresentationRequestEnrichedDto</code> encompasses the PresentationRequestDto type along with other fields supplementary to the <code>PresentationRequestDto</code> type.</p>
+				<p>f) Types that are used for cryptographic purposes should have a unsigned and signed version. However, the signed type should have the simpler naming convention, i.e. <code>Credential</code> is the signed type of <code>UnsignedCredential</code>. </p>
+				<p><em>Note: any types that undergo cryptographic operations need to be defined via Protocol Buffers in order to leverage their deterministic byte array properties. Thus should not be defined solely in this ts types project.</em></p>
+				<p>g) Entity types belong in the projects that interface with their data layers. For example, the PresentationRequest entity type, <code>PresentationRequestEntity</code>, should not be defined generically, but rather in the SaaS project types.</p>
 				<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
 					<h2>Documentation</h2>
 				</a>
@@ -144,13 +149,28 @@
 						<a href="interfaces/diddocument.html" class="tsd-kind-icon">Did<wbr>Document</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="interfaces/diddocumentpb.html" class="tsd-kind-icon">Did<wbr>Document<wbr>Pb</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="interfaces/encryptedcredential.html" class="tsd-kind-icon">Encrypted<wbr>Credential</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/encryptedcredentialdto.html" class="tsd-kind-icon">Encrypted<wbr>Credential<wbr>Dto</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="interfaces/encryptedcredentialenriched.html" class="tsd-kind-icon">Encrypted<wbr>Credential<wbr>Enriched</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/encryptedcredentialenricheddto.html" class="tsd-kind-icon">Encrypted<wbr>Credential<wbr>Enriched<wbr>Dto</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="interfaces/encryptedcredentialoptions.html" class="tsd-kind-icon">Encrypted<wbr>Credential<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/encryptedcredentialoptionspb.html" class="tsd-kind-icon">Encrypted<wbr>Credential<wbr>Options<wbr>Pb</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/encryptedcredentialpb.html" class="tsd-kind-icon">Encrypted<wbr>Credential<wbr>Pb</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/encryptedcredentialsdto.html" class="tsd-kind-icon">Encrypted<wbr>Credentials<wbr>Dto</a>
@@ -177,10 +197,10 @@
 						<a href="interfaces/holderappinfo.html" class="tsd-kind-icon">Holder<wbr>App<wbr>Info</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/issuecredentialdto.html" class="tsd-kind-icon">Issue<wbr>Credential<wbr>Dto</a>
+						<a href="interfaces/issuecredentialoptions.html" class="tsd-kind-icon">Issue<wbr>Credential<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/issuecredentialsdto.html" class="tsd-kind-icon">Issue<wbr>Credentials<wbr>Dto</a>
+						<a href="interfaces/issuecredentialsoptions.html" class="tsd-kind-icon">Issue<wbr>Credentials<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/issuer.html" class="tsd-kind-icon">Issuer</a>
@@ -241,6 +261,9 @@
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/publickeyinfo.html" class="tsd-kind-icon">Public<wbr>Key<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/publickeyinfopb.html" class="tsd-kind-icon">Public<wbr>Key<wbr>Info<wbr>Pb</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/pushnotificationoptions.html" class="tsd-kind-icon">Push<wbr>Notification<wbr>Options</a>
@@ -366,16 +389,28 @@
 						<a href="modules.html#credentialstatusinfo" class="tsd-kind-icon">Credential<wbr>Status<wbr>Info</a>
 					</li>
 					<li class=" tsd-kind-variable">
+						<a href="modules.html#diddocumentpb" class="tsd-kind-icon">Did<wbr>Document<wbr>Pb</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#encryptedcredentialenriched" class="tsd-kind-icon">Encrypted<wbr>Credential<wbr>Enriched</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#encryptedcredentialoptionspb" class="tsd-kind-icon">Encrypted<wbr>Credential<wbr>Options<wbr>Pb</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#encryptedcredentialpb" class="tsd-kind-icon">Encrypted<wbr>Credential<wbr>Pb</a>
+					</li>
+					<li class=" tsd-kind-variable">
 						<a href="modules.html#encryptedkey" class="tsd-kind-icon">Encrypted<wbr>Key</a>
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="modules.html#holderappinfo" class="tsd-kind-icon">Holder<wbr>App<wbr>Info</a>
 					</li>
 					<li class=" tsd-kind-variable">
-						<a href="modules.html#issuecredentialdto" class="tsd-kind-icon">Issue<wbr>Credential<wbr>Dto</a>
+						<a href="modules.html#issuecredentialoptions" class="tsd-kind-icon">Issue<wbr>Credential<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-variable">
-						<a href="modules.html#issuecredentialsdto" class="tsd-kind-icon">Issue<wbr>Credentials<wbr>Dto</a>
+						<a href="modules.html#issuecredentialsoptions" class="tsd-kind-icon">Issue<wbr>Credentials<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="modules.html#presentationpb" class="tsd-kind-icon">Presentation<wbr>Pb</a>
@@ -385,6 +420,9 @@
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="modules.html#proofpb" class="tsd-kind-icon">Proof<wbr>Pb</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#publickeyinfopb" class="tsd-kind-icon">Public<wbr>Key<wbr>Info<wbr>Pb</a>
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="modules.html#unsignedcredentialpb" class="tsd-kind-icon">Unsigned<wbr>Credential<wbr>Pb</a>
