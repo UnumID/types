@@ -68,8 +68,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Interface to encapsulate encrypted information along side its encrypted decryption key.
-						Note: please see EncryptedKey.</p>
+						<p>Extends protobuf definition to make field required</p>
 					</div>
 				</div>
 			</section>
@@ -77,7 +76,12 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">EncryptedData</span>
+						<span class="tsd-signature-type">EncryptedDataPb</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">EncryptedData</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -88,8 +92,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="encrypteddata.html#data" class="tsd-kind-icon">data</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="encrypteddata.html#key" class="tsd-kind-icon">key</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="encrypteddata.html#data" class="tsd-kind-icon">data</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="encrypteddata.html#key" class="tsd-kind-icon">key</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="encrypteddata.html#rsapadding" class="tsd-kind-icon">rsa<wbr>Padding</a></li>
 							</ul>
 						</section>
 					</div>
@@ -97,23 +102,36 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="data" class="tsd-anchor"></a>
 					<h3>data</h3>
 					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from EncryptedDataPb.data</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5ca1a4f/src/protos/crypto.ts#L24">protos/crypto.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/b4bcf71/src/protos/crypto.ts#L57">protos/crypto.ts:57</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 					<a name="key" class="tsd-anchor"></a>
 					<h3>key</h3>
-					<div class="tsd-signature tsd-kind-icon">key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="../modules.html#encryptedkey" class="tsd-signature-type" data-tsd-kind="Variable">EncryptedKey</a></div>
+					<div class="tsd-signature tsd-kind-icon">key<span class="tsd-signature-symbol">:</span> <a href="../modules.html#encryptedkey" class="tsd-signature-type" data-tsd-kind="Variable">EncryptedKey</a></div>
 					<aside class="tsd-sources">
+						<p>Overrides EncryptedDataPb.key</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5ca1a4f/src/protos/crypto.ts#L25">protos/crypto.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/b4bcf71/src/index.ts#L150">index.ts:150</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="rsapadding" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> rsa<wbr>Padding</h3>
+					<div class="tsd-signature tsd-kind-icon">rsa<wbr>Padding<span class="tsd-signature-symbol">:</span> <a href="../enums/rsapadding.html" class="tsd-signature-type" data-tsd-kind="Enumeration">RSAPadding</a></div>
+					<aside class="tsd-sources">
+						<p>Inherited from EncryptedDataPb.rsaPadding</p>
+						<ul>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/b4bcf71/src/protos/crypto.ts#L59">protos/crypto.ts:59</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -134,11 +152,14 @@
 					<li class="current tsd-kind-interface">
 						<a href="encrypteddata.html" class="tsd-kind-icon">Encrypted<wbr>Data</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="encrypteddata.html#data" class="tsd-kind-icon">data</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 								<a href="encrypteddata.html#key" class="tsd-kind-icon">key</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="encrypteddata.html#rsapadding" class="tsd-kind-icon">rsa<wbr>Padding</a>
 							</li>
 						</ul>
 					</li>
