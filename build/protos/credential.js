@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CredentialRepositoryResponse = exports.EncryptedCredentialResponse = exports.CredentialStatusInfo = exports.IssueCredentialsDto = exports.IssueCredentialDto = exports.EncryptedCredential = exports.CredentialRequest = exports.Credential = exports.UnsignedCredential = exports.CredentialStatus = exports.protobufPackage = void 0;
+exports.EncryptedCredentialEnriched = exports.EncryptedCredential = exports.CredentialStatusInfo = exports.IssueCredentialsOptions = exports.IssueCredentialOptions = exports.EncryptedCredentialOptions = exports.CredentialRequest = exports.Credential = exports.UnsignedCredential = exports.CredentialStatus = exports.protobufPackage = void 0;
 /* eslint-disable */
 var long_1 = __importDefault(require("long"));
 var minimal_1 = __importDefault(require("protobufjs/minimal"));
@@ -655,13 +655,13 @@ exports.CredentialRequest = {
         return message;
     },
 };
-var baseEncryptedCredential = {
+var baseEncryptedCredentialOptions = {
     credentialId: "",
     subject: "",
     issuer: "",
     type: "",
 };
-exports.EncryptedCredential = {
+exports.EncryptedCredentialOptions = {
     encode: function (message, writer) {
         if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
         if (message.credentialId !== "") {
@@ -684,7 +684,7 @@ exports.EncryptedCredential = {
     decode: function (input, length) {
         var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         var end = length === undefined ? reader.len : reader.pos + length;
-        var message = __assign({}, baseEncryptedCredential);
+        var message = __assign({}, baseEncryptedCredentialOptions);
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
@@ -711,7 +711,7 @@ exports.EncryptedCredential = {
         return message;
     },
     fromJSON: function (object) {
-        var message = __assign({}, baseEncryptedCredential);
+        var message = __assign({}, baseEncryptedCredentialOptions);
         if (object.credentialId !== undefined && object.credentialId !== null) {
             message.credentialId = String(object.credentialId);
         }
@@ -758,7 +758,7 @@ exports.EncryptedCredential = {
         return obj;
     },
     fromPartial: function (object) {
-        var message = __assign({}, baseEncryptedCredential);
+        var message = __assign({}, baseEncryptedCredentialOptions);
         if (object.credentialId !== undefined && object.credentialId !== null) {
             message.credentialId = object.credentialId;
         }
@@ -792,13 +792,13 @@ exports.EncryptedCredential = {
         return message;
     },
 };
-var baseIssueCredentialDto = {
+var baseIssueCredentialOptions = {
     credentialId: "",
     subject: "",
     issuer: "",
     type: "",
 };
-exports.IssueCredentialDto = {
+exports.IssueCredentialOptions = {
     encode: function (message, writer) {
         if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
         if (message.credentialId !== "") {
@@ -822,7 +822,7 @@ exports.IssueCredentialDto = {
     decode: function (input, length) {
         var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         var end = length === undefined ? reader.len : reader.pos + length;
-        var message = __assign({}, baseIssueCredentialDto);
+        var message = __assign({}, baseIssueCredentialOptions);
         message.encryptedCredentials = [];
         while (reader.pos < end) {
             var tag = reader.uint32();
@@ -850,7 +850,7 @@ exports.IssueCredentialDto = {
         return message;
     },
     fromJSON: function (object) {
-        var message = __assign({}, baseIssueCredentialDto);
+        var message = __assign({}, baseIssueCredentialOptions);
         message.encryptedCredentials = [];
         if (object.credentialId !== undefined && object.credentialId !== null) {
             message.credentialId = String(object.credentialId);
@@ -903,7 +903,7 @@ exports.IssueCredentialDto = {
         return obj;
     },
     fromPartial: function (object) {
-        var message = __assign({}, baseIssueCredentialDto);
+        var message = __assign({}, baseIssueCredentialOptions);
         message.encryptedCredentials = [];
         if (object.credentialId !== undefined && object.credentialId !== null) {
             message.credentialId = object.credentialId;
@@ -939,26 +939,26 @@ exports.IssueCredentialDto = {
         return message;
     },
 };
-var baseIssueCredentialsDto = {};
-exports.IssueCredentialsDto = {
+var baseIssueCredentialsOptions = {};
+exports.IssueCredentialsOptions = {
     encode: function (message, writer) {
         if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
         for (var _i = 0, _a = message.credentialRequests; _i < _a.length; _i++) {
             var v = _a[_i];
-            exports.IssueCredentialDto.encode(v, writer.uint32(10).fork()).ldelim();
+            exports.IssueCredentialOptions.encode(v, writer.uint32(10).fork()).ldelim();
         }
         return writer;
     },
     decode: function (input, length) {
         var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         var end = length === undefined ? reader.len : reader.pos + length;
-        var message = __assign({}, baseIssueCredentialsDto);
+        var message = __assign({}, baseIssueCredentialsOptions);
         message.credentialRequests = [];
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.credentialRequests.push(exports.IssueCredentialDto.decode(reader, reader.uint32()));
+                    message.credentialRequests.push(exports.IssueCredentialOptions.decode(reader, reader.uint32()));
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -968,13 +968,13 @@ exports.IssueCredentialsDto = {
         return message;
     },
     fromJSON: function (object) {
-        var message = __assign({}, baseIssueCredentialsDto);
+        var message = __assign({}, baseIssueCredentialsOptions);
         message.credentialRequests = [];
         if (object.credentialRequests !== undefined &&
             object.credentialRequests !== null) {
             for (var _i = 0, _a = object.credentialRequests; _i < _a.length; _i++) {
                 var e = _a[_i];
-                message.credentialRequests.push(exports.IssueCredentialDto.fromJSON(e));
+                message.credentialRequests.push(exports.IssueCredentialOptions.fromJSON(e));
             }
         }
         return message;
@@ -983,7 +983,7 @@ exports.IssueCredentialsDto = {
         var obj = {};
         if (message.credentialRequests) {
             obj.credentialRequests = message.credentialRequests.map(function (e) {
-                return e ? exports.IssueCredentialDto.toJSON(e) : undefined;
+                return e ? exports.IssueCredentialOptions.toJSON(e) : undefined;
             });
         }
         else {
@@ -992,13 +992,13 @@ exports.IssueCredentialsDto = {
         return obj;
     },
     fromPartial: function (object) {
-        var message = __assign({}, baseIssueCredentialsDto);
+        var message = __assign({}, baseIssueCredentialsOptions);
         message.credentialRequests = [];
         if (object.credentialRequests !== undefined &&
             object.credentialRequests !== null) {
             for (var _i = 0, _a = object.credentialRequests; _i < _a.length; _i++) {
                 var e = _a[_i];
-                message.credentialRequests.push(exports.IssueCredentialDto.fromPartial(e));
+                message.credentialRequests.push(exports.IssueCredentialOptions.fromPartial(e));
             }
         }
         return message;
@@ -1139,7 +1139,7 @@ exports.CredentialStatusInfo = {
         return message;
     },
 };
-var baseEncryptedCredentialResponse = {
+var baseEncryptedCredential = {
     uuid: "",
     credentialId: "",
     subject: "",
@@ -1147,7 +1147,7 @@ var baseEncryptedCredentialResponse = {
     type: "",
     version: "",
 };
-exports.EncryptedCredentialResponse = {
+exports.EncryptedCredential = {
     encode: function (message, writer) {
         if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
         if (message.uuid !== "") {
@@ -1182,7 +1182,7 @@ exports.EncryptedCredentialResponse = {
     decode: function (input, length) {
         var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         var end = length === undefined ? reader.len : reader.pos + length;
-        var message = __assign({}, baseEncryptedCredentialResponse);
+        var message = __assign({}, baseEncryptedCredential);
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
@@ -1221,7 +1221,7 @@ exports.EncryptedCredentialResponse = {
         return message;
     },
     fromJSON: function (object) {
-        var message = __assign({}, baseEncryptedCredentialResponse);
+        var message = __assign({}, baseEncryptedCredential);
         if (object.uuid !== undefined && object.uuid !== null) {
             message.uuid = String(object.uuid);
         }
@@ -1298,7 +1298,7 @@ exports.EncryptedCredentialResponse = {
         return obj;
     },
     fromPartial: function (object) {
-        var message = __assign({}, baseEncryptedCredentialResponse);
+        var message = __assign({}, baseEncryptedCredential);
         if (object.uuid !== undefined && object.uuid !== null) {
             message.uuid = object.uuid;
         }
@@ -1356,12 +1356,12 @@ exports.EncryptedCredentialResponse = {
         return message;
     },
 };
-var baseCredentialRepositoryResponse = {};
-exports.CredentialRepositoryResponse = {
+var baseEncryptedCredentialEnriched = {};
+exports.EncryptedCredentialEnriched = {
     encode: function (message, writer) {
         if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
         if (message.encryptedCredential !== undefined) {
-            exports.EncryptedCredentialResponse.encode(message.encryptedCredential, writer.uint32(10).fork()).ldelim();
+            exports.EncryptedCredential.encode(message.encryptedCredential, writer.uint32(10).fork()).ldelim();
         }
         if (message.didDocument !== undefined) {
             didDocument_1.DidDocument.encode(message.didDocument, writer.uint32(18).fork()).ldelim();
@@ -1371,12 +1371,12 @@ exports.CredentialRepositoryResponse = {
     decode: function (input, length) {
         var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         var end = length === undefined ? reader.len : reader.pos + length;
-        var message = __assign({}, baseCredentialRepositoryResponse);
+        var message = __assign({}, baseEncryptedCredentialEnriched);
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.encryptedCredential = exports.EncryptedCredentialResponse.decode(reader, reader.uint32());
+                    message.encryptedCredential = exports.EncryptedCredential.decode(reader, reader.uint32());
                     break;
                 case 2:
                     message.didDocument = didDocument_1.DidDocument.decode(reader, reader.uint32());
@@ -1389,10 +1389,10 @@ exports.CredentialRepositoryResponse = {
         return message;
     },
     fromJSON: function (object) {
-        var message = __assign({}, baseCredentialRepositoryResponse);
+        var message = __assign({}, baseEncryptedCredentialEnriched);
         if (object.encryptedCredential !== undefined &&
             object.encryptedCredential !== null) {
-            message.encryptedCredential = exports.EncryptedCredentialResponse.fromJSON(object.encryptedCredential);
+            message.encryptedCredential = exports.EncryptedCredential.fromJSON(object.encryptedCredential);
         }
         else {
             message.encryptedCredential = undefined;
@@ -1409,7 +1409,7 @@ exports.CredentialRepositoryResponse = {
         var obj = {};
         message.encryptedCredential !== undefined &&
             (obj.encryptedCredential = message.encryptedCredential
-                ? exports.EncryptedCredentialResponse.toJSON(message.encryptedCredential)
+                ? exports.EncryptedCredential.toJSON(message.encryptedCredential)
                 : undefined);
         message.didDocument !== undefined &&
             (obj.didDocument = message.didDocument
@@ -1418,10 +1418,10 @@ exports.CredentialRepositoryResponse = {
         return obj;
     },
     fromPartial: function (object) {
-        var message = __assign({}, baseCredentialRepositoryResponse);
+        var message = __assign({}, baseEncryptedCredentialEnriched);
         if (object.encryptedCredential !== undefined &&
             object.encryptedCredential !== null) {
-            message.encryptedCredential = exports.EncryptedCredentialResponse.fromPartial(object.encryptedCredential);
+            message.encryptedCredential = exports.EncryptedCredential.fromPartial(object.encryptedCredential);
         }
         else {
             message.encryptedCredential = undefined;

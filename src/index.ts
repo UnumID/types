@@ -5,7 +5,7 @@ import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, Presentat
 import { DidDocument as DidDocumentPb } from "./protos/didDocument"
 import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb, CredentialStatusInfo} from "./protos/credential";
 import { Proof as ProofPb} from "./protos/proof";
-import { IssueCredentialDto, IssueCredentialsDto, EncryptedCredential, EncryptedCredentialResponse, CredentialRepositoryResponse} from "./protos/credential"
+import { IssueCredentialOptions, IssueCredentialsOptions, EncryptedCredential, EncryptedCredentialOptions as EncryptedCredentialOptionsPb, EncryptedCredentialEnriched} from "./protos/credential"
 import { EncryptedData, EncryptedKey, PublicKeyInfo as PublicKeyInfoPb } from "./protos/crypto"
 import { HolderAppInfo } from "./protos/holderApp";
 
@@ -25,12 +25,12 @@ export {
 
 export {
   // protos/credential
-  IssueCredentialDto,
-  IssueCredentialsDto,
+  IssueCredentialOptions,
+  IssueCredentialsOptions,
   CredentialStatusInfo,
   EncryptedCredential,
-  EncryptedCredentialResponse,
-  CredentialRepositoryResponse
+  EncryptedCredentialOptionsPb,
+  EncryptedCredentialEnriched
 }
 
 export {
@@ -144,28 +144,27 @@ export interface Credential extends UnsignedCredential {
  * Data transfer object for a single EncryptedCredential
  * Note: extending the protobuf definition of EncryptedCredential in order to make the date fields string for json serialization
  */
-export interface EncryptedCredentialDto extends EncryptedCredential {
-  uuid: string;
+// ref: https://stackoverflow.com/questions/41285211/overriding-interface-property-type-defined-in-typescript-d-ts-file
+  export interface EncryptedCredentialDto extends Omit<EncryptedCredential, 'createdAt' | 'updatedAt'> {
   createdAt: string; // dates should be converted to ISO strings, since this is how they will be represented in the JSON at runtime
   updatedAt: string; // dates should be converted to ISO strings, since this is how they will be represented in the JSON at runtime
-  version: string;
 }
 
 /**
- * Data transfer object for a single CredentialRepositoryResponse
- * Note: extending the protobuf definition of CredentialRepositoryResponse in order to make the date fields string for json serialization and did document align with @context
+ * Data transfer object for a single EncryptedCredentialEnriched
+ * Note: extending the protobuf definition of EncryptedCredentialEnriched in order to make the date fields string for json serialization and did document align with @context
  */
 // TODO use in v4 instead of EncryptedCredentialDto. Not using now because all service would need to be using the proto didDoc def, which does not have @context, instead just context... break change
-//  export interface CredentialRepositoryDto extends CredentialRepositoryResponse {
+//  export interface EncryptedCredentialEnrichedDto extends EncryptedCredentialEnriched {
 //   createdAt: string; // dates should be converted to ISO strings, since this is how they will be represented in the JSON at runtime
 //   updatedAt: string; // dates should be converted to ISO strings, since this is how they will be represented in the JSON at runtime
 // }
 
 /**
  * Interface to encapsulate a single CredentialRepositoryDto response
- * Note: ought to be deprecated in v4 in favor of CredentialRepositoryResponse.
+ * Note: ought to be deprecated in v4 in favor of EncryptedCredentialEnriched.
  */
-export interface CredentialRepositoryDto {
+export interface EncryptedCredentialEnrichedDto {
   encryptedCredential: EncryptedCredentialDto;
   didDocument: DidDocument;
 }

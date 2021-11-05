@@ -1,5 +1,13 @@
 import _m0 from "protobufjs/minimal";
 export declare const protobufPackage = "crypto.v1";
+/** Enum containing all of the RSA padding types that we use */
+export declare enum RSAPadding {
+    PKCS = 0,
+    OAEP = 1,
+    UNRECOGNIZED = -1
+}
+export declare function rSAPaddingFromJSON(object: any): RSAPadding;
+export declare function rSAPaddingToJSON(object: RSAPadding): string;
 /**
  * Interface to encapsulate an encrypted key.
  * Note: This is used to encrypted an AES key using RSA so that data can be encrypted with the significantly smaller AES key.
@@ -17,6 +25,7 @@ export interface EncryptedKey {
 export interface EncryptedData {
     data: string;
     key: EncryptedKey | undefined;
+    rsaPadding?: RSAPadding | undefined;
 }
 /** Object to encapsulate public key info */
 export interface PublicKeyInfo {
@@ -27,6 +36,7 @@ export interface PublicKeyInfo {
     status: string;
     createdAt: Date | undefined;
     updatedAt: Date | undefined;
+    rsaPadding?: RSAPadding | undefined;
 }
 /** Object to encapsulate a key pair */
 export interface KeyPair {

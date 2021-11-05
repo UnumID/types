@@ -6,11 +6,11 @@ import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, Presentat
 import { DidDocument as DidDocumentPb } from "./protos/didDocument";
 import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb, CredentialStatusInfo } from "./protos/credential";
 import { Proof as ProofPb } from "./protos/proof";
-import { IssueCredentialDto, IssueCredentialsDto, EncryptedCredential, EncryptedCredentialResponse, CredentialRepositoryResponse } from "./protos/credential";
+import { IssueCredentialOptions, IssueCredentialsOptions, EncryptedCredential, EncryptedCredentialOptions as EncryptedCredentialOptionsPb, EncryptedCredentialEnriched } from "./protos/credential";
 import { EncryptedData, EncryptedKey, PublicKeyInfo as PublicKeyInfoPb } from "./protos/crypto";
 import { HolderAppInfo } from "./protos/holderApp";
 export { UnsignedPresentationPb, PresentationPb, UnsignedPresentationRequestPb, PresentationRequestPb, UnsignedCredentialPb, CredentialPb, CredentialRequestPb, ProofPb, DidDocumentPb, PublicKeyInfoPb };
-export { IssueCredentialDto, IssueCredentialsDto, CredentialStatusInfo, EncryptedCredential, EncryptedCredentialResponse, CredentialRepositoryResponse };
+export { IssueCredentialOptions, IssueCredentialsOptions, CredentialStatusInfo, EncryptedCredential, EncryptedCredentialOptionsPb, EncryptedCredentialEnriched };
 export { EncryptedData, EncryptedKey };
 export { HolderAppInfo };
 /**
@@ -101,21 +101,19 @@ export interface Credential extends UnsignedCredential {
  * Data transfer object for a single EncryptedCredential
  * Note: extending the protobuf definition of EncryptedCredential in order to make the date fields string for json serialization
  */
-export interface EncryptedCredentialDto extends EncryptedCredential {
-    uuid: string;
+export interface EncryptedCredentialDto extends Omit<EncryptedCredential, 'createdAt' | 'updatedAt'> {
     createdAt: string;
     updatedAt: string;
-    version: string;
 }
 /**
- * Data transfer object for a single CredentialRepositoryResponse
- * Note: extending the protobuf definition of CredentialRepositoryResponse in order to make the date fields string for json serialization and did document align with @context
+ * Data transfer object for a single EncryptedCredentialEnriched
+ * Note: extending the protobuf definition of EncryptedCredentialEnriched in order to make the date fields string for json serialization and did document align with @context
  */
 /**
  * Interface to encapsulate a single CredentialRepositoryDto response
- * Note: ought to be deprecated in v4 in favor of CredentialRepositoryResponse.
+ * Note: ought to be deprecated in v4 in favor of EncryptedCredentialEnriched.
  */
-export interface CredentialRepositoryDto {
+export interface EncryptedCredentialEnrichedDto {
     encryptedCredential: EncryptedCredentialDto;
     didDocument: DidDocument;
 }

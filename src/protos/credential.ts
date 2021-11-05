@@ -54,20 +54,13 @@ export interface CredentialRequest {
   required: boolean;
 }
 
-/**
- * Object that encapsulates an EncryptedCredential.
- * Note: this is more of the DTO to persist an EncryptedCredential in the saas because no uuid is defined here.
- */
-export interface EncryptedCredential {
+/** Object that encapsulates an EncryptedCredentialOptions for persisting an EncryptedCredential. */
+export interface EncryptedCredentialOptions {
   credentialId: string;
   subject: string;
   issuer: string;
   type: string;
   data: EncryptedData | undefined;
-  uuid: string;
-  createdAt: Date | undefined;
-  updatedAt: Date | undefined;
-  version: string;
 }
 
 /**
@@ -75,7 +68,7 @@ export interface EncryptedCredential {
  * Note: that the while can handle multiple EncryptedCredentials that is for the edge case of
  * the same credential (id, type, subject, issuer) being encrypted with different holder public keys
  */
-export interface IssueCredentialDto {
+export interface IssueCredentialOptions {
   credentialId: string;
   subject: string;
   issuer: string;
@@ -84,8 +77,8 @@ export interface IssueCredentialDto {
 }
 
 /** Object that encapsulates a request to Unum ID SaaS to issue multiple credentials of various types. */
-export interface IssueCredentialsDto {
-  credentialRequests: IssueCredentialDto[];
+export interface IssueCredentialsOptions {
+  credentialRequests: IssueCredentialOptions[];
 }
 
 /** Object that encapsulates CredentialStatus information. */
@@ -102,7 +95,7 @@ export interface CredentialStatusInfo {
  * Object that encapsulates an EncryptedCredentialRespose.
  * Note: this is the SaaS' response of EncryptedCredential from the SaaS DB.
  */
-export interface EncryptedCredentialResponse {
+export interface EncryptedCredential {
   uuid: string;
   credentialId: string;
   subject: string;
@@ -114,12 +107,9 @@ export interface EncryptedCredentialResponse {
   updatedAt: Date | undefined;
 }
 
-/**
- * Object that encapsulates an EncryptedCredential.
- * Note: this is more of the DTO to persist an EncryptedCredential in the saas because no uuid is defined here.
- */
-export interface CredentialRepositoryResponse {
-  encryptedCredential: EncryptedCredentialResponse | undefined;
+/** Object that encapsulates an EncryptedCredential and a DidDocument corresponding the credential's issuer. */
+export interface EncryptedCredentialEnriched {
+  encryptedCredential: EncryptedCredential | undefined;
   didDocument: DidDocument | undefined;
 }
 
@@ -789,18 +779,16 @@ export const CredentialRequest = {
   },
 };
 
-const baseEncryptedCredential: object = {
+const baseEncryptedCredentialOptions: object = {
   credentialId: "",
   subject: "",
   issuer: "",
   type: "",
-  uuid: "",
-  version: "",
 };
 
-export const EncryptedCredential = {
+export const EncryptedCredentialOptions = {
   encode(
-    message: EncryptedCredential,
+    message: EncryptedCredentialOptions,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
     if (message.credentialId !== "") {
@@ -818,31 +806,18 @@ export const EncryptedCredential = {
     if (message.data !== undefined) {
       EncryptedData.encode(message.data, writer.uint32(42).fork()).ldelim();
     }
-    if (message.uuid !== "") {
-      writer.uint32(50).string(message.uuid);
-    }
-    if (message.createdAt !== undefined) {
-      Timestamp.encode(
-        toTimestamp(message.createdAt),
-        writer.uint32(58).fork()
-      ).ldelim();
-    }
-    if (message.updatedAt !== undefined) {
-      Timestamp.encode(
-        toTimestamp(message.updatedAt),
-        writer.uint32(66).fork()
-      ).ldelim();
-    }
-    if (message.version !== "") {
-      writer.uint32(74).string(message.version);
-    }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): EncryptedCredential {
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): EncryptedCredentialOptions {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = { ...baseEncryptedCredential } as EncryptedCredential;
+    const message = {
+      ...baseEncryptedCredentialOptions,
+    } as EncryptedCredentialOptions;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -861,22 +836,6 @@ export const EncryptedCredential = {
         case 5:
           message.data = EncryptedData.decode(reader, reader.uint32());
           break;
-        case 6:
-          message.uuid = reader.string();
-          break;
-        case 7:
-          message.createdAt = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
-          );
-          break;
-        case 8:
-          message.updatedAt = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
-          );
-          break;
-        case 9:
-          message.version = reader.string();
-          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -885,8 +844,10 @@ export const EncryptedCredential = {
     return message;
   },
 
-  fromJSON(object: any): EncryptedCredential {
-    const message = { ...baseEncryptedCredential } as EncryptedCredential;
+  fromJSON(object: any): EncryptedCredentialOptions {
+    const message = {
+      ...baseEncryptedCredentialOptions,
+    } as EncryptedCredentialOptions;
     if (object.credentialId !== undefined && object.credentialId !== null) {
       message.credentialId = String(object.credentialId);
     } else {
@@ -912,30 +873,10 @@ export const EncryptedCredential = {
     } else {
       message.data = undefined;
     }
-    if (object.uuid !== undefined && object.uuid !== null) {
-      message.uuid = String(object.uuid);
-    } else {
-      message.uuid = "";
-    }
-    if (object.createdAt !== undefined && object.createdAt !== null) {
-      message.createdAt = fromJsonTimestamp(object.createdAt);
-    } else {
-      message.createdAt = undefined;
-    }
-    if (object.updatedAt !== undefined && object.updatedAt !== null) {
-      message.updatedAt = fromJsonTimestamp(object.updatedAt);
-    } else {
-      message.updatedAt = undefined;
-    }
-    if (object.version !== undefined && object.version !== null) {
-      message.version = String(object.version);
-    } else {
-      message.version = "";
-    }
     return message;
   },
 
-  toJSON(message: EncryptedCredential): unknown {
+  toJSON(message: EncryptedCredentialOptions): unknown {
     const obj: any = {};
     message.credentialId !== undefined &&
       (obj.credentialId = message.credentialId);
@@ -946,17 +887,15 @@ export const EncryptedCredential = {
       (obj.data = message.data
         ? EncryptedData.toJSON(message.data)
         : undefined);
-    message.uuid !== undefined && (obj.uuid = message.uuid);
-    message.createdAt !== undefined &&
-      (obj.createdAt = message.createdAt.toISOString());
-    message.updatedAt !== undefined &&
-      (obj.updatedAt = message.updatedAt.toISOString());
-    message.version !== undefined && (obj.version = message.version);
     return obj;
   },
 
-  fromPartial(object: DeepPartial<EncryptedCredential>): EncryptedCredential {
-    const message = { ...baseEncryptedCredential } as EncryptedCredential;
+  fromPartial(
+    object: DeepPartial<EncryptedCredentialOptions>
+  ): EncryptedCredentialOptions {
+    const message = {
+      ...baseEncryptedCredentialOptions,
+    } as EncryptedCredentialOptions;
     if (object.credentialId !== undefined && object.credentialId !== null) {
       message.credentialId = object.credentialId;
     } else {
@@ -982,40 +921,20 @@ export const EncryptedCredential = {
     } else {
       message.data = undefined;
     }
-    if (object.uuid !== undefined && object.uuid !== null) {
-      message.uuid = object.uuid;
-    } else {
-      message.uuid = "";
-    }
-    if (object.createdAt !== undefined && object.createdAt !== null) {
-      message.createdAt = object.createdAt;
-    } else {
-      message.createdAt = undefined;
-    }
-    if (object.updatedAt !== undefined && object.updatedAt !== null) {
-      message.updatedAt = object.updatedAt;
-    } else {
-      message.updatedAt = undefined;
-    }
-    if (object.version !== undefined && object.version !== null) {
-      message.version = object.version;
-    } else {
-      message.version = "";
-    }
     return message;
   },
 };
 
-const baseIssueCredentialDto: object = {
+const baseIssueCredentialOptions: object = {
   credentialId: "",
   subject: "",
   issuer: "",
   type: "",
 };
 
-export const IssueCredentialDto = {
+export const IssueCredentialOptions = {
   encode(
-    message: IssueCredentialDto,
+    message: IssueCredentialOptions,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
     if (message.credentialId !== "") {
@@ -1036,10 +955,13 @@ export const IssueCredentialDto = {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): IssueCredentialDto {
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): IssueCredentialOptions {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = { ...baseIssueCredentialDto } as IssueCredentialDto;
+    const message = { ...baseIssueCredentialOptions } as IssueCredentialOptions;
     message.encryptedCredentials = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
@@ -1069,8 +991,8 @@ export const IssueCredentialDto = {
     return message;
   },
 
-  fromJSON(object: any): IssueCredentialDto {
-    const message = { ...baseIssueCredentialDto } as IssueCredentialDto;
+  fromJSON(object: any): IssueCredentialOptions {
+    const message = { ...baseIssueCredentialOptions } as IssueCredentialOptions;
     message.encryptedCredentials = [];
     if (object.credentialId !== undefined && object.credentialId !== null) {
       message.credentialId = String(object.credentialId);
@@ -1103,7 +1025,7 @@ export const IssueCredentialDto = {
     return message;
   },
 
-  toJSON(message: IssueCredentialDto): unknown {
+  toJSON(message: IssueCredentialOptions): unknown {
     const obj: any = {};
     message.credentialId !== undefined &&
       (obj.credentialId = message.credentialId);
@@ -1120,8 +1042,10 @@ export const IssueCredentialDto = {
     return obj;
   },
 
-  fromPartial(object: DeepPartial<IssueCredentialDto>): IssueCredentialDto {
-    const message = { ...baseIssueCredentialDto } as IssueCredentialDto;
+  fromPartial(
+    object: DeepPartial<IssueCredentialOptions>
+  ): IssueCredentialOptions {
+    const message = { ...baseIssueCredentialOptions } as IssueCredentialOptions;
     message.encryptedCredentials = [];
     if (object.credentialId !== undefined && object.credentialId !== null) {
       message.credentialId = object.credentialId;
@@ -1155,30 +1079,35 @@ export const IssueCredentialDto = {
   },
 };
 
-const baseIssueCredentialsDto: object = {};
+const baseIssueCredentialsOptions: object = {};
 
-export const IssueCredentialsDto = {
+export const IssueCredentialsOptions = {
   encode(
-    message: IssueCredentialsDto,
+    message: IssueCredentialsOptions,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
     for (const v of message.credentialRequests) {
-      IssueCredentialDto.encode(v!, writer.uint32(10).fork()).ldelim();
+      IssueCredentialOptions.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): IssueCredentialsDto {
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): IssueCredentialsOptions {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = { ...baseIssueCredentialsDto } as IssueCredentialsDto;
+    const message = {
+      ...baseIssueCredentialsOptions,
+    } as IssueCredentialsOptions;
     message.credentialRequests = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
           message.credentialRequests.push(
-            IssueCredentialDto.decode(reader, reader.uint32())
+            IssueCredentialOptions.decode(reader, reader.uint32())
           );
           break;
         default:
@@ -1189,25 +1118,27 @@ export const IssueCredentialsDto = {
     return message;
   },
 
-  fromJSON(object: any): IssueCredentialsDto {
-    const message = { ...baseIssueCredentialsDto } as IssueCredentialsDto;
+  fromJSON(object: any): IssueCredentialsOptions {
+    const message = {
+      ...baseIssueCredentialsOptions,
+    } as IssueCredentialsOptions;
     message.credentialRequests = [];
     if (
       object.credentialRequests !== undefined &&
       object.credentialRequests !== null
     ) {
       for (const e of object.credentialRequests) {
-        message.credentialRequests.push(IssueCredentialDto.fromJSON(e));
+        message.credentialRequests.push(IssueCredentialOptions.fromJSON(e));
       }
     }
     return message;
   },
 
-  toJSON(message: IssueCredentialsDto): unknown {
+  toJSON(message: IssueCredentialsOptions): unknown {
     const obj: any = {};
     if (message.credentialRequests) {
       obj.credentialRequests = message.credentialRequests.map((e) =>
-        e ? IssueCredentialDto.toJSON(e) : undefined
+        e ? IssueCredentialOptions.toJSON(e) : undefined
       );
     } else {
       obj.credentialRequests = [];
@@ -1215,15 +1146,19 @@ export const IssueCredentialsDto = {
     return obj;
   },
 
-  fromPartial(object: DeepPartial<IssueCredentialsDto>): IssueCredentialsDto {
-    const message = { ...baseIssueCredentialsDto } as IssueCredentialsDto;
+  fromPartial(
+    object: DeepPartial<IssueCredentialsOptions>
+  ): IssueCredentialsOptions {
+    const message = {
+      ...baseIssueCredentialsOptions,
+    } as IssueCredentialsOptions;
     message.credentialRequests = [];
     if (
       object.credentialRequests !== undefined &&
       object.credentialRequests !== null
     ) {
       for (const e of object.credentialRequests) {
-        message.credentialRequests.push(IssueCredentialDto.fromPartial(e));
+        message.credentialRequests.push(IssueCredentialOptions.fromPartial(e));
       }
     }
     return message;
@@ -1376,7 +1311,7 @@ export const CredentialStatusInfo = {
   },
 };
 
-const baseEncryptedCredentialResponse: object = {
+const baseEncryptedCredential: object = {
   uuid: "",
   credentialId: "",
   subject: "",
@@ -1385,9 +1320,9 @@ const baseEncryptedCredentialResponse: object = {
   version: "",
 };
 
-export const EncryptedCredentialResponse = {
+export const EncryptedCredential = {
   encode(
-    message: EncryptedCredentialResponse,
+    message: EncryptedCredential,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
     if (message.uuid !== "") {
@@ -1426,15 +1361,10 @@ export const EncryptedCredentialResponse = {
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): EncryptedCredentialResponse {
+  decode(input: _m0.Reader | Uint8Array, length?: number): EncryptedCredential {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = {
-      ...baseEncryptedCredentialResponse,
-    } as EncryptedCredentialResponse;
+    const message = { ...baseEncryptedCredential } as EncryptedCredential;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -1477,10 +1407,8 @@ export const EncryptedCredentialResponse = {
     return message;
   },
 
-  fromJSON(object: any): EncryptedCredentialResponse {
-    const message = {
-      ...baseEncryptedCredentialResponse,
-    } as EncryptedCredentialResponse;
+  fromJSON(object: any): EncryptedCredential {
+    const message = { ...baseEncryptedCredential } as EncryptedCredential;
     if (object.uuid !== undefined && object.uuid !== null) {
       message.uuid = String(object.uuid);
     } else {
@@ -1529,7 +1457,7 @@ export const EncryptedCredentialResponse = {
     return message;
   },
 
-  toJSON(message: EncryptedCredentialResponse): unknown {
+  toJSON(message: EncryptedCredential): unknown {
     const obj: any = {};
     message.uuid !== undefined && (obj.uuid = message.uuid);
     message.credentialId !== undefined &&
@@ -1549,12 +1477,8 @@ export const EncryptedCredentialResponse = {
     return obj;
   },
 
-  fromPartial(
-    object: DeepPartial<EncryptedCredentialResponse>
-  ): EncryptedCredentialResponse {
-    const message = {
-      ...baseEncryptedCredentialResponse,
-    } as EncryptedCredentialResponse;
+  fromPartial(object: DeepPartial<EncryptedCredential>): EncryptedCredential {
+    const message = { ...baseEncryptedCredential } as EncryptedCredential;
     if (object.uuid !== undefined && object.uuid !== null) {
       message.uuid = object.uuid;
     } else {
@@ -1604,15 +1528,15 @@ export const EncryptedCredentialResponse = {
   },
 };
 
-const baseCredentialRepositoryResponse: object = {};
+const baseEncryptedCredentialEnriched: object = {};
 
-export const CredentialRepositoryResponse = {
+export const EncryptedCredentialEnriched = {
   encode(
-    message: CredentialRepositoryResponse,
+    message: EncryptedCredentialEnriched,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
     if (message.encryptedCredential !== undefined) {
-      EncryptedCredentialResponse.encode(
+      EncryptedCredential.encode(
         message.encryptedCredential,
         writer.uint32(10).fork()
       ).ldelim();
@@ -1629,17 +1553,17 @@ export const CredentialRepositoryResponse = {
   decode(
     input: _m0.Reader | Uint8Array,
     length?: number
-  ): CredentialRepositoryResponse {
+  ): EncryptedCredentialEnriched {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = {
-      ...baseCredentialRepositoryResponse,
-    } as CredentialRepositoryResponse;
+      ...baseEncryptedCredentialEnriched,
+    } as EncryptedCredentialEnriched;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.encryptedCredential = EncryptedCredentialResponse.decode(
+          message.encryptedCredential = EncryptedCredential.decode(
             reader,
             reader.uint32()
           );
@@ -1655,15 +1579,15 @@ export const CredentialRepositoryResponse = {
     return message;
   },
 
-  fromJSON(object: any): CredentialRepositoryResponse {
+  fromJSON(object: any): EncryptedCredentialEnriched {
     const message = {
-      ...baseCredentialRepositoryResponse,
-    } as CredentialRepositoryResponse;
+      ...baseEncryptedCredentialEnriched,
+    } as EncryptedCredentialEnriched;
     if (
       object.encryptedCredential !== undefined &&
       object.encryptedCredential !== null
     ) {
-      message.encryptedCredential = EncryptedCredentialResponse.fromJSON(
+      message.encryptedCredential = EncryptedCredential.fromJSON(
         object.encryptedCredential
       );
     } else {
@@ -1677,11 +1601,11 @@ export const CredentialRepositoryResponse = {
     return message;
   },
 
-  toJSON(message: CredentialRepositoryResponse): unknown {
+  toJSON(message: EncryptedCredentialEnriched): unknown {
     const obj: any = {};
     message.encryptedCredential !== undefined &&
       (obj.encryptedCredential = message.encryptedCredential
-        ? EncryptedCredentialResponse.toJSON(message.encryptedCredential)
+        ? EncryptedCredential.toJSON(message.encryptedCredential)
         : undefined);
     message.didDocument !== undefined &&
       (obj.didDocument = message.didDocument
@@ -1691,16 +1615,16 @@ export const CredentialRepositoryResponse = {
   },
 
   fromPartial(
-    object: DeepPartial<CredentialRepositoryResponse>
-  ): CredentialRepositoryResponse {
+    object: DeepPartial<EncryptedCredentialEnriched>
+  ): EncryptedCredentialEnriched {
     const message = {
-      ...baseCredentialRepositoryResponse,
-    } as CredentialRepositoryResponse;
+      ...baseEncryptedCredentialEnriched,
+    } as EncryptedCredentialEnriched;
     if (
       object.encryptedCredential !== undefined &&
       object.encryptedCredential !== null
     ) {
-      message.encryptedCredential = EncryptedCredentialResponse.fromPartial(
+      message.encryptedCredential = EncryptedCredential.fromPartial(
         object.encryptedCredential
       );
     } else {
