@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports._CredentialStatusOptions = exports.pushProviders = exports.RSAPadding = exports.HolderAppInfo = exports.EncryptedKey = exports.EncryptedData = exports.EncryptedCredential = exports.CredentialStatusInfo = exports.IssueCredentialsDto = exports.IssueCredentialDto = exports.ProofPb = exports.CredentialRequestPb = exports.CredentialPb = exports.UnsignedCredentialPb = exports.PresentationRequestPb = exports.UnsignedPresentationRequestPb = exports.PresentationPb = exports.UnsignedPresentationPb = void 0;
+exports._CredentialStatusOptions = exports.pushProviders = exports.HolderAppInfo = exports.EncryptedKey = exports.RSAPadding = exports.CredentialStatusInfo = exports.IssueCredentialsDto = exports.IssueCredentialDto = exports.ProofPb = exports.CredentialRequestPb = exports.CredentialPb = exports.UnsignedCredentialPb = exports.PresentationRequestPb = exports.UnsignedPresentationRequestPb = exports.PresentationPb = exports.UnsignedPresentationPb = void 0;
 var runtypes_1 = require("runtypes");
 var presentation_1 = require("./protos/presentation");
 Object.defineProperty(exports, "UnsignedPresentationPb", { enumerable: true, get: function () { return presentation_1.UnsignedPresentation; } });
@@ -18,20 +18,11 @@ Object.defineProperty(exports, "ProofPb", { enumerable: true, get: function () {
 var credential_2 = require("./protos/credential");
 Object.defineProperty(exports, "IssueCredentialDto", { enumerable: true, get: function () { return credential_2.IssueCredentialDto; } });
 Object.defineProperty(exports, "IssueCredentialsDto", { enumerable: true, get: function () { return credential_2.IssueCredentialsDto; } });
-Object.defineProperty(exports, "EncryptedCredential", { enumerable: true, get: function () { return credential_2.EncryptedCredential; } });
 var crypto_1 = require("./protos/crypto");
-Object.defineProperty(exports, "EncryptedData", { enumerable: true, get: function () { return crypto_1.EncryptedData; } });
 Object.defineProperty(exports, "EncryptedKey", { enumerable: true, get: function () { return crypto_1.EncryptedKey; } });
+Object.defineProperty(exports, "RSAPadding", { enumerable: true, get: function () { return crypto_1.RSAPadding; } });
 var holderApp_1 = require("./protos/holderApp");
 Object.defineProperty(exports, "HolderAppInfo", { enumerable: true, get: function () { return holderApp_1.HolderAppInfo; } });
-/**
- * Enum containing all of the RSA padding types that we use
- */
-var RSAPadding;
-(function (RSAPadding) {
-    RSAPadding["PKCS"] = "PKCS1-1_5";
-    RSAPadding["OAEP"] = "OAEP";
-})(RSAPadding = exports.RSAPadding || (exports.RSAPadding = {}));
 /**
  * A readonly list of push notification providers.
  */

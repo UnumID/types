@@ -5,12 +5,12 @@ import { UnsignedPresentation as UnsignedPresentationPb, Presentation as Present
 import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest";
 import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb, CredentialStatusInfo } from "./protos/credential";
 import { Proof as ProofPb } from "./protos/proof";
-import { IssueCredentialDto, IssueCredentialsDto, EncryptedCredential } from "./protos/credential";
-import { EncryptedData, EncryptedKey } from "./protos/crypto";
+import { IssueCredentialDto, IssueCredentialsDto, EncryptedCredential as EncryptedCredentialPb } from "./protos/credential";
+import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding } from "./protos/crypto";
 import { HolderAppInfo } from "./protos/holderApp";
 export { UnsignedPresentationPb, PresentationPb, UnsignedPresentationRequestPb, PresentationRequestPb, UnsignedCredentialPb, CredentialPb, CredentialRequestPb, ProofPb };
-export { IssueCredentialDto, IssueCredentialsDto, CredentialStatusInfo, EncryptedCredential };
-export { EncryptedData, EncryptedKey };
+export { IssueCredentialDto, IssueCredentialsDto, CredentialStatusInfo, RSAPadding };
+export { EncryptedKey };
 export { HolderAppInfo };
 /**
  * Interface to encapsulate a base Unum Entity.
@@ -97,14 +97,26 @@ export interface Credential extends UnsignedCredential {
     proof: Proof;
 }
 /**
+ * Extends protobuf definition to make field required
+ */
+export interface EncryptedData extends EncryptedDataPb {
+    key: EncryptedKey;
+}
+/**
+ * Extends protobuf definition to make fields required
+ */
+export interface EncryptedCredential extends EncryptedCredentialPb {
+    encryptedData: EncryptedData;
+    createdAt: Date;
+    updatedAt: Date;
+}
+/**
  * Data transfer object for a single EncryptedCredential
  * Note: extending the protobuf definition of EncryptedCredential in order to make the date fields string for json serialization
  */
-export interface EncryptedCredentialDto extends EncryptedCredential {
-    uuid: string;
+export interface EncryptedCredentialDto extends Omit<EncryptedCredential, 'createdAt' | 'updatedAt'> {
     createdAt: string;
     updatedAt: string;
-    version: string;
 }
 /**
  * Data transfer object for multiple EncryptedCredentials, keyed by credential id
@@ -544,13 +556,6 @@ export interface ApiKey {
     key: string;
     customerUuid: string;
     name: string;
-}
-/**
- * Enum containing all of the RSA padding types that we use
- */
-export declare enum RSAPadding {
-    PKCS = "PKCS1-1_5",
-    OAEP = "OAEP"
 }
 /**
  * Interface to encapsulate information related to a public key.

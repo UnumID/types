@@ -2,10 +2,19 @@ import { Literal, Static, Union } from "runtypes";
 import { SemVer } from 'semver';
 import { UnsignedPresentation as UnsignedPresentationPb, Presentation as PresentationPb} from "./protos/presentation";
 import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest"
-import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb, CredentialStatusInfo} from "./protos/credential";
+import {
+  UnsignedCredential as UnsignedCredentialPb,
+  Credential as CredentialPb,
+  CredentialRequest as CredentialRequestPb,
+  CredentialStatusInfo
+} from "./protos/credential";
 import { Proof as ProofPb} from "./protos/proof";
-import { IssueCredentialDto, IssueCredentialsDto, EncryptedCredential} from "./protos/credential"
-import { EncryptedData, EncryptedKey } from "./protos/crypto"
+import {
+  IssueCredentialDto,
+  IssueCredentialsDto,
+  EncryptedCredential as EncryptedCredentialPb
+} from "./protos/credential"
+import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding } from "./protos/crypto"
 import { HolderAppInfo } from "./protos/holderApp";
 
 // proto defined types that also have older, vanilla ts types defined - hence the proceeding "Pb"
@@ -25,12 +34,11 @@ export {
   IssueCredentialDto,
   IssueCredentialsDto,
   CredentialStatusInfo,
-  EncryptedCredential
+  RSAPadding
 }
 
 export {
   // protos/crypto
-  EncryptedData,
   EncryptedKey
 }
 
@@ -136,14 +144,28 @@ export interface Credential extends UnsignedCredential {
 }
 
 /**
+ * Extends protobuf definition to make field required
+ */
+export interface EncryptedData extends EncryptedDataPb {
+  key: EncryptedKey
+}
+
+/**
+ * Extends protobuf definition to make fields required
+ */
+export interface EncryptedCredential extends EncryptedCredentialPb {
+  encryptedData: EncryptedData;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+/**
  * Data transfer object for a single EncryptedCredential
  * Note: extending the protobuf definition of EncryptedCredential in order to make the date fields string for json serialization
  */
-export interface EncryptedCredentialDto extends EncryptedCredential {
-  uuid: string;
+export interface EncryptedCredentialDto extends Omit<EncryptedCredential, 'createdAt' | 'updatedAt'> {
   createdAt: string; // dates should be converted to ISO strings, since this is how they will be represented in the JSON at runtime
   updatedAt: string; // dates should be converted to ISO strings, since this is how they will be represented in the JSON at runtime
-  version: string;
 }
 
 /**
@@ -629,14 +651,6 @@ export interface ApiKey {
   key: string,
   customerUuid: string,
   name: string
-}
-
-/**
- * Enum containing all of the RSA padding types that we use
- */
-export enum RSAPadding {
-  PKCS = 'PKCS1-1_5',
-  OAEP = 'OAEP'
 }
 
 /**

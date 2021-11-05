@@ -14,12 +14,45 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.KeyPairSet = exports.KeyPair = exports.PublicKeyInfo = exports.EncryptedData = exports.EncryptedKey = exports.protobufPackage = void 0;
+exports.KeyPairSet = exports.KeyPair = exports.PublicKeyInfo = exports.EncryptedData = exports.EncryptedKey = exports.rSAPaddingToJSON = exports.rSAPaddingFromJSON = exports.RSAPadding = exports.protobufPackage = void 0;
 /* eslint-disable */
 var long_1 = __importDefault(require("long"));
 var minimal_1 = __importDefault(require("protobufjs/minimal"));
 var timestamp_1 = require("./google/protobuf/timestamp");
 exports.protobufPackage = "crypto.v1";
+/** Enum containing all of the RSA padding types that we use */
+var RSAPadding;
+(function (RSAPadding) {
+    RSAPadding[RSAPadding["PKCS"] = 0] = "PKCS";
+    RSAPadding[RSAPadding["OAEP"] = 1] = "OAEP";
+    RSAPadding[RSAPadding["UNRECOGNIZED"] = -1] = "UNRECOGNIZED";
+})(RSAPadding = exports.RSAPadding || (exports.RSAPadding = {}));
+function rSAPaddingFromJSON(object) {
+    switch (object) {
+        case 0:
+        case "PKCS":
+            return RSAPadding.PKCS;
+        case 1:
+        case "OAEP":
+            return RSAPadding.OAEP;
+        case -1:
+        case "UNRECOGNIZED":
+        default:
+            return RSAPadding.UNRECOGNIZED;
+    }
+}
+exports.rSAPaddingFromJSON = rSAPaddingFromJSON;
+function rSAPaddingToJSON(object) {
+    switch (object) {
+        case RSAPadding.PKCS:
+            return "PKCS";
+        case RSAPadding.OAEP:
+            return "OAEP";
+        default:
+            return "UNKNOWN";
+    }
+}
+exports.rSAPaddingToJSON = rSAPaddingToJSON;
 var baseEncryptedKey = { iv: "", key: "", algorithm: "", did: "" };
 exports.EncryptedKey = {
     encode: function (message, writer) {
@@ -139,6 +172,9 @@ exports.EncryptedData = {
         if (message.key !== undefined) {
             exports.EncryptedKey.encode(message.key, writer.uint32(18).fork()).ldelim();
         }
+        if (message.rsaPadding !== undefined) {
+            writer.uint32(24).int32(message.rsaPadding);
+        }
         return writer;
     },
     decode: function (input, length) {
@@ -153,6 +189,9 @@ exports.EncryptedData = {
                     break;
                 case 2:
                     message.key = exports.EncryptedKey.decode(reader, reader.uint32());
+                    break;
+                case 3:
+                    message.rsaPadding = reader.int32();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -175,6 +214,12 @@ exports.EncryptedData = {
         else {
             message.key = undefined;
         }
+        if (object.rsaPadding !== undefined && object.rsaPadding !== null) {
+            message.rsaPadding = rSAPaddingFromJSON(object.rsaPadding);
+        }
+        else {
+            message.rsaPadding = undefined;
+        }
         return message;
     },
     toJSON: function (message) {
@@ -182,6 +227,11 @@ exports.EncryptedData = {
         message.data !== undefined && (obj.data = message.data);
         message.key !== undefined &&
             (obj.key = message.key ? exports.EncryptedKey.toJSON(message.key) : undefined);
+        message.rsaPadding !== undefined &&
+            (obj.rsaPadding =
+                message.rsaPadding !== undefined
+                    ? rSAPaddingToJSON(message.rsaPadding)
+                    : undefined);
         return obj;
     },
     fromPartial: function (object) {
@@ -197,6 +247,12 @@ exports.EncryptedData = {
         }
         else {
             message.key = undefined;
+        }
+        if (object.rsaPadding !== undefined && object.rsaPadding !== null) {
+            message.rsaPadding = object.rsaPadding;
+        }
+        else {
+            message.rsaPadding = undefined;
         }
         return message;
     },
@@ -232,6 +288,9 @@ exports.PublicKeyInfo = {
         if (message.updatedAt !== undefined) {
             timestamp_1.Timestamp.encode(toTimestamp(message.updatedAt), writer.uint32(58).fork()).ldelim();
         }
+        if (message.rsaPadding !== undefined) {
+            writer.uint32(64).int32(message.rsaPadding);
+        }
         return writer;
     },
     decode: function (input, length) {
@@ -261,6 +320,9 @@ exports.PublicKeyInfo = {
                     break;
                 case 7:
                     message.updatedAt = fromTimestamp(timestamp_1.Timestamp.decode(reader, reader.uint32()));
+                    break;
+                case 8:
+                    message.rsaPadding = reader.int32();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -313,6 +375,12 @@ exports.PublicKeyInfo = {
         else {
             message.updatedAt = undefined;
         }
+        if (object.rsaPadding !== undefined && object.rsaPadding !== null) {
+            message.rsaPadding = rSAPaddingFromJSON(object.rsaPadding);
+        }
+        else {
+            message.rsaPadding = undefined;
+        }
         return message;
     },
     toJSON: function (message) {
@@ -326,6 +394,11 @@ exports.PublicKeyInfo = {
             (obj.createdAt = message.createdAt.toISOString());
         message.updatedAt !== undefined &&
             (obj.updatedAt = message.updatedAt.toISOString());
+        message.rsaPadding !== undefined &&
+            (obj.rsaPadding =
+                message.rsaPadding !== undefined
+                    ? rSAPaddingToJSON(message.rsaPadding)
+                    : undefined);
         return obj;
     },
     fromPartial: function (object) {
@@ -371,6 +444,12 @@ exports.PublicKeyInfo = {
         }
         else {
             message.updatedAt = undefined;
+        }
+        if (object.rsaPadding !== undefined && object.rsaPadding !== null) {
+            message.rsaPadding = object.rsaPadding;
+        }
+        else {
+            message.rsaPadding = undefined;
         }
         return message;
     },
