@@ -10,7 +10,7 @@ It as well has shared [runtypes](https://github.com/pelotom/runtypes) which allo
 
 Ideally all types core to UnumID ought to be defined in the [protobufs](https://github.com/UnumID/protobufs) repo and imported into this project. That migration is an ongoing effort. While we migrate to using all Protocol Buffer defined objects and gRPC, we are still using JSON and HTTP for the transport layer. As such attributes defined in protos that go over the network are serialized to JSON which can cause some typing side effects at run time. An example of this is are Date attributes. 
 
-For this reason we have adopted a convention of extending the proto defined interface here to make the Date attributes strings. One such example is of the EncryptedCredentialDto defined in index.ts which extends the proto defined interface, EncryptedCredential.
+For this reason we have adopted a convention of extending the proto defined interface here to make the Date attributes strings. One such example is of the EncryptedCredentialDto defined in index.ts which extends the proto defined interface, EncryptedCredential. _Note the use of the Omit function. Reference material can be found [here](https://stackoverflow.com/questions/41285211/overriding-interface-property-type-defined-in-typescript-d-ts-file)_
 
 ### Naming
 

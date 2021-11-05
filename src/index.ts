@@ -2,22 +2,25 @@ import { Literal, Static, Union } from "runtypes";
 import { SemVer } from 'semver';
 import { UnsignedPresentation as UnsignedPresentationPb, Presentation as PresentationPb} from "./protos/presentation";
 import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest"
+import { DidDocument as DidDocumentPb } from "./protos/didDocument"
+import { Proof as ProofPb} from "./protos/proof";
 import {
   UnsignedCredential as UnsignedCredentialPb,
   Credential as CredentialPb,
   CredentialRequest as CredentialRequestPb,
   CredentialStatusInfo
 } from "./protos/credential";
-import { Proof as ProofPb} from "./protos/proof";
 import {
-  IssueCredentialDto,
-  IssueCredentialsDto,
-  EncryptedCredential as EncryptedCredentialPb
+  IssueCredentialOptions,
+  IssueCredentialsOptions,
+  EncryptedCredential as EncryptedCredentialPb,
+  EncryptedCredentialOptions as EncryptedCredentialOptionsPb, 
+  EncryptedCredentialEnriched
 } from "./protos/credential"
-import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding } from "./protos/crypto"
+import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb } from "./protos/crypto"
 import { HolderAppInfo } from "./protos/holderApp";
 
-// proto defined types that also have older, vanilla ts types defined - hence the proceeding "Pb"
+// proto defined types that also have older, vanilla ts types defined - hence the succeeding "Pb"
 export { 
   UnsignedPresentationPb, 
   PresentationPb,
@@ -26,14 +29,19 @@ export {
   UnsignedCredentialPb, 
   CredentialPb,
   CredentialRequestPb,
-  ProofPb
+  ProofPb,
+  DidDocumentPb,
+  PublicKeyInfoPb
 }
 
 export {
   // protos/credential
-  IssueCredentialDto,
-  IssueCredentialsDto,
+  IssueCredentialOptions,
+  IssueCredentialsOptions,
   CredentialStatusInfo,
+  EncryptedCredentialPb,
+  EncryptedCredentialOptionsPb,
+  EncryptedCredentialEnriched,
   RSAPadding
 }
 
@@ -163,9 +171,28 @@ export interface EncryptedCredential extends EncryptedCredentialPb {
  * Data transfer object for a single EncryptedCredential
  * Note: extending the protobuf definition of EncryptedCredential in order to make the date fields string for json serialization
  */
-export interface EncryptedCredentialDto extends Omit<EncryptedCredential, 'createdAt' | 'updatedAt'> {
+  export interface EncryptedCredentialDto extends Omit<EncryptedCredential, 'createdAt' | 'updatedAt'> {
   createdAt: string; // dates should be converted to ISO strings, since this is how they will be represented in the JSON at runtime
   updatedAt: string; // dates should be converted to ISO strings, since this is how they will be represented in the JSON at runtime
+}
+
+/**
+ * Data transfer object for a single EncryptedCredentialEnriched
+ * Note: extending the protobuf definition of EncryptedCredentialEnriched in order to make the date fields string for json serialization and did document align with @context
+ */
+// TODO use in v4 instead of EncryptedCredentialDto. Not using now because all service would need to be using the proto didDoc def, which does not have @context, instead just context... break change
+//  export interface EncryptedCredentialEnrichedDto extends EncryptedCredentialEnriched {
+//   createdAt: string; // dates should be converted to ISO strings, since this is how they will be represented in the JSON at runtime
+//   updatedAt: string; // dates should be converted to ISO strings, since this is how they will be represented in the JSON at runtime
+// }
+
+/**
+ * Interface to encapsulate a single CredentialRepositoryDto response
+ * Note: ought to be deprecated in v4 in favor of EncryptedCredentialEnriched.
+ */
+export interface EncryptedCredentialEnrichedDto {
+  encryptedCredential: EncryptedCredentialDto;
+  didDocument: DidDocument;
 }
 
 /**
@@ -846,7 +873,7 @@ export type WithVersion<T> = WithKeyAndValue<T, 'version', string>;
  */
  export interface PaginatedUnumDto<T> {
   total: number;
-  limit: string
-  skip: string
+  limit: number
+  skip: number
   data: T[];
 }

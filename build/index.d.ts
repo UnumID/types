@@ -3,13 +3,14 @@ import { Literal, Static, Union } from "runtypes";
 import { SemVer } from 'semver';
 import { UnsignedPresentation as UnsignedPresentationPb, Presentation as PresentationPb } from "./protos/presentation";
 import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest";
-import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb, CredentialStatusInfo } from "./protos/credential";
+import { DidDocument as DidDocumentPb } from "./protos/didDocument";
 import { Proof as ProofPb } from "./protos/proof";
-import { IssueCredentialDto, IssueCredentialsDto, EncryptedCredential as EncryptedCredentialPb } from "./protos/credential";
-import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding } from "./protos/crypto";
+import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb, CredentialStatusInfo } from "./protos/credential";
+import { IssueCredentialOptions, IssueCredentialsOptions, EncryptedCredential as EncryptedCredentialPb, EncryptedCredentialOptions as EncryptedCredentialOptionsPb, EncryptedCredentialEnriched } from "./protos/credential";
+import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb } from "./protos/crypto";
 import { HolderAppInfo } from "./protos/holderApp";
-export { UnsignedPresentationPb, PresentationPb, UnsignedPresentationRequestPb, PresentationRequestPb, UnsignedCredentialPb, CredentialPb, CredentialRequestPb, ProofPb };
-export { IssueCredentialDto, IssueCredentialsDto, CredentialStatusInfo, RSAPadding };
+export { UnsignedPresentationPb, PresentationPb, UnsignedPresentationRequestPb, PresentationRequestPb, UnsignedCredentialPb, CredentialPb, CredentialRequestPb, ProofPb, DidDocumentPb, PublicKeyInfoPb };
+export { IssueCredentialOptions, IssueCredentialsOptions, CredentialStatusInfo, EncryptedCredentialPb, EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, RSAPadding };
 export { EncryptedKey };
 export { HolderAppInfo };
 /**
@@ -117,6 +118,18 @@ export interface EncryptedCredential extends EncryptedCredentialPb {
 export interface EncryptedCredentialDto extends Omit<EncryptedCredential, 'createdAt' | 'updatedAt'> {
     createdAt: string;
     updatedAt: string;
+}
+/**
+ * Data transfer object for a single EncryptedCredentialEnriched
+ * Note: extending the protobuf definition of EncryptedCredentialEnriched in order to make the date fields string for json serialization and did document align with @context
+ */
+/**
+ * Interface to encapsulate a single CredentialRepositoryDto response
+ * Note: ought to be deprecated in v4 in favor of EncryptedCredentialEnriched.
+ */
+export interface EncryptedCredentialEnrichedDto {
+    encryptedCredential: EncryptedCredentialDto;
+    didDocument: DidDocument;
 }
 /**
  * Data transfer object for multiple EncryptedCredentials, keyed by credential id
@@ -724,8 +737,8 @@ export declare type WithVersion<T> = WithKeyAndValue<T, 'version', string>;
  */
 export interface PaginatedUnumDto<T> {
     total: number;
-    limit: string;
-    skip: string;
+    limit: number;
+    skip: number;
     data: T[];
 }
 //# sourceMappingURL=index.d.ts.map
