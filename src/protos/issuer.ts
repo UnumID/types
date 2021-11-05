@@ -19,7 +19,7 @@ export interface Issuer {
 }
 
 /** Object to encapsulate an Issuer entity */
-export interface RegisterIssuerRequest {
+export interface RegisterIssuerOptions {
   customerUuid: string;
   publicKeyInfo: PublicKeyInfo[];
 }
@@ -222,11 +222,11 @@ export const Issuer = {
   },
 };
 
-const baseRegisterIssuerRequest: object = { customerUuid: "" };
+const baseRegisterIssuerOptions: object = { customerUuid: "" };
 
-export const RegisterIssuerRequest = {
+export const RegisterIssuerOptions = {
   encode(
-    message: RegisterIssuerRequest,
+    message: RegisterIssuerOptions,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
     if (message.customerUuid !== "") {
@@ -241,10 +241,10 @@ export const RegisterIssuerRequest = {
   decode(
     input: _m0.Reader | Uint8Array,
     length?: number
-  ): RegisterIssuerRequest {
+  ): RegisterIssuerOptions {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = { ...baseRegisterIssuerRequest } as RegisterIssuerRequest;
+    const message = { ...baseRegisterIssuerOptions } as RegisterIssuerOptions;
     message.publicKeyInfo = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
@@ -265,8 +265,8 @@ export const RegisterIssuerRequest = {
     return message;
   },
 
-  fromJSON(object: any): RegisterIssuerRequest {
-    const message = { ...baseRegisterIssuerRequest } as RegisterIssuerRequest;
+  fromJSON(object: any): RegisterIssuerOptions {
+    const message = { ...baseRegisterIssuerOptions } as RegisterIssuerOptions;
     message.publicKeyInfo = [];
     if (object.customerUuid !== undefined && object.customerUuid !== null) {
       message.customerUuid = String(object.customerUuid);
@@ -281,7 +281,7 @@ export const RegisterIssuerRequest = {
     return message;
   },
 
-  toJSON(message: RegisterIssuerRequest): unknown {
+  toJSON(message: RegisterIssuerOptions): unknown {
     const obj: any = {};
     message.customerUuid !== undefined &&
       (obj.customerUuid = message.customerUuid);
@@ -296,9 +296,9 @@ export const RegisterIssuerRequest = {
   },
 
   fromPartial(
-    object: DeepPartial<RegisterIssuerRequest>
-  ): RegisterIssuerRequest {
-    const message = { ...baseRegisterIssuerRequest } as RegisterIssuerRequest;
+    object: DeepPartial<RegisterIssuerOptions>
+  ): RegisterIssuerOptions {
+    const message = { ...baseRegisterIssuerOptions } as RegisterIssuerOptions;
     message.publicKeyInfo = [];
     if (object.customerUuid !== undefined && object.customerUuid !== null) {
       message.customerUuid = object.customerUuid;

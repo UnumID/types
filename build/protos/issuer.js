@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RegisterIssuerRequest = exports.Issuer = exports.protobufPackage = void 0;
+exports.RegisterIssuerOptions = exports.Issuer = exports.protobufPackage = void 0;
 /* eslint-disable */
 var long_1 = __importDefault(require("long"));
 var minimal_1 = __importDefault(require("protobufjs/minimal"));
@@ -217,8 +217,8 @@ exports.Issuer = {
         return message;
     },
 };
-var baseRegisterIssuerRequest = { customerUuid: "" };
-exports.RegisterIssuerRequest = {
+var baseRegisterIssuerOptions = { customerUuid: "" };
+exports.RegisterIssuerOptions = {
     encode: function (message, writer) {
         if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
         if (message.customerUuid !== "") {
@@ -233,7 +233,7 @@ exports.RegisterIssuerRequest = {
     decode: function (input, length) {
         var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         var end = length === undefined ? reader.len : reader.pos + length;
-        var message = __assign({}, baseRegisterIssuerRequest);
+        var message = __assign({}, baseRegisterIssuerOptions);
         message.publicKeyInfo = [];
         while (reader.pos < end) {
             var tag = reader.uint32();
@@ -252,7 +252,7 @@ exports.RegisterIssuerRequest = {
         return message;
     },
     fromJSON: function (object) {
-        var message = __assign({}, baseRegisterIssuerRequest);
+        var message = __assign({}, baseRegisterIssuerOptions);
         message.publicKeyInfo = [];
         if (object.customerUuid !== undefined && object.customerUuid !== null) {
             message.customerUuid = String(object.customerUuid);
@@ -283,7 +283,7 @@ exports.RegisterIssuerRequest = {
         return obj;
     },
     fromPartial: function (object) {
-        var message = __assign({}, baseRegisterIssuerRequest);
+        var message = __assign({}, baseRegisterIssuerOptions);
         message.publicKeyInfo = [];
         if (object.customerUuid !== undefined && object.customerUuid !== null) {
             message.customerUuid = object.customerUuid;

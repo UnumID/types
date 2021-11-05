@@ -14,7 +14,7 @@ export interface PresentationRequestEnriched {
     deeplink: string;
     qrCode: string;
 }
-/** Type to encapsulate a PresentationRequest Data Transfer Object from the PresentationRequestRepository service. */
+/** Note: this type does not follow conventions because ought to be removed come v4. No need for such a type thanks to service query params. */
 export interface PresentationRequestRepoDto {
     presentationRequests: {
         [key: string]: PresentationRequestEnriched;
