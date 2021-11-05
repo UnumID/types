@@ -78,7 +78,7 @@ export interface IssueCredentialOptions {
 
 /** Object that encapsulates a request to Unum ID SaaS to issue multiple credentials of various types. */
 export interface IssueCredentialsOptions {
-  credentialRequests: EncryptedCredentialOptions[];
+  credentialRequests: IssueCredentialOptions[];
 }
 
 /** Object that encapsulates CredentialStatus information. */
@@ -1091,7 +1091,7 @@ export const IssueCredentialsOptions = {
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
     for (const v of message.credentialRequests) {
-      EncryptedCredentialOptions.encode(v!, writer.uint32(10).fork()).ldelim();
+      IssueCredentialOptions.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
@@ -1111,7 +1111,7 @@ export const IssueCredentialsOptions = {
       switch (tag >>> 3) {
         case 1:
           message.credentialRequests.push(
-            EncryptedCredentialOptions.decode(reader, reader.uint32())
+            IssueCredentialOptions.decode(reader, reader.uint32())
           );
           break;
         default:
@@ -1132,7 +1132,7 @@ export const IssueCredentialsOptions = {
       object.credentialRequests !== null
     ) {
       for (const e of object.credentialRequests) {
-        message.credentialRequests.push(EncryptedCredentialOptions.fromJSON(e));
+        message.credentialRequests.push(IssueCredentialOptions.fromJSON(e));
       }
     }
     return message;
@@ -1142,7 +1142,7 @@ export const IssueCredentialsOptions = {
     const obj: any = {};
     if (message.credentialRequests) {
       obj.credentialRequests = message.credentialRequests.map((e) =>
-        e ? EncryptedCredentialOptions.toJSON(e) : undefined
+        e ? IssueCredentialOptions.toJSON(e) : undefined
       );
     } else {
       obj.credentialRequests = [];
@@ -1162,9 +1162,7 @@ export const IssueCredentialsOptions = {
       object.credentialRequests !== null
     ) {
       for (const e of object.credentialRequests) {
-        message.credentialRequests.push(
-          EncryptedCredentialOptions.fromPartial(e)
-        );
+        message.credentialRequests.push(IssueCredentialOptions.fromPartial(e));
       }
     }
     return message;
