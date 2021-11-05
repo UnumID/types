@@ -724,8 +724,8 @@ export declare type WithVersion<T> = WithKeyAndValue<T, 'version', string>;
  */
 export interface PaginatedUnumDto<T> {
     total: number;
-    limit: string;
-    skip: string;
+    limit: number;
+    skip: number;
     data: T[];
 }
 //# sourceMappingURL=index.d.ts.map
