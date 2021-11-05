@@ -5,6 +5,39 @@ import { Timestamp } from "./google/protobuf/timestamp";
 
 export const protobufPackage = "crypto.v1";
 
+/** Enum containing all of the RSA padding types that we use */
+export enum RSAPadding {
+  PKCS = 0,
+  OAEP = 1,
+  UNRECOGNIZED = -1,
+}
+
+export function rSAPaddingFromJSON(object: any): RSAPadding {
+  switch (object) {
+    case 0:
+    case "PKCS":
+      return RSAPadding.PKCS;
+    case 1:
+    case "OAEP":
+      return RSAPadding.OAEP;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return RSAPadding.UNRECOGNIZED;
+  }
+}
+
+export function rSAPaddingToJSON(object: RSAPadding): string {
+  switch (object) {
+    case RSAPadding.PKCS:
+      return "PKCS";
+    case RSAPadding.OAEP:
+      return "OAEP";
+    default:
+      return "UNKNOWN";
+  }
+}
+
 /**
  * Interface to encapsulate an encrypted key.
  * Note: This is used to encrypted an AES key using RSA so that data can be encrypted with the significantly smaller AES key.
@@ -23,6 +56,7 @@ export interface EncryptedKey {
 export interface EncryptedData {
   data: string;
   key: EncryptedKey | undefined;
+  rsaPadding?: RSAPadding | undefined;
 }
 
 /** Object to encapsulate public key info */
@@ -34,6 +68,7 @@ export interface PublicKeyInfo {
   status: string;
   createdAt: Date | undefined;
   updatedAt: Date | undefined;
+  rsaPadding?: RSAPadding | undefined;
 }
 
 /** Object to encapsulate a key pair */
@@ -170,6 +205,9 @@ export const EncryptedData = {
     if (message.key !== undefined) {
       EncryptedKey.encode(message.key, writer.uint32(18).fork()).ldelim();
     }
+    if (message.rsaPadding !== undefined) {
+      writer.uint32(24).int32(message.rsaPadding);
+    }
     return writer;
   },
 
@@ -185,6 +223,9 @@ export const EncryptedData = {
           break;
         case 2:
           message.key = EncryptedKey.decode(reader, reader.uint32());
+          break;
+        case 3:
+          message.rsaPadding = reader.int32() as any;
           break;
         default:
           reader.skipType(tag & 7);
@@ -206,6 +247,11 @@ export const EncryptedData = {
     } else {
       message.key = undefined;
     }
+    if (object.rsaPadding !== undefined && object.rsaPadding !== null) {
+      message.rsaPadding = rSAPaddingFromJSON(object.rsaPadding);
+    } else {
+      message.rsaPadding = undefined;
+    }
     return message;
   },
 
@@ -214,6 +260,11 @@ export const EncryptedData = {
     message.data !== undefined && (obj.data = message.data);
     message.key !== undefined &&
       (obj.key = message.key ? EncryptedKey.toJSON(message.key) : undefined);
+    message.rsaPadding !== undefined &&
+      (obj.rsaPadding =
+        message.rsaPadding !== undefined
+          ? rSAPaddingToJSON(message.rsaPadding)
+          : undefined);
     return obj;
   },
 
@@ -228,6 +279,11 @@ export const EncryptedData = {
       message.key = EncryptedKey.fromPartial(object.key);
     } else {
       message.key = undefined;
+    }
+    if (object.rsaPadding !== undefined && object.rsaPadding !== null) {
+      message.rsaPadding = object.rsaPadding;
+    } else {
+      message.rsaPadding = undefined;
     }
     return message;
   },
@@ -273,6 +329,9 @@ export const PublicKeyInfo = {
         writer.uint32(58).fork()
       ).ldelim();
     }
+    if (message.rsaPadding !== undefined) {
+      writer.uint32(64).int32(message.rsaPadding);
+    }
     return writer;
   },
 
@@ -307,6 +366,9 @@ export const PublicKeyInfo = {
           message.updatedAt = fromTimestamp(
             Timestamp.decode(reader, reader.uint32())
           );
+          break;
+        case 8:
+          message.rsaPadding = reader.int32() as any;
           break;
         default:
           reader.skipType(tag & 7);
@@ -353,6 +415,11 @@ export const PublicKeyInfo = {
     } else {
       message.updatedAt = undefined;
     }
+    if (object.rsaPadding !== undefined && object.rsaPadding !== null) {
+      message.rsaPadding = rSAPaddingFromJSON(object.rsaPadding);
+    } else {
+      message.rsaPadding = undefined;
+    }
     return message;
   },
 
@@ -367,6 +434,11 @@ export const PublicKeyInfo = {
       (obj.createdAt = message.createdAt.toISOString());
     message.updatedAt !== undefined &&
       (obj.updatedAt = message.updatedAt.toISOString());
+    message.rsaPadding !== undefined &&
+      (obj.rsaPadding =
+        message.rsaPadding !== undefined
+          ? rSAPaddingToJSON(message.rsaPadding)
+          : undefined);
     return obj;
   },
 
@@ -406,6 +478,11 @@ export const PublicKeyInfo = {
       message.updatedAt = object.updatedAt;
     } else {
       message.updatedAt = undefined;
+    }
+    if (object.rsaPadding !== undefined && object.rsaPadding !== null) {
+      message.rsaPadding = object.rsaPadding;
+    } else {
+      message.rsaPadding = undefined;
     }
     return message;
   },
