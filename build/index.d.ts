@@ -98,6 +98,60 @@ export interface Credential extends UnsignedCredential {
     proof: Proof;
 }
 /**
+ * Converts an UnsignedCredential object to an UnsignedCredentialPb object
+ * @param {UnsignedCredential}
+ * @returns {UnsignedCredentialPb}
+ */
+export declare const unsignedCredentialToPb: (unsignedCredential: UnsignedCredential) => UnsignedCredentialPb;
+/**
+ * Converts an UnsignedCredentialPb object to an UnsignedCredential object
+ * Validates that the UnsignedCredentialPb can be converted to a valid UnsignedCredential
+ * and throws an error if it cannot.
+ * @param {UnsignedCredentialPb} pb
+ * @returns {UnsignedCredentialPb}
+ */
+export declare const pBtoUnsignedCredential: (pb: UnsignedCredentialPb) => UnsignedCredential;
+/**
+ * Converts a ProofPb object to a Proof object
+ * Validates that the ProofPb can be converted to a valid Proof
+ * and throws an error if it cannot.
+ * @param {ProofPb} pb
+ * @returns {Proof}
+ */
+export declare const pbToProof: (pb: ProofPb) => Proof;
+/**
+ * Converts a Proof object to a Proof protobuf object
+ * @param {Proof} proof
+ * @returns {ProofPb}
+ */
+export declare const proofToPb: (proof: Proof) => ProofPb;
+/**
+ * Converts a CredentialPb object to a Credential object
+ * Validates that the CredentialPb can be converted to a valid Credential
+ * and throws an error if it cannot.
+ * @param {CredentialPb} pb
+ * @returns {Credential}
+ */
+export declare const pbToCredential: (pb: CredentialPb) => Credential;
+/**
+ * Converts a Credential object to a Credential protobuf object
+ * @param {Credential} credential
+ * @returns {CredentialPb}
+ */
+export declare const credentialToPb: (credential: Credential) => CredentialPb;
+/**
+ * Converts a Credential to its unsigned version
+ * @param {Credential} credential
+ * @returns {UnsignedCredential}
+ */
+export declare const credentialToUnsignedCredential: (credential: Credential) => UnsignedCredential;
+/**
+ * Converts a Credential to the bytes that were signed to create its proof
+ * @param {Credential} credential
+ * @returns {Uint8Array}
+ */
+export declare const credentialToSignedBytes: (credential: Credential) => Uint8Array;
+/**
  * Extends protobuf definition to make field required
  */
 export interface EncryptedData extends EncryptedDataPb {
