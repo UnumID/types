@@ -152,6 +152,187 @@ export interface Credential extends UnsignedCredential {
 }
 
 /**
+ * Converts an UnsignedCredential object to an UnsignedCredentialPb object
+ * @param {UnsignedCredential}
+ * @returns {UnsignedCredentialPb}
+ */
+export const unsignedCredentialToPb = (unsignedCredential: UnsignedCredential): UnsignedCredentialPb => {
+  return {
+    context: unsignedCredential['@context'],
+    credentialSubject: unsignedCredential.credentialSubject,
+    credentialStatus: unsignedCredential.credentialStatus,
+    issuer: unsignedCredential.issuer,
+    type: unsignedCredential.type,
+    id: unsignedCredential.id,
+    issuanceDate: unsignedCredential.issuanceDate,
+    expirationDate: unsignedCredential.expirationDate
+  }
+};
+
+/**
+ * Converts an UnsignedCredentialPb object to an UnsignedCredential object
+ * Validates that the UnsignedCredentialPb can be converted to a valid UnsignedCredential
+ * and throws an error if it cannot.
+ * @param {UnsignedCredentialPb} pb
+ * @returns {UnsignedCredentialPb}
+ */
+export const pBtoUnsignedCredential = (pb: UnsignedCredentialPb): UnsignedCredential => {
+  // validate required fields are present
+  if (!pb.credentialStatus) {
+    throw new Error('Invalid UnsignedCredential: credentialStatus is required.');
+  }
+
+  if (!pb.issuanceDate) {
+    throw new Error('Invalid UnsignedCredential: issuanceDate is required.');
+  }
+
+  // validate required values are present
+  if (pb.type[0] !== 'VerifiableCredential') {
+    throw new Error('Invalid UnsignedCredential: type must include \'VerifiableCredential\'.');
+  }
+
+  if (pb.context[0] !== 'https://www.w3.org/2018/credentials/v1') {
+    throw new Error('Invalid UnsignedCredential: context must include \'https://www.w3.org/2018/credentials/v1\'.');
+  }
+
+  return {
+    '@context': pb.context as UnsignedCredential['@context'],
+    credentialSubject: pb.credentialSubject,
+    credentialStatus: pb.credentialStatus,
+    issuer: pb.issuer,
+    type: pb.type as UnsignedCredential['type'],
+    id: pb.id,
+    issuanceDate: pb.issuanceDate,
+    expirationDate: pb.expirationDate
+  };
+};
+
+/**
+ * Converts a ProofPb object to a Proof object
+ * Validates that the ProofPb can be converted to a valid Proof
+ * and throws an error if it cannot.
+ * @param {ProofPb} pb
+ * @returns {Proof}
+ */
+export const pbToProof = (pb: ProofPb): Proof => {
+  // validate required fields are present
+  if (!pb.created) {
+    throw new Error('Invalid Proof: created is required.');
+  }
+
+  return {
+    signatureValue: pb.signatureValue,
+    type: pb.type,
+    verificationMethod: pb.verificationMethod,
+    created: pb.created.toISOString(),
+    proofPurpose: pb.proofPurpose
+  };
+};
+
+/**
+ * Converts a Proof object to a Proof protobuf object
+ * @param {Proof} proof
+ * @returns {ProofPb}
+ */
+export const proofToPb = (proof: Proof): ProofPb => {
+  return {
+    ...proof,
+    created: new Date(proof.created)
+  };
+};
+
+/**
+ * Converts a CredentialPb object to a Credential object
+ * Validates that the CredentialPb can be converted to a valid Credential
+ * and throws an error if it cannot.
+ * @param {CredentialPb} pb
+ * @returns {Credential}
+ */
+export const pbToCredential = (pb: CredentialPb): Credential => {
+  // validate required fields are present
+  if (!pb.credentialStatus) {
+    throw new Error('Invalid Credential: credentialStatus is required.');
+  }
+
+  if (!pb.issuanceDate) {
+    throw new Error('Invalid Credential: issuanceDate is required.');
+  }
+
+  if (!pb.proof) {
+    throw new Error('Invalid Credential: proof is required.');
+  }
+
+  // validate required values are present
+  if (pb.type[0] !== 'VerifiableCredential') {
+    throw new Error('Invalid UnsignedCredential: type must include \'VerifiableCredential\'.');
+  }
+
+  if (pb.context[0] !== 'https://www.w3.org/2018/credentials/v1') {
+    throw new Error('Invalid UnsignedCredential: context must include \'https://www.w3.org/2018/credentials/v1\'.');
+  }
+
+  return {
+    '@context': pb.context as Credential['@context'],
+    credentialSubject: pb.credentialSubject,
+    credentialStatus: pb.credentialStatus,
+    issuer: pb.issuer,
+    type: pb.type as Credential['type'],
+    issuanceDate: pb.issuanceDate,
+    proof: pbToProof(pb.proof),
+    expirationDate: pb.expirationDate,
+    id: pb.id,
+  };
+};
+
+/**
+ * Converts a Credential object to a Credential protobuf object
+ * @param {Credential} credential
+ * @returns {CredentialPb}
+ */
+export const credentialToPb = (credential: Credential): CredentialPb => {
+  return {
+    context: credential['@context'],
+    credentialStatus: credential.credentialStatus,
+    credentialSubject: credential.credentialSubject,
+    issuanceDate: credential.issuanceDate,
+    proof: proofToPb(credential.proof),
+    expirationDate: credential.expirationDate,
+    issuer: credential.issuer,
+    id: credential.id,
+    type: credential.type
+  };
+};
+
+/**
+ * Converts a Credential to its unsigned version
+ * @param {Credential} credential
+ * @returns {UnsignedCredential}
+ */
+export const credentialToUnsignedCredential = (credential: Credential): UnsignedCredential => {
+  return {
+    '@context': credential['@context'],
+    credentialStatus: credential.credentialStatus,
+    credentialSubject: credential.credentialSubject,
+    id: credential.id,
+    issuanceDate: credential.issuanceDate,
+    issuer: credential.issuer,
+    expirationDate: credential.expirationDate,
+    type: credential.type
+  };
+};
+
+/**
+ * Converts a Credential to the bytes that were signed to create its proof
+ * @param {Credential} credential
+ * @returns {Uint8Array}
+ */
+export const credentialToSignedBytes = (credential: Credential): Uint8Array => {
+  const unsignedCredential = credentialToUnsignedCredential(credential);
+  const unsignedCredentialPb = unsignedCredentialToPb(unsignedCredential);
+  return UnsignedCredentialPb.encode(unsignedCredentialPb).finish();
+};
+
+/**
  * Extends protobuf definition to make field required
  */
 export interface EncryptedData extends EncryptedDataPb {
