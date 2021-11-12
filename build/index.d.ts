@@ -3,15 +3,23 @@ import { Literal, Static, Union } from "runtypes";
 import { SemVer } from 'semver';
 import { UnsignedPresentation as UnsignedPresentationPb, Presentation as PresentationPb } from "./protos/presentation";
 import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest";
-import { DidDocument as DidDocumentPb } from "./protos/didDocument";
+import { DidDocument as DidDocumentPb, DidDocumentService } from "./protos/didDocument";
 import { Proof as ProofPb } from "./protos/proof";
 import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb, CredentialStatusInfo } from "./protos/credential";
 import { IssueCredentialOptions, IssueCredentialsOptions, EncryptedCredential as EncryptedCredentialPb, EncryptedCredentialOptions as EncryptedCredentialOptionsPb, EncryptedCredentialEnriched } from "./protos/credential";
 import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb } from "./protos/crypto";
 import { HolderAppInfo } from "./protos/holderApp";
-export { UnsignedPresentationPb, PresentationPb, UnsignedPresentationRequestPb, PresentationRequestPb, UnsignedCredentialPb, CredentialPb, CredentialRequestPb, ProofPb, DidDocumentPb, PublicKeyInfoPb };
-export { IssueCredentialOptions, IssueCredentialsOptions, CredentialStatusInfo, EncryptedCredentialPb, EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, RSAPadding };
-export { EncryptedKey };
+import { PresentationRequestEnriched } from "./protos/presentationRequestEnriched";
+/**
+ * Note the proto defined types import with a 'Pb' suffix that also have older, vanilla ts types defined.
+ * The "Pb" serves to differentiate until we can ditch the legacy ts defined types.
+ */
+export { UnsignedPresentationPb, PresentationPb, };
+export { DidDocumentPb, DidDocumentService };
+export { UnsignedPresentationRequestPb, PresentationRequestPb, };
+export { IssueCredentialOptions, IssueCredentialsOptions, CredentialStatusInfo, CredentialRequestPb, UnsignedCredentialPb, CredentialPb, EncryptedCredentialPb, EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, RSAPadding };
+export { PresentationRequestEnriched };
+export { EncryptedKey, ProofPb, PublicKeyInfoPb };
 export { HolderAppInfo };
 /**
  * Interface to encapsulate a base Unum Entity.
