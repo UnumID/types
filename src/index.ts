@@ -379,7 +379,11 @@ export interface TargetInfo {
   /**
    * Api version reachable via the version HTTP header.
    */
-  version?: string,
+  // version?: string,
+  /**
+   * To be able to handle generic header requirements
+   */
+  [key: string]: any,
   /**
    * Versions denoted via a different url.
    */
