@@ -377,11 +377,7 @@ export interface VersionInfo {
  */
 export interface TargetInfo {
   /**
-   * Api version reachable via the version HTTP header.
-   */
-  // version?: string,
-  /**
-   * To be able to handle generic header requirements
+   * To be able to handle generic HTTP header requirements, i.e. version, accept, appId, etc
    */
   [key: string]: any,
   /**
