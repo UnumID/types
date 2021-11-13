@@ -2,7 +2,7 @@ import { Literal, Static, Union } from "runtypes";
 import { SemVer } from 'semver';
 import { UnsignedPresentation as UnsignedPresentationPb, Presentation as PresentationPb} from "./protos/presentation";
 import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest"
-import { DidDocument as DidDocumentPb } from "./protos/didDocument"
+import { DidDocument as DidDocumentPb, DidDocumentService } from "./protos/didDocument"
 import { Proof as ProofPb} from "./protos/proof";
 import {
   UnsignedCredential as UnsignedCredentialPb,
@@ -19,19 +19,29 @@ import {
 } from "./protos/credential"
 import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb } from "./protos/crypto"
 import { HolderAppInfo } from "./protos/holderApp";
+import { PresentationRequestEnriched } from "./protos/presentationRequestEnriched";
 
-// proto defined types that also have older, vanilla ts types defined - hence the succeeding "Pb"
+/**
+ * Note the proto defined types import with a 'Pb' suffix that also have older, vanilla ts types defined. 
+ * The "Pb" serves to differentiate until we can ditch the legacy ts defined types.
+ */
+
 export { 
+  // protos/presentation
   UnsignedPresentationPb, 
   PresentationPb,
+}
+
+export {
+  // protos/didDocument
+  DidDocumentPb,
+  DidDocumentService
+}
+
+export {
+  // protos/presentationRequest
   UnsignedPresentationRequestPb,
   PresentationRequestPb,
-  UnsignedCredentialPb, 
-  CredentialPb,
-  CredentialRequestPb,
-  ProofPb,
-  DidDocumentPb,
-  PublicKeyInfoPb
 }
 
 export {
@@ -39,6 +49,9 @@ export {
   IssueCredentialOptions,
   IssueCredentialsOptions,
   CredentialStatusInfo,
+  CredentialRequestPb,
+  UnsignedCredentialPb, 
+  CredentialPb,
   EncryptedCredentialPb,
   EncryptedCredentialOptionsPb,
   EncryptedCredentialEnriched,
@@ -46,8 +59,15 @@ export {
 }
 
 export {
+  // protos/presentationRequestEnriched
+  PresentationRequestEnriched
+}
+
+export {
   // protos/crypto
-  EncryptedKey
+  EncryptedKey,
+  ProofPb,
+  PublicKeyInfoPb
 }
 
 export {
