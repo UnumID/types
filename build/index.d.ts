@@ -625,6 +625,7 @@ export interface VerifierInfo {
     did: string;
     name: string;
     url?: string;
+    encryptionPublicKey: PublicKeyInfo;
     signingPublicKey: PublicKeyInfo;
 }
 /**
