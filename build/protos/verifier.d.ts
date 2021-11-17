@@ -4,6 +4,7 @@ export declare const protobufPackage = "verifier.v1";
 /** Object to encapsulate Target information regarding customer's api versioning. */
 export interface TargetInfo {
     version: string;
+    /** TODO map of any string to any string for any headers; */
     url: string;
 }
 /** Object to encapsulate Version information. */
@@ -28,6 +29,7 @@ export interface Verifier {
 export interface VerifierInfo {
     did: string;
     name: string;
+    encryptionPublicKey: PublicKeyInfo | undefined;
     signingPublicKey: PublicKeyInfo | undefined;
 }
 export declare const TargetInfo: {
