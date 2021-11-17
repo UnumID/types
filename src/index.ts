@@ -19,6 +19,7 @@ import {
 import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb } from "./protos/crypto"
 import { HolderAppInfo } from "./protos/holderApp";
 import { PresentationRequestEnriched } from "./protos/presentationRequestEnriched";
+import { VerifierInfo as VerifierInfoPb } from "./protos/verifier";
 
 /**
  * Note the proto defined types import with a 'Pb' suffix that also have older, vanilla ts types defined. 
@@ -68,6 +69,11 @@ export {
   EncryptedKey,
   ProofPb,
   PublicKeyInfoPb
+}
+
+export { 
+  // protos/verifier
+  VerifierInfoPb, 
 }
 
 export {
@@ -752,7 +758,7 @@ export interface VerifierInfo {
   did: string;
   name: string;
   url?: string;
-  encryptionPublicKey: PublicKeyInfo;
+  signingPublicKey: PublicKeyInfo;
 }
 
 /**

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports._CredentialStatusOptions = exports.pushProviders = exports.HolderAppInfo = exports.PublicKeyInfoPb = exports.ProofPb = exports.EncryptedKey = exports.PresentationRequestEnriched = exports.SubjectCredentialRequest = exports.RSAPadding = exports.EncryptedCredentialEnriched = exports.EncryptedCredentialOptionsPb = exports.EncryptedCredentialPb = exports.CredentialPb = exports.UnsignedCredentialPb = exports.CredentialRequestPb = exports.CredentialStatusInfo = exports.IssueCredentialsOptions = exports.IssueCredentialOptions = exports.PresentationRequestPb = exports.UnsignedPresentationRequestPb = exports.DidDocumentService = exports.DidDocumentPb = exports.PresentationPb = exports.UnsignedPresentationPb = void 0;
+exports._CredentialStatusOptions = exports.pushProviders = exports.HolderAppInfo = exports.VerifierInfoPb = exports.PublicKeyInfoPb = exports.ProofPb = exports.EncryptedKey = exports.PresentationRequestEnriched = exports.SubjectCredentialRequest = exports.RSAPadding = exports.EncryptedCredentialEnriched = exports.EncryptedCredentialOptionsPb = exports.EncryptedCredentialPb = exports.CredentialPb = exports.UnsignedCredentialPb = exports.CredentialRequestPb = exports.CredentialStatusInfo = exports.IssueCredentialsOptions = exports.IssueCredentialOptions = exports.PresentationRequestPb = exports.UnsignedPresentationRequestPb = exports.DidDocumentService = exports.DidDocumentPb = exports.PresentationPb = exports.UnsignedPresentationPb = void 0;
 var runtypes_1 = require("runtypes");
 var presentation_1 = require("./protos/presentation");
 Object.defineProperty(exports, "UnsignedPresentationPb", { enumerable: true, get: function () { return presentation_1.UnsignedPresentation; } });
@@ -32,6 +32,8 @@ var holderApp_1 = require("./protos/holderApp");
 Object.defineProperty(exports, "HolderAppInfo", { enumerable: true, get: function () { return holderApp_1.HolderAppInfo; } });
 var presentationRequestEnriched_1 = require("./protos/presentationRequestEnriched");
 Object.defineProperty(exports, "PresentationRequestEnriched", { enumerable: true, get: function () { return presentationRequestEnriched_1.PresentationRequestEnriched; } });
+var verifier_1 = require("./protos/verifier");
+Object.defineProperty(exports, "VerifierInfoPb", { enumerable: true, get: function () { return verifier_1.VerifierInfo; } });
 /**
  * A readonly list of push notification providers.
  */

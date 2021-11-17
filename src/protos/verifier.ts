@@ -36,7 +36,7 @@ export interface Verifier {
 export interface VerifierInfo {
   did: string;
   name: string;
-  encryptionPublicKey: PublicKeyInfo | undefined;
+  signingPublicKey: PublicKeyInfo | undefined;
 }
 
 const baseTargetInfo: object = { version: "", url: "" };
@@ -445,9 +445,9 @@ export const VerifierInfo = {
     if (message.name !== "") {
       writer.uint32(18).string(message.name);
     }
-    if (message.encryptionPublicKey !== undefined) {
+    if (message.signingPublicKey !== undefined) {
       PublicKeyInfo.encode(
-        message.encryptionPublicKey,
+        message.signingPublicKey,
         writer.uint32(26).fork()
       ).ldelim();
     }
@@ -468,7 +468,7 @@ export const VerifierInfo = {
           message.name = reader.string();
           break;
         case 3:
-          message.encryptionPublicKey = PublicKeyInfo.decode(
+          message.signingPublicKey = PublicKeyInfo.decode(
             reader,
             reader.uint32()
           );
@@ -494,14 +494,14 @@ export const VerifierInfo = {
       message.name = "";
     }
     if (
-      object.encryptionPublicKey !== undefined &&
-      object.encryptionPublicKey !== null
+      object.signingPublicKey !== undefined &&
+      object.signingPublicKey !== null
     ) {
-      message.encryptionPublicKey = PublicKeyInfo.fromJSON(
-        object.encryptionPublicKey
+      message.signingPublicKey = PublicKeyInfo.fromJSON(
+        object.signingPublicKey
       );
     } else {
-      message.encryptionPublicKey = undefined;
+      message.signingPublicKey = undefined;
     }
     return message;
   },
@@ -510,9 +510,9 @@ export const VerifierInfo = {
     const obj: any = {};
     message.did !== undefined && (obj.did = message.did);
     message.name !== undefined && (obj.name = message.name);
-    message.encryptionPublicKey !== undefined &&
-      (obj.encryptionPublicKey = message.encryptionPublicKey
-        ? PublicKeyInfo.toJSON(message.encryptionPublicKey)
+    message.signingPublicKey !== undefined &&
+      (obj.signingPublicKey = message.signingPublicKey
+        ? PublicKeyInfo.toJSON(message.signingPublicKey)
         : undefined);
     return obj;
   },
@@ -530,14 +530,14 @@ export const VerifierInfo = {
       message.name = "";
     }
     if (
-      object.encryptionPublicKey !== undefined &&
-      object.encryptionPublicKey !== null
+      object.signingPublicKey !== undefined &&
+      object.signingPublicKey !== null
     ) {
-      message.encryptionPublicKey = PublicKeyInfo.fromPartial(
-        object.encryptionPublicKey
+      message.signingPublicKey = PublicKeyInfo.fromPartial(
+        object.signingPublicKey
       );
     } else {
-      message.encryptionPublicKey = undefined;
+      message.signingPublicKey = undefined;
     }
     return message;
   },
