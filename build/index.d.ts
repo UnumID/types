@@ -10,6 +10,7 @@ import { IssueCredentialOptions, IssueCredentialsOptions, EncryptedCredential as
 import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb } from "./protos/crypto";
 import { HolderAppInfo } from "./protos/holderApp";
 import { PresentationRequestEnriched } from "./protos/presentationRequestEnriched";
+import { VerifierInfo as VerifierInfoPb } from "./protos/verifier";
 /**
  * Note the proto defined types import with a 'Pb' suffix that also have older, vanilla ts types defined.
  * The "Pb" serves to differentiate until we can ditch the legacy ts defined types.
@@ -20,6 +21,7 @@ export { UnsignedPresentationRequestPb, PresentationRequestPb, };
 export { IssueCredentialOptions, IssueCredentialsOptions, CredentialStatusInfo, CredentialRequestPb, UnsignedCredentialPb, CredentialPb, EncryptedCredentialPb, EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, RSAPadding };
 export { PresentationRequestEnriched };
 export { EncryptedKey, ProofPb, PublicKeyInfoPb };
+export { VerifierInfoPb, };
 export { HolderAppInfo };
 /**
  * Interface to encapsulate a base Unum Entity.
@@ -623,7 +625,7 @@ export interface VerifierInfo {
     did: string;
     name: string;
     url?: string;
-    encryptionPublicKey: PublicKeyInfo;
+    signingPublicKey: PublicKeyInfo;
 }
 /**
  * Encapsulates Issuer metadata attributes.

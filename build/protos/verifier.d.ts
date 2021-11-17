@@ -28,7 +28,7 @@ export interface Verifier {
 export interface VerifierInfo {
     did: string;
     name: string;
-    encryptionPublicKey: PublicKeyInfo | undefined;
+    signingPublicKey: PublicKeyInfo | undefined;
 }
 export declare const TargetInfo: {
     encode(message: TargetInfo, writer?: _m0.Writer): _m0.Writer;
