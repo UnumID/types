@@ -8,15 +8,14 @@ import {
   UnsignedCredential as UnsignedCredentialPb,
   Credential as CredentialPb,
   CredentialRequest as CredentialRequestPb,
-  CredentialStatusInfo
-} from "./protos/credential";
-import {
+  CredentialStatusInfo,
   IssueCredentialOptions,
   IssueCredentialsOptions,
   EncryptedCredential as EncryptedCredentialPb,
   EncryptedCredentialOptions as EncryptedCredentialOptionsPb, 
-  EncryptedCredentialEnriched
-} from "./protos/credential"
+  EncryptedCredentialEnriched,
+  SubjectCredentialRequest
+} from "./protos/credential";
 import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb } from "./protos/crypto"
 import { HolderAppInfo } from "./protos/holderApp";
 import { PresentationRequestEnriched } from "./protos/presentationRequestEnriched";
@@ -55,7 +54,8 @@ export {
   EncryptedCredentialPb,
   EncryptedCredentialOptionsPb,
   EncryptedCredentialEnriched,
-  RSAPadding
+  RSAPadding,
+  SubjectCredentialRequest
 }
 
 export {

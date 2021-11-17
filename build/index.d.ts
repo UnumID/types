@@ -5,8 +5,7 @@ import { UnsignedPresentation as UnsignedPresentationPb, Presentation as Present
 import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest";
 import { DidDocument as DidDocumentPb, DidDocumentService } from "./protos/didDocument";
 import { Proof as ProofPb } from "./protos/proof";
-import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb, CredentialStatusInfo } from "./protos/credential";
-import { IssueCredentialOptions, IssueCredentialsOptions, EncryptedCredential as EncryptedCredentialPb, EncryptedCredentialOptions as EncryptedCredentialOptionsPb, EncryptedCredentialEnriched } from "./protos/credential";
+import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb, CredentialStatusInfo, IssueCredentialOptions, IssueCredentialsOptions, EncryptedCredential as EncryptedCredentialPb, EncryptedCredentialOptions as EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, SubjectCredentialRequest } from "./protos/credential";
 import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb } from "./protos/crypto";
 import { HolderAppInfo } from "./protos/holderApp";
 import { PresentationRequestEnriched } from "./protos/presentationRequestEnriched";
@@ -17,7 +16,7 @@ import { PresentationRequestEnriched } from "./protos/presentationRequestEnriche
 export { UnsignedPresentationPb, PresentationPb, };
 export { DidDocumentPb, DidDocumentService };
 export { UnsignedPresentationRequestPb, PresentationRequestPb, };
-export { IssueCredentialOptions, IssueCredentialsOptions, CredentialStatusInfo, CredentialRequestPb, UnsignedCredentialPb, CredentialPb, EncryptedCredentialPb, EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, RSAPadding };
+export { IssueCredentialOptions, IssueCredentialsOptions, CredentialStatusInfo, CredentialRequestPb, UnsignedCredentialPb, CredentialPb, EncryptedCredentialPb, EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, RSAPadding, SubjectCredentialRequest };
 export { PresentationRequestEnriched };
 export { EncryptedKey, ProofPb, PublicKeyInfoPb };
 export { HolderAppInfo };

@@ -54,6 +54,21 @@ export interface CredentialRequest {
   required: boolean;
 }
 
+/**
+ * Object that encapsulates a Subject's request for a Credential.
+ * Note: this is different than the original CredentialRequest which lives in a Presentation(Request) object.
+ */
+export interface SubjectCredentialRequest {
+  /** the string matching the desire credential type */
+  type: string;
+  /** list of acceptable issuer DIDs that have issued the credential */
+  issuers: string[];
+  /** to denote wether this particular credential is required in response to the PresentationRequest. Defaults behavior resolves this to true. */
+  required: boolean;
+  /** proof signed by the subject */
+  proof: Proof | undefined;
+}
+
 /** Object that encapsulates an EncryptedCredentialOptions for persisting an EncryptedCredential. */
 export interface EncryptedCredentialOptions {
   credentialId: string;
@@ -774,6 +789,138 @@ export const CredentialRequest = {
       message.required = object.required;
     } else {
       message.required = false;
+    }
+    return message;
+  },
+};
+
+const baseSubjectCredentialRequest: object = {
+  type: "",
+  issuers: "",
+  required: false,
+};
+
+export const SubjectCredentialRequest = {
+  encode(
+    message: SubjectCredentialRequest,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.type !== "") {
+      writer.uint32(10).string(message.type);
+    }
+    for (const v of message.issuers) {
+      writer.uint32(18).string(v!);
+    }
+    if (message.required === true) {
+      writer.uint32(24).bool(message.required);
+    }
+    if (message.proof !== undefined) {
+      Proof.encode(message.proof, writer.uint32(34).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): SubjectCredentialRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseSubjectCredentialRequest,
+    } as SubjectCredentialRequest;
+    message.issuers = [];
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.type = reader.string();
+          break;
+        case 2:
+          message.issuers.push(reader.string());
+          break;
+        case 3:
+          message.required = reader.bool();
+          break;
+        case 4:
+          message.proof = Proof.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): SubjectCredentialRequest {
+    const message = {
+      ...baseSubjectCredentialRequest,
+    } as SubjectCredentialRequest;
+    message.issuers = [];
+    if (object.type !== undefined && object.type !== null) {
+      message.type = String(object.type);
+    } else {
+      message.type = "";
+    }
+    if (object.issuers !== undefined && object.issuers !== null) {
+      for (const e of object.issuers) {
+        message.issuers.push(String(e));
+      }
+    }
+    if (object.required !== undefined && object.required !== null) {
+      message.required = Boolean(object.required);
+    } else {
+      message.required = false;
+    }
+    if (object.proof !== undefined && object.proof !== null) {
+      message.proof = Proof.fromJSON(object.proof);
+    } else {
+      message.proof = undefined;
+    }
+    return message;
+  },
+
+  toJSON(message: SubjectCredentialRequest): unknown {
+    const obj: any = {};
+    message.type !== undefined && (obj.type = message.type);
+    if (message.issuers) {
+      obj.issuers = message.issuers.map((e) => e);
+    } else {
+      obj.issuers = [];
+    }
+    message.required !== undefined && (obj.required = message.required);
+    message.proof !== undefined &&
+      (obj.proof = message.proof ? Proof.toJSON(message.proof) : undefined);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<SubjectCredentialRequest>
+  ): SubjectCredentialRequest {
+    const message = {
+      ...baseSubjectCredentialRequest,
+    } as SubjectCredentialRequest;
+    message.issuers = [];
+    if (object.type !== undefined && object.type !== null) {
+      message.type = object.type;
+    } else {
+      message.type = "";
+    }
+    if (object.issuers !== undefined && object.issuers !== null) {
+      for (const e of object.issuers) {
+        message.issuers.push(e);
+      }
+    }
+    if (object.required !== undefined && object.required !== null) {
+      message.required = object.required;
+    } else {
+      message.required = false;
+    }
+    if (object.proof !== undefined && object.proof !== null) {
+      message.proof = Proof.fromPartial(object.proof);
+    } else {
+      message.proof = undefined;
     }
     return message;
   },
