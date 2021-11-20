@@ -24,6 +24,13 @@ export { EncryptedKey, ProofPb, PublicKeyInfoPb };
 export { VerifierInfoPb, };
 export { HolderAppInfo };
 /**
+ * Maps Dates to strings, including nested.
+ * Effectively equals the type change caused by JSON.parse(JSON.stringify(x))
+ */
+export declare type DatesToStrings<T> = T extends Date ? string : T extends Function ? T : {
+    [k in keyof T]: DatesToStrings<T[k]>;
+};
+/**
  * Interface to encapsulate a base Unum Entity.
  */
 export interface BaseEntity {
