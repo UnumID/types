@@ -82,6 +82,17 @@ export {
 }
 
 /**
+ * Maps Dates to strings, including nested.
+ * Effectively equals the type change caused by JSON.parse(JSON.stringify(x))
+ */
+export type DatesToStrings<T> =
+  T extends Date ? string // if it's a Date, make it a string
+  : T extends Function ? T // if it's a Function, leave it the same type
+  : { [k in keyof T]: DatesToStrings<T[k]> } // if it's anything else, recursively map its values
+  // NOTE: when a primative type is substitued for T in an isomorphic mapped type, it produces that primative type
+  // see https://github.com/microsoft/TypeScript/pull/12447
+
+/**
  * Interface to encapsulate a base Unum Entity.
  */
 export interface BaseEntity {
