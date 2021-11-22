@@ -309,6 +309,14 @@ export interface Issuer {
     apiKey: string;
 }
 /**
+ * Saas supported receipt group types
+ */
+export declare const receiptGroupTypes: string[];
+/**
+ * Saas supported receipt types
+ */
+export declare const receiptTypes: string[];
+/**
  * Encapsulates Receipt entity attributes with generic type for the data variance between receipt types.
  */
 export interface Receipt<T = ReceiptDataOptions> {

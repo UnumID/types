@@ -407,6 +407,33 @@ export interface Issuer {
 }
 
 /**
+ * Saas supported receipt group types
+ */
+export const receiptGroupTypes = [
+  'Credential',
+  'PresentationRequest',
+  'Presentation'
+];
+
+/**
+ * Saas supported receipt types
+ */
+export const receiptTypes = [
+  'SubjectCredentialRequestVerified',
+  'CredentialIssued',
+  'CredentialShared',
+  'CredentialReceived',
+  'RequestCreated',
+  'RequestShared',
+  'RequestReceived',
+  'PresentationPosted',
+  'PresentationSharedVerification',
+  'PresentationVerified',
+  'CredentialStatusChanged',
+  'NotificationSent'
+];
+
+/**
  * Encapsulates Receipt entity attributes with generic type for the data variance between receipt types. 
  */
 export interface Receipt<T = ReceiptDataOptions> {
