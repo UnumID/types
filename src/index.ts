@@ -447,10 +447,11 @@ export interface ReceiptDataOptions {
   type: string; // credential type
   version: string; // credential version
   credentialId: string; // credential id
-  // status: CredentialStatusOptions; // credential status
-  // credentialIssued: Date; // credential issued date
-  // credentialStatusUpdated?: Date; // credential status modified date
-  // credentialStatusUpdatedBy: string // did of the issuer that modified the credential status (or "admin", signifying we used the admin key to update)
+  status: CredentialStatusOptions; // credential status
+  credentialIssued: Date; // credential issued date
+  credentialStatusUpdated?: Date; // credential status modified date
+  credentialStatusUpdatedBy?: string // did of the issuer that modified the credential status (or "admin", signifying we used the admin key to update)
+  isVerified?: boolean; // used for the verifiedSubjectCredential atomic receipt type
 }
 
 /**
