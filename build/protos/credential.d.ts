@@ -45,6 +45,20 @@ export interface CredentialRequest {
     /** to denote wether this particular credential is required in response to the PresentationRequest. Defaults behavior resolves this to true. */
     required: boolean;
 }
+/**
+ * Object that encapsulates a Subject's request for a Credential.
+ * Note: this is different than the original CredentialRequest which lives in a Presentation(Request) object.
+ */
+export interface SubjectCredentialRequest {
+    /** the string matching the desire credential type */
+    type: string;
+    /** list of acceptable issuer DIDs that have issued the credential */
+    issuers: string[];
+    /** to denote wether this particular credential is required in response to the PresentationRequest. Defaults behavior resolves this to true. */
+    required: boolean;
+    /** proof signed by the subject */
+    proof: Proof | undefined;
+}
 /** Object that encapsulates an EncryptedCredentialOptions for persisting an EncryptedCredential. */
 export interface EncryptedCredentialOptions {
     credentialId: string;
@@ -125,6 +139,13 @@ export declare const CredentialRequest: {
     fromJSON(object: any): CredentialRequest;
     toJSON(message: CredentialRequest): unknown;
     fromPartial(object: DeepPartial<CredentialRequest>): CredentialRequest;
+};
+export declare const SubjectCredentialRequest: {
+    encode(message: SubjectCredentialRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): SubjectCredentialRequest;
+    fromJSON(object: any): SubjectCredentialRequest;
+    toJSON(message: SubjectCredentialRequest): unknown;
+    fromPartial(object: DeepPartial<SubjectCredentialRequest>): SubjectCredentialRequest;
 };
 export declare const EncryptedCredentialOptions: {
     encode(message: EncryptedCredentialOptions, writer?: _m0.Writer): _m0.Writer;

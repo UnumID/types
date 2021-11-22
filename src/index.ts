@@ -8,15 +8,14 @@ import {
   UnsignedCredential as UnsignedCredentialPb,
   Credential as CredentialPb,
   CredentialRequest as CredentialRequestPb,
-  CredentialStatusInfo
-} from "./protos/credential";
-import {
+  CredentialStatusInfo,
   IssueCredentialOptions,
   IssueCredentialsOptions,
   EncryptedCredential as EncryptedCredentialPb,
   EncryptedCredentialOptions as EncryptedCredentialOptionsPb, 
-  EncryptedCredentialEnriched
-} from "./protos/credential"
+  EncryptedCredentialEnriched,
+  SubjectCredentialRequest
+} from "./protos/credential";
 import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb } from "./protos/crypto"
 import { HolderAppInfo } from "./protos/holderApp";
 import { PresentationRequestEnriched } from "./protos/presentationRequestEnriched";
@@ -56,7 +55,8 @@ export {
   EncryptedCredentialPb,
   EncryptedCredentialOptionsPb,
   EncryptedCredentialEnriched,
-  RSAPadding
+  RSAPadding,
+  SubjectCredentialRequest
 }
 
 export {
@@ -418,6 +418,33 @@ export interface Issuer {
 }
 
 /**
+ * Saas supported receipt group types
+ */
+export const receiptGroupTypes = [
+  'Credential',
+  'PresentationRequest',
+  'Presentation'
+];
+
+/**
+ * Saas supported receipt types
+ */
+export const receiptTypes = [
+  'SubjectCredentialRequestVerified',
+  'CredentialIssued',
+  'CredentialShared',
+  'CredentialReceived',
+  'RequestCreated',
+  'RequestShared',
+  'RequestReceived',
+  'PresentationPosted',
+  'PresentationSharedVerification',
+  'PresentationVerified',
+  'CredentialStatusChanged',
+  'NotificationSent'
+];
+
+/**
  * Encapsulates Receipt entity attributes with generic type for the data variance between receipt types. 
  */
 export interface Receipt<T = ReceiptDataOptions> {
@@ -458,10 +485,11 @@ export interface ReceiptDataOptions {
   type: string; // credential type
   version: string; // credential version
   credentialId: string; // credential id
-  // status: CredentialStatusOptions; // credential status
-  // credentialIssued: Date; // credential issued date
-  // credentialStatusUpdated?: Date; // credential status modified date
-  // credentialStatusUpdatedBy: string // did of the issuer that modified the credential status (or "admin", signifying we used the admin key to update)
+  status: CredentialStatusOptions; // credential status
+  credentialIssued: Date; // credential issued date
+  credentialStatusUpdated?: Date; // credential status modified date
+  credentialStatusUpdatedBy?: string // did of the issuer that modified the credential status (or "admin", signifying we used the admin key to update)
+  isVerified?: boolean; // used for the verifiedSubjectCredential atomic receipt type
 }
 
 /**

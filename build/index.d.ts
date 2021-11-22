@@ -5,8 +5,7 @@ import { UnsignedPresentation as UnsignedPresentationPb, Presentation as Present
 import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest";
 import { DidDocument as DidDocumentPb, DidDocumentService } from "./protos/didDocument";
 import { Proof as ProofPb } from "./protos/proof";
-import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb, CredentialStatusInfo } from "./protos/credential";
-import { IssueCredentialOptions, IssueCredentialsOptions, EncryptedCredential as EncryptedCredentialPb, EncryptedCredentialOptions as EncryptedCredentialOptionsPb, EncryptedCredentialEnriched } from "./protos/credential";
+import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb, CredentialStatusInfo, IssueCredentialOptions, IssueCredentialsOptions, EncryptedCredential as EncryptedCredentialPb, EncryptedCredentialOptions as EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, SubjectCredentialRequest } from "./protos/credential";
 import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb } from "./protos/crypto";
 import { HolderAppInfo } from "./protos/holderApp";
 import { PresentationRequestEnriched } from "./protos/presentationRequestEnriched";
@@ -18,7 +17,7 @@ import { VerifierInfo as VerifierInfoPb } from "./protos/verifier";
 export { UnsignedPresentationPb, PresentationPb, };
 export { DidDocumentPb, DidDocumentService };
 export { UnsignedPresentationRequestPb, PresentationRequestPb, };
-export { IssueCredentialOptions, IssueCredentialsOptions, CredentialStatusInfo, CredentialRequestPb, UnsignedCredentialPb, CredentialPb, EncryptedCredentialPb, EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, RSAPadding };
+export { IssueCredentialOptions, IssueCredentialsOptions, CredentialStatusInfo, CredentialRequestPb, UnsignedCredentialPb, CredentialPb, EncryptedCredentialPb, EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, RSAPadding, SubjectCredentialRequest };
 export { PresentationRequestEnriched };
 export { EncryptedKey, ProofPb, PublicKeyInfoPb };
 export { VerifierInfoPb, };
@@ -317,6 +316,14 @@ export interface Issuer {
     apiKey: string;
 }
 /**
+ * Saas supported receipt group types
+ */
+export declare const receiptGroupTypes: string[];
+/**
+ * Saas supported receipt types
+ */
+export declare const receiptTypes: string[];
+/**
  * Encapsulates Receipt entity attributes with generic type for the data variance between receipt types.
  */
 export interface Receipt<T = ReceiptDataOptions> {
@@ -355,6 +362,11 @@ export interface ReceiptCredentialData {
     type: string;
     version: string;
     credentialId: string;
+    status: CredentialStatusOptions;
+    credentialIssued: Date;
+    credentialStatusUpdated?: Date;
+    credentialStatusUpdatedBy?: string;
+    isVerified?: boolean;
 }
 /**
  * Type to encapsulate specific Receipt data fields for PresentationRequest related receipts.
