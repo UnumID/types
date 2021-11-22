@@ -434,6 +434,7 @@ export interface ReceiptGroupCredentialData {
     credentialId: string;
     status: CredentialStatusOptions;
     credentialIssued: Date;
+    credentialReceived?: Date;
     credentialStatusUpdated?: Date;
     credentialStatusUpdatedBy?: string;
 }
