@@ -493,7 +493,7 @@ export interface CredentialReceiptInfo {
  */
 export interface CredentialRequestInfo {
     type: string;
-    issuers: IssuerInfo;
+    issuers: IssuerInfo[];
     required: boolean;
 }
 /**
