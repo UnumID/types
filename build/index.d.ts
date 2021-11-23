@@ -614,14 +614,6 @@ export interface PublicKeyInfo {
     rsaPadding?: RSAPadding;
 }
 /**
- * Interface to encapsulate Did Document service information.
- */
-export interface ServiceInfo {
-    id: string;
-    serviceEndpoint: string;
-    type: string;
-}
-/**
  * Interface to encapsulate Did Document information.
  */
 export interface DidDocument {
@@ -630,7 +622,7 @@ export interface DidDocument {
     created: Date;
     updated: Date;
     publicKey: PublicKeyInfo[];
-    service: ServiceInfo[];
+    service: DidDocumentService[];
 }
 /**
  * Interface to encapsulate a signed Subject Did Document.
@@ -642,7 +634,7 @@ export interface SignedDidDocument {
     created: Date;
     updated: Date;
     publicKey: PublicKeyInfo[];
-    service: ServiceInfo[];
+    service: DidDocumentService[];
     proof: Proof;
 }
 /**
