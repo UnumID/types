@@ -453,6 +453,7 @@ export const receiptTypes = [
   issuer?: string;
   verifier?: string;
   group?: string;
+  customer?: string; // customer uuid of relation
   data: T;
 }
 
