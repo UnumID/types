@@ -378,8 +378,8 @@ export interface ReceiptCredentialData {
     type: string;
     version: string;
     credentialId: string;
-    status: CredentialStatusOptions;
-    credentialIssued: Date;
+    status?: CredentialStatusOptions;
+    credentialIssued?: Date;
     credentialStatusUpdated?: Date;
     credentialStatusUpdatedBy?: string;
     isVerified?: boolean;
