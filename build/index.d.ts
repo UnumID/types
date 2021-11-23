@@ -397,7 +397,7 @@ export interface ReceiptPresentationData {
 /**
  * Encapsulates ReceiptGroup entity attributes with generic type for the data variance between receipt group types.
  */
-export interface ReceiptGroup<T = ReceiptGroupDataOptions> {
+export interface ReceiptGroupOptions<T = ReceiptGroupDataOptions> {
     uuid: string;
     createdAt: Date;
     updatedAt: Date;
@@ -411,6 +411,14 @@ export interface ReceiptGroup<T = ReceiptGroupDataOptions> {
     presentationRequestId?: string;
     customer?: string;
     data: T;
+}
+/**
+ * Encapsulates ReceiptGroup entity attributes with generic type for the data variance between receipt group types.
+ */
+export interface ReceiptGroup<T = ReceiptGroupDataOptions> extends ReceiptGroupOptions<T> {
+    uuid: string;
+    createdAt: Date;
+    updatedAt: Date;
 }
 /**
  * Type to encapsulate possible ReceiptGroup data fields.
