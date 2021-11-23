@@ -482,7 +482,6 @@ export interface ReceiptDataOptions {
   credentialTypes?: string[];
   issuers?: string[];
   holderAppUuid?: string;
-  // status?: CredentialStatusOptions;
   uuid?: string;
   id?: string;
   version?: string;
@@ -514,13 +513,10 @@ export interface ReceiptDataOptions {
  * Type to encapsulate specific Receipt data fields for PresentationRequest related receipts. 
  */
 export interface ReceiptPresentationRequestData {
-  // credentialTypes: string[];
-  // issuers: string[];
   version: string;
   holderAppUuid: string;
   uuid: string; // request uuid
   id: string; // request id
-  // required: boolean[];
   requestInfo: CredentialRequestInfoBasic[];
   expirationDate?: Date;
 }
