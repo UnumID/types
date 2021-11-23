@@ -528,6 +528,7 @@ export interface ReceiptPresentationRequestData {
   createdAt: Date;
   updatedAt: Date;
   type: string;
+  receipts: Receipt<T>[];
   subject?: string;
   issuer?: string;
   verifier?: string;
