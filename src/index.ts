@@ -502,6 +502,7 @@ export interface ReceiptPresentationRequestData {
   holderAppUuid: string;
   requestUuid: string;
   requestId: string;
+  required: boolean;
 }
 
 /**

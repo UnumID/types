@@ -378,6 +378,7 @@ export interface ReceiptPresentationRequestData {
     holderAppUuid: string;
     requestUuid: string;
     requestId: string;
+    required: boolean;
 }
 /**
  * Type to encapsulate specific Receipt data fields for Presentation related receipts.
