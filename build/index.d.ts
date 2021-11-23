@@ -460,6 +460,7 @@ export interface ReceiptGroupPresentationData {
  * Type to encapsulate a Credential ReceiptGroup's credentialInfo data attribute
  */
 export interface CredentialReceiptInfo {
+    credentialId: string;
     issuer: IssuerInfo;
     subject: string;
     type: string;
