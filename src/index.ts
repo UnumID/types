@@ -575,12 +575,13 @@ export interface ReceiptPresentationRequestData {
   status: CredentialStatusOptions; // credential group receipts; status
   credentialStatusUpdated?: Date; // credential group receipts; date status updated
   credentialStatusUpdatedBy?: string; // credential group receipts; did of issuer updated by or "admin" if admin key used
-  credentialRequestInfo: CredentialRequestInfo[] // request group receipts; credential request info
-  requestReceived: Date; // request group receipts; date request received
+  credentialRequestInfo?: CredentialRequestInfo[] // request group receipts; credential request info
+  requestReceived?: Date; // request group receipts; date request received
+  expirationDate?: Date; // request group receipts; expiration date
   verifier?: VerifierInfo; //  request and presentation group receipts
   holderApp?: Pick<HolderApp, 'name' | 'uuid'>; // request and presentation group receipts
-  isVerified: boolean; // presentation group receipts; is presentation verified
-  credentialInfo: CredentialReceiptInfo[]; // presentation group receipts; presentation's credentials info
+  isVerified?: boolean; // presentation group receipts; is presentation verified
+  credentialInfo?: CredentialReceiptInfo[]; // presentation group receipts; presentation's credentials info
 }
 
 /**
@@ -604,6 +605,7 @@ export interface ReceiptGroupCredentialData {
  export interface ReceiptGroupPresentationRequestData {
   credentialRequestInfo: CredentialRequestInfo[] // request group receipts; credential request info
   requestReceived?: Date; // request group receipts; date request received
+  expirationDate?: Date; // request group receipts; expiration date
   verifier: Pick<VerifierInfo, 'did' | 'name'>; //  request and presentation group receipts
   holderApp: Pick<HolderApp, 'name' | 'uuid'>; // request and presentation group receipts
 }

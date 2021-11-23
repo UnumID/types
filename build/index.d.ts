@@ -441,12 +441,13 @@ export interface ReceiptGroupDataOptions {
     status: CredentialStatusOptions;
     credentialStatusUpdated?: Date;
     credentialStatusUpdatedBy?: string;
-    credentialRequestInfo: CredentialRequestInfo[];
-    requestReceived: Date;
+    credentialRequestInfo?: CredentialRequestInfo[];
+    requestReceived?: Date;
+    expirationDate?: Date;
     verifier?: VerifierInfo;
     holderApp?: Pick<HolderApp, 'name' | 'uuid'>;
-    isVerified: boolean;
-    credentialInfo: CredentialReceiptInfo[];
+    isVerified?: boolean;
+    credentialInfo?: CredentialReceiptInfo[];
 }
 /**
  * Type to encapsulate a Credential ReceiptGroup's data attribute
@@ -468,6 +469,7 @@ export interface ReceiptGroupCredentialData {
 export interface ReceiptGroupPresentationRequestData {
     credentialRequestInfo: CredentialRequestInfo[];
     requestReceived?: Date;
+    expirationDate?: Date;
     verifier: Pick<VerifierInfo, 'did' | 'name'>;
     holderApp: Pick<HolderApp, 'name' | 'uuid'>;
 }
