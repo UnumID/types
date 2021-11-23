@@ -535,6 +535,8 @@ export interface ReceiptPresentationRequestData {
   requestUuid: string;
   requestId: string;
   subject: string;
+  isVerified?: boolean;
+  reply?: string;
 }
 
 /**

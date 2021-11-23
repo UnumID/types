@@ -405,6 +405,8 @@ export interface ReceiptPresentationData {
     requestUuid: string;
     requestId: string;
     subject: string;
+    isVerified?: boolean;
+    reply?: string;
 }
 /**
  * Encapsulates ReceiptGroup option attributes with generic type for the data variance between receipt group types.
