@@ -464,6 +464,7 @@ export interface Receipt<T = ReceiptDataOptions> {
  */
 export interface ReceiptDataOptions {
   required?: boolean;
+  expirationDate?: Date;
   subject?: string;
   credentialTypes?: string[];
   issuers?: string[];
@@ -503,6 +504,7 @@ export interface ReceiptPresentationRequestData {
   requestUuid: string;
   requestId: string;
   required: boolean;
+  expirationDate?: Date;
 }
 
 /**
