@@ -447,14 +447,14 @@ export interface ReceiptGroupCredentialData {
 export interface ReceiptGroupPresentationRequestData {
     credentialRequestInfo: CredentialRequestInfo[];
     requestReceived?: Date;
-    verifier: VerifierInfo;
+    verifier: Pick<VerifierInfo, 'did' | 'name'>;
     holderApp: Pick<HolderApp, 'name' | 'uuid'>;
 }
 /**
  * Type to encapsulate a Presentation ReceiptGroup's data attribute
  */
 export interface ReceiptGroupPresentationData {
-    verifier: VerifierInfo;
+    verifier: Pick<VerifierInfo, 'did' | 'name'>;
     holderApp: Pick<HolderApp, 'name' | 'uuid'>;
     isVerified?: boolean;
     credentialInfo?: CredentialReceiptInfo[];
