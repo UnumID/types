@@ -387,13 +387,11 @@ export interface ReceiptCredentialData {
  * Type to encapsulate specific Receipt data fields for PresentationRequest related receipts.
  */
 export interface ReceiptPresentationRequestData {
-    credentialTypes: string[];
-    issuers: string[];
     version: string;
     holderAppUuid: string;
     uuid: string;
     id: string;
-    required: boolean;
+    requestInfo: CredentialRequestInfo[];
     expirationDate?: Date;
 }
 /**
