@@ -324,9 +324,20 @@ export declare const receiptGroupTypes: string[];
  */
 export declare const receiptTypes: string[];
 /**
+ * Encapsulates Receipt option attributes with generic type for the data variance between receipt types.
+ */
+export interface ReceiptOptions<T = ReceiptDataOptions> {
+    type: string;
+    subject?: string;
+    issuer?: string;
+    verifier?: string;
+    group?: string;
+    data: T;
+}
+/**
  * Encapsulates Receipt entity attributes with generic type for the data variance between receipt types.
  */
-export interface Receipt<T = ReceiptDataOptions> {
+export interface Receipt<T = ReceiptDataOptions> extends ReceiptOptions<T> {
     uuid: string;
     createdAt: Date;
     updatedAt: Date;
@@ -395,7 +406,7 @@ export interface ReceiptPresentationData {
     subject: string;
 }
 /**
- * Encapsulates ReceiptGroup entity attributes with generic type for the data variance between receipt group types.
+ * Encapsulates ReceiptGroup option attributes with generic type for the data variance between receipt group types.
  */
 export interface ReceiptGroupOptions<T = ReceiptGroupDataOptions> {
     type: string;
