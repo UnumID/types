@@ -358,7 +358,6 @@ export interface ReceiptDataOptions {
     credentialTypes?: string[];
     issuers?: string[];
     holderAppUuid?: string;
-    status?: string;
     uuid?: string;
     id?: string;
     version?: string;
@@ -366,6 +365,10 @@ export interface ReceiptDataOptions {
     reason?: string;
     isVerified?: boolean;
     reply?: string;
+    status?: CredentialStatusOptions;
+    credentialIssued?: Date;
+    credentialStatusUpdated?: Date;
+    credentialStatusUpdatedBy?: string;
 }
 /**
  * Type to encapsulate specific Receipt data fields for Credential related receipts.

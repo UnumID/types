@@ -481,7 +481,7 @@ export interface ReceiptDataOptions {
   credentialTypes?: string[];
   issuers?: string[];
   holderAppUuid?: string;
-  status?: string;
+  // status?: CredentialStatusOptions;
   uuid?: string;
   id?: string;
   version?: string;
@@ -489,6 +489,10 @@ export interface ReceiptDataOptions {
   reason?: string;
   isVerified?: boolean;
   reply?: string;
+  status?: CredentialStatusOptions; // credential status
+  credentialIssued?: Date; // credential issued date
+  credentialStatusUpdated?: Date; // credential status modified date
+  credentialStatusUpdatedBy?: string // did of the issuer that modified the credential status (or "admin", signifying we used the admin key to update)
 }
 
 /**
