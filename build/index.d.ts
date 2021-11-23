@@ -391,8 +391,8 @@ export interface ReceiptPresentationRequestData {
     issuers: string[];
     version: string;
     holderAppUuid: string;
-    requestUuid: string;
-    requestId: string;
+    uuid: string;
+    id: string;
     required: boolean;
     expirationDate?: Date;
 }
