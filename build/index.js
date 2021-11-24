@@ -47,6 +47,7 @@ exports.receiptGroupTypes = [
  * Saas supported receipt types
  */
 exports.receiptTypes = [
+    'SubjectDidDocumentVerified',
     'SubjectCredentialRequestVerified',
     'CredentialIssued',
     'CredentialShared',

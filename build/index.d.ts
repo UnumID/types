@@ -363,8 +363,8 @@ export interface ReceiptDataOptions {
     id?: string;
     version?: string;
     credentialId?: string;
-    reason?: string;
     isVerified?: boolean;
+    reason?: string;
     reply?: string;
     status?: CredentialStatusOptions;
     credentialIssued?: Date;
@@ -382,7 +382,6 @@ export interface ReceiptCredentialData {
     credentialIssued?: Date;
     credentialStatusUpdated?: Date;
     credentialStatusUpdatedBy?: string;
-    isVerified?: boolean;
 }
 /**
  * Type to encapsulate specific Receipt data fields for PresentationRequest related receipts.
@@ -407,7 +406,27 @@ export interface ReceiptPresentationData {
     requestId: string;
     subject: string;
     isVerified?: boolean;
+    reason?: string;
     reply?: string;
+}
+/**
+ * Encapsulates attributes regarding Verified Receipts
+ */
+export interface VerifiedReceiptDataOptions {
+    isVerified: boolean;
+    reason?: string;
+}
+/**
+ * Type to encapsulate specific Receipt data fields for SubjectCredentialRequestVerified related receipts.
+ */
+export interface ReceiptSubjectCredentialRequestVerifiedData extends VerifiedReceiptDataOptions {
+    requestInfo: CredentialRequestInfoBasic[];
+}
+/**
+* Type to encapsulate specific Receipt data fields for SubjectDidDocumentVerified related receipts.
+*/
+export interface ReceiptSubjectDidDocumentVerifiedData extends VerifiedReceiptDataOptions {
+    did: string;
 }
 /**
  * Encapsulates ReceiptGroup option attributes with generic type for the data variance between receipt group types.
