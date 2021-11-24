@@ -3,6 +3,7 @@ import Long from "long";
 import _m0 from "protobufjs/minimal";
 import { Timestamp } from "./google/protobuf/timestamp";
 import { PublicKeyInfo } from "./crypto";
+import { Proof } from "./proof";
 
 export const protobufPackage = "didDocument.v1";
 
@@ -21,6 +22,20 @@ export interface DidDocumentService {
   id: string;
   serviceEndpoint: string;
   type: string;
+}
+
+/**
+ * Object to encapsulate a signed DidDocument.
+ * Note: it breaks the name convention of the singed type counterpart being the simpler name of the two, however because the unsigned DidDocument definition was claimed first, this is an exception to the rule.
+ */
+export interface SignedDidDocument {
+  context: string;
+  id: string;
+  created: Date | undefined;
+  updated: Date | undefined;
+  publicKey: PublicKeyInfo[];
+  service: DidDocumentService[];
+  proof: Proof | undefined;
 }
 
 const baseDidDocument: object = { context: "", id: "" };
@@ -296,6 +311,199 @@ export const DidDocumentService = {
       message.type = object.type;
     } else {
       message.type = "";
+    }
+    return message;
+  },
+};
+
+const baseSignedDidDocument: object = { context: "", id: "" };
+
+export const SignedDidDocument = {
+  encode(
+    message: SignedDidDocument,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.context !== "") {
+      writer.uint32(10).string(message.context);
+    }
+    if (message.id !== "") {
+      writer.uint32(18).string(message.id);
+    }
+    if (message.created !== undefined) {
+      Timestamp.encode(
+        toTimestamp(message.created),
+        writer.uint32(26).fork()
+      ).ldelim();
+    }
+    if (message.updated !== undefined) {
+      Timestamp.encode(
+        toTimestamp(message.updated),
+        writer.uint32(34).fork()
+      ).ldelim();
+    }
+    for (const v of message.publicKey) {
+      PublicKeyInfo.encode(v!, writer.uint32(42).fork()).ldelim();
+    }
+    for (const v of message.service) {
+      DidDocumentService.encode(v!, writer.uint32(50).fork()).ldelim();
+    }
+    if (message.proof !== undefined) {
+      Proof.encode(message.proof, writer.uint32(58).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): SignedDidDocument {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseSignedDidDocument } as SignedDidDocument;
+    message.publicKey = [];
+    message.service = [];
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.context = reader.string();
+          break;
+        case 2:
+          message.id = reader.string();
+          break;
+        case 3:
+          message.created = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
+          break;
+        case 4:
+          message.updated = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
+          break;
+        case 5:
+          message.publicKey.push(PublicKeyInfo.decode(reader, reader.uint32()));
+          break;
+        case 6:
+          message.service.push(
+            DidDocumentService.decode(reader, reader.uint32())
+          );
+          break;
+        case 7:
+          message.proof = Proof.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): SignedDidDocument {
+    const message = { ...baseSignedDidDocument } as SignedDidDocument;
+    message.publicKey = [];
+    message.service = [];
+    if (object.context !== undefined && object.context !== null) {
+      message.context = String(object.context);
+    } else {
+      message.context = "";
+    }
+    if (object.id !== undefined && object.id !== null) {
+      message.id = String(object.id);
+    } else {
+      message.id = "";
+    }
+    if (object.created !== undefined && object.created !== null) {
+      message.created = fromJsonTimestamp(object.created);
+    } else {
+      message.created = undefined;
+    }
+    if (object.updated !== undefined && object.updated !== null) {
+      message.updated = fromJsonTimestamp(object.updated);
+    } else {
+      message.updated = undefined;
+    }
+    if (object.publicKey !== undefined && object.publicKey !== null) {
+      for (const e of object.publicKey) {
+        message.publicKey.push(PublicKeyInfo.fromJSON(e));
+      }
+    }
+    if (object.service !== undefined && object.service !== null) {
+      for (const e of object.service) {
+        message.service.push(DidDocumentService.fromJSON(e));
+      }
+    }
+    if (object.proof !== undefined && object.proof !== null) {
+      message.proof = Proof.fromJSON(object.proof);
+    } else {
+      message.proof = undefined;
+    }
+    return message;
+  },
+
+  toJSON(message: SignedDidDocument): unknown {
+    const obj: any = {};
+    message.context !== undefined && (obj.context = message.context);
+    message.id !== undefined && (obj.id = message.id);
+    message.created !== undefined &&
+      (obj.created = message.created.toISOString());
+    message.updated !== undefined &&
+      (obj.updated = message.updated.toISOString());
+    if (message.publicKey) {
+      obj.publicKey = message.publicKey.map((e) =>
+        e ? PublicKeyInfo.toJSON(e) : undefined
+      );
+    } else {
+      obj.publicKey = [];
+    }
+    if (message.service) {
+      obj.service = message.service.map((e) =>
+        e ? DidDocumentService.toJSON(e) : undefined
+      );
+    } else {
+      obj.service = [];
+    }
+    message.proof !== undefined &&
+      (obj.proof = message.proof ? Proof.toJSON(message.proof) : undefined);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<SignedDidDocument>): SignedDidDocument {
+    const message = { ...baseSignedDidDocument } as SignedDidDocument;
+    message.publicKey = [];
+    message.service = [];
+    if (object.context !== undefined && object.context !== null) {
+      message.context = object.context;
+    } else {
+      message.context = "";
+    }
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    } else {
+      message.id = "";
+    }
+    if (object.created !== undefined && object.created !== null) {
+      message.created = object.created;
+    } else {
+      message.created = undefined;
+    }
+    if (object.updated !== undefined && object.updated !== null) {
+      message.updated = object.updated;
+    } else {
+      message.updated = undefined;
+    }
+    if (object.publicKey !== undefined && object.publicKey !== null) {
+      for (const e of object.publicKey) {
+        message.publicKey.push(PublicKeyInfo.fromPartial(e));
+      }
+    }
+    if (object.service !== undefined && object.service !== null) {
+      for (const e of object.service) {
+        message.service.push(DidDocumentService.fromPartial(e));
+      }
+    }
+    if (object.proof !== undefined && object.proof !== null) {
+      message.proof = Proof.fromPartial(object.proof);
+    } else {
+      message.proof = undefined;
     }
     return message;
   },
