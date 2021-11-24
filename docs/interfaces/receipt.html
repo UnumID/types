@@ -84,7 +84,12 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Receipt</span>
+						<a href="receiptoptions.html" class="tsd-signature-type" data-tsd-kind="Interface">ReceiptOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">Receipt</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -96,14 +101,15 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="receipt.html#createdat" class="tsd-kind-icon">created<wbr>At</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="receipt.html#data" class="tsd-kind-icon">data</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="receipt.html#group" class="tsd-kind-icon">group</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="receipt.html#issuer" class="tsd-kind-icon">issuer</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="receipt.html#subject" class="tsd-kind-icon">subject</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="receipt.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="receipt.html#customer" class="tsd-kind-icon">customer</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="receipt.html#data" class="tsd-kind-icon">data</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="receipt.html#group" class="tsd-kind-icon">group</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="receipt.html#issuer" class="tsd-kind-icon">issuer</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="receipt.html#subject" class="tsd-kind-icon">subject</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="receipt.html#type" class="tsd-kind-icon">type</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="receipt.html#updatedat" class="tsd-kind-icon">updated<wbr>At</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="receipt.html#uuid" class="tsd-kind-icon">uuid</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="receipt.html#verifier" class="tsd-kind-icon">verifier</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="receipt.html#verifier" class="tsd-kind-icon">verifier</a></li>
 							</ul>
 						</section>
 					</div>
@@ -117,57 +123,73 @@
 					<div class="tsd-signature tsd-kind-icon">created<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Date</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/17ebc5f/src/index.ts#L452">index.ts:452</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/772fee7/src/index.ts#L465">index.ts:465</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="customer" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> customer</h3>
+					<div class="tsd-signature tsd-kind-icon">customer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="receiptoptions.html">ReceiptOptions</a>.<a href="receiptoptions.html#customer">customer</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/772fee7/src/index.ts#L456">index.ts:456</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 					<a name="data" class="tsd-anchor"></a>
 					<h3>data</h3>
 					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">T</span></div>
 					<aside class="tsd-sources">
+						<p>Overrides <a href="receiptoptions.html">ReceiptOptions</a>.<a href="receiptoptions.html#data">data</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/17ebc5f/src/index.ts#L459">index.ts:459</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/772fee7/src/index.ts#L472">index.ts:472</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 					<a name="group" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> group</h3>
 					<div class="tsd-signature tsd-kind-icon">group<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Overrides <a href="receiptoptions.html">ReceiptOptions</a>.<a href="receiptoptions.html#group">group</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/17ebc5f/src/index.ts#L458">index.ts:458</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/772fee7/src/index.ts#L471">index.ts:471</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 					<a name="issuer" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> issuer</h3>
 					<div class="tsd-signature tsd-kind-icon">issuer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Overrides <a href="receiptoptions.html">ReceiptOptions</a>.<a href="receiptoptions.html#issuer">issuer</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/17ebc5f/src/index.ts#L456">index.ts:456</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/772fee7/src/index.ts#L469">index.ts:469</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 					<a name="subject" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> subject</h3>
 					<div class="tsd-signature tsd-kind-icon">subject<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Overrides <a href="receiptoptions.html">ReceiptOptions</a>.<a href="receiptoptions.html#subject">subject</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/17ebc5f/src/index.ts#L455">index.ts:455</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/772fee7/src/index.ts#L468">index.ts:468</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 					<a name="type" class="tsd-anchor"></a>
 					<h3>type</h3>
 					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Overrides <a href="receiptoptions.html">ReceiptOptions</a>.<a href="receiptoptions.html#type">type</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/17ebc5f/src/index.ts#L454">index.ts:454</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/772fee7/src/index.ts#L467">index.ts:467</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -177,7 +199,7 @@
 					<div class="tsd-signature tsd-kind-icon">updated<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Date</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/17ebc5f/src/index.ts#L453">index.ts:453</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/772fee7/src/index.ts#L466">index.ts:466</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -187,17 +209,18 @@
 					<div class="tsd-signature tsd-kind-icon">uuid<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/17ebc5f/src/index.ts#L451">index.ts:451</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/772fee7/src/index.ts#L464">index.ts:464</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 					<a name="verifier" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> verifier</h3>
 					<div class="tsd-signature tsd-kind-icon">verifier<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Overrides <a href="receiptoptions.html">ReceiptOptions</a>.<a href="receiptoptions.html#verifier">verifier</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/17ebc5f/src/index.ts#L457">index.ts:457</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/772fee7/src/index.ts#L470">index.ts:470</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -221,19 +244,22 @@
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="receipt.html#createdat" class="tsd-kind-icon">created<wbr>At</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="receipt.html#customer" class="tsd-kind-icon">customer</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 								<a href="receipt.html#data" class="tsd-kind-icon">data</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 								<a href="receipt.html#group" class="tsd-kind-icon">group</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 								<a href="receipt.html#issuer" class="tsd-kind-icon">issuer</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 								<a href="receipt.html#subject" class="tsd-kind-icon">subject</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 								<a href="receipt.html#type" class="tsd-kind-icon">type</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
@@ -242,7 +268,7 @@
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="receipt.html#uuid" class="tsd-kind-icon">uuid</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 								<a href="receipt.html#verifier" class="tsd-kind-icon">verifier</a>
 							</li>
 						</ul>
