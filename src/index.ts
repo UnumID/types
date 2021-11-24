@@ -431,6 +431,7 @@ export const receiptGroupTypes = [
  * Saas supported receipt types
  */
 export const receiptTypes = [
+  'SubjectDidDocumentVerified',
   'SubjectCredentialRequestVerified',
   'CredentialIssued',
   'CredentialShared',
