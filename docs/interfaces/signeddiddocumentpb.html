@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>PresentationRequestEnriched | @unumid/types</title>
+	<title>SignedDidDocumentPb | @unumid/types</title>
 	<meta name="description" content="Documentation for @unumid/types">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">@unumid/types</a>
 				</li>
 				<li>
-					<a href="presentationrequestenriched.html">PresentationRequestEnriched</a>
+					<a href="signeddiddocumentpb.html">SignedDidDocumentPb</a>
 				</li>
 			</ul>
-			<h1>Interface PresentationRequestEnriched</h1>
+			<h1>Interface SignedDidDocumentPb</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,8 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Encapsulates presentation request attributes as they are retuned from Unum ID saas.</p>
+						<p>Object to encapsulate a signed DidDocument.
+						Note: it breaks the name convention of the singed type counterpart being the simpler name of the two, however because the unsigned DidDocument definition was claimed first, this is an exception to the rule.</p>
 					</div>
 				</div>
 			</section>
@@ -76,7 +77,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">PresentationRequestEnriched</span>
+						<span class="target">SignedDidDocumentPb</span>
 					</li>
 				</ul>
 			</section>
@@ -87,12 +88,13 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationrequestenriched.html#deeplink" class="tsd-kind-icon">deeplink</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationrequestenriched.html#holderapp" class="tsd-kind-icon">holder<wbr>App</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationrequestenriched.html#issuers" class="tsd-kind-icon">issuers</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationrequestenriched.html#presentationrequest" class="tsd-kind-icon">presentation<wbr>Request</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationrequestenriched.html#qrcode" class="tsd-kind-icon">qr<wbr>Code</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationrequestenriched.html#verifier" class="tsd-kind-icon">verifier</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="signeddiddocumentpb.html#context" class="tsd-kind-icon">context</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="signeddiddocumentpb.html#created" class="tsd-kind-icon">created</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="signeddiddocumentpb.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="signeddiddocumentpb.html#proof" class="tsd-kind-icon">proof</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="signeddiddocumentpb.html#publickey" class="tsd-kind-icon">public<wbr>Key</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="signeddiddocumentpb.html#service" class="tsd-kind-icon">service</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="signeddiddocumentpb.html#updated" class="tsd-kind-icon">updated</a></li>
 							</ul>
 						</section>
 					</div>
@@ -101,67 +103,72 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="deeplink" class="tsd-anchor"></a>
-					<h3>deeplink</h3>
-					<div class="tsd-signature tsd-kind-icon">deeplink<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="context" class="tsd-anchor"></a>
+					<h3>context</h3>
+					<div class="tsd-signature tsd-kind-icon">context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/1067ecd/src/protos/presentationRequestEnriched.ts#L18">protos/presentationRequestEnriched.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/1067ecd/src/protos/didDocument.ts#L32">protos/didDocument.ts:32</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="holderapp" class="tsd-anchor"></a>
-					<h3>holder<wbr>App</h3>
-					<div class="tsd-signature tsd-kind-icon">holder<wbr>App<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="../modules.html#holderappinfo" class="tsd-signature-type" data-tsd-kind="Variable">HolderAppInfo</a></div>
+					<a name="created" class="tsd-anchor"></a>
+					<h3>created</h3>
+					<div class="tsd-signature tsd-kind-icon">created<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Date</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/1067ecd/src/protos/presentationRequestEnriched.ts#L17">protos/presentationRequestEnriched.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/1067ecd/src/protos/didDocument.ts#L34">protos/didDocument.ts:34</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="issuers" class="tsd-anchor"></a>
-					<h3>issuers</h3>
-					<div class="tsd-signature tsd-kind-icon">issuers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Struct</span></div>
+					<a name="id" class="tsd-anchor"></a>
+					<h3>id</h3>
+					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/1067ecd/src/protos/presentationRequestEnriched.ts#L16">protos/presentationRequestEnriched.ts:16</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>a map of issuer metadata keyed on the issuer&#39;s did</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="presentationrequest" class="tsd-anchor"></a>
-					<h3>presentation<wbr>Request</h3>
-					<div class="tsd-signature tsd-kind-icon">presentation<wbr>Request<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="../modules.html#presentationrequestpb" class="tsd-signature-type" data-tsd-kind="Variable">PresentationRequestPb</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/1067ecd/src/protos/presentationRequestEnriched.ts#L13">protos/presentationRequestEnriched.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/1067ecd/src/protos/didDocument.ts#L33">protos/didDocument.ts:33</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="qrcode" class="tsd-anchor"></a>
-					<h3>qr<wbr>Code</h3>
-					<div class="tsd-signature tsd-kind-icon">qr<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="proof" class="tsd-anchor"></a>
+					<h3>proof</h3>
+					<div class="tsd-signature tsd-kind-icon">proof<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="../modules.html#proofpb" class="tsd-signature-type" data-tsd-kind="Variable">ProofPb</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/1067ecd/src/protos/presentationRequestEnriched.ts#L19">protos/presentationRequestEnriched.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/1067ecd/src/protos/didDocument.ts#L38">protos/didDocument.ts:38</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="verifier" class="tsd-anchor"></a>
-					<h3>verifier</h3>
-					<div class="tsd-signature tsd-kind-icon">verifier<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="../modules.html#verifierinfopb" class="tsd-signature-type" data-tsd-kind="Variable">VerifierInfoPb</a></div>
+					<a name="publickey" class="tsd-anchor"></a>
+					<h3>public<wbr>Key</h3>
+					<div class="tsd-signature tsd-kind-icon">public<wbr>Key<span class="tsd-signature-symbol">:</span> <a href="../modules.html#publickeyinfopb" class="tsd-signature-type" data-tsd-kind="Variable">PublicKeyInfoPb</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/1067ecd/src/protos/presentationRequestEnriched.ts#L14">protos/presentationRequestEnriched.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/1067ecd/src/protos/didDocument.ts#L36">protos/didDocument.ts:36</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="service" class="tsd-anchor"></a>
+					<h3>service</h3>
+					<div class="tsd-signature tsd-kind-icon">service<span class="tsd-signature-symbol">:</span> <a href="../modules.html#diddocumentservice" class="tsd-signature-type" data-tsd-kind="Variable">DidDocumentService</a><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/1067ecd/src/protos/didDocument.ts#L37">protos/didDocument.ts:37</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="updated" class="tsd-anchor"></a>
+					<h3>updated</h3>
+					<div class="tsd-signature tsd-kind-icon">updated<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Date</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/1067ecd/src/protos/didDocument.ts#L35">protos/didDocument.ts:35</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -180,25 +187,28 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="presentationrequestenriched.html" class="tsd-kind-icon">Presentation<wbr>Request<wbr>Enriched</a>
+						<a href="signeddiddocumentpb.html" class="tsd-kind-icon">Signed<wbr>Did<wbr>Document<wbr>Pb</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="presentationrequestenriched.html#deeplink" class="tsd-kind-icon">deeplink</a>
+								<a href="signeddiddocumentpb.html#context" class="tsd-kind-icon">context</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="presentationrequestenriched.html#holderapp" class="tsd-kind-icon">holder<wbr>App</a>
+								<a href="signeddiddocumentpb.html#created" class="tsd-kind-icon">created</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="presentationrequestenriched.html#issuers" class="tsd-kind-icon">issuers</a>
+								<a href="signeddiddocumentpb.html#id" class="tsd-kind-icon">id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="presentationrequestenriched.html#presentationrequest" class="tsd-kind-icon">presentation<wbr>Request</a>
+								<a href="signeddiddocumentpb.html#proof" class="tsd-kind-icon">proof</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="presentationrequestenriched.html#qrcode" class="tsd-kind-icon">qr<wbr>Code</a>
+								<a href="signeddiddocumentpb.html#publickey" class="tsd-kind-icon">public<wbr>Key</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="presentationrequestenriched.html#verifier" class="tsd-kind-icon">verifier</a>
+								<a href="signeddiddocumentpb.html#service" class="tsd-kind-icon">service</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="signeddiddocumentpb.html#updated" class="tsd-kind-icon">updated</a>
 							</li>
 						</ul>
 					</li>
