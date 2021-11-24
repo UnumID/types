@@ -1129,7 +1129,7 @@ exports.IssueCredentialsOptions = {
 };
 var baseCredentialStatusInfo = {
     uuid: "",
-    credentialiId: "",
+    credentialId: "",
     status: "",
 };
 exports.CredentialStatusInfo = {
@@ -1144,8 +1144,8 @@ exports.CredentialStatusInfo = {
         if (message.updatedAt !== undefined) {
             timestamp_1.Timestamp.encode(toTimestamp(message.updatedAt), writer.uint32(26).fork()).ldelim();
         }
-        if (message.credentialiId !== "") {
-            writer.uint32(34).string(message.credentialiId);
+        if (message.credentialId !== "") {
+            writer.uint32(34).string(message.credentialId);
         }
         if (message.status !== "") {
             writer.uint32(42).string(message.status);
@@ -1169,7 +1169,7 @@ exports.CredentialStatusInfo = {
                     message.updatedAt = fromTimestamp(timestamp_1.Timestamp.decode(reader, reader.uint32()));
                     break;
                 case 4:
-                    message.credentialiId = reader.string();
+                    message.credentialId = reader.string();
                     break;
                 case 5:
                     message.status = reader.string();
@@ -1201,11 +1201,11 @@ exports.CredentialStatusInfo = {
         else {
             message.updatedAt = undefined;
         }
-        if (object.credentialiId !== undefined && object.credentialiId !== null) {
-            message.credentialiId = String(object.credentialiId);
+        if (object.credentialId !== undefined && object.credentialId !== null) {
+            message.credentialId = String(object.credentialId);
         }
         else {
-            message.credentialiId = "";
+            message.credentialId = "";
         }
         if (object.status !== undefined && object.status !== null) {
             message.status = String(object.status);
@@ -1222,8 +1222,8 @@ exports.CredentialStatusInfo = {
             (obj.createdAt = message.createdAt.toISOString());
         message.updatedAt !== undefined &&
             (obj.updatedAt = message.updatedAt.toISOString());
-        message.credentialiId !== undefined &&
-            (obj.credentialiId = message.credentialiId);
+        message.credentialId !== undefined &&
+            (obj.credentialId = message.credentialId);
         message.status !== undefined && (obj.status = message.status);
         return obj;
     },
@@ -1247,11 +1247,11 @@ exports.CredentialStatusInfo = {
         else {
             message.updatedAt = undefined;
         }
-        if (object.credentialiId !== undefined && object.credentialiId !== null) {
-            message.credentialiId = object.credentialiId;
+        if (object.credentialId !== undefined && object.credentialId !== null) {
+            message.credentialId = object.credentialId;
         }
         else {
-            message.credentialiId = "";
+            message.credentialId = "";
         }
         if (object.status !== undefined && object.status !== null) {
             message.status = object.status;

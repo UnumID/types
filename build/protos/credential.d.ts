@@ -3,7 +3,10 @@ import { Proof } from "./proof";
 import { EncryptedData } from "./crypto";
 import { DidDocument } from "./didDocument";
 export declare const protobufPackage = "credential.v1";
-/** Object to encapsulate Credential status information. */
+/**
+ * Object to encapsulate Credential status information per W3C VC documentation
+ * ref: https://www.w3.org/TR/vc-data-model/#status
+ */
 export interface CredentialStatus {
     id: string;
     type: string;
@@ -87,17 +90,17 @@ export interface IssueCredentialOptions {
 export interface IssueCredentialsOptions {
     credentialRequests: IssueCredentialOptions[];
 }
-/** Object that encapsulates CredentialStatus information. */
+/** Object that encapsulates a Credential's status information. */
 export interface CredentialStatusInfo {
     uuid: string;
     createdAt: Date | undefined;
     updatedAt: Date | undefined;
-    credentialiId: string;
+    credentialId: string;
     /** note could be an enum but just simplier this way... only valid values are: revoked, valid */
     status: string;
 }
 /**
- * Object that encapsulates an EncryptedCredentialRespose.
+ * Object that encapsulates an EncryptedCredentialResponse.
  * Note: this is the SaaS' response of EncryptedCredential from the SaaS DB.
  */
 export interface EncryptedCredential {
