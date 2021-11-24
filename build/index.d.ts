@@ -3,7 +3,7 @@ import { Literal, Static, Union } from "runtypes";
 import { SemVer } from 'semver';
 import { UnsignedPresentation as UnsignedPresentationPb, Presentation as PresentationPb } from "./protos/presentation";
 import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest";
-import { DidDocument as DidDocumentPb, DidDocumentService } from "./protos/didDocument";
+import { DidDocument as DidDocumentPb, SignedDidDocument as SignedDidDocumentPb, DidDocumentService } from "./protos/didDocument";
 import { Proof as ProofPb } from "./protos/proof";
 import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb, CredentialStatusInfo, IssueCredentialOptions, IssueCredentialsOptions, EncryptedCredential as EncryptedCredentialPb, EncryptedCredentialOptions as EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, SubjectCredentialRequest } from "./protos/credential";
 import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb } from "./protos/crypto";
@@ -15,7 +15,7 @@ import { VerifierInfo as VerifierInfoPb } from "./protos/verifier";
  * The "Pb" serves to differentiate until we can ditch the legacy ts defined types.
  */
 export { UnsignedPresentationPb, PresentationPb, };
-export { DidDocumentPb, DidDocumentService };
+export { DidDocumentPb, DidDocumentService, SignedDidDocumentPb };
 export { UnsignedPresentationRequestPb, PresentationRequestPb, };
 export { IssueCredentialOptions, IssueCredentialsOptions, CredentialStatusInfo, CredentialRequestPb, UnsignedCredentialPb, CredentialPb, EncryptedCredentialPb, EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, RSAPadding, SubjectCredentialRequest };
 export { PresentationRequestEnriched };
@@ -658,11 +658,20 @@ export interface DidDocument {
     created: Date;
     updated: Date;
     publicKey: PublicKeyInfo[];
-    service: {
-        id: string;
-        serviceEndpoint: string;
-        type: string;
-    }[];
+    service: DidDocumentService[];
+}
+/**
+ * Interface to encapsulate a signed Subject Did Document.
+ * Note: it breaks the name convention of the singed type counterpart being the simpler name of the two, however because the unsigned DidDocument definition was claimed first, this is an exception to the rule.
+ */
+export interface SignedDidDocument {
+    '@context': ['https://www.w3.org/ns/did/v1', ...string[]];
+    id: string;
+    created: Date;
+    updated: Date;
+    publicKey: PublicKeyInfo[];
+    service: DidDocumentService[];
+    proof: Proof;
 }
 /**
  * Type to encapsulate supported key types in did documents.

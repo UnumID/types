@@ -44,7 +44,10 @@ export interface Credential {
   expirationDate: Date | undefined;
 }
 
-/** Object that encapsulates Credential information requested. */
+/**
+ * Object that encapsulates Credential information requested.
+ * Note this is used moslty used within Presentations and PresentationRequests. However it can also be used as an UnsignedCredentialRequest when dealing with a signed SubjectCredentialRequest.
+ */
 export interface CredentialRequest {
   /** the string matching the desire credential type */
   type: string;
@@ -57,13 +60,14 @@ export interface CredentialRequest {
 /**
  * Object that encapsulates a Subject's request for a Credential.
  * Note: this is different than the original CredentialRequest which lives in a Presentation(Request) object.
+ * Also, it breaks the name convention of the singed type counterpart being the simpler name of the two, however because the unsigned CredentialRequest definition was claimed first, this is an exception to the rule.
  */
 export interface SubjectCredentialRequest {
   /** the string matching the desire credential type */
   type: string;
   /** list of acceptable issuer DIDs that have issued the credential */
   issuers: string[];
-  /** to denote wether this particular credential is required in response to the PresentationRequest. Defaults behavior resolves this to true. */
+  /** to denote wether this particular credential is required. Defaults behavior resolves this to true. */
   required: boolean;
   /** proof signed by the subject */
   proof: Proof | undefined;
