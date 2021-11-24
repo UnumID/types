@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>PushToken | @unumid/types</title>
+	<title>VerifiedReceiptDataOptions | @unumid/types</title>
 	<meta name="description" content="Documentation for @unumid/types">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">@unumid/types</a>
 				</li>
 				<li>
-					<a href="pushtoken.html">PushToken</a>
+					<a href="verifiedreceiptdataoptions.html">VerifiedReceiptDataOptions</a>
 				</li>
 			</ul>
-			<h1>Interface PushToken</h1>
+			<h1>Interface VerifiedReceiptDataOptions</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Interface encapsulating an individual push notification token/identifier and its provider.</p>
+						<p>Encapsulates attributes regarding Verified Receipts</p>
 					</div>
 				</div>
 			</section>
@@ -76,7 +76,15 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">PushToken</span>
+						<span class="target">VerifiedReceiptDataOptions</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<a href="receiptsubjectcredentialrequestverifieddata.html" class="tsd-signature-type" data-tsd-kind="Interface">ReceiptSubjectCredentialRequestVerifiedData</a>
+							</li>
+							<li>
+								<a href="receiptsubjectdiddocumentverifieddata.html" class="tsd-signature-type" data-tsd-kind="Interface">ReceiptSubjectDidDocumentVerifiedData</a>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -87,8 +95,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="pushtoken.html#provider" class="tsd-kind-icon">provider</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="pushtoken.html#value" class="tsd-kind-icon">value</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="verifiedreceiptdataoptions.html#isverified" class="tsd-kind-icon">is<wbr>Verified</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="verifiedreceiptdataoptions.html#reason" class="tsd-kind-icon">reason</a></li>
 							</ul>
 						</section>
 					</div>
@@ -97,27 +105,22 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="provider" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> provider</h3>
-					<div class="tsd-signature tsd-kind-icon">provider<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;FCM&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;APNS&quot;</span></div>
+					<a name="isverified" class="tsd-anchor"></a>
+					<h3>is<wbr>Verified</h3>
+					<div class="tsd-signature tsd-kind-icon">is<wbr>Verified<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/1b9d3af/src/index.ts#L942">index.ts:942</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/1b9d3af/src/index.ts#L547">index.ts:547</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>If not included, the SaaS will attempt to determine the provider based on the token value.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="value" class="tsd-anchor"></a>
-					<h3>value</h3>
-					<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="reason" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> reason</h3>
+					<div class="tsd-signature tsd-kind-icon">reason<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/1b9d3af/src/index.ts#L938">index.ts:938</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/1b9d3af/src/index.ts#L548">index.ts:548</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -136,13 +139,13 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="pushtoken.html" class="tsd-kind-icon">Push<wbr>Token</a>
+						<a href="verifiedreceiptdataoptions.html" class="tsd-kind-icon">Verified<wbr>Receipt<wbr>Data<wbr>Options</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="pushtoken.html#provider" class="tsd-kind-icon">provider</a>
+								<a href="verifiedreceiptdataoptions.html#isverified" class="tsd-kind-icon">is<wbr>Verified</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="pushtoken.html#value" class="tsd-kind-icon">value</a>
+								<a href="verifiedreceiptdataoptions.html#reason" class="tsd-kind-icon">reason</a>
 							</li>
 						</ul>
 					</li>
