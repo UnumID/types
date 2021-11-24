@@ -802,15 +802,6 @@ export interface PublicKeyInfo {
   rsaPadding?: RSAPadding;
 }
 
-// /**
-//  * Interface to encapsulate Did Document service information.
-//  */
-// export interface ServiceInfo {
-//   id: string;
-//   serviceEndpoint: string;
-//   type: string;
-// }
-
 /**
  * Interface to encapsulate Did Document information.
  */
