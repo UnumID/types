@@ -8,7 +8,10 @@ import { DidDocument } from "./didDocument";
 
 export const protobufPackage = "credential.v1";
 
-/** Object to encapsulate Credential status information. */
+/**
+ * Object to encapsulate Credential status information per W3C VC documentation
+ * ref: https://www.w3.org/TR/vc-data-model/#status
+ */
 export interface CredentialStatus {
   id: string;
   type: string;
@@ -100,18 +103,18 @@ export interface IssueCredentialsOptions {
   credentialRequests: IssueCredentialOptions[];
 }
 
-/** Object that encapsulates CredentialStatus information. */
+/** Object that encapsulates a Credential's status information. */
 export interface CredentialStatusInfo {
   uuid: string;
   createdAt: Date | undefined;
   updatedAt: Date | undefined;
-  credentialiId: string;
+  credentialId: string;
   /** note could be an enum but just simplier this way... only valid values are: revoked, valid */
   status: string;
 }
 
 /**
- * Object that encapsulates an EncryptedCredentialRespose.
+ * Object that encapsulates an EncryptedCredentialResponse.
  * Note: this is the SaaS' response of EncryptedCredential from the SaaS DB.
  */
 export interface EncryptedCredential {
@@ -1322,7 +1325,7 @@ export const IssueCredentialsOptions = {
 
 const baseCredentialStatusInfo: object = {
   uuid: "",
-  credentialiId: "",
+  credentialId: "",
   status: "",
 };
 
@@ -1346,8 +1349,8 @@ export const CredentialStatusInfo = {
         writer.uint32(26).fork()
       ).ldelim();
     }
-    if (message.credentialiId !== "") {
-      writer.uint32(34).string(message.credentialiId);
+    if (message.credentialId !== "") {
+      writer.uint32(34).string(message.credentialId);
     }
     if (message.status !== "") {
       writer.uint32(42).string(message.status);
@@ -1379,7 +1382,7 @@ export const CredentialStatusInfo = {
           );
           break;
         case 4:
-          message.credentialiId = reader.string();
+          message.credentialId = reader.string();
           break;
         case 5:
           message.status = reader.string();
@@ -1409,10 +1412,10 @@ export const CredentialStatusInfo = {
     } else {
       message.updatedAt = undefined;
     }
-    if (object.credentialiId !== undefined && object.credentialiId !== null) {
-      message.credentialiId = String(object.credentialiId);
+    if (object.credentialId !== undefined && object.credentialId !== null) {
+      message.credentialId = String(object.credentialId);
     } else {
-      message.credentialiId = "";
+      message.credentialId = "";
     }
     if (object.status !== undefined && object.status !== null) {
       message.status = String(object.status);
@@ -1429,8 +1432,8 @@ export const CredentialStatusInfo = {
       (obj.createdAt = message.createdAt.toISOString());
     message.updatedAt !== undefined &&
       (obj.updatedAt = message.updatedAt.toISOString());
-    message.credentialiId !== undefined &&
-      (obj.credentialiId = message.credentialiId);
+    message.credentialId !== undefined &&
+      (obj.credentialId = message.credentialId);
     message.status !== undefined && (obj.status = message.status);
     return obj;
   },
@@ -1452,10 +1455,10 @@ export const CredentialStatusInfo = {
     } else {
       message.updatedAt = undefined;
     }
-    if (object.credentialiId !== undefined && object.credentialiId !== null) {
-      message.credentialiId = object.credentialiId;
+    if (object.credentialId !== undefined && object.credentialId !== null) {
+      message.credentialId = object.credentialId;
     } else {
-      message.credentialiId = "";
+      message.credentialId = "";
     }
     if (object.status !== undefined && object.status !== null) {
       message.status = object.status;
