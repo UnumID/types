@@ -989,6 +989,18 @@ export type CredentialStatusOptions = Static<typeof _CredentialStatusOptions>
   }
 
   /**
+   * Interface to encapsulate the parameters needed for associating a subject Did to a application User.
+   */
+     export interface userDidAssociation {
+      /**
+       * Any application user's identifier will do as long as it is unique. 
+       * However, it is recommend to use the user's objectId.
+       */
+      userId: string; 
+      userDid: string;
+    }
+
+  /**
    * Interface to encapsulate the response that the UnumID SaaS is expecting after forwarding the encrypted presentation to the verifier app for verification.
    * Notably it is not the DecryptedPresentation type from the Server SDK returns because the SaaS to never deals with the plaintext presentations. 
    */
