@@ -809,7 +809,7 @@ export interface ExternalChannelMessageInput {
 /**
  * Interface to encapsulate the parameters needed for associating a subject Did to a application User.
  */
-export interface userDidAssociation {
+export interface UserDidAssociation {
     /**
      * Any application user's identifier will do as long as it is unique.
      * However, it is recommend to use the user's objectId.
