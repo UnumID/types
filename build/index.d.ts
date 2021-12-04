@@ -316,6 +316,8 @@ export interface Issuer {
     updatedAt: Date;
     isAuthorized: boolean;
     apiKey: string;
+    url: string;
+    versionInfo: VersionInfo[];
 }
 /**
  * Saas supported receipt group types
