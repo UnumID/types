@@ -236,6 +236,8 @@ export interface PresentationRequest extends SignedPresentationRequest {
 export interface IssuerOptions {
     customerUuid: string;
     publicKeyInfo: Array<PublicKeyInfo>;
+    url: string;
+    versionInfo: VersionInfo[];
 }
 /**
  * Encapsulates necessary Verifier entity attributes during creation.
