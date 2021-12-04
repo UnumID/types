@@ -333,6 +333,8 @@ export interface PresentationRequest extends SignedPresentationRequest {
  export interface IssuerOptions {
   customerUuid: string;
   publicKeyInfo: Array<PublicKeyInfo>;
+  url: string;
+  versionInfo: VersionInfo[];
 }
 
 /**
@@ -418,6 +420,8 @@ export interface Issuer {
   updatedAt: Date;
   isAuthorized: boolean;
   apiKey: string;
+  url: string;
+  versionInfo: VersionInfo[];
 }
 
 /**
