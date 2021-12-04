@@ -814,8 +814,8 @@ export interface UserDidAssociation {
      * Any application user's identifier will do as long as it is unique.
      * However, it is recommend to use the user's objectId.
      */
-    userId: string;
-    userDid: string;
+    userIdentifier: string;
+    subjectDidDocument: SignedDidDocument;
 }
 /**
  * Interface to encapsulate the response that the UnumID SaaS is expecting after forwarding the encrypted presentation to the verifier app for verification.
