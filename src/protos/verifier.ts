@@ -16,7 +16,7 @@ export interface TargetInfo {
 /** Object to encapsulate Version information. */
 export interface VersionInfo {
   sdkVersion: string;
-  url: TargetInfo | undefined;
+  target: TargetInfo | undefined;
 }
 
 /** Object to encapsulate a Verifier entity */
@@ -126,8 +126,8 @@ export const VersionInfo = {
     if (message.sdkVersion !== "") {
       writer.uint32(10).string(message.sdkVersion);
     }
-    if (message.url !== undefined) {
-      TargetInfo.encode(message.url, writer.uint32(18).fork()).ldelim();
+    if (message.target !== undefined) {
+      TargetInfo.encode(message.target, writer.uint32(18).fork()).ldelim();
     }
     return writer;
   },
@@ -143,7 +143,7 @@ export const VersionInfo = {
           message.sdkVersion = reader.string();
           break;
         case 2:
-          message.url = TargetInfo.decode(reader, reader.uint32());
+          message.target = TargetInfo.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -160,10 +160,10 @@ export const VersionInfo = {
     } else {
       message.sdkVersion = "";
     }
-    if (object.url !== undefined && object.url !== null) {
-      message.url = TargetInfo.fromJSON(object.url);
+    if (object.target !== undefined && object.target !== null) {
+      message.target = TargetInfo.fromJSON(object.target);
     } else {
-      message.url = undefined;
+      message.target = undefined;
     }
     return message;
   },
@@ -171,8 +171,10 @@ export const VersionInfo = {
   toJSON(message: VersionInfo): unknown {
     const obj: any = {};
     message.sdkVersion !== undefined && (obj.sdkVersion = message.sdkVersion);
-    message.url !== undefined &&
-      (obj.url = message.url ? TargetInfo.toJSON(message.url) : undefined);
+    message.target !== undefined &&
+      (obj.target = message.target
+        ? TargetInfo.toJSON(message.target)
+        : undefined);
     return obj;
   },
 
@@ -183,10 +185,10 @@ export const VersionInfo = {
     } else {
       message.sdkVersion = "";
     }
-    if (object.url !== undefined && object.url !== null) {
-      message.url = TargetInfo.fromPartial(object.url);
+    if (object.target !== undefined && object.target !== null) {
+      message.target = TargetInfo.fromPartial(object.target);
     } else {
-      message.url = undefined;
+      message.target = undefined;
     }
     return message;
   },

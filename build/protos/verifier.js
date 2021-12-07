@@ -99,8 +99,8 @@ exports.VersionInfo = {
         if (message.sdkVersion !== "") {
             writer.uint32(10).string(message.sdkVersion);
         }
-        if (message.url !== undefined) {
-            exports.TargetInfo.encode(message.url, writer.uint32(18).fork()).ldelim();
+        if (message.target !== undefined) {
+            exports.TargetInfo.encode(message.target, writer.uint32(18).fork()).ldelim();
         }
         return writer;
     },
@@ -115,7 +115,7 @@ exports.VersionInfo = {
                     message.sdkVersion = reader.string();
                     break;
                 case 2:
-                    message.url = exports.TargetInfo.decode(reader, reader.uint32());
+                    message.target = exports.TargetInfo.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -132,19 +132,21 @@ exports.VersionInfo = {
         else {
             message.sdkVersion = "";
         }
-        if (object.url !== undefined && object.url !== null) {
-            message.url = exports.TargetInfo.fromJSON(object.url);
+        if (object.target !== undefined && object.target !== null) {
+            message.target = exports.TargetInfo.fromJSON(object.target);
         }
         else {
-            message.url = undefined;
+            message.target = undefined;
         }
         return message;
     },
     toJSON: function (message) {
         var obj = {};
         message.sdkVersion !== undefined && (obj.sdkVersion = message.sdkVersion);
-        message.url !== undefined &&
-            (obj.url = message.url ? exports.TargetInfo.toJSON(message.url) : undefined);
+        message.target !== undefined &&
+            (obj.target = message.target
+                ? exports.TargetInfo.toJSON(message.target)
+                : undefined);
         return obj;
     },
     fromPartial: function (object) {
@@ -155,11 +157,11 @@ exports.VersionInfo = {
         else {
             message.sdkVersion = "";
         }
-        if (object.url !== undefined && object.url !== null) {
-            message.url = exports.TargetInfo.fromPartial(object.url);
+        if (object.target !== undefined && object.target !== null) {
+            message.target = exports.TargetInfo.fromPartial(object.target);
         }
         else {
-            message.url = undefined;
+            message.target = undefined;
         }
         return message;
     },

@@ -10,7 +10,7 @@ export interface TargetInfo {
 /** Object to encapsulate Version information. */
 export interface VersionInfo {
     sdkVersion: string;
-    url: TargetInfo | undefined;
+    target: TargetInfo | undefined;
 }
 /** Object to encapsulate a Verifier entity */
 export interface Verifier {
