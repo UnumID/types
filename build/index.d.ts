@@ -534,6 +534,12 @@ export interface CredentialRequestInfoBasic {
     required: boolean;
 }
 /**
+ * Type to encapsulate Credential type information of credentials issued, generally in response to Subject CredentialRequest.
+ */
+export declare type CredentialsIssuedResponse = {
+    credentialTypesIssued: string[];
+};
+/**
  * Encapsulates HolderApp entity attributes
  */
 export interface HolderApp {
