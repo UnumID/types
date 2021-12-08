@@ -76,6 +76,16 @@ export interface SubjectCredentialRequest {
   proof: Proof | undefined;
 }
 
+/**
+ * Type to encapsulate Subject Credential Requests DTO which as a top level issuerDid which should be part of the request's issuers attribute.
+ * This top level issuerDid attribute to facilitate the saas grabbed the issuer entity for relaying to the issuer's /credentialRequests endpoint.
+ */
+export interface SubjectCredentialRequestsDto {
+  credentialRequests: SubjectCredentialRequest[];
+  issuerDid: string;
+  subjectDid: string;
+}
+
 /** Object that encapsulates an EncryptedCredentialOptions for persisting an EncryptedCredential. */
 export interface EncryptedCredentialOptions {
   credentialId: string;
@@ -928,6 +938,131 @@ export const SubjectCredentialRequest = {
       message.proof = Proof.fromPartial(object.proof);
     } else {
       message.proof = undefined;
+    }
+    return message;
+  },
+};
+
+const baseSubjectCredentialRequestsDto: object = {
+  issuerDid: "",
+  subjectDid: "",
+};
+
+export const SubjectCredentialRequestsDto = {
+  encode(
+    message: SubjectCredentialRequestsDto,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    for (const v of message.credentialRequests) {
+      SubjectCredentialRequest.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.issuerDid !== "") {
+      writer.uint32(18).string(message.issuerDid);
+    }
+    if (message.subjectDid !== "") {
+      writer.uint32(26).string(message.subjectDid);
+    }
+    return writer;
+  },
+
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): SubjectCredentialRequestsDto {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseSubjectCredentialRequestsDto,
+    } as SubjectCredentialRequestsDto;
+    message.credentialRequests = [];
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.credentialRequests.push(
+            SubjectCredentialRequest.decode(reader, reader.uint32())
+          );
+          break;
+        case 2:
+          message.issuerDid = reader.string();
+          break;
+        case 3:
+          message.subjectDid = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): SubjectCredentialRequestsDto {
+    const message = {
+      ...baseSubjectCredentialRequestsDto,
+    } as SubjectCredentialRequestsDto;
+    message.credentialRequests = [];
+    if (
+      object.credentialRequests !== undefined &&
+      object.credentialRequests !== null
+    ) {
+      for (const e of object.credentialRequests) {
+        message.credentialRequests.push(SubjectCredentialRequest.fromJSON(e));
+      }
+    }
+    if (object.issuerDid !== undefined && object.issuerDid !== null) {
+      message.issuerDid = String(object.issuerDid);
+    } else {
+      message.issuerDid = "";
+    }
+    if (object.subjectDid !== undefined && object.subjectDid !== null) {
+      message.subjectDid = String(object.subjectDid);
+    } else {
+      message.subjectDid = "";
+    }
+    return message;
+  },
+
+  toJSON(message: SubjectCredentialRequestsDto): unknown {
+    const obj: any = {};
+    if (message.credentialRequests) {
+      obj.credentialRequests = message.credentialRequests.map((e) =>
+        e ? SubjectCredentialRequest.toJSON(e) : undefined
+      );
+    } else {
+      obj.credentialRequests = [];
+    }
+    message.issuerDid !== undefined && (obj.issuerDid = message.issuerDid);
+    message.subjectDid !== undefined && (obj.subjectDid = message.subjectDid);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<SubjectCredentialRequestsDto>
+  ): SubjectCredentialRequestsDto {
+    const message = {
+      ...baseSubjectCredentialRequestsDto,
+    } as SubjectCredentialRequestsDto;
+    message.credentialRequests = [];
+    if (
+      object.credentialRequests !== undefined &&
+      object.credentialRequests !== null
+    ) {
+      for (const e of object.credentialRequests) {
+        message.credentialRequests.push(
+          SubjectCredentialRequest.fromPartial(e)
+        );
+      }
+    }
+    if (object.issuerDid !== undefined && object.issuerDid !== null) {
+      message.issuerDid = object.issuerDid;
+    } else {
+      message.issuerDid = "";
+    }
+    if (object.subjectDid !== undefined && object.subjectDid !== null) {
+      message.subjectDid = object.subjectDid;
+    } else {
+      message.subjectDid = "";
     }
     return message;
   },

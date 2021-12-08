@@ -66,6 +66,15 @@ export interface SubjectCredentialRequest {
     /** proof signed by the subject */
     proof: Proof | undefined;
 }
+/**
+ * Type to encapsulate Subject Credential Requests DTO which as a top level issuerDid which should be part of the request's issuers attribute.
+ * This top level issuerDid attribute to facilitate the saas grabbed the issuer entity for relaying to the issuer's /credentialRequests endpoint.
+ */
+export interface SubjectCredentialRequestsDto {
+    credentialRequests: SubjectCredentialRequest[];
+    issuerDid: string;
+    subjectDid: string;
+}
 /** Object that encapsulates an EncryptedCredentialOptions for persisting an EncryptedCredential. */
 export interface EncryptedCredentialOptions {
     credentialId: string;
@@ -153,6 +162,13 @@ export declare const SubjectCredentialRequest: {
     fromJSON(object: any): SubjectCredentialRequest;
     toJSON(message: SubjectCredentialRequest): unknown;
     fromPartial(object: DeepPartial<SubjectCredentialRequest>): SubjectCredentialRequest;
+};
+export declare const SubjectCredentialRequestsDto: {
+    encode(message: SubjectCredentialRequestsDto, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): SubjectCredentialRequestsDto;
+    fromJSON(object: any): SubjectCredentialRequestsDto;
+    toJSON(message: SubjectCredentialRequestsDto): unknown;
+    fromPartial(object: DeepPartial<SubjectCredentialRequestsDto>): SubjectCredentialRequestsDto;
 };
 export declare const EncryptedCredentialOptions: {
     encode(message: EncryptedCredentialOptions, writer?: _m0.Writer): _m0.Writer;
