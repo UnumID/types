@@ -1009,11 +1009,12 @@ export type CredentialStatusOptions = Static<typeof _CredentialStatusOptions>
   }
 
   /**
-   * Interface to encapsulate the combined functionality of user DID association with  subject credential requests 
+   * Interface to encapsulate the combined functionality of user DID association with  subject credential requests.
+   * Note: userDidAssociation is optional because will not be necessary aside for the initial credential requests in order for the customer's user to get an associated DID.
    */
   export interface SubjectCredentialRequestsEnrichedDto {
     credentialRequestsInfo: SubjectCredentialRequestsDto;
-    userDidAssociation: UserDidAssociation;
+    userDidAssociation?: UserDidAssociation; // note: optional
   }
 
   /**
