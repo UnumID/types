@@ -1002,14 +1002,25 @@ export type CredentialStatusOptions = Static<typeof _CredentialStatusOptions>
   /**
    * Interface to encapsulate the parameters needed for associating a subject Did to a application User.
    */
-     export interface UserDidAssociation {
-      /**
-       * Any application user's identifier will do as long as it is unique. 
-       * However, it is recommend to use the user's objectId.
-       */
-      userIdentifier: string; 
-      subjectDidDocument: SignedDidDocument;
-    }
+  export interface UserDidAssociation {
+    /**
+     * Any application user's identifier will do as long as it is unique. 
+     * However, it is recommend to use the user's objectId.
+     */
+    userIdentifier: string; 
+    subjectDidDocument: SignedDidDocument;
+  }
+
+  /**
+   * Interface to encapsulate the combined functionality of user DID association with  subject credential requests.
+   * 
+   * Note: userDidAssociation is optional because will not be necessary aside for the initial credential requests in order for the customer's user to get an associated DID.
+   * Opted to include as part of the credential requests to eliminate the possibility for a user did / credential request race condition.
+   */
+  export interface SubjectCredentialRequestsEnrichedDto {
+    credentialRequestsInfo: SubjectCredentialRequestsDto;
+    userDidAssociation?: UserDidAssociation; // note: optional
+  }
 
   /**
    * Interface to encapsulate the response that the UnumID SaaS is expecting after forwarding the encrypted presentation to the verifier app for verification.

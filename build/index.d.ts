@@ -825,6 +825,16 @@ export interface UserDidAssociation {
     subjectDidDocument: SignedDidDocument;
 }
 /**
+ * Interface to encapsulate the combined functionality of user DID association with  subject credential requests.
+ *
+ * Note: userDidAssociation is optional because will not be necessary aside for the initial credential requests in order for the customer's user to get an associated DID.
+ * Opted to include as part of the credential requests to eliminate the possibility for a user did / credential request race condition.
+ */
+export interface SubjectCredentialRequestsEnrichedDto {
+    credentialRequestsInfo: SubjectCredentialRequestsDto;
+    userDidAssociation?: UserDidAssociation;
+}
+/**
  * Interface to encapsulate the response that the UnumID SaaS is expecting after forwarding the encrypted presentation to the verifier app for verification.
  * Notably it is not the DecryptedPresentation type from the Server SDK returns because the SaaS to never deals with the plaintext presentations.
  */
