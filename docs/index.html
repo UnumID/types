@@ -76,7 +76,7 @@
 				</a>
 				<p>a) Generic types such as <code>PresentationRequest</code>, as defined here, ought to be the simplest naming conventions. The generic type represents the domain type definition. If the object is used for persistence this generic type includes the persisted metadata, i.e. <code>uuid</code>, <code>createdAt</code>, and <code>updatedAt</code>. </p>
 				<p>b) For generic types that are not directly persisted, i.e. <code>CredentialRequest</code>, the naming convention also ought to be the simplest.</p>
-				<p>c) For generic types that represent a object consisting options for creating a persisted entity they should have succeeding <code>Options</code> naming convention. For example, <code>IssueCredentialOptions</code> or <code>EncryptedCredentialOptions</code>.</p>
+				<p>c) For generic types that represent an object consisting options for creating a persisted entity they should have succeeding <code>Options</code> naming convention. For example, <code>IssueCredentialOptions</code> or <code>EncryptedCredentialOptions</code>.</p>
 				<p>d) Types explicitly for HTTP interfaces ought have a trailing <code>Dto</code>, i.e. <code>PresentationRequestDto</code>. This is often used to better represent for the JSON serialized attributes <code>createdAt</code> and <code>updatedAt</code> from <code>Date</code> to <code>string</code>. Furthermore, if the Data Transfer Object is different between the HTTP request verbs, i.e. GET and POST, then include in the type as such, <code>PresentationRequestPostDto</code>.</p>
 				<p>e) HTTP types that encompass other DTOs, that are not just a serialization of one object, should use the naming convention &quot;EnrichedDto&quot;. For example the <code>PresentationRequestEnrichedDto</code> encompasses the PresentationRequestDto type along with other fields supplementary to the <code>PresentationRequestDto</code> type.</p>
 				<p>f) Types that are used for cryptographic purposes should have a unsigned and signed version. However, the signed type should have the simpler naming convention, i.e. <code>Credential</code> is the signed type of <code>UnsignedCredential</code>. </p>
@@ -147,6 +147,9 @@
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/credentialsubject.html" class="tsd-kind-icon">Credential<wbr>Subject</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/credentialsissuedresponse.html" class="tsd-kind-icon">Credentials<wbr>Issued<wbr>Response</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/customer.html" class="tsd-kind-icon">Customer</a>
@@ -341,6 +344,9 @@
 						<a href="interfaces/subjectcredentialrequest.html" class="tsd-kind-icon">Subject<wbr>Credential<wbr>Request</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="interfaces/subjectcredentialrequestsdto.html" class="tsd-kind-icon">Subject<wbr>Credential<wbr>Requests<wbr>Dto</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="interfaces/targetinfo.html" class="tsd-kind-icon">Target<wbr>Info</a>
 					</li>
 					<li class=" tsd-kind-interface">
@@ -437,6 +443,9 @@
 						<a href="modules.html#credentialstatusinfo" class="tsd-kind-icon">Credential<wbr>Status<wbr>Info</a>
 					</li>
 					<li class=" tsd-kind-variable">
+						<a href="modules.html#credentialsissuedresponse" class="tsd-kind-icon">Credentials<wbr>Issued<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-variable">
 						<a href="modules.html#diddocumentpb" class="tsd-kind-icon">Did<wbr>Document<wbr>Pb</a>
 					</li>
 					<li class=" tsd-kind-variable">
@@ -483,6 +492,9 @@
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="modules.html#subjectcredentialrequest" class="tsd-kind-icon">Subject<wbr>Credential<wbr>Request</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#subjectcredentialrequestsdto" class="tsd-kind-icon">Subject<wbr>Credential<wbr>Requests<wbr>Dto</a>
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="modules.html#unsignedcredentialpb" class="tsd-kind-icon">Unsigned<wbr>Credential<wbr>Pb</a>
