@@ -1013,7 +1013,7 @@ export type CredentialStatusOptions = Static<typeof _CredentialStatusOptions>
    */
   export interface SubjectCredentialRequestsEnrichedDto {
     credentialRequestsInfo: SubjectCredentialRequestsDto;
-    userDidInfo: UserDidAssociation;
+    userDidAssociation: UserDidAssociation;
   }
 
   /**
