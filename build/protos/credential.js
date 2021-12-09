@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EncryptedCredentialEnriched = exports.EncryptedCredential = exports.CredentialStatusInfo = exports.IssueCredentialsOptions = exports.IssueCredentialOptions = exports.EncryptedCredentialOptions = exports.SubjectCredentialRequest = exports.CredentialRequest = exports.Credential = exports.UnsignedCredential = exports.CredentialStatus = exports.protobufPackage = void 0;
+exports.EncryptedCredentialEnriched = exports.EncryptedCredential = exports.CredentialStatusInfo = exports.IssueCredentialsOptions = exports.IssueCredentialOptions = exports.EncryptedCredentialOptions = exports.SubjectCredentialRequestsDto = exports.CredentialsIssuedResponse = exports.SubjectCredentialRequest = exports.CredentialRequest = exports.Credential = exports.UnsignedCredential = exports.CredentialStatus = exports.protobufPackage = void 0;
 /* eslint-disable */
 var long_1 = __importDefault(require("long"));
 var minimal_1 = __importDefault(require("protobufjs/minimal"));
@@ -774,6 +774,175 @@ exports.SubjectCredentialRequest = {
         }
         else {
             message.proof = undefined;
+        }
+        return message;
+    },
+};
+var baseCredentialsIssuedResponse = { credentialTypesIssued: "" };
+exports.CredentialsIssuedResponse = {
+    encode: function (message, writer) {
+        if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
+        for (var _i = 0, _a = message.credentialTypesIssued; _i < _a.length; _i++) {
+            var v = _a[_i];
+            writer.uint32(10).string(v);
+        }
+        return writer;
+    },
+    decode: function (input, length) {
+        var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
+        var end = length === undefined ? reader.len : reader.pos + length;
+        var message = __assign({}, baseCredentialsIssuedResponse);
+        message.credentialTypesIssued = [];
+        while (reader.pos < end) {
+            var tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.credentialTypesIssued.push(reader.string());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON: function (object) {
+        var message = __assign({}, baseCredentialsIssuedResponse);
+        message.credentialTypesIssued = [];
+        if (object.credentialTypesIssued !== undefined &&
+            object.credentialTypesIssued !== null) {
+            for (var _i = 0, _a = object.credentialTypesIssued; _i < _a.length; _i++) {
+                var e = _a[_i];
+                message.credentialTypesIssued.push(String(e));
+            }
+        }
+        return message;
+    },
+    toJSON: function (message) {
+        var obj = {};
+        if (message.credentialTypesIssued) {
+            obj.credentialTypesIssued = message.credentialTypesIssued.map(function (e) { return e; });
+        }
+        else {
+            obj.credentialTypesIssued = [];
+        }
+        return obj;
+    },
+    fromPartial: function (object) {
+        var message = __assign({}, baseCredentialsIssuedResponse);
+        message.credentialTypesIssued = [];
+        if (object.credentialTypesIssued !== undefined &&
+            object.credentialTypesIssued !== null) {
+            for (var _i = 0, _a = object.credentialTypesIssued; _i < _a.length; _i++) {
+                var e = _a[_i];
+                message.credentialTypesIssued.push(e);
+            }
+        }
+        return message;
+    },
+};
+var baseSubjectCredentialRequestsDto = {
+    issuerDid: "",
+    subjectDid: "",
+};
+exports.SubjectCredentialRequestsDto = {
+    encode: function (message, writer) {
+        if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
+        for (var _i = 0, _a = message.credentialRequests; _i < _a.length; _i++) {
+            var v = _a[_i];
+            exports.SubjectCredentialRequest.encode(v, writer.uint32(10).fork()).ldelim();
+        }
+        if (message.issuerDid !== "") {
+            writer.uint32(18).string(message.issuerDid);
+        }
+        if (message.subjectDid !== "") {
+            writer.uint32(26).string(message.subjectDid);
+        }
+        return writer;
+    },
+    decode: function (input, length) {
+        var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
+        var end = length === undefined ? reader.len : reader.pos + length;
+        var message = __assign({}, baseSubjectCredentialRequestsDto);
+        message.credentialRequests = [];
+        while (reader.pos < end) {
+            var tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.credentialRequests.push(exports.SubjectCredentialRequest.decode(reader, reader.uint32()));
+                    break;
+                case 2:
+                    message.issuerDid = reader.string();
+                    break;
+                case 3:
+                    message.subjectDid = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON: function (object) {
+        var message = __assign({}, baseSubjectCredentialRequestsDto);
+        message.credentialRequests = [];
+        if (object.credentialRequests !== undefined &&
+            object.credentialRequests !== null) {
+            for (var _i = 0, _a = object.credentialRequests; _i < _a.length; _i++) {
+                var e = _a[_i];
+                message.credentialRequests.push(exports.SubjectCredentialRequest.fromJSON(e));
+            }
+        }
+        if (object.issuerDid !== undefined && object.issuerDid !== null) {
+            message.issuerDid = String(object.issuerDid);
+        }
+        else {
+            message.issuerDid = "";
+        }
+        if (object.subjectDid !== undefined && object.subjectDid !== null) {
+            message.subjectDid = String(object.subjectDid);
+        }
+        else {
+            message.subjectDid = "";
+        }
+        return message;
+    },
+    toJSON: function (message) {
+        var obj = {};
+        if (message.credentialRequests) {
+            obj.credentialRequests = message.credentialRequests.map(function (e) {
+                return e ? exports.SubjectCredentialRequest.toJSON(e) : undefined;
+            });
+        }
+        else {
+            obj.credentialRequests = [];
+        }
+        message.issuerDid !== undefined && (obj.issuerDid = message.issuerDid);
+        message.subjectDid !== undefined && (obj.subjectDid = message.subjectDid);
+        return obj;
+    },
+    fromPartial: function (object) {
+        var message = __assign({}, baseSubjectCredentialRequestsDto);
+        message.credentialRequests = [];
+        if (object.credentialRequests !== undefined &&
+            object.credentialRequests !== null) {
+            for (var _i = 0, _a = object.credentialRequests; _i < _a.length; _i++) {
+                var e = _a[_i];
+                message.credentialRequests.push(exports.SubjectCredentialRequest.fromPartial(e));
+            }
+        }
+        if (object.issuerDid !== undefined && object.issuerDid !== null) {
+            message.issuerDid = object.issuerDid;
+        }
+        else {
+            message.issuerDid = "";
+        }
+        if (object.subjectDid !== undefined && object.subjectDid !== null) {
+            message.subjectDid = object.subjectDid;
+        }
+        else {
+            message.subjectDid = "";
         }
         return message;
     },

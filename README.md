@@ -18,7 +18,7 @@ a) Generic types such as `PresentationRequest`, as defined here, ought to be the
 
 b) For generic types that are not directly persisted, i.e. `CredentialRequest`, the naming convention also ought to be the simplest.
 
-c) For generic types that represent a object consisting options for creating a persisted entity they should have succeeding `Options` naming convention. For example, `IssueCredentialOptions` or `EncryptedCredentialOptions`.
+c) For generic types that represent an object consisting options for creating a persisted entity they should have succeeding `Options` naming convention. For example, `IssueCredentialOptions` or `EncryptedCredentialOptions`.
 
 d) Types explicitly for HTTP interfaces ought have a trailing `Dto`, i.e. `PresentationRequestDto`. This is often used to better represent for the JSON serialized attributes `createdAt` and `updatedAt` from `Date` to `string`. Furthermore, if the Data Transfer Object is different between the HTTP request verbs, i.e. GET and POST, then include in the type as such, `PresentationRequestPostDto`.
 

@@ -15,6 +15,8 @@ import {
   EncryptedCredentialOptions as EncryptedCredentialOptionsPb, 
   EncryptedCredentialEnriched,
   SubjectCredentialRequest,
+  SubjectCredentialRequestsDto,
+  CredentialsIssuedResponse,
   CredentialStatus
 } from "./protos/credential";
 import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb } from "./protos/crypto"
@@ -59,7 +61,9 @@ export {
   EncryptedCredentialOptionsPb,
   EncryptedCredentialEnriched,
   RSAPadding,
-  SubjectCredentialRequest
+  SubjectCredentialRequest,
+  SubjectCredentialRequestsDto,
+  CredentialsIssuedResponse
 }
 
 export {
@@ -678,7 +682,7 @@ export interface CredentialReceiptInfo {
   issuers: string[];
   required: boolean;
  }
-
+ 
 /**
  * Encapsulates HolderApp entity attributes
  */
