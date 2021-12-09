@@ -76,6 +76,11 @@ export interface SubjectCredentialRequest {
   proof: Proof | undefined;
 }
 
+/** Type to encapsulate Credential type information of credentials issued, generally in response to Subject CredentialRequest. */
+export interface CredentialsIssuedResponse {
+  credentialTypesIssued: string[];
+}
+
 /**
  * Type to encapsulate Subject Credential Requests DTO which as a top level issuerDid which should be part of the request's issuers attribute.
  * This top level issuerDid attribute to facilitate the saas grabbed the issuer entity for relaying to the issuer's /credentialRequests endpoint.
@@ -938,6 +943,88 @@ export const SubjectCredentialRequest = {
       message.proof = Proof.fromPartial(object.proof);
     } else {
       message.proof = undefined;
+    }
+    return message;
+  },
+};
+
+const baseCredentialsIssuedResponse: object = { credentialTypesIssued: "" };
+
+export const CredentialsIssuedResponse = {
+  encode(
+    message: CredentialsIssuedResponse,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    for (const v of message.credentialTypesIssued) {
+      writer.uint32(10).string(v!);
+    }
+    return writer;
+  },
+
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): CredentialsIssuedResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseCredentialsIssuedResponse,
+    } as CredentialsIssuedResponse;
+    message.credentialTypesIssued = [];
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.credentialTypesIssued.push(reader.string());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): CredentialsIssuedResponse {
+    const message = {
+      ...baseCredentialsIssuedResponse,
+    } as CredentialsIssuedResponse;
+    message.credentialTypesIssued = [];
+    if (
+      object.credentialTypesIssued !== undefined &&
+      object.credentialTypesIssued !== null
+    ) {
+      for (const e of object.credentialTypesIssued) {
+        message.credentialTypesIssued.push(String(e));
+      }
+    }
+    return message;
+  },
+
+  toJSON(message: CredentialsIssuedResponse): unknown {
+    const obj: any = {};
+    if (message.credentialTypesIssued) {
+      obj.credentialTypesIssued = message.credentialTypesIssued.map((e) => e);
+    } else {
+      obj.credentialTypesIssued = [];
+    }
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<CredentialsIssuedResponse>
+  ): CredentialsIssuedResponse {
+    const message = {
+      ...baseCredentialsIssuedResponse,
+    } as CredentialsIssuedResponse;
+    message.credentialTypesIssued = [];
+    if (
+      object.credentialTypesIssued !== undefined &&
+      object.credentialTypesIssued !== null
+    ) {
+      for (const e of object.credentialTypesIssued) {
+        message.credentialTypesIssued.push(e);
+      }
     }
     return message;
   },

@@ -66,6 +66,10 @@ export interface SubjectCredentialRequest {
     /** proof signed by the subject */
     proof: Proof | undefined;
 }
+/** Type to encapsulate Credential type information of credentials issued, generally in response to Subject CredentialRequest. */
+export interface CredentialsIssuedResponse {
+    credentialTypesIssued: string[];
+}
 /**
  * Type to encapsulate Subject Credential Requests DTO which as a top level issuerDid which should be part of the request's issuers attribute.
  * This top level issuerDid attribute to facilitate the saas grabbed the issuer entity for relaying to the issuer's /credentialRequests endpoint.
@@ -162,6 +166,13 @@ export declare const SubjectCredentialRequest: {
     fromJSON(object: any): SubjectCredentialRequest;
     toJSON(message: SubjectCredentialRequest): unknown;
     fromPartial(object: DeepPartial<SubjectCredentialRequest>): SubjectCredentialRequest;
+};
+export declare const CredentialsIssuedResponse: {
+    encode(message: CredentialsIssuedResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): CredentialsIssuedResponse;
+    fromJSON(object: any): CredentialsIssuedResponse;
+    toJSON(message: CredentialsIssuedResponse): unknown;
+    fromPartial(object: DeepPartial<CredentialsIssuedResponse>): CredentialsIssuedResponse;
 };
 export declare const SubjectCredentialRequestsDto: {
     encode(message: SubjectCredentialRequestsDto, writer?: _m0.Writer): _m0.Writer;

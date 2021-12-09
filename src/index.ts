@@ -16,6 +16,7 @@ import {
   EncryptedCredentialEnriched,
   SubjectCredentialRequest,
   SubjectCredentialRequestsDto,
+  CredentialsIssuedResponse,
   CredentialStatus
 } from "./protos/credential";
 import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb } from "./protos/crypto"
@@ -61,7 +62,8 @@ export {
   EncryptedCredentialEnriched,
   RSAPadding,
   SubjectCredentialRequest,
-  SubjectCredentialRequestsDto
+  SubjectCredentialRequestsDto,
+  CredentialsIssuedResponse
 }
 
 export {
@@ -680,13 +682,6 @@ export interface CredentialReceiptInfo {
   issuers: string[];
   required: boolean;
  }
-
- /**
-  * Type to encapsulate Credential type information of credentials issued, generally in response to Subject CredentialRequest.
-  */
- export type CredentialsIssuedResponse = {
-  credentialTypesIssued: string[]
- };
  
 /**
  * Encapsulates HolderApp entity attributes

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports._CredentialStatusOptions = exports.pushProviders = exports.receiptTypes = exports.receiptGroupTypes = exports.HolderAppInfo = exports.VerifierInfoPb = exports.PublicKeyInfoPb = exports.ProofPb = exports.EncryptedKey = exports.PresentationRequestEnriched = exports.SubjectCredentialRequestsDto = exports.SubjectCredentialRequest = exports.RSAPadding = exports.EncryptedCredentialEnriched = exports.EncryptedCredentialOptionsPb = exports.EncryptedCredentialPb = exports.CredentialPb = exports.UnsignedCredentialPb = exports.CredentialRequestPb = exports.CredentialStatus = exports.CredentialStatusInfo = exports.IssueCredentialsOptions = exports.IssueCredentialOptions = exports.PresentationRequestPb = exports.UnsignedPresentationRequestPb = exports.SignedDidDocumentPb = exports.DidDocumentService = exports.DidDocumentPb = exports.PresentationPb = exports.UnsignedPresentationPb = void 0;
+exports._CredentialStatusOptions = exports.pushProviders = exports.receiptTypes = exports.receiptGroupTypes = exports.HolderAppInfo = exports.VerifierInfoPb = exports.PublicKeyInfoPb = exports.ProofPb = exports.EncryptedKey = exports.PresentationRequestEnriched = exports.CredentialsIssuedResponse = exports.SubjectCredentialRequestsDto = exports.SubjectCredentialRequest = exports.RSAPadding = exports.EncryptedCredentialEnriched = exports.EncryptedCredentialOptionsPb = exports.EncryptedCredentialPb = exports.CredentialPb = exports.UnsignedCredentialPb = exports.CredentialRequestPb = exports.CredentialStatus = exports.CredentialStatusInfo = exports.IssueCredentialsOptions = exports.IssueCredentialOptions = exports.PresentationRequestPb = exports.UnsignedPresentationRequestPb = exports.SignedDidDocumentPb = exports.DidDocumentService = exports.DidDocumentPb = exports.PresentationPb = exports.UnsignedPresentationPb = void 0;
 var runtypes_1 = require("runtypes");
 var presentation_1 = require("./protos/presentation");
 Object.defineProperty(exports, "UnsignedPresentationPb", { enumerable: true, get: function () { return presentation_1.UnsignedPresentation; } });
@@ -26,6 +26,7 @@ Object.defineProperty(exports, "EncryptedCredentialOptionsPb", { enumerable: tru
 Object.defineProperty(exports, "EncryptedCredentialEnriched", { enumerable: true, get: function () { return credential_1.EncryptedCredentialEnriched; } });
 Object.defineProperty(exports, "SubjectCredentialRequest", { enumerable: true, get: function () { return credential_1.SubjectCredentialRequest; } });
 Object.defineProperty(exports, "SubjectCredentialRequestsDto", { enumerable: true, get: function () { return credential_1.SubjectCredentialRequestsDto; } });
+Object.defineProperty(exports, "CredentialsIssuedResponse", { enumerable: true, get: function () { return credential_1.CredentialsIssuedResponse; } });
 Object.defineProperty(exports, "CredentialStatus", { enumerable: true, get: function () { return credential_1.CredentialStatus; } });
 var crypto_1 = require("./protos/crypto");
 Object.defineProperty(exports, "EncryptedKey", { enumerable: true, get: function () { return crypto_1.EncryptedKey; } });
