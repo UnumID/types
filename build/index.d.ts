@@ -318,6 +318,7 @@ export interface Issuer {
     apiKey: string;
     url: string;
     versionInfo: VersionInfo[];
+    cardImageUrl?: string;
 }
 /**
  * Saas supported receipt group types
@@ -658,6 +659,7 @@ export interface ApiKey {
     key: string;
     customerUuid: string;
     name: string;
+    cardImageUrl?: string;
 }
 /**
  * Interface to encapsulate information related to a public key.
