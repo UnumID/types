@@ -724,6 +724,7 @@ export interface VerifierInfo {
 export interface IssuerInfo {
     did: string;
     name: string;
+    cardImageUrl?: string;
 }
 /**
  * Encapsulates a map of Issuer metadata attributes keyed on the corresponding did.

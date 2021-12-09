@@ -895,6 +895,7 @@ export interface VerifierInfo {
 export interface IssuerInfo {
   did: string;
   name: string;
+  cardImageUrl?: string;
 }
 
 /**
