@@ -426,6 +426,7 @@ export interface Issuer {
   apiKey: string;
   url: string;
   versionInfo: VersionInfo[];
+  cardImageUrl?: string;
 }
 
 /**
@@ -812,13 +813,14 @@ export type VersionedPresentationRequestDto = VersionedDto<'presentationRequests
  * Interface to encapsulate an ApiKey Entity from Unum ID's SaaS.
  */
 export interface ApiKey {
-  uuid: string,
-  createdAt: string,
-  updatedAt:string,
-  type: string,
-  key: string,
-  customerUuid: string,
-  name: string
+  uuid: string;
+  createdAt: string;
+  updatedAt:string;
+  type: string;
+  key: string;
+  customerUuid: string;
+  name: string;
+  cardImageUrl?: string;
 }
 
 /**
@@ -893,6 +895,7 @@ export interface VerifierInfo {
 export interface IssuerInfo {
   did: string;
   name: string;
+  cardImageUrl?: string;
 }
 
 /**
