@@ -151,7 +151,7 @@ export interface EncryptedCredentialEnriched {
 }
 
 /** Object to encapsulate an subjectDid to be signed by an issuer wishing to revoke all credentials it has issued the DID. */
-export interface RevokeAllCredentialsUnsigned {
+export interface UnsignedRevokeAllCredentials {
   /** for now can only be a subject DID, however concievably could be an other entity DID */
   did: string;
 }
@@ -2033,11 +2033,11 @@ export const EncryptedCredentialEnriched = {
   },
 };
 
-const baseRevokeAllCredentialsUnsigned: object = { did: "" };
+const baseUnsignedRevokeAllCredentials: object = { did: "" };
 
-export const RevokeAllCredentialsUnsigned = {
+export const UnsignedRevokeAllCredentials = {
   encode(
-    message: RevokeAllCredentialsUnsigned,
+    message: UnsignedRevokeAllCredentials,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
     if (message.did !== "") {
@@ -2049,12 +2049,12 @@ export const RevokeAllCredentialsUnsigned = {
   decode(
     input: _m0.Reader | Uint8Array,
     length?: number
-  ): RevokeAllCredentialsUnsigned {
+  ): UnsignedRevokeAllCredentials {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = {
-      ...baseRevokeAllCredentialsUnsigned,
-    } as RevokeAllCredentialsUnsigned;
+      ...baseUnsignedRevokeAllCredentials,
+    } as UnsignedRevokeAllCredentials;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -2069,10 +2069,10 @@ export const RevokeAllCredentialsUnsigned = {
     return message;
   },
 
-  fromJSON(object: any): RevokeAllCredentialsUnsigned {
+  fromJSON(object: any): UnsignedRevokeAllCredentials {
     const message = {
-      ...baseRevokeAllCredentialsUnsigned,
-    } as RevokeAllCredentialsUnsigned;
+      ...baseUnsignedRevokeAllCredentials,
+    } as UnsignedRevokeAllCredentials;
     if (object.did !== undefined && object.did !== null) {
       message.did = String(object.did);
     } else {
@@ -2081,18 +2081,18 @@ export const RevokeAllCredentialsUnsigned = {
     return message;
   },
 
-  toJSON(message: RevokeAllCredentialsUnsigned): unknown {
+  toJSON(message: UnsignedRevokeAllCredentials): unknown {
     const obj: any = {};
     message.did !== undefined && (obj.did = message.did);
     return obj;
   },
 
   fromPartial(
-    object: DeepPartial<RevokeAllCredentialsUnsigned>
-  ): RevokeAllCredentialsUnsigned {
+    object: DeepPartial<UnsignedRevokeAllCredentials>
+  ): UnsignedRevokeAllCredentials {
     const message = {
-      ...baseRevokeAllCredentialsUnsigned,
-    } as RevokeAllCredentialsUnsigned;
+      ...baseUnsignedRevokeAllCredentials,
+    } as UnsignedRevokeAllCredentials;
     if (object.did !== undefined && object.did !== null) {
       message.did = object.did;
     } else {
