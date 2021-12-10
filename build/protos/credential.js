@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EncryptedCredentialEnriched = exports.EncryptedCredential = exports.CredentialStatusInfo = exports.IssueCredentialsOptions = exports.IssueCredentialOptions = exports.EncryptedCredentialOptions = exports.SubjectCredentialRequestsDto = exports.CredentialsIssuedResponse = exports.SubjectCredentialRequest = exports.CredentialRequest = exports.Credential = exports.UnsignedCredential = exports.CredentialStatus = exports.protobufPackage = void 0;
+exports.RevokeAllCredentials = exports.EncryptedCredentialEnriched = exports.EncryptedCredential = exports.CredentialStatusInfo = exports.IssueCredentialsOptions = exports.IssueCredentialOptions = exports.EncryptedCredentialOptions = exports.SubjectCredentialRequestsDto = exports.CredentialsIssuedResponse = exports.SubjectCredentialRequest = exports.CredentialRequest = exports.Credential = exports.UnsignedCredential = exports.CredentialStatus = exports.protobufPackage = void 0;
 /* eslint-disable */
 var long_1 = __importDefault(require("long"));
 var minimal_1 = __importDefault(require("protobufjs/minimal"));
@@ -1723,6 +1723,78 @@ exports.EncryptedCredentialEnriched = {
         }
         else {
             message.didDocument = undefined;
+        }
+        return message;
+    },
+};
+var baseRevokeAllCredentials = { did: "" };
+exports.RevokeAllCredentials = {
+    encode: function (message, writer) {
+        if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
+        if (message.did !== "") {
+            writer.uint32(10).string(message.did);
+        }
+        if (message.proof !== undefined) {
+            proof_1.Proof.encode(message.proof, writer.uint32(18).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode: function (input, length) {
+        var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
+        var end = length === undefined ? reader.len : reader.pos + length;
+        var message = __assign({}, baseRevokeAllCredentials);
+        while (reader.pos < end) {
+            var tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.did = reader.string();
+                    break;
+                case 2:
+                    message.proof = proof_1.Proof.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON: function (object) {
+        var message = __assign({}, baseRevokeAllCredentials);
+        if (object.did !== undefined && object.did !== null) {
+            message.did = String(object.did);
+        }
+        else {
+            message.did = "";
+        }
+        if (object.proof !== undefined && object.proof !== null) {
+            message.proof = proof_1.Proof.fromJSON(object.proof);
+        }
+        else {
+            message.proof = undefined;
+        }
+        return message;
+    },
+    toJSON: function (message) {
+        var obj = {};
+        message.did !== undefined && (obj.did = message.did);
+        message.proof !== undefined &&
+            (obj.proof = message.proof ? proof_1.Proof.toJSON(message.proof) : undefined);
+        return obj;
+    },
+    fromPartial: function (object) {
+        var message = __assign({}, baseRevokeAllCredentials);
+        if (object.did !== undefined && object.did !== null) {
+            message.did = object.did;
+        }
+        else {
+            message.did = "";
+        }
+        if (object.proof !== undefined && object.proof !== null) {
+            message.proof = proof_1.Proof.fromPartial(object.proof);
+        }
+        else {
+            message.proof = undefined;
         }
         return message;
     },

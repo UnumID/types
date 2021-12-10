@@ -150,6 +150,13 @@ export interface EncryptedCredentialEnriched {
   didDocument: DidDocument | undefined;
 }
 
+/** Object to encapsulate an subjectDid signed by an issuer wishing to revoke all credentials it has issued the DID. */
+export interface RevokeAllCredentials {
+  /** for now can only be a subject DID, however concievably could be an other entity DID */
+  did: string;
+  proof: Proof | undefined;
+}
+
 const baseCredentialStatus: object = { id: "", type: "" };
 
 export const CredentialStatus = {
@@ -2014,6 +2021,85 @@ export const EncryptedCredentialEnriched = {
       message.didDocument = DidDocument.fromPartial(object.didDocument);
     } else {
       message.didDocument = undefined;
+    }
+    return message;
+  },
+};
+
+const baseRevokeAllCredentials: object = { did: "" };
+
+export const RevokeAllCredentials = {
+  encode(
+    message: RevokeAllCredentials,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.did !== "") {
+      writer.uint32(10).string(message.did);
+    }
+    if (message.proof !== undefined) {
+      Proof.encode(message.proof, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): RevokeAllCredentials {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseRevokeAllCredentials } as RevokeAllCredentials;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.did = reader.string();
+          break;
+        case 2:
+          message.proof = Proof.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): RevokeAllCredentials {
+    const message = { ...baseRevokeAllCredentials } as RevokeAllCredentials;
+    if (object.did !== undefined && object.did !== null) {
+      message.did = String(object.did);
+    } else {
+      message.did = "";
+    }
+    if (object.proof !== undefined && object.proof !== null) {
+      message.proof = Proof.fromJSON(object.proof);
+    } else {
+      message.proof = undefined;
+    }
+    return message;
+  },
+
+  toJSON(message: RevokeAllCredentials): unknown {
+    const obj: any = {};
+    message.did !== undefined && (obj.did = message.did);
+    message.proof !== undefined &&
+      (obj.proof = message.proof ? Proof.toJSON(message.proof) : undefined);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<RevokeAllCredentials>): RevokeAllCredentials {
+    const message = { ...baseRevokeAllCredentials } as RevokeAllCredentials;
+    if (object.did !== undefined && object.did !== null) {
+      message.did = object.did;
+    } else {
+      message.did = "";
+    }
+    if (object.proof !== undefined && object.proof !== null) {
+      message.proof = Proof.fromPartial(object.proof);
+    } else {
+      message.proof = undefined;
     }
     return message;
   },

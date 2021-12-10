@@ -17,7 +17,8 @@ import {
   SubjectCredentialRequest,
   SubjectCredentialRequestsDto,
   CredentialsIssuedResponse,
-  CredentialStatus
+  CredentialStatus,
+  RevokeAllCredentials
 } from "./protos/credential";
 import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb } from "./protos/crypto"
 import { HolderAppInfo } from "./protos/holderApp";
@@ -63,7 +64,8 @@ export {
   RSAPadding,
   SubjectCredentialRequest,
   SubjectCredentialRequestsDto,
-  CredentialsIssuedResponse
+  CredentialsIssuedResponse,
+  RevokeAllCredentials
 }
 
 export {
