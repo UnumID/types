@@ -154,6 +154,7 @@ export interface EncryptedCredentialEnriched {
 export interface RevokeAllCredentials {
   /** for now can only be a subject DID, however concievably could be an other entity DID */
   did: string;
+  /** proof signed by the issuer */
   proof: Proof | undefined;
 }
 
