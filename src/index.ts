@@ -1004,10 +1004,9 @@ export type CredentialStatusOptions = Static<typeof _CredentialStatusOptions>
    */
   export interface UserDidAssociation {
     /**
-     * Any application user's identifier will do as long as it is unique. 
-     * However, it is recommend to use the user's objectId.
+     * The userCode should be a short lived, one time use user alias.
      */
-    userIdentifier: string; 
+    userCode: string; 
     subjectDidDocument: SignedDidDocument;
   }
 
