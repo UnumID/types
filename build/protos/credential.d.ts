@@ -132,6 +132,18 @@ export interface EncryptedCredentialEnriched {
     encryptedCredential: EncryptedCredential | undefined;
     didDocument: DidDocument | undefined;
 }
+/** Object to encapsulate an subjectDid to be signed by an issuer wishing to revoke all credentials it has issued the DID. */
+export interface UnsignedRevokeAllCredentials {
+    /** for now can only be a subject DID, however concievably could be an other entity DID */
+    did: string;
+}
+/** Object to encapsulate an subjectDid signed by an issuer wishing to revoke all credentials it has issued the DID. */
+export interface RevokeAllCredentials {
+    /** for now can only be a subject DID, however concievably could be an other entity DID */
+    did: string;
+    /** proof signed by the issuer */
+    proof: Proof | undefined;
+}
 export declare const CredentialStatus: {
     encode(message: CredentialStatus, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number | undefined): CredentialStatus;
@@ -222,6 +234,20 @@ export declare const EncryptedCredentialEnriched: {
     fromJSON(object: any): EncryptedCredentialEnriched;
     toJSON(message: EncryptedCredentialEnriched): unknown;
     fromPartial(object: DeepPartial<EncryptedCredentialEnriched>): EncryptedCredentialEnriched;
+};
+export declare const UnsignedRevokeAllCredentials: {
+    encode(message: UnsignedRevokeAllCredentials, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): UnsignedRevokeAllCredentials;
+    fromJSON(object: any): UnsignedRevokeAllCredentials;
+    toJSON(message: UnsignedRevokeAllCredentials): unknown;
+    fromPartial(object: DeepPartial<UnsignedRevokeAllCredentials>): UnsignedRevokeAllCredentials;
+};
+export declare const RevokeAllCredentials: {
+    encode(message: RevokeAllCredentials, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): RevokeAllCredentials;
+    fromJSON(object: any): RevokeAllCredentials;
+    toJSON(message: RevokeAllCredentials): unknown;
+    fromPartial(object: DeepPartial<RevokeAllCredentials>): RevokeAllCredentials;
 };
 declare type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 export declare type DeepPartial<T> = T extends Builtin ? T : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
