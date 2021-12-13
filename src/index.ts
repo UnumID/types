@@ -481,12 +481,6 @@ export interface Receipt<T = ReceiptDataOptions> extends ReceiptOptions<T> {
   uuid: string;
   createdAt: Date;
   updatedAt: Date;
-  type: string;
-  subject?: string;
-  issuer?: string;
-  verifier?: string;
-  group?: string;
-  data: T;
 }
 
 /**
