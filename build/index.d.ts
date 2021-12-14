@@ -394,6 +394,17 @@ export interface ReceiptPresentationRequestData {
     expirationDate?: Date;
 }
 /**
+ * Type to encapsulate specific Receipt data fields for the RequestReceived receipt
+ */
+export interface ReceiptRequestReceivedData {
+    version: string;
+    holderAppUuid: string;
+    uuid: string;
+    id: string;
+    credentialTypes: string[];
+    issuers: string[];
+}
+/**
  * Type to encapsulate specific Receipt data fields for Presentation related receipts.
  */
 export interface ReceiptPresentationData {

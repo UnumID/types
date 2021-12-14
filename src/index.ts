@@ -534,6 +534,18 @@ export interface ReceiptPresentationRequestData {
 }
 
 /**
+ * Type to encapsulate specific Receipt data fields for the RequestReceived receipt
+ */
+export interface ReceiptRequestReceivedData {
+  version: string;
+  holderAppUuid: string;
+  uuid: string; // request uuid
+  id: string; // request id
+  credentialTypes: string[];
+  issuers: string[];
+}
+
+/**
  * Type to encapsulate specific Receipt data fields for Presentation related receipts. 
  */
  export interface ReceiptPresentationData {
