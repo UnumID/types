@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RevokeAllCredentials = exports.UnsignedRevokeAllCredentials = exports.EncryptedCredentialEnriched = exports.EncryptedCredential = exports.CredentialStatusInfo = exports.IssueCredentialsOptions = exports.IssueCredentialOptions = exports.EncryptedCredentialOptions = exports.SubjectCredentialRequestsDto = exports.CredentialsIssuedResponse = exports.SubjectCredentialRequest = exports.CredentialRequest = exports.Credential = exports.UnsignedCredential = exports.CredentialStatus = exports.protobufPackage = void 0;
+exports.CredentialStatusesOptions = exports.CredentialStatusOptions = exports.RevokeAllCredentials = exports.UnsignedRevokeAllCredentials = exports.EncryptedCredentialEnriched = exports.EncryptedCredential = exports.CredentialStatusInfo = exports.IssueCredentialsOptions = exports.IssueCredentialOptions = exports.EncryptedCredentialOptions = exports.SubjectCredentialRequestsDto = exports.CredentialsIssuedResponse = exports.SubjectCredentialRequest = exports.CredentialRequest = exports.Credential = exports.UnsignedCredential = exports.CredentialStatus = exports.protobufPackage = void 0;
 /* eslint-disable */
 var long_1 = __importDefault(require("long"));
 var minimal_1 = __importDefault(require("protobufjs/minimal"));
@@ -1847,6 +1847,138 @@ exports.RevokeAllCredentials = {
         }
         else {
             message.proof = undefined;
+        }
+        return message;
+    },
+};
+var baseCredentialStatusOptions = { status: "" };
+exports.CredentialStatusOptions = {
+    encode: function (message, writer) {
+        if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
+        if (message.status !== "") {
+            writer.uint32(10).string(message.status);
+        }
+        return writer;
+    },
+    decode: function (input, length) {
+        var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
+        var end = length === undefined ? reader.len : reader.pos + length;
+        var message = __assign({}, baseCredentialStatusOptions);
+        while (reader.pos < end) {
+            var tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.status = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON: function (object) {
+        var message = __assign({}, baseCredentialStatusOptions);
+        if (object.status !== undefined && object.status !== null) {
+            message.status = String(object.status);
+        }
+        else {
+            message.status = "";
+        }
+        return message;
+    },
+    toJSON: function (message) {
+        var obj = {};
+        message.status !== undefined && (obj.status = message.status);
+        return obj;
+    },
+    fromPartial: function (object) {
+        var message = __assign({}, baseCredentialStatusOptions);
+        if (object.status !== undefined && object.status !== null) {
+            message.status = object.status;
+        }
+        else {
+            message.status = "";
+        }
+        return message;
+    },
+};
+var baseCredentialStatusesOptions = { status: "", credentialIds: "" };
+exports.CredentialStatusesOptions = {
+    encode: function (message, writer) {
+        if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
+        if (message.status !== "") {
+            writer.uint32(10).string(message.status);
+        }
+        for (var _i = 0, _a = message.credentialIds; _i < _a.length; _i++) {
+            var v = _a[_i];
+            writer.uint32(18).string(v);
+        }
+        return writer;
+    },
+    decode: function (input, length) {
+        var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
+        var end = length === undefined ? reader.len : reader.pos + length;
+        var message = __assign({}, baseCredentialStatusesOptions);
+        message.credentialIds = [];
+        while (reader.pos < end) {
+            var tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.status = reader.string();
+                    break;
+                case 2:
+                    message.credentialIds.push(reader.string());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON: function (object) {
+        var message = __assign({}, baseCredentialStatusesOptions);
+        message.credentialIds = [];
+        if (object.status !== undefined && object.status !== null) {
+            message.status = String(object.status);
+        }
+        else {
+            message.status = "";
+        }
+        if (object.credentialIds !== undefined && object.credentialIds !== null) {
+            for (var _i = 0, _a = object.credentialIds; _i < _a.length; _i++) {
+                var e = _a[_i];
+                message.credentialIds.push(String(e));
+            }
+        }
+        return message;
+    },
+    toJSON: function (message) {
+        var obj = {};
+        message.status !== undefined && (obj.status = message.status);
+        if (message.credentialIds) {
+            obj.credentialIds = message.credentialIds.map(function (e) { return e; });
+        }
+        else {
+            obj.credentialIds = [];
+        }
+        return obj;
+    },
+    fromPartial: function (object) {
+        var message = __assign({}, baseCredentialStatusesOptions);
+        message.credentialIds = [];
+        if (object.status !== undefined && object.status !== null) {
+            message.status = object.status;
+        }
+        else {
+            message.status = "";
+        }
+        if (object.credentialIds !== undefined && object.credentialIds !== null) {
+            for (var _i = 0, _a = object.credentialIds; _i < _a.length; _i++) {
+                var e = _a[_i];
+                message.credentialIds.push(e);
+            }
         }
         return message;
     },

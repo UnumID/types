@@ -164,6 +164,19 @@ export interface RevokeAllCredentials {
   proof: Proof | undefined;
 }
 
+/** Object to encapsulate options for updating a credential's status */
+export interface CredentialStatusOptions {
+  /** either 'revoked' or 'valid' */
+  status: string;
+}
+
+/** Object to encapsulate options for updating a credential's status */
+export interface CredentialStatusesOptions {
+  /** either 'revoked' or 'valid' */
+  status: string;
+  credentialIds: string[];
+}
+
 const baseCredentialStatus: object = { id: "", type: "" };
 
 export const CredentialStatus = {
@@ -2176,6 +2189,168 @@ export const RevokeAllCredentials = {
       message.proof = Proof.fromPartial(object.proof);
     } else {
       message.proof = undefined;
+    }
+    return message;
+  },
+};
+
+const baseCredentialStatusOptions: object = { status: "" };
+
+export const CredentialStatusOptions = {
+  encode(
+    message: CredentialStatusOptions,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.status !== "") {
+      writer.uint32(10).string(message.status);
+    }
+    return writer;
+  },
+
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): CredentialStatusOptions {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseCredentialStatusOptions,
+    } as CredentialStatusOptions;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.status = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): CredentialStatusOptions {
+    const message = {
+      ...baseCredentialStatusOptions,
+    } as CredentialStatusOptions;
+    if (object.status !== undefined && object.status !== null) {
+      message.status = String(object.status);
+    } else {
+      message.status = "";
+    }
+    return message;
+  },
+
+  toJSON(message: CredentialStatusOptions): unknown {
+    const obj: any = {};
+    message.status !== undefined && (obj.status = message.status);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<CredentialStatusOptions>
+  ): CredentialStatusOptions {
+    const message = {
+      ...baseCredentialStatusOptions,
+    } as CredentialStatusOptions;
+    if (object.status !== undefined && object.status !== null) {
+      message.status = object.status;
+    } else {
+      message.status = "";
+    }
+    return message;
+  },
+};
+
+const baseCredentialStatusesOptions: object = { status: "", credentialIds: "" };
+
+export const CredentialStatusesOptions = {
+  encode(
+    message: CredentialStatusesOptions,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.status !== "") {
+      writer.uint32(10).string(message.status);
+    }
+    for (const v of message.credentialIds) {
+      writer.uint32(18).string(v!);
+    }
+    return writer;
+  },
+
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): CredentialStatusesOptions {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseCredentialStatusesOptions,
+    } as CredentialStatusesOptions;
+    message.credentialIds = [];
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.status = reader.string();
+          break;
+        case 2:
+          message.credentialIds.push(reader.string());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): CredentialStatusesOptions {
+    const message = {
+      ...baseCredentialStatusesOptions,
+    } as CredentialStatusesOptions;
+    message.credentialIds = [];
+    if (object.status !== undefined && object.status !== null) {
+      message.status = String(object.status);
+    } else {
+      message.status = "";
+    }
+    if (object.credentialIds !== undefined && object.credentialIds !== null) {
+      for (const e of object.credentialIds) {
+        message.credentialIds.push(String(e));
+      }
+    }
+    return message;
+  },
+
+  toJSON(message: CredentialStatusesOptions): unknown {
+    const obj: any = {};
+    message.status !== undefined && (obj.status = message.status);
+    if (message.credentialIds) {
+      obj.credentialIds = message.credentialIds.map((e) => e);
+    } else {
+      obj.credentialIds = [];
+    }
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<CredentialStatusesOptions>
+  ): CredentialStatusesOptions {
+    const message = {
+      ...baseCredentialStatusesOptions,
+    } as CredentialStatusesOptions;
+    message.credentialIds = [];
+    if (object.status !== undefined && object.status !== null) {
+      message.status = object.status;
+    } else {
+      message.status = "";
+    }
+    if (object.credentialIds !== undefined && object.credentialIds !== null) {
+      for (const e of object.credentialIds) {
+        message.credentialIds.push(e);
+      }
     }
     return message;
   },

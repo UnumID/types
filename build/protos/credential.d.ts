@@ -144,6 +144,17 @@ export interface RevokeAllCredentials {
     /** proof signed by the issuer */
     proof: Proof | undefined;
 }
+/** Object to encapsulate options for updating a credential's status */
+export interface CredentialStatusOptions {
+    /** either 'revoked' or 'valid' */
+    status: string;
+}
+/** Object to encapsulate options for updating a credential's status */
+export interface CredentialStatusesOptions {
+    /** either 'revoked' or 'valid' */
+    status: string;
+    credentialIds: string[];
+}
 export declare const CredentialStatus: {
     encode(message: CredentialStatus, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number | undefined): CredentialStatus;
@@ -248,6 +259,20 @@ export declare const RevokeAllCredentials: {
     fromJSON(object: any): RevokeAllCredentials;
     toJSON(message: RevokeAllCredentials): unknown;
     fromPartial(object: DeepPartial<RevokeAllCredentials>): RevokeAllCredentials;
+};
+export declare const CredentialStatusOptions: {
+    encode(message: CredentialStatusOptions, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): CredentialStatusOptions;
+    fromJSON(object: any): CredentialStatusOptions;
+    toJSON(message: CredentialStatusOptions): unknown;
+    fromPartial(object: DeepPartial<CredentialStatusOptions>): CredentialStatusOptions;
+};
+export declare const CredentialStatusesOptions: {
+    encode(message: CredentialStatusesOptions, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): CredentialStatusesOptions;
+    fromJSON(object: any): CredentialStatusesOptions;
+    toJSON(message: CredentialStatusesOptions): unknown;
+    fromPartial(object: DeepPartial<CredentialStatusesOptions>): CredentialStatusesOptions;
 };
 declare type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 export declare type DeepPartial<T> = T extends Builtin ? T : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
