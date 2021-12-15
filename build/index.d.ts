@@ -808,6 +808,13 @@ export declare type CredentialStatusOptions = Static<typeof _CredentialStatusOpt
  */
 export declare const _CredentialStatusOptions: Union<[Literal<"valid">, Literal<"revoked">]>;
 /**
+ * Interface to encapsulate information for updating many CredentialStatuses simultaneously
+ */
+export interface CredentialStatusesOptions {
+    status: CredentialStatusOptions;
+    credentialIds: string[];
+}
+/**
  * Interface to encapsulate the parameters needed for Email or SMS message input.
  * Thanks to created a templated message from the deeplink's presentation request uuid and in turn the corresponding verifier, no custom message content needed.
  */
