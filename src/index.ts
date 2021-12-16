@@ -403,7 +403,7 @@ export interface VersionInfo {
 }
 
 /**
- * Interface to encapsulate wether to a version header or a specific url to differentiate between customer application versions.
+ * Interface to encapsulate wether to use a version header or a specific url to differentiate between customer application versions.
  */
 export interface TargetInfo {
   /**
