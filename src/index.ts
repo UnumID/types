@@ -15,7 +15,7 @@ import {
   EncryptedCredentialOptions as EncryptedCredentialOptionsPb, 
   EncryptedCredentialEnriched,
   SubjectCredentialRequest,
-  SubjectCredentialRequestsDto,
+  SubjectCredentialRequestsDto as SubjectCredentialRequestsDtoPb,
   CredentialsIssuedResponse,
   CredentialStatus,
   RevokeAllCredentials,
@@ -64,7 +64,6 @@ export {
   EncryptedCredentialEnriched,
   RSAPadding,
   SubjectCredentialRequest,
-  SubjectCredentialRequestsDto,
   CredentialsIssuedResponse,
   UnsignedRevokeAllCredentials,
   RevokeAllCredentials,
@@ -1004,49 +1003,57 @@ export interface CredentialStatusesOptions {
   status: CredentialStatusOptions;
   credentialIds: string[];
 }
-  /**
-   * Interface to encapsulate the parameters needed for Email or SMS message input.
-   * Thanks to created a templated message from the deeplink's presentation request uuid and in turn the corresponding verifier, no custom message content needed.
-   */
-  export interface ExternalChannelMessageInput {
-    /**
-     * Email address or phone number.
-     */
-    to: string; 
-    deeplink: string;
-  }
 
+/**
+ * Interface to encapsulate the parameters needed for Email or SMS message input.
+ * Thanks to created a templated message from the deeplink's presentation request uuid and in turn the corresponding verifier, no custom message content needed.
+ */
+export interface ExternalChannelMessageInput {
   /**
-   * Interface to encapsulate the parameters needed for associating a subject Did to a application User.
+   * Email address or phone number.
    */
-  export interface UserDidAssociation {
-    /**
-     * The userCode should be a short lived, one time use user alias.
-     */
-    userCode: string; 
-    subjectDidDocument: SignedDidDocument;
-  }
+  to: string; 
+  deeplink: string;
+}
 
+/**
+ * Interface to encapsulate the parameters needed for associating a subject Did to a application User.
+ */
+export interface UserDidAssociation {
   /**
-   * Interface to encapsulate the combined functionality of user DID association with  subject credential requests.
-   * 
-   * Note: userDidAssociation is optional because will not be necessary aside for the initial credential requests in order for the customer's user to get an associated DID.
-   * Opted to include as part of the credential requests to eliminate the possibility for a user did / credential request race condition.
+   * The userCode should be a short lived, one time use user alias.
    */
-  export interface SubjectCredentialRequestsEnrichedDto {
-    credentialRequestsInfo: SubjectCredentialRequestsDto;
-    userDidAssociation?: UserDidAssociation; // note: optional
-  }
+  userCode: string; 
+  subjectDidDocument: SignedDidDocument;
+}
 
-  /**
-   * Interface to encapsulate the response that the UnumID SaaS is expecting after forwarding the encrypted presentation to the verifier app for verification.
-   * Notably it is not the DecryptedPresentation type from the Server SDK returns because the SaaS to never deals with the plaintext presentations. 
-   */
-  export interface VerificationResponse {
-    isVerified: boolean;
-    type: 'VerifiablePresentation' | 'DeclinedPresentation';
-    presentationReceiptInfo: PresentationReceiptInfo;
-  }
+/**
+ * Interface to enforce the presence of the Proof attribute on the SubjectCredentialRequestsDtoPb protobuf definition.
+ */
+export interface SubjectCredentialRequestsDto extends Omit<SubjectCredentialRequestsDtoPb, 'proof'> {
+  proof: ProofPb;
+}
+
+/**
+ * Interface to encapsulate the combined functionality of user DID association with  subject credential requests.
+ * 
+ * Note: userDidAssociation is optional because will not be necessary aside for the initial credential requests in order for the customer's user to get an associated DID.
+ * Opted to include as part of the credential requests to eliminate the possibility for a user did / credential request race condition.
+ */
+export interface SubjectCredentialRequestsEnrichedDto {
+  credentialRequestsInfo: SubjectCredentialRequestsDto;
+  userDidAssociation?: UserDidAssociation; // note: optional
+}
+
+/**
+ * Interface to encapsulate the response that the UnumID SaaS is expecting after forwarding the encrypted presentation to the verifier app for verification.
+ * Notably it is not the DecryptedPresentation type from the Server SDK returns because the SaaS to never deals with the plaintext presentations. 
+ */
+export interface VerificationResponse {
+  isVerified: boolean;
+  type: 'VerifiablePresentation' | 'DeclinedPresentation';
+  presentationReceiptInfo: PresentationReceiptInfo;
+}
 
 /**
  * Helper which adds a named key with a specific value type to an existing type.
