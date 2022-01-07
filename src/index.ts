@@ -8,7 +8,7 @@ import {
   UnsignedCredential as UnsignedCredentialPb,
   Credential as CredentialPb,
   CredentialRequest as CredentialRequestPb,
-  CredentialStatusInfo,
+  CredentialStatusInfo as CredentialStatusInfoPb,
   IssueCredentialOptions,
   IssueCredentialsOptions,
   EncryptedCredential as EncryptedCredentialPb,
@@ -54,7 +54,7 @@ export {
   // protos/credential
   IssueCredentialOptions,
   IssueCredentialsOptions,
-  CredentialStatusInfo,
+  CredentialStatusInfoPb,
   CredentialStatus,
   CredentialRequestPb,
   UnsignedCredentialPb, 
@@ -1073,4 +1073,11 @@ export type WithVersion<T> = WithKeyAndValue<T, 'version', string>;
   limit: number
   skip: number
   data: T[];
+}
+
+/**
+ * A mapping of credentialIds to the corresponding CredentialStatus
+ */
+export interface CredentialIdToStatusMap {
+  [credentialId: string]: CredentialStatus;
 }
