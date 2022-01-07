@@ -1081,3 +1081,11 @@ export type WithVersion<T> = WithKeyAndValue<T, 'version', string>;
 export interface CredentialIdToStatusMap {
   [credentialId: string]: CredentialStatus;
 }
+
+/**
+ * extends protobuf definition to make Date fields required
+ */
+export interface CredentialStatusInfo extends CredentialStatusInfoPb {
+  createdAt: Date;
+  updatedAt: Date;
+}
