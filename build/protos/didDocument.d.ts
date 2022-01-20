@@ -31,19 +31,25 @@ export interface SignedDidDocument {
     proof: Proof | undefined;
 }
 /**
- * Object to encapsulate an unsigned Decenterlized ID.
- * Currently only used in subjectCredentialRequest flow.
+ * Object to encapsulate an unsigned Decentralized ID.
+ * Currently only used in subjectCredentialRequest flow for the userDIDAssociation flow (proving ownership of a DID).
  */
 export interface unsignedDID {
     id: string;
 }
 /**
- * Object to encapsulate an signed Decenterlized ID.
- * Currently only used in subjectCredentialRequest flow.
+ * Object to encapsulate an signed Decentralized ID.
+ * Currently only used in subjectCredentialRequest flow for the userDIDAssociation flow (proving ownership of a DID).
  */
 export interface DID {
     id: string;
     proof: Proof | undefined;
+}
+/** Interface to encapsulate the parameters needed for associating a subject Did to an application User. */
+export interface UserDidAssociation {
+    /** the userCode should be a short lived, one time use user alias. */
+    userCode: string;
+    did: DID | undefined;
 }
 export declare const DidDocument: {
     encode(message: DidDocument, writer?: _m0.Writer): _m0.Writer;
@@ -79,6 +85,13 @@ export declare const DID: {
     fromJSON(object: any): DID;
     toJSON(message: DID): unknown;
     fromPartial(object: DeepPartial<DID>): DID;
+};
+export declare const UserDidAssociation: {
+    encode(message: UserDidAssociation, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): UserDidAssociation;
+    fromJSON(object: any): UserDidAssociation;
+    toJSON(message: UserDidAssociation): unknown;
+    fromPartial(object: DeepPartial<UserDidAssociation>): UserDidAssociation;
 };
 declare type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 export declare type DeepPartial<T> = T extends Builtin ? T : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {

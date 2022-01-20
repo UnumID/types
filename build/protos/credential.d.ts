@@ -1,7 +1,7 @@
 import _m0 from "protobufjs/minimal";
 import { Proof } from "./proof";
+import { UserDidAssociation, DidDocument } from "./didDocument";
 import { EncryptedData } from "./crypto";
-import { DidDocument } from "./didDocument";
 export declare const protobufPackage = "credential.v1";
 /**
  * Object to encapsulate Credential status information per W3C VC documentation
@@ -78,6 +78,17 @@ export interface SubjectCredentialRequestsDto {
     credentialRequests: SubjectCredentialRequest[];
     issuerDid: string;
     subjectDid: string;
+}
+/**
+ * Interface to encapsulate the combined functionality of user DID association with  subject credential requests.
+ *
+ * Note: userDidAssociation is optional because will not always be necessary. However is needed for the initial credential requests in order for the customer's user to get an associated DID.
+ * Opted to include as part of the credential requests to eliminate the possibility for a user did / credential request race condition.
+ */
+export interface SubjectCredentialRequestsEnrichedDto {
+    credentialRequestsInfo: SubjectCredentialRequestsDto | undefined;
+    /** optional */
+    userDidAssociation: UserDidAssociation | undefined;
 }
 /** Object that encapsulates an EncryptedCredentialOptions for persisting an EncryptedCredential. */
 export interface EncryptedCredentialOptions {
@@ -203,6 +214,13 @@ export declare const SubjectCredentialRequestsDto: {
     fromJSON(object: any): SubjectCredentialRequestsDto;
     toJSON(message: SubjectCredentialRequestsDto): unknown;
     fromPartial(object: DeepPartial<SubjectCredentialRequestsDto>): SubjectCredentialRequestsDto;
+};
+export declare const SubjectCredentialRequestsEnrichedDto: {
+    encode(message: SubjectCredentialRequestsEnrichedDto, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): SubjectCredentialRequestsEnrichedDto;
+    fromJSON(object: any): SubjectCredentialRequestsEnrichedDto;
+    toJSON(message: SubjectCredentialRequestsEnrichedDto): unknown;
+    fromPartial(object: DeepPartial<SubjectCredentialRequestsEnrichedDto>): SubjectCredentialRequestsEnrichedDto;
 };
 export declare const EncryptedCredentialOptions: {
     encode(message: EncryptedCredentialOptions, writer?: _m0.Writer): _m0.Writer;

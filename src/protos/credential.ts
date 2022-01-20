@@ -3,8 +3,8 @@ import Long from "long";
 import _m0 from "protobufjs/minimal";
 import { Timestamp } from "./google/protobuf/timestamp";
 import { Proof } from "./proof";
+import { UserDidAssociation, DidDocument } from "./didDocument";
 import { EncryptedData } from "./crypto";
-import { DidDocument } from "./didDocument";
 
 export const protobufPackage = "credential.v1";
 
@@ -89,6 +89,18 @@ export interface SubjectCredentialRequestsDto {
   credentialRequests: SubjectCredentialRequest[];
   issuerDid: string;
   subjectDid: string;
+}
+
+/**
+ * Interface to encapsulate the combined functionality of user DID association with  subject credential requests.
+ *
+ * Note: userDidAssociation is optional because will not always be necessary. However is needed for the initial credential requests in order for the customer's user to get an associated DID.
+ * Opted to include as part of the credential requests to eliminate the possibility for a user did / credential request race condition.
+ */
+export interface SubjectCredentialRequestsEnrichedDto {
+  credentialRequestsInfo: SubjectCredentialRequestsDto | undefined;
+  /** optional */
+  userDidAssociation: UserDidAssociation | undefined;
 }
 
 /** Object that encapsulates an EncryptedCredentialOptions for persisting an EncryptedCredential. */
@@ -1177,6 +1189,130 @@ export const SubjectCredentialRequestsDto = {
       message.subjectDid = object.subjectDid;
     } else {
       message.subjectDid = "";
+    }
+    return message;
+  },
+};
+
+const baseSubjectCredentialRequestsEnrichedDto: object = {};
+
+export const SubjectCredentialRequestsEnrichedDto = {
+  encode(
+    message: SubjectCredentialRequestsEnrichedDto,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.credentialRequestsInfo !== undefined) {
+      SubjectCredentialRequestsDto.encode(
+        message.credentialRequestsInfo,
+        writer.uint32(10).fork()
+      ).ldelim();
+    }
+    if (message.userDidAssociation !== undefined) {
+      UserDidAssociation.encode(
+        message.userDidAssociation,
+        writer.uint32(18).fork()
+      ).ldelim();
+    }
+    return writer;
+  },
+
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): SubjectCredentialRequestsEnrichedDto {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseSubjectCredentialRequestsEnrichedDto,
+    } as SubjectCredentialRequestsEnrichedDto;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.credentialRequestsInfo = SubjectCredentialRequestsDto.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+        case 2:
+          message.userDidAssociation = UserDidAssociation.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): SubjectCredentialRequestsEnrichedDto {
+    const message = {
+      ...baseSubjectCredentialRequestsEnrichedDto,
+    } as SubjectCredentialRequestsEnrichedDto;
+    if (
+      object.credentialRequestsInfo !== undefined &&
+      object.credentialRequestsInfo !== null
+    ) {
+      message.credentialRequestsInfo = SubjectCredentialRequestsDto.fromJSON(
+        object.credentialRequestsInfo
+      );
+    } else {
+      message.credentialRequestsInfo = undefined;
+    }
+    if (
+      object.userDidAssociation !== undefined &&
+      object.userDidAssociation !== null
+    ) {
+      message.userDidAssociation = UserDidAssociation.fromJSON(
+        object.userDidAssociation
+      );
+    } else {
+      message.userDidAssociation = undefined;
+    }
+    return message;
+  },
+
+  toJSON(message: SubjectCredentialRequestsEnrichedDto): unknown {
+    const obj: any = {};
+    message.credentialRequestsInfo !== undefined &&
+      (obj.credentialRequestsInfo = message.credentialRequestsInfo
+        ? SubjectCredentialRequestsDto.toJSON(message.credentialRequestsInfo)
+        : undefined);
+    message.userDidAssociation !== undefined &&
+      (obj.userDidAssociation = message.userDidAssociation
+        ? UserDidAssociation.toJSON(message.userDidAssociation)
+        : undefined);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<SubjectCredentialRequestsEnrichedDto>
+  ): SubjectCredentialRequestsEnrichedDto {
+    const message = {
+      ...baseSubjectCredentialRequestsEnrichedDto,
+    } as SubjectCredentialRequestsEnrichedDto;
+    if (
+      object.credentialRequestsInfo !== undefined &&
+      object.credentialRequestsInfo !== null
+    ) {
+      message.credentialRequestsInfo = SubjectCredentialRequestsDto.fromPartial(
+        object.credentialRequestsInfo
+      );
+    } else {
+      message.credentialRequestsInfo = undefined;
+    }
+    if (
+      object.userDidAssociation !== undefined &&
+      object.userDidAssociation !== null
+    ) {
+      message.userDidAssociation = UserDidAssociation.fromPartial(
+        object.userDidAssociation
+      );
+    } else {
+      message.userDidAssociation = undefined;
     }
     return message;
   },

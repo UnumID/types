@@ -3,9 +3,9 @@ import { Literal, Static, Union } from "runtypes";
 import { SemVer } from 'semver';
 import { UnsignedPresentation as UnsignedPresentationPb, Presentation as PresentationPb } from "./protos/presentation";
 import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest";
-import { DidDocument as DidDocumentPb, SignedDidDocument as SignedDidDocumentPb, DidDocumentService, unsignedDID, DID as DIDPb } from "./protos/didDocument";
+import { DidDocument as DidDocumentPb, SignedDidDocument as SignedDidDocumentPb, DidDocumentService, unsignedDID, DID as DIDPb, UserDidAssociation } from "./protos/didDocument";
 import { Proof as ProofPb } from "./protos/proof";
-import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb, CredentialStatusInfo as CredentialStatusInfoPb, IssueCredentialOptions, IssueCredentialsOptions, EncryptedCredential as EncryptedCredentialPb, EncryptedCredentialOptions as EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, SubjectCredentialRequest, SubjectCredentialRequestsDto as SubjectCredentialRequestsDtoPb, CredentialsIssuedResponse, CredentialStatus, RevokeAllCredentials, UnsignedRevokeAllCredentials } from "./protos/credential";
+import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb, CredentialStatusInfo as CredentialStatusInfoPb, IssueCredentialOptions, IssueCredentialsOptions, EncryptedCredential as EncryptedCredentialPb, EncryptedCredentialOptions as EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, SubjectCredentialRequest, CredentialsIssuedResponse, CredentialStatus, RevokeAllCredentials, UnsignedRevokeAllCredentials, SubjectCredentialRequestsEnrichedDto } from "./protos/credential";
 import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb } from "./protos/crypto";
 import { HolderAppInfo } from "./protos/holderApp";
 import { PresentationRequestEnriched } from "./protos/presentationRequestEnriched";
@@ -15,9 +15,9 @@ import { VerifierInfo as VerifierInfoPb } from "./protos/verifier";
  * The "Pb" serves to differentiate until we can ditch the legacy ts defined types.
  */
 export { UnsignedPresentationPb, PresentationPb, };
-export { DidDocumentPb, DidDocumentService, SignedDidDocumentPb, unsignedDID, DIDPb };
+export { DidDocumentPb, DidDocumentService, SignedDidDocumentPb, unsignedDID, DIDPb, UserDidAssociation, };
 export { UnsignedPresentationRequestPb, PresentationRequestPb, };
-export { IssueCredentialOptions, IssueCredentialsOptions, CredentialStatusInfoPb, CredentialStatus, CredentialRequestPb, UnsignedCredentialPb, CredentialPb, EncryptedCredentialPb, EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, RSAPadding, SubjectCredentialRequest, CredentialsIssuedResponse, UnsignedRevokeAllCredentials, RevokeAllCredentials, };
+export { IssueCredentialOptions, IssueCredentialsOptions, CredentialStatusInfoPb, CredentialStatus, CredentialRequestPb, UnsignedCredentialPb, CredentialPb, EncryptedCredentialPb, EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, RSAPadding, SubjectCredentialRequest, CredentialsIssuedResponse, UnsignedRevokeAllCredentials, RevokeAllCredentials, SubjectCredentialRequestsEnrichedDto, };
 export { PresentationRequestEnriched };
 export { EncryptedKey, ProofPb, PublicKeyInfoPb };
 export { VerifierInfoPb, };
@@ -824,38 +824,6 @@ export interface ExternalChannelMessageInput {
      */
     to: string;
     deeplink: string;
-}
-/**
- * Interface to encapsulate the parameters needed for associating a subject Did to a application User.
- */
-export interface UserDidAssociation {
-    /**
-     * The userCode should be a short lived, one time use user alias.
-     */
-    userCode: string;
-    subjectDidDocument: SignedDidDocument;
-}
-/**
- * Interface to enforce the presence of the Proof attribute on the DID protobuf definition.
- */
-export interface DID extends Omit<DIDPb, 'proof'> {
-    proof: ProofPb;
-}
-/**
- * Interface to enforce the presence of the Proof attribute on the SubjectCredentialRequestsDto protobuf definition.
- */
-export interface SubjectCredentialRequestsDto extends Omit<SubjectCredentialRequestsDtoPb, 'proof'> {
-    proof: ProofPb;
-}
-/**
- * Interface to encapsulate the combined functionality of user DID association with  subject credential requests.
- *
- * Note: userDidAssociation is optional because will not be necessary aside for the initial credential requests in order for the customer's user to get an associated DID.
- * Opted to include as part of the credential requests to eliminate the possibility for a user did / credential request race condition.
- */
-export interface SubjectCredentialRequestsEnrichedDto {
-    credentialRequestsInfo: SubjectCredentialRequestsDto;
-    userDidAssociation?: UserDidAssociation;
 }
 /**
  * Interface to encapsulate the response that the UnumID SaaS is expecting after forwarding the encrypted presentation to the verifier app for verification.
