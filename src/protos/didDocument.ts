@@ -42,7 +42,7 @@ export interface SignedDidDocument {
  * Object to encapsulate an unsigned Decentralized ID.
  * Currently only used in subjectCredentialRequest flow for the userDIDAssociation flow (proving ownership of a DID).
  */
-export interface unsignedDID {
+export interface UnsignedDID {
   id: string;
 }
 
@@ -533,11 +533,11 @@ export const SignedDidDocument = {
   },
 };
 
-const baseunsignedDID: object = { id: "" };
+const baseUnsignedDID: object = { id: "" };
 
-export const unsignedDID = {
+export const UnsignedDID = {
   encode(
-    message: unsignedDID,
+    message: UnsignedDID,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
     if (message.id !== "") {
@@ -546,10 +546,10 @@ export const unsignedDID = {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): unsignedDID {
+  decode(input: _m0.Reader | Uint8Array, length?: number): UnsignedDID {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = { ...baseunsignedDID } as unsignedDID;
+    const message = { ...baseUnsignedDID } as UnsignedDID;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -564,8 +564,8 @@ export const unsignedDID = {
     return message;
   },
 
-  fromJSON(object: any): unsignedDID {
-    const message = { ...baseunsignedDID } as unsignedDID;
+  fromJSON(object: any): UnsignedDID {
+    const message = { ...baseUnsignedDID } as UnsignedDID;
     if (object.id !== undefined && object.id !== null) {
       message.id = String(object.id);
     } else {
@@ -574,14 +574,14 @@ export const unsignedDID = {
     return message;
   },
 
-  toJSON(message: unsignedDID): unknown {
+  toJSON(message: UnsignedDID): unknown {
     const obj: any = {};
     message.id !== undefined && (obj.id = message.id);
     return obj;
   },
 
-  fromPartial(object: DeepPartial<unsignedDID>): unsignedDID {
-    const message = { ...baseunsignedDID } as unsignedDID;
+  fromPartial(object: DeepPartial<UnsignedDID>): UnsignedDID {
+    const message = { ...baseUnsignedDID } as UnsignedDID;
     if (object.id !== undefined && object.id !== null) {
       message.id = object.id;
     } else {

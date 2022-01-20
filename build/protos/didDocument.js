@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserDidAssociation = exports.DID = exports.unsignedDID = exports.SignedDidDocument = exports.DidDocumentService = exports.DidDocument = exports.protobufPackage = void 0;
+exports.UserDidAssociation = exports.DID = exports.UnsignedDID = exports.SignedDidDocument = exports.DidDocumentService = exports.DidDocument = exports.protobufPackage = void 0;
 /* eslint-disable */
 var long_1 = __importDefault(require("long"));
 var minimal_1 = __importDefault(require("protobufjs/minimal"));
@@ -481,8 +481,8 @@ exports.SignedDidDocument = {
         return message;
     },
 };
-var baseunsignedDID = { id: "" };
-exports.unsignedDID = {
+var baseUnsignedDID = { id: "" };
+exports.UnsignedDID = {
     encode: function (message, writer) {
         if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
         if (message.id !== "") {
@@ -493,7 +493,7 @@ exports.unsignedDID = {
     decode: function (input, length) {
         var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         var end = length === undefined ? reader.len : reader.pos + length;
-        var message = __assign({}, baseunsignedDID);
+        var message = __assign({}, baseUnsignedDID);
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
@@ -508,7 +508,7 @@ exports.unsignedDID = {
         return message;
     },
     fromJSON: function (object) {
-        var message = __assign({}, baseunsignedDID);
+        var message = __assign({}, baseUnsignedDID);
         if (object.id !== undefined && object.id !== null) {
             message.id = String(object.id);
         }
@@ -523,7 +523,7 @@ exports.unsignedDID = {
         return obj;
     },
     fromPartial: function (object) {
-        var message = __assign({}, baseunsignedDID);
+        var message = __assign({}, baseUnsignedDID);
         if (object.id !== undefined && object.id !== null) {
             message.id = object.id;
         }

@@ -3,7 +3,7 @@ import { Literal, Static, Union } from "runtypes";
 import { SemVer } from 'semver';
 import { UnsignedPresentation as UnsignedPresentationPb, Presentation as PresentationPb } from "./protos/presentation";
 import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest";
-import { DidDocument as DidDocumentPb, SignedDidDocument as SignedDidDocumentPb, DidDocumentService, unsignedDID, DID as DIDPb, UserDidAssociation as UserDidAssociationPb } from "./protos/didDocument";
+import { DidDocument as DidDocumentPb, SignedDidDocument as SignedDidDocumentPb, DidDocumentService, UnsignedDID, DID as DIDPb, UserDidAssociation as UserDidAssociationPb } from "./protos/didDocument";
 import { Proof as ProofPb } from "./protos/proof";
 import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb, CredentialStatusInfo as CredentialStatusInfoPb, IssueCredentialOptions, IssueCredentialsOptions, EncryptedCredential as EncryptedCredentialPb, EncryptedCredentialOptions as EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, SubjectCredentialRequest, SubjectCredentialRequestsDto as SubjectCredentialRequestsDtoPb, CredentialsIssuedResponse, CredentialStatus, RevokeAllCredentials, UnsignedRevokeAllCredentials, SubjectCredentialRequestsEnrichedDto as SubjectCredentialRequestsEnrichedDtoPb } from "./protos/credential";
 import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb } from "./protos/crypto";
@@ -15,7 +15,7 @@ import { VerifierInfo as VerifierInfoPb } from "./protos/verifier";
  * The "Pb" serves to differentiate until we can ditch the legacy ts defined types.
  */
 export { UnsignedPresentationPb, PresentationPb, };
-export { DidDocumentPb, DidDocumentService, SignedDidDocumentPb, unsignedDID, DIDPb, UserDidAssociationPb, };
+export { DidDocumentPb, DidDocumentService, SignedDidDocumentPb, UnsignedDID, DIDPb, UserDidAssociationPb, };
 export { UnsignedPresentationRequestPb, PresentationRequestPb, };
 export { IssueCredentialOptions, IssueCredentialsOptions, CredentialStatusInfoPb, CredentialStatus, CredentialRequestPb, UnsignedCredentialPb, CredentialPb, EncryptedCredentialPb, EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, RSAPadding, SubjectCredentialRequest, CredentialsIssuedResponse, UnsignedRevokeAllCredentials, RevokeAllCredentials, SubjectCredentialRequestsEnrichedDtoPb, };
 export { PresentationRequestEnriched };

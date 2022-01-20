@@ -34,7 +34,7 @@ export interface SignedDidDocument {
  * Object to encapsulate an unsigned Decentralized ID.
  * Currently only used in subjectCredentialRequest flow for the userDIDAssociation flow (proving ownership of a DID).
  */
-export interface unsignedDID {
+export interface UnsignedDID {
     id: string;
 }
 /**
@@ -72,12 +72,12 @@ export declare const SignedDidDocument: {
     toJSON(message: SignedDidDocument): unknown;
     fromPartial(object: DeepPartial<SignedDidDocument>): SignedDidDocument;
 };
-export declare const unsignedDID: {
-    encode(message: unsignedDID, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): unsignedDID;
-    fromJSON(object: any): unsignedDID;
-    toJSON(message: unsignedDID): unknown;
-    fromPartial(object: DeepPartial<unsignedDID>): unsignedDID;
+export declare const UnsignedDID: {
+    encode(message: UnsignedDID, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): UnsignedDID;
+    fromJSON(object: any): UnsignedDID;
+    toJSON(message: UnsignedDID): unknown;
+    fromPartial(object: DeepPartial<UnsignedDID>): UnsignedDID;
 };
 export declare const DID: {
     encode(message: DID, writer?: _m0.Writer): _m0.Writer;

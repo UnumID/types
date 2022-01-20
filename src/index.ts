@@ -2,7 +2,7 @@ import { Literal, Static, Union } from "runtypes";
 import { SemVer } from 'semver';
 import { UnsignedPresentation as UnsignedPresentationPb, Presentation as PresentationPb} from "./protos/presentation";
 import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest"
-import { DidDocument as DidDocumentPb, SignedDidDocument as SignedDidDocumentPb, DidDocumentService, unsignedDID, DID as DIDPb, UserDidAssociation as UserDidAssociationPb } from "./protos/didDocument"
+import { DidDocument as DidDocumentPb, SignedDidDocument as SignedDidDocumentPb, DidDocumentService, UnsignedDID, DID as DIDPb, UserDidAssociation as UserDidAssociationPb } from "./protos/didDocument"
 import { Proof as ProofPb} from "./protos/proof";
 import {
   UnsignedCredential as UnsignedCredentialPb,
@@ -43,7 +43,7 @@ export {
   DidDocumentPb,
   DidDocumentService,
   SignedDidDocumentPb,
-  unsignedDID,
+  UnsignedDID,
   DIDPb,
   UserDidAssociationPb,
 }
