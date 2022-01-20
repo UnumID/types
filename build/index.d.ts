@@ -826,6 +826,18 @@ export interface ExternalChannelMessageInput {
     deeplink: string;
 }
 /**
+ * Interface to enforce the presence of the DID attribute on the UserDidAssociationPb protobuf definition.
+ */
+export interface UserDidAssociation extends Omit<UserDidAssociationPb, 'did'> {
+    did: DID;
+}
+/**
+ * Interface to enforce the presence of the Proof attribute on the DID protobuf definition.
+ */
+export interface DID extends Omit<DIDPb, 'proof'> {
+    proof: ProofPb;
+}
+/**
  * Interface to enforce the presence of the Proof attribute on the SubjectCredentialRequestsDto protobuf definition.
  */
 export interface SubjectCredentialRequestsDto extends Omit<SubjectCredentialRequestsDtoPb, 'proof'> {
