@@ -2,7 +2,7 @@ import { Literal, Static, Union } from "runtypes";
 import { SemVer } from 'semver';
 import { UnsignedPresentation as UnsignedPresentationPb, Presentation as PresentationPb} from "./protos/presentation";
 import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest"
-import { DidDocument as DidDocumentPb, SignedDidDocument as SignedDidDocumentPb, DidDocumentService } from "./protos/didDocument"
+import { DidDocument as DidDocumentPb, SignedDidDocument as SignedDidDocumentPb, DidDocumentService, UnsignedDID, DID as DIDPb, UserDidAssociation as UserDidAssociationPb } from "./protos/didDocument"
 import { Proof as ProofPb} from "./protos/proof";
 import {
   UnsignedCredential as UnsignedCredentialPb,
@@ -19,7 +19,8 @@ import {
   CredentialsIssuedResponse,
   CredentialStatus,
   RevokeAllCredentials,
-  UnsignedRevokeAllCredentials
+  UnsignedRevokeAllCredentials,
+  SubjectCredentialRequestsEnrichedDto as SubjectCredentialRequestsEnrichedDtoPb,
 } from "./protos/credential";
 import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb } from "./protos/crypto"
 import { HolderAppInfo } from "./protos/holderApp";
@@ -41,7 +42,10 @@ export {
   // protos/didDocument
   DidDocumentPb,
   DidDocumentService,
-  SignedDidDocumentPb
+  SignedDidDocumentPb,
+  UnsignedDID,
+  DIDPb,
+  UserDidAssociationPb,
 }
 
 export {
@@ -67,6 +71,7 @@ export {
   CredentialsIssuedResponse,
   UnsignedRevokeAllCredentials,
   RevokeAllCredentials,
+  SubjectCredentialRequestsEnrichedDtoPb,
 }
 
 export {
@@ -1016,19 +1021,32 @@ export interface ExternalChannelMessageInput {
   deeplink: string;
 }
 
+// /**
+//  * Interface to encapsulate the parameters needed for associating a subject Did to a application User.
+//  */
+// export interface UserDidAssociation {
+//   /**
+//    * The userCode should be a short lived, one time use user alias.
+//    */
+//   userCode: string; 
+//   subjectDidDocument: SignedDidDocument;
+// }
 /**
- * Interface to encapsulate the parameters needed for associating a subject Did to a application User.
+ * Interface to enforce the presence of the DID attribute on the UserDidAssociationPb protobuf definition.
  */
-export interface UserDidAssociation {
-  /**
-   * The userCode should be a short lived, one time use user alias.
-   */
-  userCode: string; 
-  subjectDidDocument: SignedDidDocument;
+export interface UserDidAssociation extends Omit<UserDidAssociationPb, 'did'> {
+  did: DID
 }
 
 /**
- * Interface to enforce the presence of the Proof attribute on the SubjectCredentialRequestsDtoPb protobuf definition.
+ * Interface to enforce the presence of the Proof attribute on the DID protobuf definition.
+ */
+ export interface DID extends Omit<DIDPb, 'proof'> {
+  proof: ProofPb;
+}
+
+/**
+ * Interface to enforce the presence of the Proof attribute on the SubjectCredentialRequestsDto protobuf definition.
  */
 export interface SubjectCredentialRequestsDto extends Omit<SubjectCredentialRequestsDtoPb, 'proof'> {
   proof: ProofPb;
@@ -1037,13 +1055,21 @@ export interface SubjectCredentialRequestsDto extends Omit<SubjectCredentialRequ
 /**
  * Interface to encapsulate the combined functionality of user DID association with  subject credential requests.
  * 
- * Note: userDidAssociation is optional because will not be necessary aside for the initial credential requests in order for the customer's user to get an associated DID.
+ * Note: userDidAssociation is optional because will not always be necessary. However is needed for the initial credential requests in order for the customer's user to get an associated DID.
  * Opted to include as part of the credential requests to eliminate the possibility for a user did / credential request race condition.
  */
-export interface SubjectCredentialRequestsEnrichedDto {
+/**
+ * Interface to enforce the presence of the SubjectCredentialRequestsDto attribute on the SubjectCredentialRequestsEnrichedDto protobuf definition and
+ * the optional UserDidAssociation with, when present, enforces the presence of Proof attribute on the UserDidAssociation protobuf definition.
+ */
+ export interface SubjectCredentialRequestsEnrichedDto extends Omit<SubjectCredentialRequestsEnrichedDtoPb, 'credentialRequestsInfo' | 'userDidAssociation'> {
   credentialRequestsInfo: SubjectCredentialRequestsDto;
   userDidAssociation?: UserDidAssociation; // note: optional
 }
+// export interface SubjectCredentialRequestsEnrichedDto {
+//   credentialRequestsInfo: SubjectCredentialRequestsDto;
+//   userDidAssociation?: UserDidAssociation; // note: optional
+// }
 
 /**
  * Interface to encapsulate the response that the UnumID SaaS is expecting after forwarding the encrypted presentation to the verifier app for verification.

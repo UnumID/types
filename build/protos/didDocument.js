@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SignedDidDocument = exports.DidDocumentService = exports.DidDocument = exports.protobufPackage = void 0;
+exports.UserDidAssociation = exports.DID = exports.UnsignedDID = exports.SignedDidDocument = exports.DidDocumentService = exports.DidDocument = exports.protobufPackage = void 0;
 /* eslint-disable */
 var long_1 = __importDefault(require("long"));
 var minimal_1 = __importDefault(require("protobufjs/minimal"));
@@ -477,6 +477,202 @@ exports.SignedDidDocument = {
         }
         else {
             message.proof = undefined;
+        }
+        return message;
+    },
+};
+var baseUnsignedDID = { id: "" };
+exports.UnsignedDID = {
+    encode: function (message, writer) {
+        if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
+        if (message.id !== "") {
+            writer.uint32(10).string(message.id);
+        }
+        return writer;
+    },
+    decode: function (input, length) {
+        var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
+        var end = length === undefined ? reader.len : reader.pos + length;
+        var message = __assign({}, baseUnsignedDID);
+        while (reader.pos < end) {
+            var tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.id = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON: function (object) {
+        var message = __assign({}, baseUnsignedDID);
+        if (object.id !== undefined && object.id !== null) {
+            message.id = String(object.id);
+        }
+        else {
+            message.id = "";
+        }
+        return message;
+    },
+    toJSON: function (message) {
+        var obj = {};
+        message.id !== undefined && (obj.id = message.id);
+        return obj;
+    },
+    fromPartial: function (object) {
+        var message = __assign({}, baseUnsignedDID);
+        if (object.id !== undefined && object.id !== null) {
+            message.id = object.id;
+        }
+        else {
+            message.id = "";
+        }
+        return message;
+    },
+};
+var baseDID = { id: "" };
+exports.DID = {
+    encode: function (message, writer) {
+        if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
+        if (message.id !== "") {
+            writer.uint32(10).string(message.id);
+        }
+        if (message.proof !== undefined) {
+            proof_1.Proof.encode(message.proof, writer.uint32(18).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode: function (input, length) {
+        var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
+        var end = length === undefined ? reader.len : reader.pos + length;
+        var message = __assign({}, baseDID);
+        while (reader.pos < end) {
+            var tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.id = reader.string();
+                    break;
+                case 2:
+                    message.proof = proof_1.Proof.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON: function (object) {
+        var message = __assign({}, baseDID);
+        if (object.id !== undefined && object.id !== null) {
+            message.id = String(object.id);
+        }
+        else {
+            message.id = "";
+        }
+        if (object.proof !== undefined && object.proof !== null) {
+            message.proof = proof_1.Proof.fromJSON(object.proof);
+        }
+        else {
+            message.proof = undefined;
+        }
+        return message;
+    },
+    toJSON: function (message) {
+        var obj = {};
+        message.id !== undefined && (obj.id = message.id);
+        message.proof !== undefined &&
+            (obj.proof = message.proof ? proof_1.Proof.toJSON(message.proof) : undefined);
+        return obj;
+    },
+    fromPartial: function (object) {
+        var message = __assign({}, baseDID);
+        if (object.id !== undefined && object.id !== null) {
+            message.id = object.id;
+        }
+        else {
+            message.id = "";
+        }
+        if (object.proof !== undefined && object.proof !== null) {
+            message.proof = proof_1.Proof.fromPartial(object.proof);
+        }
+        else {
+            message.proof = undefined;
+        }
+        return message;
+    },
+};
+var baseUserDidAssociation = { userCode: "" };
+exports.UserDidAssociation = {
+    encode: function (message, writer) {
+        if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
+        if (message.userCode !== "") {
+            writer.uint32(10).string(message.userCode);
+        }
+        if (message.did !== undefined) {
+            exports.DID.encode(message.did, writer.uint32(18).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode: function (input, length) {
+        var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
+        var end = length === undefined ? reader.len : reader.pos + length;
+        var message = __assign({}, baseUserDidAssociation);
+        while (reader.pos < end) {
+            var tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.userCode = reader.string();
+                    break;
+                case 2:
+                    message.did = exports.DID.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON: function (object) {
+        var message = __assign({}, baseUserDidAssociation);
+        if (object.userCode !== undefined && object.userCode !== null) {
+            message.userCode = String(object.userCode);
+        }
+        else {
+            message.userCode = "";
+        }
+        if (object.did !== undefined && object.did !== null) {
+            message.did = exports.DID.fromJSON(object.did);
+        }
+        else {
+            message.did = undefined;
+        }
+        return message;
+    },
+    toJSON: function (message) {
+        var obj = {};
+        message.userCode !== undefined && (obj.userCode = message.userCode);
+        message.did !== undefined &&
+            (obj.did = message.did ? exports.DID.toJSON(message.did) : undefined);
+        return obj;
+    },
+    fromPartial: function (object) {
+        var message = __assign({}, baseUserDidAssociation);
+        if (object.userCode !== undefined && object.userCode !== null) {
+            message.userCode = object.userCode;
+        }
+        else {
+            message.userCode = "";
+        }
+        if (object.did !== undefined && object.did !== null) {
+            message.did = exports.DID.fromPartial(object.did);
+        }
+        else {
+            message.did = undefined;
         }
         return message;
     },
