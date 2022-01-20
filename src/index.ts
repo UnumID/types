@@ -1046,7 +1046,7 @@ export interface SubjectCredentialRequestsDto extends Omit<SubjectCredentialRequ
 /**
  * Interface to encapsulate the combined functionality of user DID association with  subject credential requests.
  * 
- * Note: userDidAssociation is optional because will not be necessary aside for the initial credential requests in order for the customer's user to get an associated DID.
+ * Note: userDidAssociation is optional because will not always be necessary. However is needed for the initial credential requests in order for the customer's user to get an associated DID.
  * Opted to include as part of the credential requests to eliminate the possibility for a user did / credential request race condition.
  */
 export interface SubjectCredentialRequestsEnrichedDto {
