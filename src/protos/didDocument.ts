@@ -38,6 +38,23 @@ export interface SignedDidDocument {
   proof: Proof | undefined;
 }
 
+/**
+ * Object to encapsulate an unsigned Decenterlized ID.
+ * Currently only used in subjectCredentialRequest flow.
+ */
+export interface unsignedDID {
+  id: string;
+}
+
+/**
+ * Object to encapsulate an signed Decenterlized ID.
+ * Currently only used in subjectCredentialRequest flow.
+ */
+export interface DID {
+  id: string;
+  proof: Proof | undefined;
+}
+
 const baseDidDocument: object = { context: "", id: "" };
 
 export const DidDocument = {
@@ -499,6 +516,137 @@ export const SignedDidDocument = {
       for (const e of object.service) {
         message.service.push(DidDocumentService.fromPartial(e));
       }
+    }
+    if (object.proof !== undefined && object.proof !== null) {
+      message.proof = Proof.fromPartial(object.proof);
+    } else {
+      message.proof = undefined;
+    }
+    return message;
+  },
+};
+
+const baseunsignedDID: object = { id: "" };
+
+export const unsignedDID = {
+  encode(
+    message: unsignedDID,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.id !== "") {
+      writer.uint32(10).string(message.id);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): unsignedDID {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseunsignedDID } as unsignedDID;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.id = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): unsignedDID {
+    const message = { ...baseunsignedDID } as unsignedDID;
+    if (object.id !== undefined && object.id !== null) {
+      message.id = String(object.id);
+    } else {
+      message.id = "";
+    }
+    return message;
+  },
+
+  toJSON(message: unsignedDID): unknown {
+    const obj: any = {};
+    message.id !== undefined && (obj.id = message.id);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<unsignedDID>): unsignedDID {
+    const message = { ...baseunsignedDID } as unsignedDID;
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    } else {
+      message.id = "";
+    }
+    return message;
+  },
+};
+
+const baseDID: object = { id: "" };
+
+export const DID = {
+  encode(message: DID, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.id !== "") {
+      writer.uint32(10).string(message.id);
+    }
+    if (message.proof !== undefined) {
+      Proof.encode(message.proof, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): DID {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseDID } as DID;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.id = reader.string();
+          break;
+        case 2:
+          message.proof = Proof.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): DID {
+    const message = { ...baseDID } as DID;
+    if (object.id !== undefined && object.id !== null) {
+      message.id = String(object.id);
+    } else {
+      message.id = "";
+    }
+    if (object.proof !== undefined && object.proof !== null) {
+      message.proof = Proof.fromJSON(object.proof);
+    } else {
+      message.proof = undefined;
+    }
+    return message;
+  },
+
+  toJSON(message: DID): unknown {
+    const obj: any = {};
+    message.id !== undefined && (obj.id = message.id);
+    message.proof !== undefined &&
+      (obj.proof = message.proof ? Proof.toJSON(message.proof) : undefined);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<DID>): DID {
+    const message = { ...baseDID } as DID;
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    } else {
+      message.id = "";
     }
     if (object.proof !== undefined && object.proof !== null) {
       message.proof = Proof.fromPartial(object.proof);

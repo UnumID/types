@@ -53,7 +53,7 @@ export interface CredentialRequest {
 }
 /**
  * Object that encapsulates a Subject's request for a Credential.
- * Note: this is different than the original CredentialRequest which lives in a Presentation(Request) object.
+ * Note: this is different than the original CredentialRequest which lives in a Presentation(Request) object thanks to the proof attribute.
  * Also, it breaks the name convention of the singed type counterpart being the simpler name of the two, however because the unsigned CredentialRequest definition was claimed first, this is an exception to the rule.
  */
 export interface SubjectCredentialRequest {

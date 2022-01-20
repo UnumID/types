@@ -3,7 +3,7 @@ import { Literal, Static, Union } from "runtypes";
 import { SemVer } from 'semver';
 import { UnsignedPresentation as UnsignedPresentationPb, Presentation as PresentationPb } from "./protos/presentation";
 import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest";
-import { DidDocument as DidDocumentPb, SignedDidDocument as SignedDidDocumentPb, DidDocumentService } from "./protos/didDocument";
+import { DidDocument as DidDocumentPb, SignedDidDocument as SignedDidDocumentPb, DidDocumentService, unsignedDID, DID as DIDPb } from "./protos/didDocument";
 import { Proof as ProofPb } from "./protos/proof";
 import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb, CredentialStatusInfo as CredentialStatusInfoPb, IssueCredentialOptions, IssueCredentialsOptions, EncryptedCredential as EncryptedCredentialPb, EncryptedCredentialOptions as EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, SubjectCredentialRequest, SubjectCredentialRequestsDto as SubjectCredentialRequestsDtoPb, CredentialsIssuedResponse, CredentialStatus, RevokeAllCredentials, UnsignedRevokeAllCredentials } from "./protos/credential";
 import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb } from "./protos/crypto";
@@ -15,7 +15,7 @@ import { VerifierInfo as VerifierInfoPb } from "./protos/verifier";
  * The "Pb" serves to differentiate until we can ditch the legacy ts defined types.
  */
 export { UnsignedPresentationPb, PresentationPb, };
-export { DidDocumentPb, DidDocumentService, SignedDidDocumentPb };
+export { DidDocumentPb, DidDocumentService, SignedDidDocumentPb, unsignedDID, DIDPb };
 export { UnsignedPresentationRequestPb, PresentationRequestPb, };
 export { IssueCredentialOptions, IssueCredentialsOptions, CredentialStatusInfoPb, CredentialStatus, CredentialRequestPb, UnsignedCredentialPb, CredentialPb, EncryptedCredentialPb, EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, RSAPadding, SubjectCredentialRequest, CredentialsIssuedResponse, UnsignedRevokeAllCredentials, RevokeAllCredentials, };
 export { PresentationRequestEnriched };
@@ -836,7 +836,13 @@ export interface UserDidAssociation {
     subjectDidDocument: SignedDidDocument;
 }
 /**
- * Interface to enforce the presence of the Proof attribute on the SubjectCredentialRequestsDtoPb protobuf definition.
+ * Interface to enforce the presence of the Proof attribute on the DID protobuf definition.
+ */
+export interface DID extends Omit<DIDPb, 'proof'> {
+    proof: ProofPb;
+}
+/**
+ * Interface to enforce the presence of the Proof attribute on the SubjectCredentialRequestsDto protobuf definition.
  */
 export interface SubjectCredentialRequestsDto extends Omit<SubjectCredentialRequestsDtoPb, 'proof'> {
     proof: ProofPb;

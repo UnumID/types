@@ -2,7 +2,7 @@ import { Literal, Static, Union } from "runtypes";
 import { SemVer } from 'semver';
 import { UnsignedPresentation as UnsignedPresentationPb, Presentation as PresentationPb} from "./protos/presentation";
 import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest"
-import { DidDocument as DidDocumentPb, SignedDidDocument as SignedDidDocumentPb, DidDocumentService } from "./protos/didDocument"
+import { DidDocument as DidDocumentPb, SignedDidDocument as SignedDidDocumentPb, DidDocumentService, unsignedDID, DID as DIDPb } from "./protos/didDocument"
 import { Proof as ProofPb} from "./protos/proof";
 import {
   UnsignedCredential as UnsignedCredentialPb,
@@ -41,7 +41,9 @@ export {
   // protos/didDocument
   DidDocumentPb,
   DidDocumentService,
-  SignedDidDocumentPb
+  SignedDidDocumentPb,
+  unsignedDID,
+  DIDPb
 }
 
 export {
@@ -1028,7 +1030,14 @@ export interface UserDidAssociation {
 }
 
 /**
- * Interface to enforce the presence of the Proof attribute on the SubjectCredentialRequestsDtoPb protobuf definition.
+ * Interface to enforce the presence of the Proof attribute on the DID protobuf definition.
+ */
+ export interface DID extends Omit<DIDPb, 'proof'> {
+  proof: ProofPb;
+}
+
+/**
+ * Interface to enforce the presence of the Proof attribute on the SubjectCredentialRequestsDto protobuf definition.
  */
 export interface SubjectCredentialRequestsDto extends Omit<SubjectCredentialRequestsDtoPb, 'proof'> {
   proof: ProofPb;
