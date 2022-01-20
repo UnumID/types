@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>CredentialRequestPb | @unumid/types</title>
+	<title>UnsignedDID | @unumid/types</title>
 	<meta name="description" content="Documentation for @unumid/types">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">@unumid/types</a>
 				</li>
 				<li>
-					<a href="credentialrequestpb.html">CredentialRequestPb</a>
+					<a href="unsigneddid.html">UnsignedDID</a>
 				</li>
 			</ul>
-			<h1>Interface CredentialRequestPb</h1>
+			<h1>Interface UnsignedDID</h1>
 		</div>
 	</div>
 </header>
@@ -68,8 +68,8 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Object that encapsulates Credential information requested.
-						Note this is used moslty used within Presentations and PresentationRequests. However it can also be used as an UnsignedCredentialRequest when dealing with a signed SubjectCredentialRequest.</p>
+						<p>Object to encapsulate an unsigned Decentralized ID.
+						Currently only used in subjectCredentialRequest flow for the userDIDAssociation flow (proving ownership of a DID).</p>
 					</div>
 				</div>
 			</section>
@@ -77,7 +77,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">CredentialRequestPb</span>
+						<span class="target">UnsignedDID</span>
 					</li>
 				</ul>
 			</section>
@@ -88,9 +88,7 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="credentialrequestpb.html#issuers" class="tsd-kind-icon">issuers</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="credentialrequestpb.html#required" class="tsd-kind-icon">required</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="credentialrequestpb.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="unsigneddid.html#id" class="tsd-kind-icon">id</a></li>
 							</ul>
 						</section>
 					</div>
@@ -99,49 +97,14 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="issuers" class="tsd-anchor"></a>
-					<h3>issuers</h3>
-					<div class="tsd-signature tsd-kind-icon">issuers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<a name="id" class="tsd-anchor"></a>
+					<h3>id</h3>
+					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/064f832/src/protos/credential.ts#L58">protos/credential.ts:58</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/064f832/src/protos/didDocument.ts#L46">protos/didDocument.ts:46</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>list of acceptable issuer DIDs that have issued the credential</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="required" class="tsd-anchor"></a>
-					<h3>required</h3>
-					<div class="tsd-signature tsd-kind-icon">required<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/064f832/src/protos/credential.ts#L60">protos/credential.ts:60</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>to denote wether this particular credential is required in response to the PresentationRequest. Defaults behavior resolves this to true.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="type" class="tsd-anchor"></a>
-					<h3>type</h3>
-					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/064f832/src/protos/credential.ts#L56">protos/credential.ts:56</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>the string matching the desire credential type</p>
-						</div>
-					</div>
 				</section>
 			</section>
 		</div>
@@ -158,16 +121,10 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="credentialrequestpb.html" class="tsd-kind-icon">Credential<wbr>Request<wbr>Pb</a>
+						<a href="unsigneddid.html" class="tsd-kind-icon">UnsignedDID</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="credentialrequestpb.html#issuers" class="tsd-kind-icon">issuers</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="credentialrequestpb.html#required" class="tsd-kind-icon">required</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="credentialrequestpb.html#type" class="tsd-kind-icon">type</a>
+								<a href="unsigneddid.html#id" class="tsd-kind-icon">id</a>
 							</li>
 						</ul>
 					</li>

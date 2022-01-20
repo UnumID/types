@@ -68,7 +68,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Interface to encapsulate the parameters needed for associating a subject Did to a application User.</p>
+						<p>Interface to enforce the presence of the DID attribute on the UserDidAssociationPb protobuf definition.</p>
 					</div>
 				</div>
 			</section>
@@ -76,7 +76,12 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">UserDidAssociation</span>
+						<span class="tsd-signature-type">Omit</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules.html#userdidassociationpb" class="tsd-signature-type" data-tsd-kind="Variable">UserDidAssociationPb</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;did&quot;</span><span class="tsd-signature-symbol">&gt;</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">UserDidAssociation</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -87,8 +92,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="userdidassociation.html#subjectdiddocument" class="tsd-kind-icon">subject<wbr>Did<wbr>Document</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="userdidassociation.html#usercode" class="tsd-kind-icon">user<wbr>Code</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="userdidassociation.html#did" class="tsd-kind-icon">did</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="userdidassociation.html#usercode" class="tsd-kind-icon">user<wbr>Code</a></li>
 							</ul>
 						</section>
 					</div>
@@ -97,27 +102,28 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="subjectdiddocument" class="tsd-anchor"></a>
-					<h3>subject<wbr>Did<wbr>Document</h3>
-					<div class="tsd-signature tsd-kind-icon">subject<wbr>Did<wbr>Document<span class="tsd-signature-symbol">:</span> <a href="signeddiddocument.html" class="tsd-signature-type" data-tsd-kind="Interface">SignedDidDocument</a></div>
+					<a name="did" class="tsd-anchor"></a>
+					<h3>did</h3>
+					<div class="tsd-signature tsd-kind-icon">did<span class="tsd-signature-symbol">:</span> <a href="did.html" class="tsd-signature-type" data-tsd-kind="Interface">DID</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/8cd7ffd/src/index.ts#L1027">index.ts:1027</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/064f832/src/index.ts#L1038">index.ts:1038</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="usercode" class="tsd-anchor"></a>
 					<h3>user<wbr>Code</h3>
 					<div class="tsd-signature tsd-kind-icon">user<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from Omit.userCode</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/8cd7ffd/src/index.ts#L1026">index.ts:1026</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/064f832/src/protos/didDocument.ts#L61">protos/didDocument.ts:61</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The userCode should be a short lived, one time use user alias.</p>
+							<p>the userCode should be a short lived, one time use user alias.</p>
 						</div>
 					</div>
 				</section>
@@ -139,9 +145,9 @@
 						<a href="userdidassociation.html" class="tsd-kind-icon">User<wbr>Did<wbr>Association</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="userdidassociation.html#subjectdiddocument" class="tsd-kind-icon">subject<wbr>Did<wbr>Document</a>
+								<a href="userdidassociation.html#did" class="tsd-kind-icon">did</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="userdidassociation.html#usercode" class="tsd-kind-icon">user<wbr>Code</a>
 							</li>
 						</ul>
