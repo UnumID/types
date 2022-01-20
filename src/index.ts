@@ -1059,11 +1059,12 @@ export interface SubjectCredentialRequestsDto extends Omit<SubjectCredentialRequ
  * Opted to include as part of the credential requests to eliminate the possibility for a user did / credential request race condition.
  */
 /**
- * Interface to enforce the presence of the SubjectCredentialRequestsDto attribute on the SubjectCredentialRequestsEnrichedDto protobuf definition.
+ * Interface to enforce the presence of the SubjectCredentialRequestsDto attribute on the SubjectCredentialRequestsEnrichedDto protobuf definition and
+ * the optional UserDidAssociation with, when present, enforces the presence of Proof attribute on the UserDidAssociation protobuf definition.
  */
- export interface SubjectCredentialRequestsEnrichedDto extends Omit<SubjectCredentialRequestsEnrichedDtoPb, 'credentialRequestsInfo'> {
+ export interface SubjectCredentialRequestsEnrichedDto extends Omit<SubjectCredentialRequestsEnrichedDtoPb, 'credentialRequestsInfo' | 'userDidAssociation'> {
   credentialRequestsInfo: SubjectCredentialRequestsDto;
-  // userDidAssociation?: UserDidAssociation; // note: optional
+  userDidAssociation?: UserDidAssociation; // note: optional
 }
 // export interface SubjectCredentialRequestsEnrichedDto {
 //   credentialRequestsInfo: SubjectCredentialRequestsDto;
