@@ -1057,7 +1057,7 @@ export interface UserDidAssociation extends Omit<UserDidAssociationPb, 'did'> {
  * Interface to enforce the presence of the SubjectCredentialRequests attribute on the SubjectCredentialRequestsDto protobuf definition.
  */
 export interface SubjectCredentialRequestsDto extends Omit<SubjectCredentialRequestsDtoPb, 'credentialRequests'> {
-  credentialRequests: SubjectCredentialRequests;
+  subjectCredentialRequests: SubjectCredentialRequests;
 }
 
 /**

@@ -848,7 +848,7 @@ export interface SubjectCredentialRequests extends Omit<SubjectCredentialRequest
  * Interface to enforce the presence of the SubjectCredentialRequests attribute on the SubjectCredentialRequestsDto protobuf definition.
  */
 export interface SubjectCredentialRequestsDto extends Omit<SubjectCredentialRequestsDtoPb, 'credentialRequests'> {
-    credentialRequests: SubjectCredentialRequests;
+    subjectCredentialRequests: SubjectCredentialRequests;
 }
 /**
  * Interface to encapsulate the combined functionality of user DID association with  subject credential requests.
