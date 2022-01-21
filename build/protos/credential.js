@@ -875,9 +875,8 @@ var baseSubjectCredentialRequestsDto = {
 exports.SubjectCredentialRequestsDto = {
     encode: function (message, writer) {
         if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
-        for (var _i = 0, _a = message.credentialRequests; _i < _a.length; _i++) {
-            var v = _a[_i];
-            exports.SubjectCredentialRequests.encode(v, writer.uint32(10).fork()).ldelim();
+        if (message.subjectCredentialRequests !== undefined) {
+            exports.SubjectCredentialRequests.encode(message.subjectCredentialRequests, writer.uint32(10).fork()).ldelim();
         }
         if (message.issuerDid !== "") {
             writer.uint32(18).string(message.issuerDid);
@@ -891,12 +890,11 @@ exports.SubjectCredentialRequestsDto = {
         var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         var end = length === undefined ? reader.len : reader.pos + length;
         var message = __assign({}, baseSubjectCredentialRequestsDto);
-        message.credentialRequests = [];
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.credentialRequests.push(exports.SubjectCredentialRequests.decode(reader, reader.uint32()));
+                    message.subjectCredentialRequests = exports.SubjectCredentialRequests.decode(reader, reader.uint32());
                     break;
                 case 2:
                     message.issuerDid = reader.string();
@@ -913,13 +911,12 @@ exports.SubjectCredentialRequestsDto = {
     },
     fromJSON: function (object) {
         var message = __assign({}, baseSubjectCredentialRequestsDto);
-        message.credentialRequests = [];
-        if (object.credentialRequests !== undefined &&
-            object.credentialRequests !== null) {
-            for (var _i = 0, _a = object.credentialRequests; _i < _a.length; _i++) {
-                var e = _a[_i];
-                message.credentialRequests.push(exports.SubjectCredentialRequests.fromJSON(e));
-            }
+        if (object.subjectCredentialRequests !== undefined &&
+            object.subjectCredentialRequests !== null) {
+            message.subjectCredentialRequests = exports.SubjectCredentialRequests.fromJSON(object.subjectCredentialRequests);
+        }
+        else {
+            message.subjectCredentialRequests = undefined;
         }
         if (object.issuerDid !== undefined && object.issuerDid !== null) {
             message.issuerDid = String(object.issuerDid);
@@ -937,27 +934,22 @@ exports.SubjectCredentialRequestsDto = {
     },
     toJSON: function (message) {
         var obj = {};
-        if (message.credentialRequests) {
-            obj.credentialRequests = message.credentialRequests.map(function (e) {
-                return e ? exports.SubjectCredentialRequests.toJSON(e) : undefined;
-            });
-        }
-        else {
-            obj.credentialRequests = [];
-        }
+        message.subjectCredentialRequests !== undefined &&
+            (obj.subjectCredentialRequests = message.subjectCredentialRequests
+                ? exports.SubjectCredentialRequests.toJSON(message.subjectCredentialRequests)
+                : undefined);
         message.issuerDid !== undefined && (obj.issuerDid = message.issuerDid);
         message.subjectDid !== undefined && (obj.subjectDid = message.subjectDid);
         return obj;
     },
     fromPartial: function (object) {
         var message = __assign({}, baseSubjectCredentialRequestsDto);
-        message.credentialRequests = [];
-        if (object.credentialRequests !== undefined &&
-            object.credentialRequests !== null) {
-            for (var _i = 0, _a = object.credentialRequests; _i < _a.length; _i++) {
-                var e = _a[_i];
-                message.credentialRequests.push(exports.SubjectCredentialRequests.fromPartial(e));
-            }
+        if (object.subjectCredentialRequests !== undefined &&
+            object.subjectCredentialRequests !== null) {
+            message.subjectCredentialRequests = exports.SubjectCredentialRequests.fromPartial(object.subjectCredentialRequests);
+        }
+        else {
+            message.subjectCredentialRequests = undefined;
         }
         if (object.issuerDid !== undefined && object.issuerDid !== null) {
             message.issuerDid = object.issuerDid;

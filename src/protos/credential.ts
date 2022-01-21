@@ -82,7 +82,7 @@ export interface SubjectCredentialRequests {
  * This top level issuerDid attribute to facilitate the saas grabbed the issuer entity for relaying to the issuer's /credentialRequests endpoint.
  */
 export interface SubjectCredentialRequestsDto {
-  credentialRequests: SubjectCredentialRequests[];
+  subjectCredentialRequests: SubjectCredentialRequests | undefined;
   issuerDid: string;
   subjectDid: string;
 }
@@ -1133,8 +1133,11 @@ export const SubjectCredentialRequestsDto = {
     message: SubjectCredentialRequestsDto,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
-    for (const v of message.credentialRequests) {
-      SubjectCredentialRequests.encode(v!, writer.uint32(10).fork()).ldelim();
+    if (message.subjectCredentialRequests !== undefined) {
+      SubjectCredentialRequests.encode(
+        message.subjectCredentialRequests,
+        writer.uint32(10).fork()
+      ).ldelim();
     }
     if (message.issuerDid !== "") {
       writer.uint32(18).string(message.issuerDid);
@@ -1154,13 +1157,13 @@ export const SubjectCredentialRequestsDto = {
     const message = {
       ...baseSubjectCredentialRequestsDto,
     } as SubjectCredentialRequestsDto;
-    message.credentialRequests = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.credentialRequests.push(
-            SubjectCredentialRequests.decode(reader, reader.uint32())
+          message.subjectCredentialRequests = SubjectCredentialRequests.decode(
+            reader,
+            reader.uint32()
           );
           break;
         case 2:
@@ -1181,14 +1184,15 @@ export const SubjectCredentialRequestsDto = {
     const message = {
       ...baseSubjectCredentialRequestsDto,
     } as SubjectCredentialRequestsDto;
-    message.credentialRequests = [];
     if (
-      object.credentialRequests !== undefined &&
-      object.credentialRequests !== null
+      object.subjectCredentialRequests !== undefined &&
+      object.subjectCredentialRequests !== null
     ) {
-      for (const e of object.credentialRequests) {
-        message.credentialRequests.push(SubjectCredentialRequests.fromJSON(e));
-      }
+      message.subjectCredentialRequests = SubjectCredentialRequests.fromJSON(
+        object.subjectCredentialRequests
+      );
+    } else {
+      message.subjectCredentialRequests = undefined;
     }
     if (object.issuerDid !== undefined && object.issuerDid !== null) {
       message.issuerDid = String(object.issuerDid);
@@ -1205,13 +1209,10 @@ export const SubjectCredentialRequestsDto = {
 
   toJSON(message: SubjectCredentialRequestsDto): unknown {
     const obj: any = {};
-    if (message.credentialRequests) {
-      obj.credentialRequests = message.credentialRequests.map((e) =>
-        e ? SubjectCredentialRequests.toJSON(e) : undefined
-      );
-    } else {
-      obj.credentialRequests = [];
-    }
+    message.subjectCredentialRequests !== undefined &&
+      (obj.subjectCredentialRequests = message.subjectCredentialRequests
+        ? SubjectCredentialRequests.toJSON(message.subjectCredentialRequests)
+        : undefined);
     message.issuerDid !== undefined && (obj.issuerDid = message.issuerDid);
     message.subjectDid !== undefined && (obj.subjectDid = message.subjectDid);
     return obj;
@@ -1223,16 +1224,15 @@ export const SubjectCredentialRequestsDto = {
     const message = {
       ...baseSubjectCredentialRequestsDto,
     } as SubjectCredentialRequestsDto;
-    message.credentialRequests = [];
     if (
-      object.credentialRequests !== undefined &&
-      object.credentialRequests !== null
+      object.subjectCredentialRequests !== undefined &&
+      object.subjectCredentialRequests !== null
     ) {
-      for (const e of object.credentialRequests) {
-        message.credentialRequests.push(
-          SubjectCredentialRequests.fromPartial(e)
-        );
-      }
+      message.subjectCredentialRequests = SubjectCredentialRequests.fromPartial(
+        object.subjectCredentialRequests
+      );
+    } else {
+      message.subjectCredentialRequests = undefined;
     }
     if (object.issuerDid !== undefined && object.issuerDid !== null) {
       message.issuerDid = object.issuerDid;

@@ -70,7 +70,7 @@ export interface SubjectCredentialRequests {
  * This top level issuerDid attribute to facilitate the saas grabbed the issuer entity for relaying to the issuer's /credentialRequests endpoint.
  */
 export interface SubjectCredentialRequestsDto {
-    credentialRequests: SubjectCredentialRequests[];
+    subjectCredentialRequests: SubjectCredentialRequests | undefined;
     issuerDid: string;
     subjectDid: string;
 }
