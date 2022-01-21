@@ -533,7 +533,7 @@ export interface ReceiptPresentationRequestData {
   holderAppUuid: string;
   uuid: string; // request uuid
   id: string; // request id
-  requestInfo: CredentialRequestInfoBasic[];
+  requestInfo: CredentialRequest[];
   expirationDate?: Date;
 }
 
@@ -577,7 +577,7 @@ export interface ReceiptRequestReceivedData {
  * Type to encapsulate specific Receipt data fields for SubjectCredentialRequestVerified related receipts. 
  */
  export interface ReceiptSubjectCredentialRequestVerifiedData extends VerifiedReceiptDataOptions {
-  requestInfo: CredentialRequestInfoBasic[];
+  requestInfo: CredentialRequest[];
  }
 
  /**
@@ -688,15 +688,15 @@ export interface CredentialReceiptInfo {
  required: boolean;
 }
 
-/**
- * Type to encapsulate non enriched CredentialRequest info.
- * Note: this breaks enriched naming conventions however the enriched CredentialRequestInfo definition already existed
- */
- export interface CredentialRequestInfoBasic {
-  type: string;
-  issuers: string[];
-  required: boolean;
- }
+// /**
+//  * Type to encapsulate non enriched CredentialRequest info.
+//  * Note: this breaks enriched naming conventions however the enriched CredentialRequestInfo definition already existed
+//  */
+//  export interface CredentialRequestInfoBasic {
+//   type: string;
+//   issuers: string[];
+//   required: boolean;
+//  }
  
 /**
  * Encapsulates HolderApp entity attributes
