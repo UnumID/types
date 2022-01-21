@@ -779,6 +779,7 @@ export type VersionedDto<N extends string, T = any> = {
  * Type to encapsulate the response body returned when a PresentationRequest is created
  * AKA PresentationRequestEnriched
  */
+// DEPRECATED IN FAVOR OF PresentationRequestDto
 export interface PresentationRequestPostDto {
   presentationRequest: PresentationRequest;
   verifier: Pick<Verifier, 'did' | 'name' | 'url'>;
@@ -899,8 +900,10 @@ export interface VerifierInfo {
   did: string;
   name: string;
   url?: string;
-  encryptionPublicKey: PublicKeyInfo;
-  signingPublicKey: PublicKeyInfo;
+  encryptionPublicKey: PublicKeyInfo; // remove in v4 in favor the array attribute
+  signingPublicKey: PublicKeyInfo; // remove in v4 in favor the array attribute
+  encryptionPublicKeys?: PublicKeyInfo; // now returning an array of public keys so the holder can have them all if necessary
+  signingPublicKeys?: PublicKeyInfo; // now returning an array of public keys so the holder can have them all if necessary
 }
 
 /**

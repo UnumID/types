@@ -722,6 +722,8 @@ export interface VerifierInfo {
     url?: string;
     encryptionPublicKey: PublicKeyInfo;
     signingPublicKey: PublicKeyInfo;
+    encryptionPublicKeys?: PublicKeyInfo;
+    signingPublicKeys?: PublicKeyInfo;
 }
 /**
  * Encapsulates Issuer metadata attributes.
