@@ -1046,9 +1046,10 @@ export interface UserDidAssociation extends Omit<UserDidAssociationPb, 'did'> {
 }
 
 /**
- * Interface to enforce the presence of the Proof attribute on the SubjectCredentialRequests protobuf definition.
+ * Interface to enforce the presence of the Proof and CredentialRequest[] attribute on the SubjectCredentialRequests protobuf definition
  */
- export interface SubjectCredentialRequests extends Omit<SubjectCredentialRequestsPb, 'proof'> {
+ export interface SubjectCredentialRequests extends Omit<SubjectCredentialRequestsPb, 'proof' | 'credentialRequests'> {
+  credentialRequests: CredentialRequestPb[];
   proof: ProofPb;
 }
 
