@@ -902,8 +902,8 @@ export interface VerifierInfo {
   url?: string;
   encryptionPublicKey: PublicKeyInfo; // remove in v4 in favor the array attribute
   signingPublicKey: PublicKeyInfo; // remove in v4 in favor the array attribute
-  encryptionPublicKeys?: PublicKeyInfo; // now returning an array of public keys so the holder can have them all if necessary
-  signingPublicKeys?: PublicKeyInfo; // now returning an array of public keys so the holder can have them all if necessary
+  encryptionPublicKeys?: PublicKeyInfo[]; // now returning an array of public keys so the holder can have them all if necessary
+  signingPublicKeys?: PublicKeyInfo[]; // now returning an array of public keys so the holder can have them all if necessary
 }
 
 /**
