@@ -60,25 +60,21 @@ export interface CredentialRequest {
   required: boolean;
 }
 
-/**
- * Object that encapsulates a Subject's request for a Credential.
- * Note: this is different than the original CredentialRequest which lives in a Presentation(Request) object thanks to the proof attribute.
- * Also, it breaks the name convention of the singed type counterpart being the simpler name of the two, however because the unsigned CredentialRequest definition was claimed first, this is an exception to the rule.
- */
-export interface SubjectCredentialRequest {
-  /** the string matching the desire credential type */
-  type: string;
-  /** list of acceptable issuer DIDs that have issued the credential */
-  issuers: string[];
-  /** to denote wether this particular credential is required. Defaults behavior resolves this to true. */
-  required: boolean;
-  /** proof signed by the subject */
-  proof: Proof | undefined;
-}
-
 /** Type to encapsulate Credential type information of credentials issued, generally in response to Subject CredentialRequest. */
 export interface CredentialsIssuedResponse {
   credentialTypesIssued: string[];
+}
+
+/** Object that encapsulates an unsigned Subject's request for Credentials. */
+export interface UnsignedSubjectCredentialRequests {
+  credentialRequests: CredentialRequest[];
+}
+
+/** Object that encapsulates a signed Subject's request for Credentials. */
+export interface SubjectCredentialRequests {
+  credentialRequests: CredentialRequest[];
+  /** proof signed by the subject */
+  proof: Proof | undefined;
 }
 
 /**
@@ -86,7 +82,7 @@ export interface CredentialsIssuedResponse {
  * This top level issuerDid attribute to facilitate the saas grabbed the issuer entity for relaying to the issuer's /credentialRequests endpoint.
  */
 export interface SubjectCredentialRequestsDto {
-  credentialRequests: SubjectCredentialRequest[];
+  credentialRequests: SubjectCredentialRequests[];
   issuerDid: string;
   subjectDid: string;
 }
@@ -855,138 +851,6 @@ export const CredentialRequest = {
   },
 };
 
-const baseSubjectCredentialRequest: object = {
-  type: "",
-  issuers: "",
-  required: false,
-};
-
-export const SubjectCredentialRequest = {
-  encode(
-    message: SubjectCredentialRequest,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
-    if (message.type !== "") {
-      writer.uint32(10).string(message.type);
-    }
-    for (const v of message.issuers) {
-      writer.uint32(18).string(v!);
-    }
-    if (message.required === true) {
-      writer.uint32(24).bool(message.required);
-    }
-    if (message.proof !== undefined) {
-      Proof.encode(message.proof, writer.uint32(34).fork()).ldelim();
-    }
-    return writer;
-  },
-
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): SubjectCredentialRequest {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = {
-      ...baseSubjectCredentialRequest,
-    } as SubjectCredentialRequest;
-    message.issuers = [];
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.type = reader.string();
-          break;
-        case 2:
-          message.issuers.push(reader.string());
-          break;
-        case 3:
-          message.required = reader.bool();
-          break;
-        case 4:
-          message.proof = Proof.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-
-  fromJSON(object: any): SubjectCredentialRequest {
-    const message = {
-      ...baseSubjectCredentialRequest,
-    } as SubjectCredentialRequest;
-    message.issuers = [];
-    if (object.type !== undefined && object.type !== null) {
-      message.type = String(object.type);
-    } else {
-      message.type = "";
-    }
-    if (object.issuers !== undefined && object.issuers !== null) {
-      for (const e of object.issuers) {
-        message.issuers.push(String(e));
-      }
-    }
-    if (object.required !== undefined && object.required !== null) {
-      message.required = Boolean(object.required);
-    } else {
-      message.required = false;
-    }
-    if (object.proof !== undefined && object.proof !== null) {
-      message.proof = Proof.fromJSON(object.proof);
-    } else {
-      message.proof = undefined;
-    }
-    return message;
-  },
-
-  toJSON(message: SubjectCredentialRequest): unknown {
-    const obj: any = {};
-    message.type !== undefined && (obj.type = message.type);
-    if (message.issuers) {
-      obj.issuers = message.issuers.map((e) => e);
-    } else {
-      obj.issuers = [];
-    }
-    message.required !== undefined && (obj.required = message.required);
-    message.proof !== undefined &&
-      (obj.proof = message.proof ? Proof.toJSON(message.proof) : undefined);
-    return obj;
-  },
-
-  fromPartial(
-    object: DeepPartial<SubjectCredentialRequest>
-  ): SubjectCredentialRequest {
-    const message = {
-      ...baseSubjectCredentialRequest,
-    } as SubjectCredentialRequest;
-    message.issuers = [];
-    if (object.type !== undefined && object.type !== null) {
-      message.type = object.type;
-    } else {
-      message.type = "";
-    }
-    if (object.issuers !== undefined && object.issuers !== null) {
-      for (const e of object.issuers) {
-        message.issuers.push(e);
-      }
-    }
-    if (object.required !== undefined && object.required !== null) {
-      message.required = object.required;
-    } else {
-      message.required = false;
-    }
-    if (object.proof !== undefined && object.proof !== null) {
-      message.proof = Proof.fromPartial(object.proof);
-    } else {
-      message.proof = undefined;
-    }
-    return message;
-  },
-};
-
 const baseCredentialsIssuedResponse: object = { credentialTypesIssued: "" };
 
 export const CredentialsIssuedResponse = {
@@ -1069,6 +933,196 @@ export const CredentialsIssuedResponse = {
   },
 };
 
+const baseUnsignedSubjectCredentialRequests: object = {};
+
+export const UnsignedSubjectCredentialRequests = {
+  encode(
+    message: UnsignedSubjectCredentialRequests,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    for (const v of message.credentialRequests) {
+      CredentialRequest.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): UnsignedSubjectCredentialRequests {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseUnsignedSubjectCredentialRequests,
+    } as UnsignedSubjectCredentialRequests;
+    message.credentialRequests = [];
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.credentialRequests.push(
+            CredentialRequest.decode(reader, reader.uint32())
+          );
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UnsignedSubjectCredentialRequests {
+    const message = {
+      ...baseUnsignedSubjectCredentialRequests,
+    } as UnsignedSubjectCredentialRequests;
+    message.credentialRequests = [];
+    if (
+      object.credentialRequests !== undefined &&
+      object.credentialRequests !== null
+    ) {
+      for (const e of object.credentialRequests) {
+        message.credentialRequests.push(CredentialRequest.fromJSON(e));
+      }
+    }
+    return message;
+  },
+
+  toJSON(message: UnsignedSubjectCredentialRequests): unknown {
+    const obj: any = {};
+    if (message.credentialRequests) {
+      obj.credentialRequests = message.credentialRequests.map((e) =>
+        e ? CredentialRequest.toJSON(e) : undefined
+      );
+    } else {
+      obj.credentialRequests = [];
+    }
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<UnsignedSubjectCredentialRequests>
+  ): UnsignedSubjectCredentialRequests {
+    const message = {
+      ...baseUnsignedSubjectCredentialRequests,
+    } as UnsignedSubjectCredentialRequests;
+    message.credentialRequests = [];
+    if (
+      object.credentialRequests !== undefined &&
+      object.credentialRequests !== null
+    ) {
+      for (const e of object.credentialRequests) {
+        message.credentialRequests.push(CredentialRequest.fromPartial(e));
+      }
+    }
+    return message;
+  },
+};
+
+const baseSubjectCredentialRequests: object = {};
+
+export const SubjectCredentialRequests = {
+  encode(
+    message: SubjectCredentialRequests,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    for (const v of message.credentialRequests) {
+      CredentialRequest.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.proof !== undefined) {
+      Proof.encode(message.proof, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): SubjectCredentialRequests {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseSubjectCredentialRequests,
+    } as SubjectCredentialRequests;
+    message.credentialRequests = [];
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.credentialRequests.push(
+            CredentialRequest.decode(reader, reader.uint32())
+          );
+          break;
+        case 2:
+          message.proof = Proof.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): SubjectCredentialRequests {
+    const message = {
+      ...baseSubjectCredentialRequests,
+    } as SubjectCredentialRequests;
+    message.credentialRequests = [];
+    if (
+      object.credentialRequests !== undefined &&
+      object.credentialRequests !== null
+    ) {
+      for (const e of object.credentialRequests) {
+        message.credentialRequests.push(CredentialRequest.fromJSON(e));
+      }
+    }
+    if (object.proof !== undefined && object.proof !== null) {
+      message.proof = Proof.fromJSON(object.proof);
+    } else {
+      message.proof = undefined;
+    }
+    return message;
+  },
+
+  toJSON(message: SubjectCredentialRequests): unknown {
+    const obj: any = {};
+    if (message.credentialRequests) {
+      obj.credentialRequests = message.credentialRequests.map((e) =>
+        e ? CredentialRequest.toJSON(e) : undefined
+      );
+    } else {
+      obj.credentialRequests = [];
+    }
+    message.proof !== undefined &&
+      (obj.proof = message.proof ? Proof.toJSON(message.proof) : undefined);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<SubjectCredentialRequests>
+  ): SubjectCredentialRequests {
+    const message = {
+      ...baseSubjectCredentialRequests,
+    } as SubjectCredentialRequests;
+    message.credentialRequests = [];
+    if (
+      object.credentialRequests !== undefined &&
+      object.credentialRequests !== null
+    ) {
+      for (const e of object.credentialRequests) {
+        message.credentialRequests.push(CredentialRequest.fromPartial(e));
+      }
+    }
+    if (object.proof !== undefined && object.proof !== null) {
+      message.proof = Proof.fromPartial(object.proof);
+    } else {
+      message.proof = undefined;
+    }
+    return message;
+  },
+};
+
 const baseSubjectCredentialRequestsDto: object = {
   issuerDid: "",
   subjectDid: "",
@@ -1080,7 +1134,7 @@ export const SubjectCredentialRequestsDto = {
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
     for (const v of message.credentialRequests) {
-      SubjectCredentialRequest.encode(v!, writer.uint32(10).fork()).ldelim();
+      SubjectCredentialRequests.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     if (message.issuerDid !== "") {
       writer.uint32(18).string(message.issuerDid);
@@ -1106,7 +1160,7 @@ export const SubjectCredentialRequestsDto = {
       switch (tag >>> 3) {
         case 1:
           message.credentialRequests.push(
-            SubjectCredentialRequest.decode(reader, reader.uint32())
+            SubjectCredentialRequests.decode(reader, reader.uint32())
           );
           break;
         case 2:
@@ -1133,7 +1187,7 @@ export const SubjectCredentialRequestsDto = {
       object.credentialRequests !== null
     ) {
       for (const e of object.credentialRequests) {
-        message.credentialRequests.push(SubjectCredentialRequest.fromJSON(e));
+        message.credentialRequests.push(SubjectCredentialRequests.fromJSON(e));
       }
     }
     if (object.issuerDid !== undefined && object.issuerDid !== null) {
@@ -1153,7 +1207,7 @@ export const SubjectCredentialRequestsDto = {
     const obj: any = {};
     if (message.credentialRequests) {
       obj.credentialRequests = message.credentialRequests.map((e) =>
-        e ? SubjectCredentialRequest.toJSON(e) : undefined
+        e ? SubjectCredentialRequests.toJSON(e) : undefined
       );
     } else {
       obj.credentialRequests = [];
@@ -1176,7 +1230,7 @@ export const SubjectCredentialRequestsDto = {
     ) {
       for (const e of object.credentialRequests) {
         message.credentialRequests.push(
-          SubjectCredentialRequest.fromPartial(e)
+          SubjectCredentialRequests.fromPartial(e)
         );
       }
     }

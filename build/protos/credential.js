@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CredentialStatusesOptions = exports.CredentialStatusOptions = exports.RevokeAllCredentials = exports.UnsignedRevokeAllCredentials = exports.EncryptedCredentialEnriched = exports.EncryptedCredential = exports.CredentialStatusInfo = exports.IssueCredentialsOptions = exports.IssueCredentialOptions = exports.EncryptedCredentialOptions = exports.SubjectCredentialRequestsEnrichedDto = exports.SubjectCredentialRequestsDto = exports.CredentialsIssuedResponse = exports.SubjectCredentialRequest = exports.CredentialRequest = exports.Credential = exports.UnsignedCredential = exports.CredentialStatus = exports.protobufPackage = void 0;
+exports.CredentialStatusesOptions = exports.CredentialStatusOptions = exports.RevokeAllCredentials = exports.UnsignedRevokeAllCredentials = exports.EncryptedCredentialEnriched = exports.EncryptedCredential = exports.CredentialStatusInfo = exports.IssueCredentialsOptions = exports.IssueCredentialOptions = exports.EncryptedCredentialOptions = exports.SubjectCredentialRequestsEnrichedDto = exports.SubjectCredentialRequestsDto = exports.SubjectCredentialRequests = exports.UnsignedSubjectCredentialRequests = exports.CredentialsIssuedResponse = exports.CredentialRequest = exports.Credential = exports.UnsignedCredential = exports.CredentialStatus = exports.protobufPackage = void 0;
 /* eslint-disable */
 var long_1 = __importDefault(require("long"));
 var minimal_1 = __importDefault(require("protobufjs/minimal"));
@@ -655,129 +655,6 @@ exports.CredentialRequest = {
         return message;
     },
 };
-var baseSubjectCredentialRequest = {
-    type: "",
-    issuers: "",
-    required: false,
-};
-exports.SubjectCredentialRequest = {
-    encode: function (message, writer) {
-        if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
-        if (message.type !== "") {
-            writer.uint32(10).string(message.type);
-        }
-        for (var _i = 0, _a = message.issuers; _i < _a.length; _i++) {
-            var v = _a[_i];
-            writer.uint32(18).string(v);
-        }
-        if (message.required === true) {
-            writer.uint32(24).bool(message.required);
-        }
-        if (message.proof !== undefined) {
-            proof_1.Proof.encode(message.proof, writer.uint32(34).fork()).ldelim();
-        }
-        return writer;
-    },
-    decode: function (input, length) {
-        var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
-        var end = length === undefined ? reader.len : reader.pos + length;
-        var message = __assign({}, baseSubjectCredentialRequest);
-        message.issuers = [];
-        while (reader.pos < end) {
-            var tag = reader.uint32();
-            switch (tag >>> 3) {
-                case 1:
-                    message.type = reader.string();
-                    break;
-                case 2:
-                    message.issuers.push(reader.string());
-                    break;
-                case 3:
-                    message.required = reader.bool();
-                    break;
-                case 4:
-                    message.proof = proof_1.Proof.decode(reader, reader.uint32());
-                    break;
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-            }
-        }
-        return message;
-    },
-    fromJSON: function (object) {
-        var message = __assign({}, baseSubjectCredentialRequest);
-        message.issuers = [];
-        if (object.type !== undefined && object.type !== null) {
-            message.type = String(object.type);
-        }
-        else {
-            message.type = "";
-        }
-        if (object.issuers !== undefined && object.issuers !== null) {
-            for (var _i = 0, _a = object.issuers; _i < _a.length; _i++) {
-                var e = _a[_i];
-                message.issuers.push(String(e));
-            }
-        }
-        if (object.required !== undefined && object.required !== null) {
-            message.required = Boolean(object.required);
-        }
-        else {
-            message.required = false;
-        }
-        if (object.proof !== undefined && object.proof !== null) {
-            message.proof = proof_1.Proof.fromJSON(object.proof);
-        }
-        else {
-            message.proof = undefined;
-        }
-        return message;
-    },
-    toJSON: function (message) {
-        var obj = {};
-        message.type !== undefined && (obj.type = message.type);
-        if (message.issuers) {
-            obj.issuers = message.issuers.map(function (e) { return e; });
-        }
-        else {
-            obj.issuers = [];
-        }
-        message.required !== undefined && (obj.required = message.required);
-        message.proof !== undefined &&
-            (obj.proof = message.proof ? proof_1.Proof.toJSON(message.proof) : undefined);
-        return obj;
-    },
-    fromPartial: function (object) {
-        var message = __assign({}, baseSubjectCredentialRequest);
-        message.issuers = [];
-        if (object.type !== undefined && object.type !== null) {
-            message.type = object.type;
-        }
-        else {
-            message.type = "";
-        }
-        if (object.issuers !== undefined && object.issuers !== null) {
-            for (var _i = 0, _a = object.issuers; _i < _a.length; _i++) {
-                var e = _a[_i];
-                message.issuers.push(e);
-            }
-        }
-        if (object.required !== undefined && object.required !== null) {
-            message.required = object.required;
-        }
-        else {
-            message.required = false;
-        }
-        if (object.proof !== undefined && object.proof !== null) {
-            message.proof = proof_1.Proof.fromPartial(object.proof);
-        }
-        else {
-            message.proof = undefined;
-        }
-        return message;
-    },
-};
 var baseCredentialsIssuedResponse = { credentialTypesIssued: "" };
 exports.CredentialsIssuedResponse = {
     encode: function (message, writer) {
@@ -841,6 +718,156 @@ exports.CredentialsIssuedResponse = {
         return message;
     },
 };
+var baseUnsignedSubjectCredentialRequests = {};
+exports.UnsignedSubjectCredentialRequests = {
+    encode: function (message, writer) {
+        if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
+        for (var _i = 0, _a = message.credentialRequests; _i < _a.length; _i++) {
+            var v = _a[_i];
+            exports.CredentialRequest.encode(v, writer.uint32(10).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode: function (input, length) {
+        var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
+        var end = length === undefined ? reader.len : reader.pos + length;
+        var message = __assign({}, baseUnsignedSubjectCredentialRequests);
+        message.credentialRequests = [];
+        while (reader.pos < end) {
+            var tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.credentialRequests.push(exports.CredentialRequest.decode(reader, reader.uint32()));
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON: function (object) {
+        var message = __assign({}, baseUnsignedSubjectCredentialRequests);
+        message.credentialRequests = [];
+        if (object.credentialRequests !== undefined &&
+            object.credentialRequests !== null) {
+            for (var _i = 0, _a = object.credentialRequests; _i < _a.length; _i++) {
+                var e = _a[_i];
+                message.credentialRequests.push(exports.CredentialRequest.fromJSON(e));
+            }
+        }
+        return message;
+    },
+    toJSON: function (message) {
+        var obj = {};
+        if (message.credentialRequests) {
+            obj.credentialRequests = message.credentialRequests.map(function (e) {
+                return e ? exports.CredentialRequest.toJSON(e) : undefined;
+            });
+        }
+        else {
+            obj.credentialRequests = [];
+        }
+        return obj;
+    },
+    fromPartial: function (object) {
+        var message = __assign({}, baseUnsignedSubjectCredentialRequests);
+        message.credentialRequests = [];
+        if (object.credentialRequests !== undefined &&
+            object.credentialRequests !== null) {
+            for (var _i = 0, _a = object.credentialRequests; _i < _a.length; _i++) {
+                var e = _a[_i];
+                message.credentialRequests.push(exports.CredentialRequest.fromPartial(e));
+            }
+        }
+        return message;
+    },
+};
+var baseSubjectCredentialRequests = {};
+exports.SubjectCredentialRequests = {
+    encode: function (message, writer) {
+        if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
+        for (var _i = 0, _a = message.credentialRequests; _i < _a.length; _i++) {
+            var v = _a[_i];
+            exports.CredentialRequest.encode(v, writer.uint32(10).fork()).ldelim();
+        }
+        if (message.proof !== undefined) {
+            proof_1.Proof.encode(message.proof, writer.uint32(18).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode: function (input, length) {
+        var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
+        var end = length === undefined ? reader.len : reader.pos + length;
+        var message = __assign({}, baseSubjectCredentialRequests);
+        message.credentialRequests = [];
+        while (reader.pos < end) {
+            var tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.credentialRequests.push(exports.CredentialRequest.decode(reader, reader.uint32()));
+                    break;
+                case 2:
+                    message.proof = proof_1.Proof.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON: function (object) {
+        var message = __assign({}, baseSubjectCredentialRequests);
+        message.credentialRequests = [];
+        if (object.credentialRequests !== undefined &&
+            object.credentialRequests !== null) {
+            for (var _i = 0, _a = object.credentialRequests; _i < _a.length; _i++) {
+                var e = _a[_i];
+                message.credentialRequests.push(exports.CredentialRequest.fromJSON(e));
+            }
+        }
+        if (object.proof !== undefined && object.proof !== null) {
+            message.proof = proof_1.Proof.fromJSON(object.proof);
+        }
+        else {
+            message.proof = undefined;
+        }
+        return message;
+    },
+    toJSON: function (message) {
+        var obj = {};
+        if (message.credentialRequests) {
+            obj.credentialRequests = message.credentialRequests.map(function (e) {
+                return e ? exports.CredentialRequest.toJSON(e) : undefined;
+            });
+        }
+        else {
+            obj.credentialRequests = [];
+        }
+        message.proof !== undefined &&
+            (obj.proof = message.proof ? proof_1.Proof.toJSON(message.proof) : undefined);
+        return obj;
+    },
+    fromPartial: function (object) {
+        var message = __assign({}, baseSubjectCredentialRequests);
+        message.credentialRequests = [];
+        if (object.credentialRequests !== undefined &&
+            object.credentialRequests !== null) {
+            for (var _i = 0, _a = object.credentialRequests; _i < _a.length; _i++) {
+                var e = _a[_i];
+                message.credentialRequests.push(exports.CredentialRequest.fromPartial(e));
+            }
+        }
+        if (object.proof !== undefined && object.proof !== null) {
+            message.proof = proof_1.Proof.fromPartial(object.proof);
+        }
+        else {
+            message.proof = undefined;
+        }
+        return message;
+    },
+};
 var baseSubjectCredentialRequestsDto = {
     issuerDid: "",
     subjectDid: "",
@@ -850,7 +877,7 @@ exports.SubjectCredentialRequestsDto = {
         if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
         for (var _i = 0, _a = message.credentialRequests; _i < _a.length; _i++) {
             var v = _a[_i];
-            exports.SubjectCredentialRequest.encode(v, writer.uint32(10).fork()).ldelim();
+            exports.SubjectCredentialRequests.encode(v, writer.uint32(10).fork()).ldelim();
         }
         if (message.issuerDid !== "") {
             writer.uint32(18).string(message.issuerDid);
@@ -869,7 +896,7 @@ exports.SubjectCredentialRequestsDto = {
             var tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.credentialRequests.push(exports.SubjectCredentialRequest.decode(reader, reader.uint32()));
+                    message.credentialRequests.push(exports.SubjectCredentialRequests.decode(reader, reader.uint32()));
                     break;
                 case 2:
                     message.issuerDid = reader.string();
@@ -891,7 +918,7 @@ exports.SubjectCredentialRequestsDto = {
             object.credentialRequests !== null) {
             for (var _i = 0, _a = object.credentialRequests; _i < _a.length; _i++) {
                 var e = _a[_i];
-                message.credentialRequests.push(exports.SubjectCredentialRequest.fromJSON(e));
+                message.credentialRequests.push(exports.SubjectCredentialRequests.fromJSON(e));
             }
         }
         if (object.issuerDid !== undefined && object.issuerDid !== null) {
@@ -912,7 +939,7 @@ exports.SubjectCredentialRequestsDto = {
         var obj = {};
         if (message.credentialRequests) {
             obj.credentialRequests = message.credentialRequests.map(function (e) {
-                return e ? exports.SubjectCredentialRequest.toJSON(e) : undefined;
+                return e ? exports.SubjectCredentialRequests.toJSON(e) : undefined;
             });
         }
         else {
@@ -929,7 +956,7 @@ exports.SubjectCredentialRequestsDto = {
             object.credentialRequests !== null) {
             for (var _i = 0, _a = object.credentialRequests; _i < _a.length; _i++) {
                 var e = _a[_i];
-                message.credentialRequests.push(exports.SubjectCredentialRequest.fromPartial(e));
+                message.credentialRequests.push(exports.SubjectCredentialRequests.fromPartial(e));
             }
         }
         if (object.issuerDid !== undefined && object.issuerDid !== null) {

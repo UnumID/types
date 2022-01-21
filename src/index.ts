@@ -14,7 +14,8 @@ import {
   EncryptedCredential as EncryptedCredentialPb,
   EncryptedCredentialOptions as EncryptedCredentialOptionsPb, 
   EncryptedCredentialEnriched,
-  SubjectCredentialRequest,
+  UnsignedSubjectCredentialRequests,
+  SubjectCredentialRequests as SubjectCredentialRequestsPb,
   SubjectCredentialRequestsDto as SubjectCredentialRequestsDtoPb,
   CredentialsIssuedResponse,
   CredentialStatus,
@@ -67,7 +68,6 @@ export {
   EncryptedCredentialOptionsPb,
   EncryptedCredentialEnriched,
   RSAPadding,
-  SubjectCredentialRequest,
   CredentialsIssuedResponse,
   UnsignedRevokeAllCredentials,
   RevokeAllCredentials,
@@ -1046,10 +1046,17 @@ export interface UserDidAssociation extends Omit<UserDidAssociationPb, 'did'> {
 }
 
 /**
- * Interface to enforce the presence of the Proof attribute on the SubjectCredentialRequestsDto protobuf definition.
+ * Interface to enforce the presence of the Proof attribute on the SubjectCredentialRequests protobuf definition.
  */
-export interface SubjectCredentialRequestsDto extends Omit<SubjectCredentialRequestsDtoPb, 'proof'> {
+ export interface SubjectCredentialRequests extends Omit<SubjectCredentialRequestsPb, 'proof'> {
   proof: ProofPb;
+}
+
+/**
+ * Interface to enforce the presence of the SubjectCredentialRequests attribute on the SubjectCredentialRequestsDto protobuf definition.
+ */
+export interface SubjectCredentialRequestsDto extends Omit<SubjectCredentialRequestsDtoPb, 'credentialRequests'> {
+  credentialRequests: SubjectCredentialRequests;
 }
 
 /**

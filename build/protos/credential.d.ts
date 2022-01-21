@@ -51,31 +51,26 @@ export interface CredentialRequest {
     /** to denote wether this particular credential is required in response to the PresentationRequest. Defaults behavior resolves this to true. */
     required: boolean;
 }
-/**
- * Object that encapsulates a Subject's request for a Credential.
- * Note: this is different than the original CredentialRequest which lives in a Presentation(Request) object thanks to the proof attribute.
- * Also, it breaks the name convention of the singed type counterpart being the simpler name of the two, however because the unsigned CredentialRequest definition was claimed first, this is an exception to the rule.
- */
-export interface SubjectCredentialRequest {
-    /** the string matching the desire credential type */
-    type: string;
-    /** list of acceptable issuer DIDs that have issued the credential */
-    issuers: string[];
-    /** to denote wether this particular credential is required. Defaults behavior resolves this to true. */
-    required: boolean;
-    /** proof signed by the subject */
-    proof: Proof | undefined;
-}
 /** Type to encapsulate Credential type information of credentials issued, generally in response to Subject CredentialRequest. */
 export interface CredentialsIssuedResponse {
     credentialTypesIssued: string[];
+}
+/** Object that encapsulates an unsigned Subject's request for Credentials. */
+export interface UnsignedSubjectCredentialRequests {
+    credentialRequests: CredentialRequest[];
+}
+/** Object that encapsulates a signed Subject's request for Credentials. */
+export interface SubjectCredentialRequests {
+    credentialRequests: CredentialRequest[];
+    /** proof signed by the subject */
+    proof: Proof | undefined;
 }
 /**
  * Type to encapsulate Subject Credential Requests DTO which as a top level issuerDid which should be part of the request's issuers attribute.
  * This top level issuerDid attribute to facilitate the saas grabbed the issuer entity for relaying to the issuer's /credentialRequests endpoint.
  */
 export interface SubjectCredentialRequestsDto {
-    credentialRequests: SubjectCredentialRequest[];
+    credentialRequests: SubjectCredentialRequests[];
     issuerDid: string;
     subjectDid: string;
 }
@@ -194,19 +189,26 @@ export declare const CredentialRequest: {
     toJSON(message: CredentialRequest): unknown;
     fromPartial(object: DeepPartial<CredentialRequest>): CredentialRequest;
 };
-export declare const SubjectCredentialRequest: {
-    encode(message: SubjectCredentialRequest, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): SubjectCredentialRequest;
-    fromJSON(object: any): SubjectCredentialRequest;
-    toJSON(message: SubjectCredentialRequest): unknown;
-    fromPartial(object: DeepPartial<SubjectCredentialRequest>): SubjectCredentialRequest;
-};
 export declare const CredentialsIssuedResponse: {
     encode(message: CredentialsIssuedResponse, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number | undefined): CredentialsIssuedResponse;
     fromJSON(object: any): CredentialsIssuedResponse;
     toJSON(message: CredentialsIssuedResponse): unknown;
     fromPartial(object: DeepPartial<CredentialsIssuedResponse>): CredentialsIssuedResponse;
+};
+export declare const UnsignedSubjectCredentialRequests: {
+    encode(message: UnsignedSubjectCredentialRequests, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): UnsignedSubjectCredentialRequests;
+    fromJSON(object: any): UnsignedSubjectCredentialRequests;
+    toJSON(message: UnsignedSubjectCredentialRequests): unknown;
+    fromPartial(object: DeepPartial<UnsignedSubjectCredentialRequests>): UnsignedSubjectCredentialRequests;
+};
+export declare const SubjectCredentialRequests: {
+    encode(message: SubjectCredentialRequests, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): SubjectCredentialRequests;
+    fromJSON(object: any): SubjectCredentialRequests;
+    toJSON(message: SubjectCredentialRequests): unknown;
+    fromPartial(object: DeepPartial<SubjectCredentialRequests>): SubjectCredentialRequests;
 };
 export declare const SubjectCredentialRequestsDto: {
     encode(message: SubjectCredentialRequestsDto, writer?: _m0.Writer): _m0.Writer;
