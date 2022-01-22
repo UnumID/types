@@ -14,7 +14,8 @@ import {
   EncryptedCredential as EncryptedCredentialPb,
   EncryptedCredentialOptions as EncryptedCredentialOptionsPb, 
   EncryptedCredentialEnriched,
-  SubjectCredentialRequest,
+  UnsignedSubjectCredentialRequests,
+  SubjectCredentialRequests as SubjectCredentialRequestsPb,
   SubjectCredentialRequestsDto as SubjectCredentialRequestsDtoPb,
   CredentialsIssuedResponse,
   CredentialStatus,
@@ -67,10 +68,10 @@ export {
   EncryptedCredentialOptionsPb,
   EncryptedCredentialEnriched,
   RSAPadding,
-  SubjectCredentialRequest,
   CredentialsIssuedResponse,
   UnsignedRevokeAllCredentials,
   RevokeAllCredentials,
+  UnsignedSubjectCredentialRequests,
   SubjectCredentialRequestsEnrichedDtoPb,
 }
 
@@ -533,7 +534,7 @@ export interface ReceiptPresentationRequestData {
   holderAppUuid: string;
   uuid: string; // request uuid
   id: string; // request id
-  requestInfo: CredentialRequestInfoBasic[];
+  requestInfo: CredentialRequest[];
   expirationDate?: Date;
 }
 
@@ -577,7 +578,7 @@ export interface ReceiptRequestReceivedData {
  * Type to encapsulate specific Receipt data fields for SubjectCredentialRequestVerified related receipts. 
  */
  export interface ReceiptSubjectCredentialRequestVerifiedData extends VerifiedReceiptDataOptions {
-  requestInfo: CredentialRequestInfoBasic[];
+  requestInfo: CredentialRequest[];
  }
 
  /**
@@ -688,15 +689,15 @@ export interface CredentialReceiptInfo {
  required: boolean;
 }
 
-/**
- * Type to encapsulate non enriched CredentialRequest info.
- * Note: this breaks enriched naming conventions however the enriched CredentialRequestInfo definition already existed
- */
- export interface CredentialRequestInfoBasic {
-  type: string;
-  issuers: string[];
-  required: boolean;
- }
+// /**
+//  * Type to encapsulate non enriched CredentialRequest info.
+//  * Note: this breaks enriched naming conventions however the enriched CredentialRequestInfo definition already existed
+//  */
+//  export interface CredentialRequestInfoBasic {
+//   type: string;
+//   issuers: string[];
+//   required: boolean;
+//  }
  
 /**
  * Encapsulates HolderApp entity attributes
@@ -1046,10 +1047,18 @@ export interface UserDidAssociation extends Omit<UserDidAssociationPb, 'did'> {
 }
 
 /**
- * Interface to enforce the presence of the Proof attribute on the SubjectCredentialRequestsDto protobuf definition.
+ * Interface to enforce the presence of the Proof and CredentialRequest[] attribute on the SubjectCredentialRequests protobuf definition
  */
-export interface SubjectCredentialRequestsDto extends Omit<SubjectCredentialRequestsDtoPb, 'proof'> {
+ export interface SubjectCredentialRequests extends Omit<SubjectCredentialRequestsPb, 'proof' | 'credentialRequests'> {
+  credentialRequests: CredentialRequestPb[];
   proof: ProofPb;
+}
+
+/**
+ * Interface to enforce the presence of the SubjectCredentialRequests attribute on the SubjectCredentialRequestsDto protobuf definition.
+ */
+export interface SubjectCredentialRequestsDto extends Omit<SubjectCredentialRequestsDtoPb, 'credentialRequests'> {
+  subjectCredentialRequests: SubjectCredentialRequests;
 }
 
 /**
