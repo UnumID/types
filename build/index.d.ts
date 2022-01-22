@@ -5,7 +5,7 @@ import { UnsignedPresentation as UnsignedPresentationPb, Presentation as Present
 import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest";
 import { DidDocument as DidDocumentPb, SignedDidDocument as SignedDidDocumentPb, DidDocumentService, UnsignedDID, DID as DIDPb, UserDidAssociation as UserDidAssociationPb } from "./protos/didDocument";
 import { Proof as ProofPb } from "./protos/proof";
-import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb, CredentialStatusInfo as CredentialStatusInfoPb, IssueCredentialOptions, IssueCredentialsOptions, EncryptedCredential as EncryptedCredentialPb, EncryptedCredentialOptions as EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, SubjectCredentialRequests as SubjectCredentialRequestsPb, SubjectCredentialRequestsDto as SubjectCredentialRequestsDtoPb, CredentialsIssuedResponse, CredentialStatus, RevokeAllCredentials, UnsignedRevokeAllCredentials, SubjectCredentialRequestsEnrichedDto as SubjectCredentialRequestsEnrichedDtoPb } from "./protos/credential";
+import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb, CredentialStatusInfo as CredentialStatusInfoPb, IssueCredentialOptions, IssueCredentialsOptions, EncryptedCredential as EncryptedCredentialPb, EncryptedCredentialOptions as EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, UnsignedSubjectCredentialRequests, SubjectCredentialRequests as SubjectCredentialRequestsPb, SubjectCredentialRequestsDto as SubjectCredentialRequestsDtoPb, CredentialsIssuedResponse, CredentialStatus, RevokeAllCredentials, UnsignedRevokeAllCredentials, SubjectCredentialRequestsEnrichedDto as SubjectCredentialRequestsEnrichedDtoPb } from "./protos/credential";
 import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb } from "./protos/crypto";
 import { HolderAppInfo } from "./protos/holderApp";
 import { PresentationRequestEnriched } from "./protos/presentationRequestEnriched";
@@ -17,7 +17,7 @@ import { VerifierInfo as VerifierInfoPb } from "./protos/verifier";
 export { UnsignedPresentationPb, PresentationPb, };
 export { DidDocumentPb, DidDocumentService, SignedDidDocumentPb, UnsignedDID, DIDPb, UserDidAssociationPb, };
 export { UnsignedPresentationRequestPb, PresentationRequestPb, };
-export { IssueCredentialOptions, IssueCredentialsOptions, CredentialStatusInfoPb, CredentialStatus, CredentialRequestPb, UnsignedCredentialPb, CredentialPb, EncryptedCredentialPb, EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, RSAPadding, CredentialsIssuedResponse, UnsignedRevokeAllCredentials, RevokeAllCredentials, SubjectCredentialRequestsEnrichedDtoPb, };
+export { IssueCredentialOptions, IssueCredentialsOptions, CredentialStatusInfoPb, CredentialStatus, CredentialRequestPb, UnsignedCredentialPb, CredentialPb, EncryptedCredentialPb, EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, RSAPadding, CredentialsIssuedResponse, UnsignedRevokeAllCredentials, RevokeAllCredentials, UnsignedSubjectCredentialRequests, SubjectCredentialRequestsEnrichedDtoPb, };
 export { PresentationRequestEnriched };
 export { EncryptedKey, ProofPb, PublicKeyInfoPb };
 export { VerifierInfoPb, };

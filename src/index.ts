@@ -71,6 +71,7 @@ export {
   CredentialsIssuedResponse,
   UnsignedRevokeAllCredentials,
   RevokeAllCredentials,
+  UnsignedSubjectCredentialRequests,
   SubjectCredentialRequestsEnrichedDtoPb,
 }
 
