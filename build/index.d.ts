@@ -590,7 +590,55 @@ export interface Subject {
     updateKey: string;
     customerUuid: string;
     holderAppUuid: string;
+    holders: HolderDto[];
 }
+/**
+ * Encapsulates Holder types
+ */
+export declare type HolderType = 'web' | 'mobile';
+/**
+ * An options object used to create a Holder entity
+ */
+export interface HolderOptions {
+    browserName?: string;
+    deviceOs?: string;
+    deviceModel?: string;
+    type?: HolderType;
+}
+/**
+ * Encapsulates Holder entity attributes
+ */
+export interface HolderDto {
+    uuid: string;
+    createdAt: string;
+    updatedAt: string;
+    signingKeyId: string;
+    encryptionKeyId: string;
+    holderAppUuid: string;
+    subjectDid: string;
+    type?: HolderType;
+    browserName?: string;
+    deviceOs?: string;
+    deviceModel?: string;
+}
+/**
+ * An options object used to create a Subject entity
+ */
+export interface SubjectOptions {
+    publicKeyInfo: PublicKeyInfo[];
+    holderOptions?: HolderOptions;
+}
+/**
+ * The response body returned when creating or patching a Subject
+ */
+export interface SubjectPostDto extends Subject {
+    holder: HolderDto;
+}
+/**
+ * The response body returned when patching a Subject.
+ * Alias for SubjectPostDto.
+ */
+export declare type SubjectPatchDto = SubjectPostDto;
 /**
  * Type to encapsulate generic response from SaaS API endpoints which return resources keyed by version.
  */
