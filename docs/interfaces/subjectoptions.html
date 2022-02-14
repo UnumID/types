@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>VerificationResponse | @unumid/types</title>
+	<title>SubjectOptions | @unumid/types</title>
 	<meta name="description" content="Documentation for @unumid/types">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">@unumid/types</a>
 				</li>
 				<li>
-					<a href="verificationresponse.html">VerificationResponse</a>
+					<a href="subjectoptions.html">SubjectOptions</a>
 				</li>
 			</ul>
-			<h1>Interface VerificationResponse</h1>
+			<h1>Interface SubjectOptions</h1>
 		</div>
 	</div>
 </header>
@@ -68,8 +68,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Interface to encapsulate the response that the UnumID SaaS is expecting after forwarding the encrypted presentation to the verifier app for verification.
-						Notably it is not the DecryptedPresentation type from the Server SDK returns because the SaaS to never deals with the plaintext presentations.</p>
+						<p>An options object used to create a Subject entity</p>
 					</div>
 				</div>
 			</section>
@@ -77,7 +76,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">VerificationResponse</span>
+						<span class="target">SubjectOptions</span>
 					</li>
 				</ul>
 			</section>
@@ -88,9 +87,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="verificationresponse.html#isverified" class="tsd-kind-icon">is<wbr>Verified</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="verificationresponse.html#presentationreceiptinfo" class="tsd-kind-icon">presentation<wbr>Receipt<wbr>Info</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="verificationresponse.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="subjectoptions.html#holderoptions" class="tsd-kind-icon">holder<wbr>Options</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="subjectoptions.html#publickeyinfo" class="tsd-kind-icon">public<wbr>Key<wbr>Info</a></li>
 							</ul>
 						</section>
 					</div>
@@ -99,32 +97,22 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="isverified" class="tsd-anchor"></a>
-					<h3>is<wbr>Verified</h3>
-					<div class="tsd-signature tsd-kind-icon">is<wbr>Verified<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<a name="holderoptions" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> holder<wbr>Options</h3>
+					<div class="tsd-signature tsd-kind-icon">holder<wbr>Options<span class="tsd-signature-symbol">:</span> <a href="holderoptions.html" class="tsd-signature-type" data-tsd-kind="Interface">HolderOptions</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/797be14/src/index.ts#L1140">index.ts:1140</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/797be14/src/index.ts#L806">index.ts:806</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="presentationreceiptinfo" class="tsd-anchor"></a>
-					<h3>presentation<wbr>Receipt<wbr>Info</h3>
-					<div class="tsd-signature tsd-kind-icon">presentation<wbr>Receipt<wbr>Info<span class="tsd-signature-symbol">:</span> <a href="presentationreceiptinfo.html" class="tsd-signature-type" data-tsd-kind="Interface">PresentationReceiptInfo</a></div>
+					<a name="publickeyinfo" class="tsd-anchor"></a>
+					<h3>public<wbr>Key<wbr>Info</h3>
+					<div class="tsd-signature tsd-kind-icon">public<wbr>Key<wbr>Info<span class="tsd-signature-symbol">:</span> <a href="publickeyinfo.html" class="tsd-signature-type" data-tsd-kind="Interface">PublicKeyInfo</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/797be14/src/index.ts#L1142">index.ts:1142</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="type" class="tsd-anchor"></a>
-					<h3>type</h3>
-					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;VerifiablePresentation&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;DeclinedPresentation&quot;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/797be14/src/index.ts#L1141">index.ts:1141</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/797be14/src/index.ts#L805">index.ts:805</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -143,16 +131,13 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="verificationresponse.html" class="tsd-kind-icon">Verification<wbr>Response</a>
+						<a href="subjectoptions.html" class="tsd-kind-icon">Subject<wbr>Options</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="verificationresponse.html#isverified" class="tsd-kind-icon">is<wbr>Verified</a>
+								<a href="subjectoptions.html#holderoptions" class="tsd-kind-icon">holder<wbr>Options</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="verificationresponse.html#presentationreceiptinfo" class="tsd-kind-icon">presentation<wbr>Receipt<wbr>Info</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="verificationresponse.html#type" class="tsd-kind-icon">type</a>
+								<a href="subjectoptions.html#publickeyinfo" class="tsd-kind-icon">public<wbr>Key<wbr>Info</a>
 							</li>
 						</ul>
 					</li>

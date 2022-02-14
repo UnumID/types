@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Subject | @unumid/types</title>
+	<title>SubjectPostDto | @unumid/types</title>
 	<meta name="description" content="Documentation for @unumid/types">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">@unumid/types</a>
 				</li>
 				<li>
-					<a href="subject.html">Subject</a>
+					<a href="subjectpostdto.html">SubjectPostDto</a>
 				</li>
 			</ul>
-			<h1>Interface Subject</h1>
+			<h1>Interface SubjectPostDto</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Encapsulates Subject entity attributes</p>
+						<p>The response body returned when creating or patching a Subject</p>
 					</div>
 				</div>
 			</section>
@@ -76,10 +76,10 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Subject</span>
+						<a href="subject.html" class="tsd-signature-type" data-tsd-kind="Interface">Subject</a>
 						<ul class="tsd-hierarchy">
 							<li>
-								<a href="subjectpostdto.html" class="tsd-signature-type" data-tsd-kind="Interface">SubjectPostDto</a>
+								<span class="target">SubjectPostDto</span>
 							</li>
 						</ul>
 					</li>
@@ -92,15 +92,16 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="subject.html#createdat" class="tsd-kind-icon">created<wbr>At</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="subject.html#customeruuid" class="tsd-kind-icon">customer<wbr>Uuid</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="subject.html#did" class="tsd-kind-icon">did</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="subject.html#holderappuuid" class="tsd-kind-icon">holder<wbr>App<wbr>Uuid</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="subject.html#holders" class="tsd-kind-icon">holders</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="subject.html#isauthorized" class="tsd-kind-icon">is<wbr>Authorized</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="subject.html#updatekey" class="tsd-kind-icon">update<wbr>Key</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="subject.html#updatedat" class="tsd-kind-icon">updated<wbr>At</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="subject.html#uuid" class="tsd-kind-icon">uuid</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="subjectpostdto.html#createdat" class="tsd-kind-icon">created<wbr>At</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="subjectpostdto.html#customeruuid" class="tsd-kind-icon">customer<wbr>Uuid</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="subjectpostdto.html#did" class="tsd-kind-icon">did</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="subjectpostdto.html#holder" class="tsd-kind-icon">holder</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="subjectpostdto.html#holderappuuid" class="tsd-kind-icon">holder<wbr>App<wbr>Uuid</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="subjectpostdto.html#holders" class="tsd-kind-icon">holders</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="subjectpostdto.html#isauthorized" class="tsd-kind-icon">is<wbr>Authorized</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="subjectpostdto.html#updatekey" class="tsd-kind-icon">update<wbr>Key</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="subjectpostdto.html#updatedat" class="tsd-kind-icon">updated<wbr>At</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="subjectpostdto.html#uuid" class="tsd-kind-icon">uuid</a></li>
 							</ul>
 						</section>
 					</div>
@@ -108,91 +109,110 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="createdat" class="tsd-anchor"></a>
 					<h3>created<wbr>At</h3>
 					<div class="tsd-signature tsd-kind-icon">created<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="subject.html">Subject</a>.<a href="subject.html#createdat">createdAt</a></p>
 						<ul>
 							<li>Defined in <a href="https://github.com/UnumID/types/blob/797be14/src/index.ts#L759">index.ts:759</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="customeruuid" class="tsd-anchor"></a>
 					<h3>customer<wbr>Uuid</h3>
 					<div class="tsd-signature tsd-kind-icon">customer<wbr>Uuid<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="subject.html">Subject</a>.<a href="subject.html#customeruuid">customerUuid</a></p>
 						<ul>
 							<li>Defined in <a href="https://github.com/UnumID/types/blob/797be14/src/index.ts#L764">index.ts:764</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="did" class="tsd-anchor"></a>
 					<h3>did</h3>
 					<div class="tsd-signature tsd-kind-icon">did<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="subject.html">Subject</a>.<a href="subject.html#did">did</a></p>
 						<ul>
 							<li>Defined in <a href="https://github.com/UnumID/types/blob/797be14/src/index.ts#L761">index.ts:761</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="holder" class="tsd-anchor"></a>
+					<h3>holder</h3>
+					<div class="tsd-signature tsd-kind-icon">holder<span class="tsd-signature-symbol">:</span> <a href="holderdto.html" class="tsd-signature-type" data-tsd-kind="Interface">HolderDto</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/797be14/src/index.ts#L813">index.ts:813</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="holderappuuid" class="tsd-anchor"></a>
 					<h3>holder<wbr>App<wbr>Uuid</h3>
 					<div class="tsd-signature tsd-kind-icon">holder<wbr>App<wbr>Uuid<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="subject.html">Subject</a>.<a href="subject.html#holderappuuid">holderAppUuid</a></p>
 						<ul>
 							<li>Defined in <a href="https://github.com/UnumID/types/blob/797be14/src/index.ts#L765">index.ts:765</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="holders" class="tsd-anchor"></a>
 					<h3>holders</h3>
 					<div class="tsd-signature tsd-kind-icon">holders<span class="tsd-signature-symbol">:</span> <a href="holderdto.html" class="tsd-signature-type" data-tsd-kind="Interface">HolderDto</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="subject.html">Subject</a>.<a href="subject.html#holders">holders</a></p>
 						<ul>
 							<li>Defined in <a href="https://github.com/UnumID/types/blob/797be14/src/index.ts#L766">index.ts:766</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="isauthorized" class="tsd-anchor"></a>
 					<h3>is<wbr>Authorized</h3>
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Authorized<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="subject.html">Subject</a>.<a href="subject.html#isauthorized">isAuthorized</a></p>
 						<ul>
 							<li>Defined in <a href="https://github.com/UnumID/types/blob/797be14/src/index.ts#L762">index.ts:762</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="updatekey" class="tsd-anchor"></a>
 					<h3>update<wbr>Key</h3>
 					<div class="tsd-signature tsd-kind-icon">update<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="subject.html">Subject</a>.<a href="subject.html#updatekey">updateKey</a></p>
 						<ul>
 							<li>Defined in <a href="https://github.com/UnumID/types/blob/797be14/src/index.ts#L763">index.ts:763</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="updatedat" class="tsd-anchor"></a>
 					<h3>updated<wbr>At</h3>
 					<div class="tsd-signature tsd-kind-icon">updated<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="subject.html">Subject</a>.<a href="subject.html#updatedat">updatedAt</a></p>
 						<ul>
 							<li>Defined in <a href="https://github.com/UnumID/types/blob/797be14/src/index.ts#L760">index.ts:760</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="uuid" class="tsd-anchor"></a>
 					<h3>uuid</h3>
 					<div class="tsd-signature tsd-kind-icon">uuid<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="subject.html">Subject</a>.<a href="subject.html#uuid">uuid</a></p>
 						<ul>
 							<li>Defined in <a href="https://github.com/UnumID/types/blob/797be14/src/index.ts#L758">index.ts:758</a></li>
 						</ul>
@@ -213,34 +233,37 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="subject.html" class="tsd-kind-icon">Subject</a>
+						<a href="subjectpostdto.html" class="tsd-kind-icon">Subject<wbr>Post<wbr>Dto</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="subject.html#createdat" class="tsd-kind-icon">created<wbr>At</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="subjectpostdto.html#createdat" class="tsd-kind-icon">created<wbr>At</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="subjectpostdto.html#customeruuid" class="tsd-kind-icon">customer<wbr>Uuid</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="subjectpostdto.html#did" class="tsd-kind-icon">did</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="subject.html#customeruuid" class="tsd-kind-icon">customer<wbr>Uuid</a>
+								<a href="subjectpostdto.html#holder" class="tsd-kind-icon">holder</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="subject.html#did" class="tsd-kind-icon">did</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="subjectpostdto.html#holderappuuid" class="tsd-kind-icon">holder<wbr>App<wbr>Uuid</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="subject.html#holderappuuid" class="tsd-kind-icon">holder<wbr>App<wbr>Uuid</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="subjectpostdto.html#holders" class="tsd-kind-icon">holders</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="subject.html#holders" class="tsd-kind-icon">holders</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="subjectpostdto.html#isauthorized" class="tsd-kind-icon">is<wbr>Authorized</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="subject.html#isauthorized" class="tsd-kind-icon">is<wbr>Authorized</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="subjectpostdto.html#updatekey" class="tsd-kind-icon">update<wbr>Key</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="subject.html#updatekey" class="tsd-kind-icon">update<wbr>Key</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="subjectpostdto.html#updatedat" class="tsd-kind-icon">updated<wbr>At</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="subject.html#updatedat" class="tsd-kind-icon">updated<wbr>At</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="subject.html#uuid" class="tsd-kind-icon">uuid</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="subjectpostdto.html#uuid" class="tsd-kind-icon">uuid</a>
 							</li>
 						</ul>
 					</li>
