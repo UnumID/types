@@ -659,6 +659,14 @@ export interface DidDocumentPatchOptions {
     holderOptions?: HolderOptions;
 }
 /**
+ * Response returned from the DidDocument PATCH operation
+ * It will include a new holder, if one was created
+ */
+export interface DidDocumentPatchDto {
+    success: boolean;
+    holder?: HolderDto;
+}
+/**
  * Type to encapsulate generic response from SaaS API endpoints which return resources keyed by version.
  */
 export declare type VersionedDto<N extends string, T = any> = {
