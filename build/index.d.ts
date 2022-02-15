@@ -635,6 +635,18 @@ export interface SubjectPostDto extends Subject {
     holder: HolderDto;
 }
 /**
+ * An options object used to update a DidDocument by adding or updating a public key
+ * If the DidDocument does not include a key with the same id, a new key will be added.
+ * If it does, that key will be updated
+ */
+export interface PublicKeyInfoUpdateOptions {
+    id: string;
+    publicKey?: string;
+    encoding?: string;
+    type?: string;
+    status?: string;
+}
+/**
  * Type to encapsulate generic response from SaaS API endpoints which return resources keyed by version.
  */
 export declare type VersionedDto<N extends string, T = any> = {
