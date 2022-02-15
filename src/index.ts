@@ -814,10 +814,39 @@ export interface SubjectPostDto extends Subject {
 }
 
 /**
- * The response body returned when patching a Subject.
- * Alias for SubjectPostDto.
+ * An options object used to update a DidDocument by adding or updating a public key
+ * If the DidDocument does not include a key with the same id, a new key will be added.
+ * If it does, that key will be updated
  */
-export type SubjectPatchDto = SubjectPostDto;
+export interface PublicKeyInfoUpdateOptions {
+  id: string;
+  publicKey?: string; // required to add a new key
+  encoding?: string; // required to add a new key
+  type?: string; // required to add a new key
+  status?: string; // required to add a new key. invalidate an existing key by setting this value to 'invalid'
+}
+
+/**
+ * An options object used to update a Did Document by adding or updating one or more public keys
+ * It must contain the subject's updateKey and a signature by either one of the subject's existing
+ * signing keys or another key to which the correct authority has been delegated
+ */
+export interface DidDocumentPatchOptions {
+  did: string; // identifies the DidDocument to update
+  updateKey: string; // the subject's updateKey
+  publicKeyInfo: PublicKeyInfoUpdateOptions[]; // keys to update/add
+  proof: Proof; // proof containing a signature over the updateKey by an authorized private key
+  holderOptions?: HolderOptions; // metadata options for creating a new Holder, if keys are being added
+}
+
+/**
+ * Response returned from the DidDocument PATCH operation
+ * It will include a new holder, if one was created
+ */
+export interface DidDocumentPatchDto {
+  success: boolean;
+  holder?: HolderDto;
+}
 
 /**
  * Type to encapsulate generic response from SaaS API endpoints which return resources keyed by version.
