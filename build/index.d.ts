@@ -647,6 +647,18 @@ export interface PublicKeyInfoUpdateOptions {
     status?: string;
 }
 /**
+ * An options object used to update a Did Document by adding or updating one or more public keys
+ * It must contain the subject's updateKey and a signature by either one of the subject's existing
+ * signing keys or another key to which the correct authority has been delegated
+ */
+export interface DidDocumentPatchOptions {
+    did: string;
+    updateKey: string;
+    publicKeyInfo: PublicKeyInfoUpdateOptions[];
+    proof: Proof;
+    holderOptions?: HolderOptions;
+}
+/**
  * Type to encapsulate generic response from SaaS API endpoints which return resources keyed by version.
  */
 export declare type VersionedDto<N extends string, T = any> = {
