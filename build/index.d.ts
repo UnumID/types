@@ -635,11 +635,6 @@ export interface SubjectPostDto extends Subject {
     holder: HolderDto;
 }
 /**
- * The response body returned when patching a Subject.
- * Alias for SubjectPostDto.
- */
-export declare type SubjectPatchDto = SubjectPostDto;
-/**
  * Type to encapsulate generic response from SaaS API endpoints which return resources keyed by version.
  */
 export declare type VersionedDto<N extends string, T = any> = {

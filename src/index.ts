@@ -814,12 +814,6 @@ export interface SubjectPostDto extends Subject {
 }
 
 /**
- * The response body returned when patching a Subject.
- * Alias for SubjectPostDto.
- */
-export type SubjectPatchDto = SubjectPostDto;
-
-/**
  * Type to encapsulate generic response from SaaS API endpoints which return resources keyed by version.
  */
 export type VersionedDto<N extends string, T = any> = {
