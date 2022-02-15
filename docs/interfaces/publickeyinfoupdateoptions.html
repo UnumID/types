@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>VersionMapping | @unumid/types</title>
+	<title>PublicKeyInfoUpdateOptions | @unumid/types</title>
 	<meta name="description" content="Documentation for @unumid/types">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">@unumid/types</a>
 				</li>
 				<li>
-					<a href="versionmapping.html">VersionMapping</a>
+					<a href="publickeyinfoupdateoptions.html">PublicKeyInfoUpdateOptions</a>
 				</li>
 			</ul>
-			<h1>Interface VersionMapping</h1>
+			<h1>Interface PublicKeyInfoUpdateOptions</h1>
 		</div>
 	</div>
 </header>
@@ -68,16 +68,17 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Interface to encapsulate corresponding mappings between UnumID Mobile (aka Holder) SDK and Server SDK versions.</p>
+						<p>An options object used to update a DidDocument by adding or updating a public key
+							If the DidDocument does not include a key with the same id, a new key will be added.
+						If it does, that key will be updated</p>
 					</div>
-					<p>Ideally the major versions should always be consist however this abstraction is in place in case we need more fine tune control between the compatible versions.</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">VersionMapping</span>
+						<span class="target">PublicKeyInfoUpdateOptions</span>
 					</li>
 				</ul>
 			</section>
@@ -88,8 +89,11 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="versionmapping.html#saasapiversion" class="tsd-kind-icon">saas<wbr>Api<wbr>Version</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="versionmapping.html#serversdkversion" class="tsd-kind-icon">server<wbr>Sdk<wbr>Version</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="publickeyinfoupdateoptions.html#encoding" class="tsd-kind-icon">encoding</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="publickeyinfoupdateoptions.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="publickeyinfoupdateoptions.html#publickey" class="tsd-kind-icon">public<wbr>Key</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="publickeyinfoupdateoptions.html#status" class="tsd-kind-icon">status</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="publickeyinfoupdateoptions.html#type" class="tsd-kind-icon">type</a></li>
 							</ul>
 						</section>
 					</div>
@@ -98,34 +102,54 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="saasapiversion" class="tsd-anchor"></a>
-					<h3>saas<wbr>Api<wbr>Version</h3>
-					<div class="tsd-signature tsd-kind-icon">saas<wbr>Api<wbr>Version<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">SemVer</span></div>
+					<a name="encoding" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> encoding</h3>
+					<div class="tsd-signature tsd-kind-icon">encoding<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/f0f4c11/src/index.ts#L386">index.ts:386</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/f0f4c11/src/index.ts#L824">index.ts:824</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Minimum capable version. In practice it corresponds to the version header used by the Mobile SDK.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="serversdkversion" class="tsd-anchor"></a>
-					<h3>server<wbr>Sdk<wbr>Version</h3>
-					<div class="tsd-signature tsd-kind-icon">server<wbr>Sdk<wbr>Version<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">SemVer</span></div>
+					<a name="id" class="tsd-anchor"></a>
+					<h3>id</h3>
+					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/f0f4c11/src/index.ts#L390">index.ts:390</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/f0f4c11/src/index.ts#L822">index.ts:822</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Minimum capable version</p>
-						</div>
-					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="publickey" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> public<wbr>Key</h3>
+					<div class="tsd-signature tsd-kind-icon">public<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/f0f4c11/src/index.ts#L823">index.ts:823</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="status" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> status</h3>
+					<div class="tsd-signature tsd-kind-icon">status<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/f0f4c11/src/index.ts#L826">index.ts:826</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="type" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> type</h3>
+					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/f0f4c11/src/index.ts#L825">index.ts:825</a></li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 		</div>
@@ -142,13 +166,22 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="versionmapping.html" class="tsd-kind-icon">Version<wbr>Mapping</a>
+						<a href="publickeyinfoupdateoptions.html" class="tsd-kind-icon">Public<wbr>Key<wbr>Info<wbr>Update<wbr>Options</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="versionmapping.html#saasapiversion" class="tsd-kind-icon">saas<wbr>Api<wbr>Version</a>
+								<a href="publickeyinfoupdateoptions.html#encoding" class="tsd-kind-icon">encoding</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="versionmapping.html#serversdkversion" class="tsd-kind-icon">server<wbr>Sdk<wbr>Version</a>
+								<a href="publickeyinfoupdateoptions.html#id" class="tsd-kind-icon">id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="publickeyinfoupdateoptions.html#publickey" class="tsd-kind-icon">public<wbr>Key</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="publickeyinfoupdateoptions.html#status" class="tsd-kind-icon">status</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="publickeyinfoupdateoptions.html#type" class="tsd-kind-icon">type</a>
 							</li>
 						</ul>
 					</li>

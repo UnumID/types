@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>VersionMapping | @unumid/types</title>
+	<title>DidDocumentPatchDto | @unumid/types</title>
 	<meta name="description" content="Documentation for @unumid/types">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">@unumid/types</a>
 				</li>
 				<li>
-					<a href="versionmapping.html">VersionMapping</a>
+					<a href="diddocumentpatchdto.html">DidDocumentPatchDto</a>
 				</li>
 			</ul>
-			<h1>Interface VersionMapping</h1>
+			<h1>Interface DidDocumentPatchDto</h1>
 		</div>
 	</div>
 </header>
@@ -68,16 +68,16 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Interface to encapsulate corresponding mappings between UnumID Mobile (aka Holder) SDK and Server SDK versions.</p>
+						<p>Response returned from the DidDocument PATCH operation
+						It will include a new holder, if one was created</p>
 					</div>
-					<p>Ideally the major versions should always be consist however this abstraction is in place in case we need more fine tune control between the compatible versions.</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">VersionMapping</span>
+						<span class="target">DidDocumentPatchDto</span>
 					</li>
 				</ul>
 			</section>
@@ -88,8 +88,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="versionmapping.html#saasapiversion" class="tsd-kind-icon">saas<wbr>Api<wbr>Version</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="versionmapping.html#serversdkversion" class="tsd-kind-icon">server<wbr>Sdk<wbr>Version</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diddocumentpatchdto.html#holder" class="tsd-kind-icon">holder</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diddocumentpatchdto.html#success" class="tsd-kind-icon">success</a></li>
 							</ul>
 						</section>
 					</div>
@@ -98,34 +98,24 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="saasapiversion" class="tsd-anchor"></a>
-					<h3>saas<wbr>Api<wbr>Version</h3>
-					<div class="tsd-signature tsd-kind-icon">saas<wbr>Api<wbr>Version<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">SemVer</span></div>
+					<a name="holder" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> holder</h3>
+					<div class="tsd-signature tsd-kind-icon">holder<span class="tsd-signature-symbol">:</span> <a href="holderdto.html" class="tsd-signature-type" data-tsd-kind="Interface">HolderDto</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/f0f4c11/src/index.ts#L386">index.ts:386</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/f0f4c11/src/index.ts#L848">index.ts:848</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Minimum capable version. In practice it corresponds to the version header used by the Mobile SDK.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="serversdkversion" class="tsd-anchor"></a>
-					<h3>server<wbr>Sdk<wbr>Version</h3>
-					<div class="tsd-signature tsd-kind-icon">server<wbr>Sdk<wbr>Version<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">SemVer</span></div>
+					<a name="success" class="tsd-anchor"></a>
+					<h3>success</h3>
+					<div class="tsd-signature tsd-kind-icon">success<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/f0f4c11/src/index.ts#L390">index.ts:390</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/f0f4c11/src/index.ts#L847">index.ts:847</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Minimum capable version</p>
-						</div>
-					</div>
 				</section>
 			</section>
 		</div>
@@ -142,13 +132,13 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="versionmapping.html" class="tsd-kind-icon">Version<wbr>Mapping</a>
+						<a href="diddocumentpatchdto.html" class="tsd-kind-icon">Did<wbr>Document<wbr>Patch<wbr>Dto</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="versionmapping.html#saasapiversion" class="tsd-kind-icon">saas<wbr>Api<wbr>Version</a>
+								<a href="diddocumentpatchdto.html#holder" class="tsd-kind-icon">holder</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="versionmapping.html#serversdkversion" class="tsd-kind-icon">server<wbr>Sdk<wbr>Version</a>
+								<a href="diddocumentpatchdto.html#success" class="tsd-kind-icon">success</a>
 							</li>
 						</ul>
 					</li>

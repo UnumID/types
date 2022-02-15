@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>DidDocumentPb | @unumid/types</title>
+	<title>DidDocumentPatchOptions | @unumid/types</title>
 	<meta name="description" content="Documentation for @unumid/types">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">@unumid/types</a>
 				</li>
 				<li>
-					<a href="diddocumentpb.html">DidDocumentPb</a>
+					<a href="diddocumentpatchoptions.html">DidDocumentPatchOptions</a>
 				</li>
 			</ul>
-			<h1>Interface DidDocumentPb</h1>
+			<h1>Interface DidDocumentPatchOptions</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,9 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Object to encapsulate a DID document object from the saas.</p>
+						<p>An options object used to update a Did Document by adding or updating one or more public keys
+							It must contain the subject&#39;s updateKey and a signature by either one of the subject&#39;s existing
+						signing keys or another key to which the correct authority has been delegated</p>
 					</div>
 				</div>
 			</section>
@@ -76,7 +78,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">DidDocumentPb</span>
+						<span class="target">DidDocumentPatchOptions</span>
 					</li>
 				</ul>
 			</section>
@@ -87,12 +89,11 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diddocumentpb.html#context" class="tsd-kind-icon">context</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diddocumentpb.html#created" class="tsd-kind-icon">created</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diddocumentpb.html#id" class="tsd-kind-icon">id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diddocumentpb.html#publickey" class="tsd-kind-icon">public<wbr>Key</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diddocumentpb.html#service" class="tsd-kind-icon">service</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diddocumentpb.html#updated" class="tsd-kind-icon">updated</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diddocumentpatchoptions.html#did" class="tsd-kind-icon">did</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diddocumentpatchoptions.html#holderoptions" class="tsd-kind-icon">holder<wbr>Options</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diddocumentpatchoptions.html#proof" class="tsd-kind-icon">proof</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diddocumentpatchoptions.html#publickeyinfo" class="tsd-kind-icon">public<wbr>Key<wbr>Info</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diddocumentpatchoptions.html#updatekey" class="tsd-kind-icon">update<wbr>Key</a></li>
 							</ul>
 						</section>
 					</div>
@@ -101,62 +102,52 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="context" class="tsd-anchor"></a>
-					<h3>context</h3>
-					<div class="tsd-signature tsd-kind-icon">context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="did" class="tsd-anchor"></a>
+					<h3>did</h3>
+					<div class="tsd-signature tsd-kind-icon">did<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/f0f4c11/src/protos/didDocument.ts#L12">protos/didDocument.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/f0f4c11/src/index.ts#L835">index.ts:835</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="created" class="tsd-anchor"></a>
-					<h3>created</h3>
-					<div class="tsd-signature tsd-kind-icon">created<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Date</span></div>
+					<a name="holderoptions" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> holder<wbr>Options</h3>
+					<div class="tsd-signature tsd-kind-icon">holder<wbr>Options<span class="tsd-signature-symbol">:</span> <a href="holderoptions.html" class="tsd-signature-type" data-tsd-kind="Interface">HolderOptions</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/f0f4c11/src/protos/didDocument.ts#L14">protos/didDocument.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/f0f4c11/src/index.ts#L839">index.ts:839</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="id" class="tsd-anchor"></a>
-					<h3>id</h3>
-					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="proof" class="tsd-anchor"></a>
+					<h3>proof</h3>
+					<div class="tsd-signature tsd-kind-icon">proof<span class="tsd-signature-symbol">:</span> <a href="proof.html" class="tsd-signature-type" data-tsd-kind="Interface">Proof</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/f0f4c11/src/protos/didDocument.ts#L13">protos/didDocument.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/f0f4c11/src/index.ts#L838">index.ts:838</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="publickey" class="tsd-anchor"></a>
-					<h3>public<wbr>Key</h3>
-					<div class="tsd-signature tsd-kind-icon">public<wbr>Key<span class="tsd-signature-symbol">:</span> <a href="../modules.html#publickeyinfopb" class="tsd-signature-type" data-tsd-kind="Variable">PublicKeyInfoPb</a><span class="tsd-signature-symbol">[]</span></div>
+					<a name="publickeyinfo" class="tsd-anchor"></a>
+					<h3>public<wbr>Key<wbr>Info</h3>
+					<div class="tsd-signature tsd-kind-icon">public<wbr>Key<wbr>Info<span class="tsd-signature-symbol">:</span> <a href="publickeyinfoupdateoptions.html" class="tsd-signature-type" data-tsd-kind="Interface">PublicKeyInfoUpdateOptions</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/f0f4c11/src/protos/didDocument.ts#L16">protos/didDocument.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/f0f4c11/src/index.ts#L837">index.ts:837</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="service" class="tsd-anchor"></a>
-					<h3>service</h3>
-					<div class="tsd-signature tsd-kind-icon">service<span class="tsd-signature-symbol">:</span> <a href="../modules.html#diddocumentservice" class="tsd-signature-type" data-tsd-kind="Variable">DidDocumentService</a><span class="tsd-signature-symbol">[]</span></div>
+					<a name="updatekey" class="tsd-anchor"></a>
+					<h3>update<wbr>Key</h3>
+					<div class="tsd-signature tsd-kind-icon">update<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/f0f4c11/src/protos/didDocument.ts#L17">protos/didDocument.ts:17</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="updated" class="tsd-anchor"></a>
-					<h3>updated</h3>
-					<div class="tsd-signature tsd-kind-icon">updated<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Date</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/f0f4c11/src/protos/didDocument.ts#L15">protos/didDocument.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/f0f4c11/src/index.ts#L836">index.ts:836</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -175,25 +166,22 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="diddocumentpb.html" class="tsd-kind-icon">Did<wbr>Document<wbr>Pb</a>
+						<a href="diddocumentpatchoptions.html" class="tsd-kind-icon">Did<wbr>Document<wbr>Patch<wbr>Options</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="diddocumentpb.html#context" class="tsd-kind-icon">context</a>
+								<a href="diddocumentpatchoptions.html#did" class="tsd-kind-icon">did</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="diddocumentpb.html#created" class="tsd-kind-icon">created</a>
+								<a href="diddocumentpatchoptions.html#holderoptions" class="tsd-kind-icon">holder<wbr>Options</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="diddocumentpb.html#id" class="tsd-kind-icon">id</a>
+								<a href="diddocumentpatchoptions.html#proof" class="tsd-kind-icon">proof</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="diddocumentpb.html#publickey" class="tsd-kind-icon">public<wbr>Key</a>
+								<a href="diddocumentpatchoptions.html#publickeyinfo" class="tsd-kind-icon">public<wbr>Key<wbr>Info</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="diddocumentpb.html#service" class="tsd-kind-icon">service</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="diddocumentpb.html#updated" class="tsd-kind-icon">updated</a>
+								<a href="diddocumentpatchoptions.html#updatekey" class="tsd-kind-icon">update<wbr>Key</a>
 							</li>
 						</ul>
 					</li>
