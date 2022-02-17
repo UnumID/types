@@ -805,6 +805,7 @@ export interface IssuerInfoMap {
  * Interface for Public and Private corresponding key pair
  */
 export interface KeyPair {
+    id: string;
     privateKey: string;
     publicKey: string;
 }
