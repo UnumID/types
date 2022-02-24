@@ -2,6 +2,7 @@
 import Long from "long";
 import _m0 from "protobufjs/minimal";
 import { Timestamp } from "./google/protobuf/timestamp";
+import { Proof } from "./proof";
 
 export const protobufPackage = "crypto.v1";
 
@@ -81,6 +82,23 @@ export interface KeyPair {
 export interface KeyPairSet {
   signing: KeyPair | undefined;
   encryption: KeyPair | undefined;
+}
+
+/**
+ * Object to encapsulate an unsigned String
+ * This is necessary such that there is a base proto object of which to uniformally / consistently convert to and from bytes.
+ */
+export interface UnsignedString {
+  data: string;
+}
+
+/**
+ * Object to encapsulate a signed String
+ * Note: breaking naming conventions thanks to the "String" causing all sorts of conflicts
+ */
+export interface SignedString {
+  data: string;
+  proof: Proof | undefined;
 }
 
 const baseEncryptedKey: object = { iv: "", key: "", algorithm: "", did: "" };
@@ -639,6 +657,140 @@ export const KeyPairSet = {
       message.encryption = KeyPair.fromPartial(object.encryption);
     } else {
       message.encryption = undefined;
+    }
+    return message;
+  },
+};
+
+const baseUnsignedString: object = { data: "" };
+
+export const UnsignedString = {
+  encode(
+    message: UnsignedString,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.data !== "") {
+      writer.uint32(10).string(message.data);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): UnsignedString {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseUnsignedString } as UnsignedString;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.data = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): UnsignedString {
+    const message = { ...baseUnsignedString } as UnsignedString;
+    if (object.data !== undefined && object.data !== null) {
+      message.data = String(object.data);
+    } else {
+      message.data = "";
+    }
+    return message;
+  },
+
+  toJSON(message: UnsignedString): unknown {
+    const obj: any = {};
+    message.data !== undefined && (obj.data = message.data);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<UnsignedString>): UnsignedString {
+    const message = { ...baseUnsignedString } as UnsignedString;
+    if (object.data !== undefined && object.data !== null) {
+      message.data = object.data;
+    } else {
+      message.data = "";
+    }
+    return message;
+  },
+};
+
+const baseSignedString: object = { data: "" };
+
+export const SignedString = {
+  encode(
+    message: SignedString,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.data !== "") {
+      writer.uint32(10).string(message.data);
+    }
+    if (message.proof !== undefined) {
+      Proof.encode(message.proof, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): SignedString {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseSignedString } as SignedString;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.data = reader.string();
+          break;
+        case 2:
+          message.proof = Proof.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): SignedString {
+    const message = { ...baseSignedString } as SignedString;
+    if (object.data !== undefined && object.data !== null) {
+      message.data = String(object.data);
+    } else {
+      message.data = "";
+    }
+    if (object.proof !== undefined && object.proof !== null) {
+      message.proof = Proof.fromJSON(object.proof);
+    } else {
+      message.proof = undefined;
+    }
+    return message;
+  },
+
+  toJSON(message: SignedString): unknown {
+    const obj: any = {};
+    message.data !== undefined && (obj.data = message.data);
+    message.proof !== undefined &&
+      (obj.proof = message.proof ? Proof.toJSON(message.proof) : undefined);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<SignedString>): SignedString {
+    const message = { ...baseSignedString } as SignedString;
+    if (object.data !== undefined && object.data !== null) {
+      message.data = object.data;
+    } else {
+      message.data = "";
+    }
+    if (object.proof !== undefined && object.proof !== null) {
+      message.proof = Proof.fromPartial(object.proof);
+    } else {
+      message.proof = undefined;
     }
     return message;
   },

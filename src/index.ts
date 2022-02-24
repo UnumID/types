@@ -23,7 +23,7 @@ import {
   UnsignedRevokeAllCredentials,
   SubjectCredentialRequestsEnrichedDto as SubjectCredentialRequestsEnrichedDtoPb,
 } from "./protos/credential";
-import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb } from "./protos/crypto"
+import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb, UnsignedString, SignedString } from "./protos/crypto"
 import { HolderAppInfo } from "./protos/holderApp";
 import { PresentationRequestEnriched } from "./protos/presentationRequestEnriched";
 import { VerifierInfo as VerifierInfoPb } from "./protos/verifier";
@@ -84,7 +84,9 @@ export {
   // protos/crypto
   EncryptedKey,
   ProofPb,
-  PublicKeyInfoPb
+  PublicKeyInfoPb,
+  UnsignedString,
+  SignedString
 }
 
 export { 

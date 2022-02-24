@@ -1,4 +1,5 @@
 import _m0 from "protobufjs/minimal";
+import { Proof } from "./proof";
 export declare const protobufPackage = "crypto.v1";
 /** Enum containing all of the RSA padding types that we use */
 export declare enum RSAPadding {
@@ -48,6 +49,15 @@ export interface KeyPairSet {
     signing: KeyPair | undefined;
     encryption: KeyPair | undefined;
 }
+/** Object to encapsulate an unsigned String */
+export interface UnsignedString {
+    data: string;
+}
+/** Object to encapsulate a signed String */
+export interface SignedString {
+    data: string;
+    proof: Proof | undefined;
+}
 export declare const EncryptedKey: {
     encode(message: EncryptedKey, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number | undefined): EncryptedKey;
@@ -82,6 +92,20 @@ export declare const KeyPairSet: {
     fromJSON(object: any): KeyPairSet;
     toJSON(message: KeyPairSet): unknown;
     fromPartial(object: DeepPartial<KeyPairSet>): KeyPairSet;
+};
+export declare const UnsignedString: {
+    encode(message: UnsignedString, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): UnsignedString;
+    fromJSON(object: any): UnsignedString;
+    toJSON(message: UnsignedString): unknown;
+    fromPartial(object: DeepPartial<UnsignedString>): UnsignedString;
+};
+export declare const SignedString: {
+    encode(message: SignedString, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): SignedString;
+    fromJSON(object: any): SignedString;
+    toJSON(message: SignedString): unknown;
+    fromPartial(object: DeepPartial<SignedString>): SignedString;
 };
 declare type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 export declare type DeepPartial<T> = T extends Builtin ? T : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
