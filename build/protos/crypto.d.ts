@@ -49,11 +49,17 @@ export interface KeyPairSet {
     signing: KeyPair | undefined;
     encryption: KeyPair | undefined;
 }
-/** Object to encapsulate an unsigned String */
+/**
+ * Object to encapsulate an unsigned String
+ * This is necessary such that there is a base proto object of which to uniformally / consistently convert to and from bytes.
+ */
 export interface UnsignedString {
     data: string;
 }
-/** Object to encapsulate a signed String */
+/**
+ * Object to encapsulate a signed String
+ * Note: breaking naming conventions thanks to the "String" causing all sorts of conflicts
+ */
 export interface SignedString {
     data: string;
     proof: Proof | undefined;

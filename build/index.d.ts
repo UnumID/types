@@ -48,6 +48,9 @@ export interface Proof {
     proofPurpose: string;
 }
 /**
+ * Interface to encapsulate cryptographic proof for any signed object: Credentials, Presentations, PresentationRequests that goes over HTTP
+ */
+/**
  * Type to encapsulate supported claim primitives.
  */
 export declare type ClaimPrimitive = string | number | boolean | Date | null;
@@ -655,7 +658,7 @@ export interface DidDocumentPatchOptions {
     did: string;
     updateKey: string;
     publicKeyInfo: PublicKeyInfoUpdateOptions[];
-    proof: Proof;
+    proof: ProofPb;
     holderOptions?: HolderOptions;
 }
 /**

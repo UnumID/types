@@ -131,6 +131,14 @@ export interface Proof {
 }
 
 /**
+ * Interface to encapsulate cryptographic proof for any signed object: Credentials, Presentations, PresentationRequests that goes over HTTP
+ */
+// Although, this makes sense not doing so because would break convention of the ts type only removing the undefined type option from proto defs... the date being a string is legacy and the original proof type should be removed despite the dates being encoded into strings of HTTP.
+// export interface Proof extends Omit<ProofPb, 'created'> {
+//   created: string;
+// }
+
+/**
  * Type to encapsulate supported claim primitives.
  */
 export type ClaimPrimitive = string | number | boolean | Date | null;
@@ -837,7 +845,7 @@ export interface DidDocumentPatchOptions {
   did: string; // identifies the DidDocument to update
   updateKey: string; // the subject's updateKey
   publicKeyInfo: PublicKeyInfoUpdateOptions[]; // keys to update/add
-  proof: Proof; // proof containing a signature over the updateKey by an authorized private key
+  proof: ProofPb; // proof containing a signature over the updateKey by an authorized private key
   holderOptions?: HolderOptions; // metadata options for creating a new Holder, if keys are being added
 }
 
