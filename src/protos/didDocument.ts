@@ -47,7 +47,7 @@ export interface UnsignedDID {
 }
 
 /**
- * Object to encapsulate an signed Decentralized ID.
+ * Object to encapsulate a signed Decentralized ID.
  * Currently only used in subjectCredentialRequest flow for the userDIDAssociation flow (proving ownership of a DID).
  */
 export interface DID {
