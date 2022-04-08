@@ -623,6 +623,7 @@ export interface HolderDto {
     browserName?: string;
     deviceOs?: string;
     deviceModel?: string;
+    keysUpdatedAt: string;
 }
 /**
  * An options object used to create a Subject entity
