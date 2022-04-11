@@ -806,7 +806,7 @@ export interface HolderDto {
   browserName?: string;
   deviceOs?: string;
   deviceModel?: string;
-  keysUpdatedAt: string;
+  statusUpdatedAt: string;
 }
 
 /**
