@@ -792,6 +792,11 @@ export interface HolderOptions {
 }
 
 /**
+ * Encapsulates possible Holder statuses
+ */
+export type HolderStatus = 'active' | 'deactivated';
+
+/**
  * Encapsulates Holder entity attributes
  */
 export interface HolderDto {
@@ -807,6 +812,7 @@ export interface HolderDto {
   deviceOs?: string;
   deviceModel?: string;
   statusUpdatedAt: string;
+  status: HolderStatus;
 }
 
 /**
