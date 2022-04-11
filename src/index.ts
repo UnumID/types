@@ -792,6 +792,11 @@ export interface HolderOptions {
 }
 
 /**
+ * Encapsulates possible Holder statuses
+ */
+export type HolderStatus = 'active' | 'deactivated';
+
+/**
  * Encapsulates Holder entity attributes
  */
 export interface HolderDto {
@@ -806,7 +811,8 @@ export interface HolderDto {
   browserName?: string;
   deviceOs?: string;
   deviceModel?: string;
-  keysUpdatedAt: string;
+  statusUpdatedAt: string;
+  status: HolderStatus;
 }
 
 /**

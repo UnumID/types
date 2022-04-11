@@ -609,6 +609,10 @@ export interface HolderOptions {
     type?: HolderType;
 }
 /**
+ * Encapsulates possible Holder statuses
+ */
+export declare type HolderStatus = 'active' | 'deactivated';
+/**
  * Encapsulates Holder entity attributes
  */
 export interface HolderDto {
@@ -623,7 +627,8 @@ export interface HolderDto {
     browserName?: string;
     deviceOs?: string;
     deviceModel?: string;
-    keysUpdatedAt: string;
+    statusUpdatedAt: string;
+    status: HolderStatus;
 }
 /**
  * An options object used to create a Subject entity
