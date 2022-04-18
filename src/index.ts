@@ -898,6 +898,7 @@ export interface PresentationRequestPostDto {
   holderApp?: Pick<HolderApp, 'name' | 'deeplinkButtonImg' | 'appStoreUrl' | 'playStoreUrl'>;
   deeplink?: string;
   qrCode?: string;
+  displayMessage: string;
 }
 
 /**

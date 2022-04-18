@@ -13,6 +13,7 @@ export interface PresentationRequestEnriched {
     holderApp: HolderAppInfo | undefined;
     deeplink: string;
     qrCode: string;
+    displayMessage: string;
 }
 /** Note: this type does not follow conventions because ought to be removed come v4. No need for such a type thanks to service query params. */
 export interface PresentationRequestRepoDto {

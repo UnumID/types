@@ -23,7 +23,11 @@ var verifier_1 = require("./verifier");
 var struct_1 = require("./google/protobuf/struct");
 var holderApp_1 = require("./holderApp");
 exports.protobufPackage = "presentationRequestEnriched.v1";
-var basePresentationRequestEnriched = { deeplink: "", qrCode: "" };
+var basePresentationRequestEnriched = {
+    deeplink: "",
+    qrCode: "",
+    displayMessage: "",
+};
 exports.PresentationRequestEnriched = {
     encode: function (message, writer) {
         if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
@@ -44,6 +48,9 @@ exports.PresentationRequestEnriched = {
         }
         if (message.qrCode !== "") {
             writer.uint32(50).string(message.qrCode);
+        }
+        if (message.displayMessage !== "") {
+            writer.uint32(58).string(message.displayMessage);
         }
         return writer;
     },
@@ -71,6 +78,9 @@ exports.PresentationRequestEnriched = {
                     break;
                 case 6:
                     message.qrCode = reader.string();
+                    break;
+                case 7:
+                    message.displayMessage = reader.string();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -118,6 +128,12 @@ exports.PresentationRequestEnriched = {
         else {
             message.qrCode = "";
         }
+        if (object.displayMessage !== undefined && object.displayMessage !== null) {
+            message.displayMessage = String(object.displayMessage);
+        }
+        else {
+            message.displayMessage = "";
+        }
         return message;
     },
     toJSON: function (message) {
@@ -140,6 +156,8 @@ exports.PresentationRequestEnriched = {
                 : undefined);
         message.deeplink !== undefined && (obj.deeplink = message.deeplink);
         message.qrCode !== undefined && (obj.qrCode = message.qrCode);
+        message.displayMessage !== undefined &&
+            (obj.displayMessage = message.displayMessage);
         return obj;
     },
     fromPartial: function (object) {
@@ -180,6 +198,12 @@ exports.PresentationRequestEnriched = {
         }
         else {
             message.qrCode = "";
+        }
+        if (object.displayMessage !== undefined && object.displayMessage !== null) {
+            message.displayMessage = object.displayMessage;
+        }
+        else {
+            message.displayMessage = "";
         }
         return message;
     },

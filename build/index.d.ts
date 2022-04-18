@@ -706,6 +706,7 @@ export interface PresentationRequestDto {
     holderApp?: Pick<HolderApp, 'name' | 'deeplinkButtonImg' | 'appStoreUrl' | 'playStoreUrl'>;
     deeplink?: string;
     qrCode?: string;
+    displayMessage: string;
 }
 /**
  * Type to encapsulate a Protobuf PresentationRequest Data Transfer Object get response used in interfacing services.

@@ -17,6 +17,7 @@ export interface PresentationRequestEnriched {
   holderApp: HolderAppInfo | undefined;
   deeplink: string;
   qrCode: string;
+  displayMessage: string;
 }
 
 /** Note: this type does not follow conventions because ought to be removed come v4. No need for such a type thanks to service query params. */
@@ -29,7 +30,11 @@ export interface PresentationRequestRepoDto_PresentationRequestsEntry {
   value: PresentationRequestEnriched | undefined;
 }
 
-const basePresentationRequestEnriched: object = { deeplink: "", qrCode: "" };
+const basePresentationRequestEnriched: object = {
+  deeplink: "",
+  qrCode: "",
+  displayMessage: "",
+};
 
 export const PresentationRequestEnriched = {
   encode(
@@ -59,6 +64,9 @@ export const PresentationRequestEnriched = {
     }
     if (message.qrCode !== "") {
       writer.uint32(50).string(message.qrCode);
+    }
+    if (message.displayMessage !== "") {
+      writer.uint32(58).string(message.displayMessage);
     }
     return writer;
   },
@@ -95,6 +103,9 @@ export const PresentationRequestEnriched = {
           break;
         case 6:
           message.qrCode = reader.string();
+          break;
+        case 7:
+          message.displayMessage = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -143,6 +154,11 @@ export const PresentationRequestEnriched = {
     } else {
       message.qrCode = "";
     }
+    if (object.displayMessage !== undefined && object.displayMessage !== null) {
+      message.displayMessage = String(object.displayMessage);
+    } else {
+      message.displayMessage = "";
+    }
     return message;
   },
 
@@ -166,6 +182,8 @@ export const PresentationRequestEnriched = {
         : undefined);
     message.deeplink !== undefined && (obj.deeplink = message.deeplink);
     message.qrCode !== undefined && (obj.qrCode = message.qrCode);
+    message.displayMessage !== undefined &&
+      (obj.displayMessage = message.displayMessage);
     return obj;
   },
 
@@ -209,6 +227,11 @@ export const PresentationRequestEnriched = {
       message.qrCode = object.qrCode;
     } else {
       message.qrCode = "";
+    }
+    if (object.displayMessage !== undefined && object.displayMessage !== null) {
+      message.displayMessage = object.displayMessage;
+    } else {
+      message.displayMessage = "";
     }
     return message;
   },
