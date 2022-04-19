@@ -18,7 +18,7 @@ export { UnsignedPresentationPb, PresentationPb, };
 export { DidDocumentPb, DidDocumentService, SignedDidDocumentPb, UnsignedDID, DIDPb, UserDidAssociationPb, };
 export { UnsignedPresentationRequestPb, PresentationRequestPb, };
 export { IssueCredentialOptions, IssueCredentialsOptions, CredentialStatusInfoPb, CredentialStatus, CredentialRequestPb, UnsignedCredentialPb, CredentialPb, EncryptedCredentialPb, EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, RSAPadding, CredentialsIssuedResponse, UnsignedRevokeAllCredentials, RevokeAllCredentials, UnsignedSubjectCredentialRequests, SubjectCredentialRequestsEnrichedDtoPb, };
-export { PresentationRequestEnriched };
+export { PresentationRequestEnriched, PresentationRequestDisplayMessage };
 export { EncryptedKey, ProofPb, PublicKeyInfoPb, UnsignedString, SignedString };
 export { VerifierInfoPb, };
 export { HolderAppInfo };

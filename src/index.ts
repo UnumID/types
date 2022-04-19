@@ -77,7 +77,8 @@ export {
 
 export {
   // protos/presentationRequestEnriched
-  PresentationRequestEnriched
+  PresentationRequestEnriched,
+  PresentationRequestDisplayMessage
 }
 
 export {
