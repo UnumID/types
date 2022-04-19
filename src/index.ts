@@ -25,7 +25,7 @@ import {
 } from "./protos/credential";
 import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb, UnsignedString, SignedString } from "./protos/crypto"
 import { HolderAppInfo } from "./protos/holderApp";
-import { PresentationRequestEnriched } from "./protos/presentationRequestEnriched";
+import { PresentationRequestEnriched, PresentationRequestDisplayMessage } from "./protos/presentationRequestEnriched";
 import { VerifierInfo as VerifierInfoPb } from "./protos/verifier";
 
 /**
@@ -77,7 +77,8 @@ export {
 
 export {
   // protos/presentationRequestEnriched
-  PresentationRequestEnriched
+  PresentationRequestEnriched,
+  PresentationRequestDisplayMessage
 }
 
 export {
@@ -898,6 +899,7 @@ export interface PresentationRequestPostDto {
   holderApp?: Pick<HolderApp, 'name' | 'deeplinkButtonImg' | 'appStoreUrl' | 'playStoreUrl'>;
   deeplink?: string;
   qrCode?: string;
+  displayMessage: PresentationRequestDisplayMessage;
 }
 
 /**

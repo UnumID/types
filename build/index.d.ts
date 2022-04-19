@@ -8,7 +8,7 @@ import { Proof as ProofPb } from "./protos/proof";
 import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb, CredentialStatusInfo as CredentialStatusInfoPb, IssueCredentialOptions, IssueCredentialsOptions, EncryptedCredential as EncryptedCredentialPb, EncryptedCredentialOptions as EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, UnsignedSubjectCredentialRequests, SubjectCredentialRequests as SubjectCredentialRequestsPb, SubjectCredentialRequestsDto as SubjectCredentialRequestsDtoPb, CredentialsIssuedResponse, CredentialStatus, RevokeAllCredentials, UnsignedRevokeAllCredentials, SubjectCredentialRequestsEnrichedDto as SubjectCredentialRequestsEnrichedDtoPb } from "./protos/credential";
 import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb, UnsignedString, SignedString } from "./protos/crypto";
 import { HolderAppInfo } from "./protos/holderApp";
-import { PresentationRequestEnriched } from "./protos/presentationRequestEnriched";
+import { PresentationRequestEnriched, PresentationRequestDisplayMessage } from "./protos/presentationRequestEnriched";
 import { VerifierInfo as VerifierInfoPb } from "./protos/verifier";
 /**
  * Note the proto defined types import with a 'Pb' suffix that also have older, vanilla ts types defined.
@@ -18,7 +18,7 @@ export { UnsignedPresentationPb, PresentationPb, };
 export { DidDocumentPb, DidDocumentService, SignedDidDocumentPb, UnsignedDID, DIDPb, UserDidAssociationPb, };
 export { UnsignedPresentationRequestPb, PresentationRequestPb, };
 export { IssueCredentialOptions, IssueCredentialsOptions, CredentialStatusInfoPb, CredentialStatus, CredentialRequestPb, UnsignedCredentialPb, CredentialPb, EncryptedCredentialPb, EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, RSAPadding, CredentialsIssuedResponse, UnsignedRevokeAllCredentials, RevokeAllCredentials, UnsignedSubjectCredentialRequests, SubjectCredentialRequestsEnrichedDtoPb, };
-export { PresentationRequestEnriched };
+export { PresentationRequestEnriched, PresentationRequestDisplayMessage };
 export { EncryptedKey, ProofPb, PublicKeyInfoPb, UnsignedString, SignedString };
 export { VerifierInfoPb, };
 export { HolderAppInfo };
@@ -706,6 +706,7 @@ export interface PresentationRequestDto {
     holderApp?: Pick<HolderApp, 'name' | 'deeplinkButtonImg' | 'appStoreUrl' | 'playStoreUrl'>;
     deeplink?: string;
     qrCode?: string;
+    displayMessage: PresentationRequestDisplayMessage;
 }
 /**
  * Type to encapsulate a Protobuf PresentationRequest Data Transfer Object get response used in interfacing services.

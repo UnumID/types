@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PresentationRequestRepoDto_PresentationRequestsEntry = exports.PresentationRequestRepoDto = exports.PresentationRequestEnriched = exports.protobufPackage = void 0;
+exports.PresentationRequestDisplayMessage = exports.PresentationRequestRepoDto_PresentationRequestsEntry = exports.PresentationRequestRepoDto = exports.PresentationRequestEnriched = exports.protobufPackage = void 0;
 /* eslint-disable */
 var long_1 = __importDefault(require("long"));
 var minimal_1 = __importDefault(require("protobufjs/minimal"));
@@ -45,6 +45,9 @@ exports.PresentationRequestEnriched = {
         if (message.qrCode !== "") {
             writer.uint32(50).string(message.qrCode);
         }
+        if (message.displayMessage !== undefined) {
+            exports.PresentationRequestDisplayMessage.encode(message.displayMessage, writer.uint32(58).fork()).ldelim();
+        }
         return writer;
     },
     decode: function (input, length) {
@@ -71,6 +74,9 @@ exports.PresentationRequestEnriched = {
                     break;
                 case 6:
                     message.qrCode = reader.string();
+                    break;
+                case 7:
+                    message.displayMessage = exports.PresentationRequestDisplayMessage.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -118,6 +124,12 @@ exports.PresentationRequestEnriched = {
         else {
             message.qrCode = "";
         }
+        if (object.displayMessage !== undefined && object.displayMessage !== null) {
+            message.displayMessage = exports.PresentationRequestDisplayMessage.fromJSON(object.displayMessage);
+        }
+        else {
+            message.displayMessage = undefined;
+        }
         return message;
     },
     toJSON: function (message) {
@@ -140,6 +152,10 @@ exports.PresentationRequestEnriched = {
                 : undefined);
         message.deeplink !== undefined && (obj.deeplink = message.deeplink);
         message.qrCode !== undefined && (obj.qrCode = message.qrCode);
+        message.displayMessage !== undefined &&
+            (obj.displayMessage = message.displayMessage
+                ? exports.PresentationRequestDisplayMessage.toJSON(message.displayMessage)
+                : undefined);
         return obj;
     },
     fromPartial: function (object) {
@@ -180,6 +196,12 @@ exports.PresentationRequestEnriched = {
         }
         else {
             message.qrCode = "";
+        }
+        if (object.displayMessage !== undefined && object.displayMessage !== null) {
+            message.displayMessage = exports.PresentationRequestDisplayMessage.fromPartial(object.displayMessage);
+        }
+        else {
+            message.displayMessage = undefined;
         }
         return message;
     },
@@ -327,6 +349,77 @@ exports.PresentationRequestRepoDto_PresentationRequestsEntry = {
         }
         else {
             message.value = undefined;
+        }
+        return message;
+    },
+};
+var basePresentationRequestDisplayMessage = { text: "", html: "" };
+exports.PresentationRequestDisplayMessage = {
+    encode: function (message, writer) {
+        if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
+        if (message.text !== "") {
+            writer.uint32(10).string(message.text);
+        }
+        if (message.html !== "") {
+            writer.uint32(18).string(message.html);
+        }
+        return writer;
+    },
+    decode: function (input, length) {
+        var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
+        var end = length === undefined ? reader.len : reader.pos + length;
+        var message = __assign({}, basePresentationRequestDisplayMessage);
+        while (reader.pos < end) {
+            var tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.text = reader.string();
+                    break;
+                case 2:
+                    message.html = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON: function (object) {
+        var message = __assign({}, basePresentationRequestDisplayMessage);
+        if (object.text !== undefined && object.text !== null) {
+            message.text = String(object.text);
+        }
+        else {
+            message.text = "";
+        }
+        if (object.html !== undefined && object.html !== null) {
+            message.html = String(object.html);
+        }
+        else {
+            message.html = "";
+        }
+        return message;
+    },
+    toJSON: function (message) {
+        var obj = {};
+        message.text !== undefined && (obj.text = message.text);
+        message.html !== undefined && (obj.html = message.html);
+        return obj;
+    },
+    fromPartial: function (object) {
+        var message = __assign({}, basePresentationRequestDisplayMessage);
+        if (object.text !== undefined && object.text !== null) {
+            message.text = object.text;
+        }
+        else {
+            message.text = "";
+        }
+        if (object.html !== undefined && object.html !== null) {
+            message.html = object.html;
+        }
+        else {
+            message.html = "";
         }
         return message;
     },

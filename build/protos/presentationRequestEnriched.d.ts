@@ -13,6 +13,7 @@ export interface PresentationRequestEnriched {
     holderApp: HolderAppInfo | undefined;
     deeplink: string;
     qrCode: string;
+    displayMessage: PresentationRequestDisplayMessage | undefined;
 }
 /** Note: this type does not follow conventions because ought to be removed come v4. No need for such a type thanks to service query params. */
 export interface PresentationRequestRepoDto {
@@ -23,6 +24,10 @@ export interface PresentationRequestRepoDto {
 export interface PresentationRequestRepoDto_PresentationRequestsEntry {
     key: string;
     value: PresentationRequestEnriched | undefined;
+}
+export interface PresentationRequestDisplayMessage {
+    text: string;
+    html: string;
 }
 export declare const PresentationRequestEnriched: {
     encode(message: PresentationRequestEnriched, writer?: _m0.Writer): _m0.Writer;
@@ -44,6 +49,13 @@ export declare const PresentationRequestRepoDto_PresentationRequestsEntry: {
     fromJSON(object: any): PresentationRequestRepoDto_PresentationRequestsEntry;
     toJSON(message: PresentationRequestRepoDto_PresentationRequestsEntry): unknown;
     fromPartial(object: DeepPartial<PresentationRequestRepoDto_PresentationRequestsEntry>): PresentationRequestRepoDto_PresentationRequestsEntry;
+};
+export declare const PresentationRequestDisplayMessage: {
+    encode(message: PresentationRequestDisplayMessage, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): PresentationRequestDisplayMessage;
+    fromJSON(object: any): PresentationRequestDisplayMessage;
+    toJSON(message: PresentationRequestDisplayMessage): unknown;
+    fromPartial(object: DeepPartial<PresentationRequestDisplayMessage>): PresentationRequestDisplayMessage;
 };
 declare type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 export declare type DeepPartial<T> = T extends Builtin ? T : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
