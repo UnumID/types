@@ -17,7 +17,7 @@ export interface PresentationRequestEnriched {
   holderApp: HolderAppInfo | undefined;
   deeplink: string;
   qrCode: string;
-  displayMessage: string;
+  displayMessage: PresentationRequestDisplayMessage | undefined;
 }
 
 /** Note: this type does not follow conventions because ought to be removed come v4. No need for such a type thanks to service query params. */
@@ -30,11 +30,12 @@ export interface PresentationRequestRepoDto_PresentationRequestsEntry {
   value: PresentationRequestEnriched | undefined;
 }
 
-const basePresentationRequestEnriched: object = {
-  deeplink: "",
-  qrCode: "",
-  displayMessage: "",
-};
+export interface PresentationRequestDisplayMessage {
+  text: string;
+  html: string;
+}
+
+const basePresentationRequestEnriched: object = { deeplink: "", qrCode: "" };
 
 export const PresentationRequestEnriched = {
   encode(
@@ -65,8 +66,11 @@ export const PresentationRequestEnriched = {
     if (message.qrCode !== "") {
       writer.uint32(50).string(message.qrCode);
     }
-    if (message.displayMessage !== "") {
-      writer.uint32(58).string(message.displayMessage);
+    if (message.displayMessage !== undefined) {
+      PresentationRequestDisplayMessage.encode(
+        message.displayMessage,
+        writer.uint32(58).fork()
+      ).ldelim();
     }
     return writer;
   },
@@ -105,7 +109,10 @@ export const PresentationRequestEnriched = {
           message.qrCode = reader.string();
           break;
         case 7:
-          message.displayMessage = reader.string();
+          message.displayMessage = PresentationRequestDisplayMessage.decode(
+            reader,
+            reader.uint32()
+          );
           break;
         default:
           reader.skipType(tag & 7);
@@ -155,9 +162,11 @@ export const PresentationRequestEnriched = {
       message.qrCode = "";
     }
     if (object.displayMessage !== undefined && object.displayMessage !== null) {
-      message.displayMessage = String(object.displayMessage);
+      message.displayMessage = PresentationRequestDisplayMessage.fromJSON(
+        object.displayMessage
+      );
     } else {
-      message.displayMessage = "";
+      message.displayMessage = undefined;
     }
     return message;
   },
@@ -183,7 +192,9 @@ export const PresentationRequestEnriched = {
     message.deeplink !== undefined && (obj.deeplink = message.deeplink);
     message.qrCode !== undefined && (obj.qrCode = message.qrCode);
     message.displayMessage !== undefined &&
-      (obj.displayMessage = message.displayMessage);
+      (obj.displayMessage = message.displayMessage
+        ? PresentationRequestDisplayMessage.toJSON(message.displayMessage)
+        : undefined);
     return obj;
   },
 
@@ -229,9 +240,11 @@ export const PresentationRequestEnriched = {
       message.qrCode = "";
     }
     if (object.displayMessage !== undefined && object.displayMessage !== null) {
-      message.displayMessage = object.displayMessage;
+      message.displayMessage = PresentationRequestDisplayMessage.fromPartial(
+        object.displayMessage
+      );
     } else {
-      message.displayMessage = "";
+      message.displayMessage = undefined;
     }
     return message;
   },
@@ -428,6 +441,92 @@ export const PresentationRequestRepoDto_PresentationRequestsEntry = {
       message.value = PresentationRequestEnriched.fromPartial(object.value);
     } else {
       message.value = undefined;
+    }
+    return message;
+  },
+};
+
+const basePresentationRequestDisplayMessage: object = { text: "", html: "" };
+
+export const PresentationRequestDisplayMessage = {
+  encode(
+    message: PresentationRequestDisplayMessage,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.text !== "") {
+      writer.uint32(10).string(message.text);
+    }
+    if (message.html !== "") {
+      writer.uint32(18).string(message.html);
+    }
+    return writer;
+  },
+
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): PresentationRequestDisplayMessage {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...basePresentationRequestDisplayMessage,
+    } as PresentationRequestDisplayMessage;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.text = reader.string();
+          break;
+        case 2:
+          message.html = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): PresentationRequestDisplayMessage {
+    const message = {
+      ...basePresentationRequestDisplayMessage,
+    } as PresentationRequestDisplayMessage;
+    if (object.text !== undefined && object.text !== null) {
+      message.text = String(object.text);
+    } else {
+      message.text = "";
+    }
+    if (object.html !== undefined && object.html !== null) {
+      message.html = String(object.html);
+    } else {
+      message.html = "";
+    }
+    return message;
+  },
+
+  toJSON(message: PresentationRequestDisplayMessage): unknown {
+    const obj: any = {};
+    message.text !== undefined && (obj.text = message.text);
+    message.html !== undefined && (obj.html = message.html);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<PresentationRequestDisplayMessage>
+  ): PresentationRequestDisplayMessage {
+    const message = {
+      ...basePresentationRequestDisplayMessage,
+    } as PresentationRequestDisplayMessage;
+    if (object.text !== undefined && object.text !== null) {
+      message.text = object.text;
+    } else {
+      message.text = "";
+    }
+    if (object.html !== undefined && object.html !== null) {
+      message.html = object.html;
+    } else {
+      message.html = "";
     }
     return message;
   },
