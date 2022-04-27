@@ -204,7 +204,7 @@ var baseSubjectCredentialsAbsentDto = {};
 exports.SubjectCredentialsAbsentDto = {
     encode: function (message, writer) {
         if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
-        for (var _i = 0, _a = message.absentCredentials; _i < _a.length; _i++) {
+        for (var _i = 0, _a = message.subjectCredentialsAbsent; _i < _a.length; _i++) {
             var v = _a[_i];
             exports.UnsignedSubjectCredentialsRequest.encode(v, writer.uint32(10).fork()).ldelim();
         }
@@ -214,12 +214,12 @@ exports.SubjectCredentialsAbsentDto = {
         var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         var end = length === undefined ? reader.len : reader.pos + length;
         var message = __assign({}, baseSubjectCredentialsAbsentDto);
-        message.absentCredentials = [];
+        message.subjectCredentialsAbsent = [];
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.absentCredentials.push(exports.UnsignedSubjectCredentialsRequest.decode(reader, reader.uint32()));
+                    message.subjectCredentialsAbsent.push(exports.UnsignedSubjectCredentialsRequest.decode(reader, reader.uint32()));
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -230,36 +230,36 @@ exports.SubjectCredentialsAbsentDto = {
     },
     fromJSON: function (object) {
         var message = __assign({}, baseSubjectCredentialsAbsentDto);
-        message.absentCredentials = [];
-        if (object.absentCredentials !== undefined &&
-            object.absentCredentials !== null) {
-            for (var _i = 0, _a = object.absentCredentials; _i < _a.length; _i++) {
+        message.subjectCredentialsAbsent = [];
+        if (object.subjectCredentialsAbsent !== undefined &&
+            object.subjectCredentialsAbsent !== null) {
+            for (var _i = 0, _a = object.subjectCredentialsAbsent; _i < _a.length; _i++) {
                 var e = _a[_i];
-                message.absentCredentials.push(exports.UnsignedSubjectCredentialsRequest.fromJSON(e));
+                message.subjectCredentialsAbsent.push(exports.UnsignedSubjectCredentialsRequest.fromJSON(e));
             }
         }
         return message;
     },
     toJSON: function (message) {
         var obj = {};
-        if (message.absentCredentials) {
-            obj.absentCredentials = message.absentCredentials.map(function (e) {
+        if (message.subjectCredentialsAbsent) {
+            obj.subjectCredentialsAbsent = message.subjectCredentialsAbsent.map(function (e) {
                 return e ? exports.UnsignedSubjectCredentialsRequest.toJSON(e) : undefined;
             });
         }
         else {
-            obj.absentCredentials = [];
+            obj.subjectCredentialsAbsent = [];
         }
         return obj;
     },
     fromPartial: function (object) {
         var message = __assign({}, baseSubjectCredentialsAbsentDto);
-        message.absentCredentials = [];
-        if (object.absentCredentials !== undefined &&
-            object.absentCredentials !== null) {
-            for (var _i = 0, _a = object.absentCredentials; _i < _a.length; _i++) {
+        message.subjectCredentialsAbsent = [];
+        if (object.subjectCredentialsAbsent !== undefined &&
+            object.subjectCredentialsAbsent !== null) {
+            for (var _i = 0, _a = object.subjectCredentialsAbsent; _i < _a.length; _i++) {
                 var e = _a[_i];
-                message.absentCredentials.push(exports.UnsignedSubjectCredentialsRequest.fromPartial(e));
+                message.subjectCredentialsAbsent.push(exports.UnsignedSubjectCredentialsRequest.fromPartial(e));
             }
         }
         return message;

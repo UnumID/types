@@ -14,7 +14,7 @@ export interface SubjectCredentialsRequest {
 }
 /** Type to encapsulate a dto response from the SubjectCredentialsAbsent service. */
 export interface SubjectCredentialsAbsentDto {
-    absentCredentials: UnsignedSubjectCredentialsRequest[];
+    subjectCredentialsAbsent: UnsignedSubjectCredentialsRequest[];
 }
 export declare const UnsignedSubjectCredentialsRequest: {
     encode(message: UnsignedSubjectCredentialsRequest, writer?: _m0.Writer): _m0.Writer;
