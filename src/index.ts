@@ -28,7 +28,7 @@ import { HolderAppInfo } from "./protos/holderApp";
 import { PresentationRequestEnriched, PresentationRequestDisplayMessage } from "./protos/presentationRequestEnriched";
 // import { VerifierInfo as VerifierInfoPb } from "./protos/verifier";
 import { VerifierInfo } from "./protos/verifier";
-import { UnsignedSubjectCredentialsRequest, SubjectCredentialsRequest, SubjectCredentialsAbsentDto } from "./protos/subject";
+import { UnsignedSubjectCredentialsRequest, SubjectCredentialsRequest, SubjectCredentialsAbsentDto, SubjectCredentialIssuerInfoDto } from "./protos/subject";
 import { IssuerInfo } from "./protos/issuer";
 
 /**
@@ -112,7 +112,8 @@ export {
   // protos/subject
   UnsignedSubjectCredentialsRequest, 
   SubjectCredentialsRequest,
-  SubjectCredentialsAbsentDto
+  SubjectCredentialsAbsentDto,
+  SubjectCredentialIssuerInfoDto
 }
 
 /**

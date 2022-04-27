@@ -2,6 +2,7 @@
 import Long from "long";
 import _m0 from "protobufjs/minimal";
 import { Proof } from "./proof";
+import { IssuerInfo } from "./issuer";
 
 export const protobufPackage = "subject.v1";
 
@@ -21,6 +22,11 @@ export interface SubjectCredentialsRequest {
 /** Type to encapsulate a dto response from the SubjectCredentialsAbsent service. */
 export interface SubjectCredentialsAbsentDto {
   subjectCredentialsAbsent: UnsignedSubjectCredentialsRequest[];
+}
+
+/** Encapsulates Issuer metadata attributes. */
+export interface SubjectCredentialIssuerInfoDto {
+  issuerInfo: IssuerInfo[];
 }
 
 const baseUnsignedSubjectCredentialsRequest: object = { types: "", issuer: "" };
@@ -314,6 +320,84 @@ export const SubjectCredentialsAbsentDto = {
         message.subjectCredentialsAbsent.push(
           UnsignedSubjectCredentialsRequest.fromPartial(e)
         );
+      }
+    }
+    return message;
+  },
+};
+
+const baseSubjectCredentialIssuerInfoDto: object = {};
+
+export const SubjectCredentialIssuerInfoDto = {
+  encode(
+    message: SubjectCredentialIssuerInfoDto,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    for (const v of message.issuerInfo) {
+      IssuerInfo.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): SubjectCredentialIssuerInfoDto {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseSubjectCredentialIssuerInfoDto,
+    } as SubjectCredentialIssuerInfoDto;
+    message.issuerInfo = [];
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.issuerInfo.push(IssuerInfo.decode(reader, reader.uint32()));
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): SubjectCredentialIssuerInfoDto {
+    const message = {
+      ...baseSubjectCredentialIssuerInfoDto,
+    } as SubjectCredentialIssuerInfoDto;
+    message.issuerInfo = [];
+    if (object.issuerInfo !== undefined && object.issuerInfo !== null) {
+      for (const e of object.issuerInfo) {
+        message.issuerInfo.push(IssuerInfo.fromJSON(e));
+      }
+    }
+    return message;
+  },
+
+  toJSON(message: SubjectCredentialIssuerInfoDto): unknown {
+    const obj: any = {};
+    if (message.issuerInfo) {
+      obj.issuerInfo = message.issuerInfo.map((e) =>
+        e ? IssuerInfo.toJSON(e) : undefined
+      );
+    } else {
+      obj.issuerInfo = [];
+    }
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<SubjectCredentialIssuerInfoDto>
+  ): SubjectCredentialIssuerInfoDto {
+    const message = {
+      ...baseSubjectCredentialIssuerInfoDto,
+    } as SubjectCredentialIssuerInfoDto;
+    message.issuerInfo = [];
+    if (object.issuerInfo !== undefined && object.issuerInfo !== null) {
+      for (const e of object.issuerInfo) {
+        message.issuerInfo.push(IssuerInfo.fromPartial(e));
       }
     }
     return message;
