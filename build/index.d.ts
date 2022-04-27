@@ -808,7 +808,7 @@ export interface IssuerInfoMap {
     [did: string]: IssuerInfo;
 }
 export interface SubjectAbsentCredentialsMap {
-    [issuerDid: string]: UnsignedSubjectCredentialsRequest;
+    [issuerDid: string]: UnsignedSubjectCredentialsRequest[];
 }
 /**
  * Interface for Public and Private corresponding key pair

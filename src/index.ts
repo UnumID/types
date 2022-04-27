@@ -1034,7 +1034,7 @@ export interface IssuerInfoMap {
 }
 
 export interface SubjectAbsentCredentialsMap {
-  [issuerDid: string]: UnsignedSubjectCredentialsRequest;
+  [issuerDid: string]: UnsignedSubjectCredentialsRequest[];
 }
 
 /**
