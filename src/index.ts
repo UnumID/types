@@ -26,8 +26,9 @@ import {
 import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb, UnsignedString, SignedString } from "./protos/crypto"
 import { HolderAppInfo } from "./protos/holderApp";
 import { PresentationRequestEnriched, PresentationRequestDisplayMessage } from "./protos/presentationRequestEnriched";
-import { VerifierInfo as VerifierInfoPb } from "./protos/verifier";
-import { UnsignedSubjectCredentialsRequest, SubjectCredentialsRequest } from "./protos/subject";
+// import { VerifierInfo as VerifierInfoPb } from "./protos/verifier";
+import { VerifierInfo } from "./protos/verifier";
+import { UnsignedSubjectCredentialsRequest, SubjectCredentialsRequest, SubjectCredentialsAbsentDto } from "./protos/subject";
 import { IssuerInfo } from "./protos/issuer";
 
 /**
@@ -94,7 +95,7 @@ export {
 
 export { 
   // protos/verifier
-  VerifierInfoPb, 
+  VerifierInfo, 
 }
 
 export { 
@@ -110,7 +111,8 @@ export {
 export { 
   // protos/subject
   UnsignedSubjectCredentialsRequest, 
-  SubjectCredentialsRequest
+  SubjectCredentialsRequest,
+  SubjectCredentialsAbsentDto
 }
 
 /**
@@ -1005,26 +1007,6 @@ export type DidKeyType = 'secp256r1' | 'RSA';
 export interface EncryptedCredentialOptions extends EncryptedCredentialOptionsPb{
   data: EncryptedData; // to force non undefined type
 }
-
-/**
- * Encapsulates Verifier metadata attributes.
- */
-export interface VerifierInfo {
-  did: string;
-  name: string;
-  url?: string;
-  encryptionPublicKey: PublicKeyInfo;
-  signingPublicKey: PublicKeyInfo;
-}
-
-// /**
-//  * Encapsulates Issuer metadata attributes.
-//  */
-// export interface IssuerInfo {
-//   did: string;
-//   name: string;
-//   cardImageUrl?: string;
-// }
 
 /**
  * Encapsulates a map of Issuer metadata attributes keyed on the corresponding did.
