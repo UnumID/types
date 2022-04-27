@@ -1,0 +1,34 @@
+import _m0 from "protobufjs/minimal";
+import { Proof } from "./proof";
+export declare const protobufPackage = "subject.v1";
+/** Type to encapsulate a Subject's request for Credentials */
+export interface UnsignedSubjectCredentialsRequest {
+    types: string[];
+    issuer: string;
+}
+/** Type to encapsulate a Subject's signed request for Credentials. Tightly coupled with UnsignedSubjectCredentialsRequest. */
+export interface SubjectCredentialsRequest {
+    types: string[];
+    issuer: string;
+    proof: Proof | undefined;
+}
+export declare const UnsignedSubjectCredentialsRequest: {
+    encode(message: UnsignedSubjectCredentialsRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): UnsignedSubjectCredentialsRequest;
+    fromJSON(object: any): UnsignedSubjectCredentialsRequest;
+    toJSON(message: UnsignedSubjectCredentialsRequest): unknown;
+    fromPartial(object: DeepPartial<UnsignedSubjectCredentialsRequest>): UnsignedSubjectCredentialsRequest;
+};
+export declare const SubjectCredentialsRequest: {
+    encode(message: SubjectCredentialsRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): SubjectCredentialsRequest;
+    fromJSON(object: any): SubjectCredentialsRequest;
+    toJSON(message: SubjectCredentialsRequest): unknown;
+    fromPartial(object: DeepPartial<SubjectCredentialsRequest>): SubjectCredentialsRequest;
+};
+declare type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
+export declare type DeepPartial<T> = T extends Builtin ? T : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+    [K in keyof T]?: DeepPartial<T[K]>;
+} : Partial<T>;
+export {};
+//# sourceMappingURL=subject.d.ts.map
