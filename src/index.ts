@@ -27,7 +27,8 @@ import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyIn
 import { HolderAppInfo } from "./protos/holderApp";
 import { PresentationRequestEnriched, PresentationRequestDisplayMessage } from "./protos/presentationRequestEnriched";
 import { VerifierInfo as VerifierInfoPb } from "./protos/verifier";
-import { UnsignedSubjectCredentialsRequest, SubjectCredentialsRequest, SubjectAbsentCredentialMap } from "./protos/subject";
+import { UnsignedSubjectCredentialsRequest, SubjectCredentialsRequest } from "./protos/subject";
+import { IssuerInfo } from "./protos/issuer";
 
 /**
  * Note the proto defined types import with a 'Pb' suffix that also have older, vanilla ts types defined. 
@@ -96,6 +97,11 @@ export {
   VerifierInfoPb, 
 }
 
+export { 
+  // protos/verifier
+  IssuerInfo, 
+}
+
 export {
   // protos/holderApp
   HolderAppInfo
@@ -104,8 +110,7 @@ export {
 export { 
   // protos/subject
   UnsignedSubjectCredentialsRequest, 
-  SubjectCredentialsRequest,
-  SubjectAbsentCredentialMap
+  SubjectCredentialsRequest
 }
 
 /**
@@ -1012,20 +1017,24 @@ export interface VerifierInfo {
   signingPublicKey: PublicKeyInfo;
 }
 
-/**
- * Encapsulates Issuer metadata attributes.
- */
-export interface IssuerInfo {
-  did: string;
-  name: string;
-  cardImageUrl?: string;
-}
+// /**
+//  * Encapsulates Issuer metadata attributes.
+//  */
+// export interface IssuerInfo {
+//   did: string;
+//   name: string;
+//   cardImageUrl?: string;
+// }
 
 /**
  * Encapsulates a map of Issuer metadata attributes keyed on the corresponding did.
  */
 export interface IssuerInfoMap {
   [did: string]: IssuerInfo;
+}
+
+export interface SubjectAbsentCredentialsMap {
+  [issuerDid: string]: UnsignedSubjectCredentialsRequest;
 }
 
 /**
