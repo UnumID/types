@@ -270,8 +270,9 @@ var baseSubjectCredentialIssuerInfoDto = {};
 exports.SubjectCredentialIssuerInfoDto = {
     encode: function (message, writer) {
         if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
-        if (message.issuerInfo !== undefined) {
-            issuer_1.IssuerInfo.encode(message.issuerInfo, writer.uint32(10).fork()).ldelim();
+        for (var _i = 0, _a = message.issuerInfo; _i < _a.length; _i++) {
+            var v = _a[_i];
+            issuer_1.IssuerInfo.encode(v, writer.uint32(10).fork()).ldelim();
         }
         return writer;
     },
@@ -279,11 +280,12 @@ exports.SubjectCredentialIssuerInfoDto = {
         var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         var end = length === undefined ? reader.len : reader.pos + length;
         var message = __assign({}, baseSubjectCredentialIssuerInfoDto);
+        message.issuerInfo = [];
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.issuerInfo = issuer_1.IssuerInfo.decode(reader, reader.uint32());
+                    message.issuerInfo.push(issuer_1.IssuerInfo.decode(reader, reader.uint32()));
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -294,29 +296,35 @@ exports.SubjectCredentialIssuerInfoDto = {
     },
     fromJSON: function (object) {
         var message = __assign({}, baseSubjectCredentialIssuerInfoDto);
+        message.issuerInfo = [];
         if (object.issuerInfo !== undefined && object.issuerInfo !== null) {
-            message.issuerInfo = issuer_1.IssuerInfo.fromJSON(object.issuerInfo);
-        }
-        else {
-            message.issuerInfo = undefined;
+            for (var _i = 0, _a = object.issuerInfo; _i < _a.length; _i++) {
+                var e = _a[_i];
+                message.issuerInfo.push(issuer_1.IssuerInfo.fromJSON(e));
+            }
         }
         return message;
     },
     toJSON: function (message) {
         var obj = {};
-        message.issuerInfo !== undefined &&
-            (obj.issuerInfo = message.issuerInfo
-                ? issuer_1.IssuerInfo.toJSON(message.issuerInfo)
-                : undefined);
+        if (message.issuerInfo) {
+            obj.issuerInfo = message.issuerInfo.map(function (e) {
+                return e ? issuer_1.IssuerInfo.toJSON(e) : undefined;
+            });
+        }
+        else {
+            obj.issuerInfo = [];
+        }
         return obj;
     },
     fromPartial: function (object) {
         var message = __assign({}, baseSubjectCredentialIssuerInfoDto);
+        message.issuerInfo = [];
         if (object.issuerInfo !== undefined && object.issuerInfo !== null) {
-            message.issuerInfo = issuer_1.IssuerInfo.fromPartial(object.issuerInfo);
-        }
-        else {
-            message.issuerInfo = undefined;
+            for (var _i = 0, _a = object.issuerInfo; _i < _a.length; _i++) {
+                var e = _a[_i];
+                message.issuerInfo.push(issuer_1.IssuerInfo.fromPartial(e));
+            }
         }
         return message;
     },

@@ -26,7 +26,7 @@ export interface SubjectCredentialsAbsentDto {
 
 /** Encapsulates Issuer metadata attributes. */
 export interface SubjectCredentialIssuerInfoDto {
-  issuerInfo: IssuerInfo | undefined;
+  issuerInfo: IssuerInfo[];
 }
 
 const baseUnsignedSubjectCredentialsRequest: object = { types: "", issuer: "" };
@@ -333,8 +333,8 @@ export const SubjectCredentialIssuerInfoDto = {
     message: SubjectCredentialIssuerInfoDto,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
-    if (message.issuerInfo !== undefined) {
-      IssuerInfo.encode(message.issuerInfo, writer.uint32(10).fork()).ldelim();
+    for (const v of message.issuerInfo) {
+      IssuerInfo.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
@@ -348,11 +348,12 @@ export const SubjectCredentialIssuerInfoDto = {
     const message = {
       ...baseSubjectCredentialIssuerInfoDto,
     } as SubjectCredentialIssuerInfoDto;
+    message.issuerInfo = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.issuerInfo = IssuerInfo.decode(reader, reader.uint32());
+          message.issuerInfo.push(IssuerInfo.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -366,20 +367,24 @@ export const SubjectCredentialIssuerInfoDto = {
     const message = {
       ...baseSubjectCredentialIssuerInfoDto,
     } as SubjectCredentialIssuerInfoDto;
+    message.issuerInfo = [];
     if (object.issuerInfo !== undefined && object.issuerInfo !== null) {
-      message.issuerInfo = IssuerInfo.fromJSON(object.issuerInfo);
-    } else {
-      message.issuerInfo = undefined;
+      for (const e of object.issuerInfo) {
+        message.issuerInfo.push(IssuerInfo.fromJSON(e));
+      }
     }
     return message;
   },
 
   toJSON(message: SubjectCredentialIssuerInfoDto): unknown {
     const obj: any = {};
-    message.issuerInfo !== undefined &&
-      (obj.issuerInfo = message.issuerInfo
-        ? IssuerInfo.toJSON(message.issuerInfo)
-        : undefined);
+    if (message.issuerInfo) {
+      obj.issuerInfo = message.issuerInfo.map((e) =>
+        e ? IssuerInfo.toJSON(e) : undefined
+      );
+    } else {
+      obj.issuerInfo = [];
+    }
     return obj;
   },
 
@@ -389,10 +394,11 @@ export const SubjectCredentialIssuerInfoDto = {
     const message = {
       ...baseSubjectCredentialIssuerInfoDto,
     } as SubjectCredentialIssuerInfoDto;
+    message.issuerInfo = [];
     if (object.issuerInfo !== undefined && object.issuerInfo !== null) {
-      message.issuerInfo = IssuerInfo.fromPartial(object.issuerInfo);
-    } else {
-      message.issuerInfo = undefined;
+      for (const e of object.issuerInfo) {
+        message.issuerInfo.push(IssuerInfo.fromPartial(e));
+      }
     }
     return message;
   },

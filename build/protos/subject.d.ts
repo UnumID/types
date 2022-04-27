@@ -19,7 +19,7 @@ export interface SubjectCredentialsAbsentDto {
 }
 /** Encapsulates Issuer metadata attributes. */
 export interface SubjectCredentialIssuerInfoDto {
-    issuerInfo: IssuerInfo | undefined;
+    issuerInfo: IssuerInfo[];
 }
 export declare const UnsignedSubjectCredentialsRequest: {
     encode(message: UnsignedSubjectCredentialsRequest, writer?: _m0.Writer): _m0.Writer;
