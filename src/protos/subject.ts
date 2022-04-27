@@ -18,6 +18,11 @@ export interface SubjectCredentialsRequest {
   proof: Proof | undefined;
 }
 
+/** Type to encapsulate a dto response from the SubjectCredentialsAbsent service. */
+export interface SubjectCredentialsAbsentDto {
+  subjectCredentialsAbsent: UnsignedSubjectCredentialsRequest[];
+}
+
 const baseUnsignedSubjectCredentialsRequest: object = { types: "", issuer: "" };
 
 export const UnsignedSubjectCredentialsRequest = {
@@ -217,6 +222,99 @@ export const SubjectCredentialsRequest = {
       message.proof = Proof.fromPartial(object.proof);
     } else {
       message.proof = undefined;
+    }
+    return message;
+  },
+};
+
+const baseSubjectCredentialsAbsentDto: object = {};
+
+export const SubjectCredentialsAbsentDto = {
+  encode(
+    message: SubjectCredentialsAbsentDto,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    for (const v of message.subjectCredentialsAbsent) {
+      UnsignedSubjectCredentialsRequest.encode(
+        v!,
+        writer.uint32(10).fork()
+      ).ldelim();
+    }
+    return writer;
+  },
+
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): SubjectCredentialsAbsentDto {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseSubjectCredentialsAbsentDto,
+    } as SubjectCredentialsAbsentDto;
+    message.subjectCredentialsAbsent = [];
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.subjectCredentialsAbsent.push(
+            UnsignedSubjectCredentialsRequest.decode(reader, reader.uint32())
+          );
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): SubjectCredentialsAbsentDto {
+    const message = {
+      ...baseSubjectCredentialsAbsentDto,
+    } as SubjectCredentialsAbsentDto;
+    message.subjectCredentialsAbsent = [];
+    if (
+      object.subjectCredentialsAbsent !== undefined &&
+      object.subjectCredentialsAbsent !== null
+    ) {
+      for (const e of object.subjectCredentialsAbsent) {
+        message.subjectCredentialsAbsent.push(
+          UnsignedSubjectCredentialsRequest.fromJSON(e)
+        );
+      }
+    }
+    return message;
+  },
+
+  toJSON(message: SubjectCredentialsAbsentDto): unknown {
+    const obj: any = {};
+    if (message.subjectCredentialsAbsent) {
+      obj.subjectCredentialsAbsent = message.subjectCredentialsAbsent.map((e) =>
+        e ? UnsignedSubjectCredentialsRequest.toJSON(e) : undefined
+      );
+    } else {
+      obj.subjectCredentialsAbsent = [];
+    }
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<SubjectCredentialsAbsentDto>
+  ): SubjectCredentialsAbsentDto {
+    const message = {
+      ...baseSubjectCredentialsAbsentDto,
+    } as SubjectCredentialsAbsentDto;
+    message.subjectCredentialsAbsent = [];
+    if (
+      object.subjectCredentialsAbsent !== undefined &&
+      object.subjectCredentialsAbsent !== null
+    ) {
+      for (const e of object.subjectCredentialsAbsent) {
+        message.subjectCredentialsAbsent.push(
+          UnsignedSubjectCredentialsRequest.fromPartial(e)
+        );
+      }
     }
     return message;
   },

@@ -9,8 +9,8 @@ import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb,
 import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb, UnsignedString, SignedString } from "./protos/crypto";
 import { HolderAppInfo } from "./protos/holderApp";
 import { PresentationRequestEnriched, PresentationRequestDisplayMessage } from "./protos/presentationRequestEnriched";
-import { VerifierInfo as VerifierInfoPb } from "./protos/verifier";
-import { UnsignedSubjectCredentialsRequest, SubjectCredentialsRequest } from "./protos/subject";
+import { VerifierInfo } from "./protos/verifier";
+import { UnsignedSubjectCredentialsRequest, SubjectCredentialsRequest, SubjectCredentialsAbsentDto } from "./protos/subject";
 import { IssuerInfo } from "./protos/issuer";
 /**
  * Note the proto defined types import with a 'Pb' suffix that also have older, vanilla ts types defined.
@@ -22,10 +22,10 @@ export { UnsignedPresentationRequestPb, PresentationRequestPb, };
 export { IssueCredentialOptions, IssueCredentialsOptions, CredentialStatusInfoPb, CredentialStatus, CredentialRequestPb, UnsignedCredentialPb, CredentialPb, EncryptedCredentialPb, EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, RSAPadding, CredentialsIssuedResponse, UnsignedRevokeAllCredentials, RevokeAllCredentials, UnsignedSubjectCredentialRequests, SubjectCredentialRequestsEnrichedDtoPb, };
 export { PresentationRequestEnriched, PresentationRequestDisplayMessage };
 export { EncryptedKey, ProofPb, PublicKeyInfoPb, UnsignedString, SignedString };
-export { VerifierInfoPb, };
+export { VerifierInfo, };
 export { IssuerInfo, };
 export { HolderAppInfo };
-export { UnsignedSubjectCredentialsRequest, SubjectCredentialsRequest };
+export { UnsignedSubjectCredentialsRequest, SubjectCredentialsRequest, SubjectCredentialsAbsentDto };
 /**
  * Maps Dates to strings, including nested.
  * Effectively equals the type change caused by JSON.parse(JSON.stringify(x))
@@ -790,16 +790,6 @@ export declare type DidKeyType = 'secp256r1' | 'RSA';
  */
 export interface EncryptedCredentialOptions extends EncryptedCredentialOptionsPb {
     data: EncryptedData;
-}
-/**
- * Encapsulates Verifier metadata attributes.
- */
-export interface VerifierInfo {
-    did: string;
-    name: string;
-    url?: string;
-    encryptionPublicKey: PublicKeyInfo;
-    signingPublicKey: PublicKeyInfo;
 }
 /**
  * Encapsulates a map of Issuer metadata attributes keyed on the corresponding did.
