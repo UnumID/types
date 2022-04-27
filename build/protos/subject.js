@@ -14,11 +14,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SubjectCredentialsAbsentDto = exports.SubjectCredentialsRequest = exports.UnsignedSubjectCredentialsRequest = exports.protobufPackage = void 0;
+exports.SubjectCredentialIssuerInfoDto = exports.SubjectCredentialsAbsentDto = exports.SubjectCredentialsRequest = exports.UnsignedSubjectCredentialsRequest = exports.protobufPackage = void 0;
 /* eslint-disable */
 var long_1 = __importDefault(require("long"));
 var minimal_1 = __importDefault(require("protobufjs/minimal"));
 var proof_1 = require("./proof");
+var issuer_1 = require("./issuer");
 exports.protobufPackage = "subject.v1";
 var baseUnsignedSubjectCredentialsRequest = { types: "", issuer: "" };
 exports.UnsignedSubjectCredentialsRequest = {
@@ -261,6 +262,61 @@ exports.SubjectCredentialsAbsentDto = {
                 var e = _a[_i];
                 message.subjectCredentialsAbsent.push(exports.UnsignedSubjectCredentialsRequest.fromPartial(e));
             }
+        }
+        return message;
+    },
+};
+var baseSubjectCredentialIssuerInfoDto = {};
+exports.SubjectCredentialIssuerInfoDto = {
+    encode: function (message, writer) {
+        if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
+        if (message.issuerInfo !== undefined) {
+            issuer_1.IssuerInfo.encode(message.issuerInfo, writer.uint32(10).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode: function (input, length) {
+        var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
+        var end = length === undefined ? reader.len : reader.pos + length;
+        var message = __assign({}, baseSubjectCredentialIssuerInfoDto);
+        while (reader.pos < end) {
+            var tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.issuerInfo = issuer_1.IssuerInfo.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON: function (object) {
+        var message = __assign({}, baseSubjectCredentialIssuerInfoDto);
+        if (object.issuerInfo !== undefined && object.issuerInfo !== null) {
+            message.issuerInfo = issuer_1.IssuerInfo.fromJSON(object.issuerInfo);
+        }
+        else {
+            message.issuerInfo = undefined;
+        }
+        return message;
+    },
+    toJSON: function (message) {
+        var obj = {};
+        message.issuerInfo !== undefined &&
+            (obj.issuerInfo = message.issuerInfo
+                ? issuer_1.IssuerInfo.toJSON(message.issuerInfo)
+                : undefined);
+        return obj;
+    },
+    fromPartial: function (object) {
+        var message = __assign({}, baseSubjectCredentialIssuerInfoDto);
+        if (object.issuerInfo !== undefined && object.issuerInfo !== null) {
+            message.issuerInfo = issuer_1.IssuerInfo.fromPartial(object.issuerInfo);
+        }
+        else {
+            message.issuerInfo = undefined;
         }
         return message;
     },

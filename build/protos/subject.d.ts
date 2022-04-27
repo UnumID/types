@@ -1,5 +1,6 @@
 import _m0 from "protobufjs/minimal";
 import { Proof } from "./proof";
+import { IssuerInfo } from "./issuer";
 export declare const protobufPackage = "subject.v1";
 /** Type to encapsulate a Subject's request for Credentials */
 export interface UnsignedSubjectCredentialsRequest {
@@ -15,6 +16,10 @@ export interface SubjectCredentialsRequest {
 /** Type to encapsulate a dto response from the SubjectCredentialsAbsent service. */
 export interface SubjectCredentialsAbsentDto {
     subjectCredentialsAbsent: UnsignedSubjectCredentialsRequest[];
+}
+/** Encapsulates Issuer metadata attributes. */
+export interface SubjectCredentialIssuerInfoDto {
+    issuerInfo: IssuerInfo | undefined;
 }
 export declare const UnsignedSubjectCredentialsRequest: {
     encode(message: UnsignedSubjectCredentialsRequest, writer?: _m0.Writer): _m0.Writer;
@@ -36,6 +41,13 @@ export declare const SubjectCredentialsAbsentDto: {
     fromJSON(object: any): SubjectCredentialsAbsentDto;
     toJSON(message: SubjectCredentialsAbsentDto): unknown;
     fromPartial(object: DeepPartial<SubjectCredentialsAbsentDto>): SubjectCredentialsAbsentDto;
+};
+export declare const SubjectCredentialIssuerInfoDto: {
+    encode(message: SubjectCredentialIssuerInfoDto, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): SubjectCredentialIssuerInfoDto;
+    fromJSON(object: any): SubjectCredentialIssuerInfoDto;
+    toJSON(message: SubjectCredentialIssuerInfoDto): unknown;
+    fromPartial(object: DeepPartial<SubjectCredentialIssuerInfoDto>): SubjectCredentialIssuerInfoDto;
 };
 declare type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 export declare type DeepPartial<T> = T extends Builtin ? T : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
