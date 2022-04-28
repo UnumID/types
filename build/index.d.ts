@@ -10,7 +10,7 @@ import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyIn
 import { HolderAppInfo } from "./protos/holderApp";
 import { PresentationRequestEnriched, PresentationRequestDisplayMessage } from "./protos/presentationRequestEnriched";
 import { VerifierInfo } from "./protos/verifier";
-import { UnsignedSubjectCredentialsRequest, SubjectCredentialsRequest, SubjectCredentialsAbsentDto, SubjectCredentialIssuerInfoDto } from "./protos/subject";
+import { SubjectAbsentCredentials, SubjectCredentialsAbsentDto, SubjectCredentialIssuerInfoDto } from "./protos/subject";
 import { IssuerInfo } from "./protos/issuer";
 /**
  * Note the proto defined types import with a 'Pb' suffix that also have older, vanilla ts types defined.
@@ -25,7 +25,7 @@ export { EncryptedKey, ProofPb, PublicKeyInfoPb, UnsignedString, SignedString };
 export { VerifierInfo, };
 export { IssuerInfo, };
 export { HolderAppInfo };
-export { UnsignedSubjectCredentialsRequest, SubjectCredentialsRequest, SubjectCredentialsAbsentDto, SubjectCredentialIssuerInfoDto };
+export { SubjectAbsentCredentials, SubjectCredentialsAbsentDto, SubjectCredentialIssuerInfoDto };
 /**
  * Maps Dates to strings, including nested.
  * Effectively equals the type change caused by JSON.parse(JSON.stringify(x))
@@ -796,9 +796,6 @@ export interface EncryptedCredentialOptions extends EncryptedCredentialOptionsPb
  */
 export interface IssuerInfoMap {
     [did: string]: IssuerInfo;
-}
-export interface SubjectAbsentCredentialsMap {
-    [issuerDid: string]: UnsignedSubjectCredentialsRequest[];
 }
 /**
  * Interface for Public and Private corresponding key pair

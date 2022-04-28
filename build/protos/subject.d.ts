@@ -1,39 +1,25 @@
 import _m0 from "protobufjs/minimal";
-import { Proof } from "./proof";
 import { IssuerInfo } from "./issuer";
 export declare const protobufPackage = "subject.v1";
-/** Type to encapsulate a Subject's request for Credentials */
-export interface UnsignedSubjectCredentialsRequest {
+/** Type to encapsulate a Subject's absent credentials */
+export interface SubjectAbsentCredentials {
     types: string[];
     issuer: string;
-}
-/** Type to encapsulate a Subject's signed request for Credentials. Tightly coupled with UnsignedSubjectCredentialsRequest. */
-export interface SubjectCredentialsRequest {
-    types: string[];
-    issuer: string;
-    proof: Proof | undefined;
 }
 /** Type to encapsulate a dto response from the SubjectCredentialsAbsent service. */
 export interface SubjectCredentialsAbsentDto {
-    subjectCredentialsAbsent: UnsignedSubjectCredentialsRequest[];
+    subjectCredentialsAbsent: SubjectAbsentCredentials[];
 }
 /** Encapsulates Issuer metadata attributes. */
 export interface SubjectCredentialIssuerInfoDto {
     issuerInfo: IssuerInfo[];
 }
-export declare const UnsignedSubjectCredentialsRequest: {
-    encode(message: UnsignedSubjectCredentialsRequest, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): UnsignedSubjectCredentialsRequest;
-    fromJSON(object: any): UnsignedSubjectCredentialsRequest;
-    toJSON(message: UnsignedSubjectCredentialsRequest): unknown;
-    fromPartial(object: DeepPartial<UnsignedSubjectCredentialsRequest>): UnsignedSubjectCredentialsRequest;
-};
-export declare const SubjectCredentialsRequest: {
-    encode(message: SubjectCredentialsRequest, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): SubjectCredentialsRequest;
-    fromJSON(object: any): SubjectCredentialsRequest;
-    toJSON(message: SubjectCredentialsRequest): unknown;
-    fromPartial(object: DeepPartial<SubjectCredentialsRequest>): SubjectCredentialsRequest;
+export declare const SubjectAbsentCredentials: {
+    encode(message: SubjectAbsentCredentials, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): SubjectAbsentCredentials;
+    fromJSON(object: any): SubjectAbsentCredentials;
+    toJSON(message: SubjectAbsentCredentials): unknown;
+    fromPartial(object: DeepPartial<SubjectAbsentCredentials>): SubjectAbsentCredentials;
 };
 export declare const SubjectCredentialsAbsentDto: {
     encode(message: SubjectCredentialsAbsentDto, writer?: _m0.Writer): _m0.Writer;

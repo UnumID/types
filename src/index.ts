@@ -28,7 +28,7 @@ import { HolderAppInfo } from "./protos/holderApp";
 import { PresentationRequestEnriched, PresentationRequestDisplayMessage } from "./protos/presentationRequestEnriched";
 // import { VerifierInfo as VerifierInfoPb } from "./protos/verifier";
 import { VerifierInfo } from "./protos/verifier";
-import { UnsignedSubjectCredentialsRequest, SubjectCredentialsRequest, SubjectCredentialsAbsentDto, SubjectCredentialIssuerInfoDto } from "./protos/subject";
+import { SubjectAbsentCredentials, SubjectCredentialsAbsentDto, SubjectCredentialIssuerInfoDto } from "./protos/subject";
 import { IssuerInfo } from "./protos/issuer";
 
 /**
@@ -109,9 +109,8 @@ export {
 }
 
 export { 
-  // protos/subject
-  UnsignedSubjectCredentialsRequest, 
-  SubjectCredentialsRequest,
+  // protos/subject 
+  SubjectAbsentCredentials,
   SubjectCredentialsAbsentDto,
   SubjectCredentialIssuerInfoDto
 }
@@ -1014,10 +1013,6 @@ export interface EncryptedCredentialOptions extends EncryptedCredentialOptionsPb
  */
 export interface IssuerInfoMap {
   [did: string]: IssuerInfo;
-}
-
-export interface SubjectAbsentCredentialsMap {
-  [issuerDid: string]: UnsignedSubjectCredentialsRequest[];
 }
 
 /**
