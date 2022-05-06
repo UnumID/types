@@ -27,7 +27,7 @@ import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyIn
 import { HolderAppInfo } from "./protos/holderApp";
 import { PresentationRequestEnriched, PresentationRequestDisplayMessage } from "./protos/presentationRequestEnriched";
 // import { VerifierInfo as VerifierInfoPb } from "./protos/verifier";
-import { VerifierInfo } from "./protos/verifier";
+import { VerifierInfo as VerifierInfoPb } from "./protos/verifier";
 import { SubjectAbsentCredentials, SubjectCredentialsAbsentDto, SubjectCredentialIssuerInfoDto } from "./protos/subject";
 import { IssuerInfo } from "./protos/issuer";
 
@@ -95,7 +95,7 @@ export {
 
 export { 
   // protos/verifier
-  VerifierInfo, 
+  VerifierInfoPb, 
 }
 
 export { 
@@ -635,6 +635,11 @@ export interface ReceiptRequestReceivedData {
   uuid: string;
   createdAt: Date;
   updatedAt: Date;
+}
+
+export interface VerifierInfo extends Omit<VerifierInfoPb, 'encryptionPublicKey' | 'signingPublicKey'> {
+  encryptionPublicKey: PublicKeyInfo;
+  signingPublicKey: PublicKeyInfo;
 }
 
 
