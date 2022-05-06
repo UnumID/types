@@ -9,7 +9,7 @@ import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb,
 import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb, UnsignedString, SignedString } from "./protos/crypto";
 import { HolderAppInfo } from "./protos/holderApp";
 import { PresentationRequestEnriched, PresentationRequestDisplayMessage } from "./protos/presentationRequestEnriched";
-import { VerifierInfo } from "./protos/verifier";
+import { VerifierInfo as VerifierInfoPb } from "./protos/verifier";
 import { SubjectAbsentCredentials, SubjectCredentialsAbsentDto, SubjectCredentialIssuerInfoDto } from "./protos/subject";
 import { IssuerInfo } from "./protos/issuer";
 /**
@@ -22,7 +22,7 @@ export { UnsignedPresentationRequestPb, PresentationRequestPb, };
 export { IssueCredentialOptions, IssueCredentialsOptions, CredentialStatusInfoPb, CredentialStatus, CredentialRequestPb, UnsignedCredentialPb, CredentialPb, EncryptedCredentialPb, EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, RSAPadding, CredentialsIssuedResponse, UnsignedRevokeAllCredentials, RevokeAllCredentials, UnsignedSubjectCredentialRequests, SubjectCredentialRequestsEnrichedDtoPb, };
 export { PresentationRequestEnriched, PresentationRequestDisplayMessage };
 export { EncryptedKey, ProofPb, PublicKeyInfoPb, UnsignedString, SignedString };
-export { VerifierInfo, };
+export { VerifierInfoPb, };
 export { IssuerInfo, };
 export { HolderAppInfo };
 export { SubjectAbsentCredentials, SubjectCredentialsAbsentDto, SubjectCredentialIssuerInfoDto };
@@ -465,6 +465,10 @@ export interface ReceiptGroup<T = ReceiptGroupDataOptions> extends ReceiptGroupO
     uuid: string;
     createdAt: Date;
     updatedAt: Date;
+}
+export interface VerifierInfo extends Omit<VerifierInfoPb, 'encryptionPublicKey' | 'signingPublicKey'> {
+    encryptionPublicKey: PublicKeyInfo;
+    signingPublicKey: PublicKeyInfo;
 }
 /**
  * Type to encapsulate possible ReceiptGroup data fields.
