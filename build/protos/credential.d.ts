@@ -92,6 +92,7 @@ export interface EncryptedCredentialOptions {
     issuer: string;
     type: string;
     data: EncryptedData | undefined;
+    expirationDate: Date | undefined;
 }
 /**
  * Object that encapsulates a request to Unum ID SaaS to issue credentials.

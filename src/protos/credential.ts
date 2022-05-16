@@ -106,6 +106,7 @@ export interface EncryptedCredentialOptions {
   issuer: string;
   type: string;
   data: EncryptedData | undefined;
+  expirationDate: Date | undefined;
 }
 
 /**
@@ -1399,6 +1400,12 @@ export const EncryptedCredentialOptions = {
     if (message.data !== undefined) {
       EncryptedData.encode(message.data, writer.uint32(42).fork()).ldelim();
     }
+    if (message.expirationDate !== undefined) {
+      Timestamp.encode(
+        toTimestamp(message.expirationDate),
+        writer.uint32(50).fork()
+      ).ldelim();
+    }
     return writer;
   },
 
@@ -1428,6 +1435,11 @@ export const EncryptedCredentialOptions = {
           break;
         case 5:
           message.data = EncryptedData.decode(reader, reader.uint32());
+          break;
+        case 6:
+          message.expirationDate = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
           break;
         default:
           reader.skipType(tag & 7);
@@ -1466,6 +1478,11 @@ export const EncryptedCredentialOptions = {
     } else {
       message.data = undefined;
     }
+    if (object.expirationDate !== undefined && object.expirationDate !== null) {
+      message.expirationDate = fromJsonTimestamp(object.expirationDate);
+    } else {
+      message.expirationDate = undefined;
+    }
     return message;
   },
 
@@ -1480,6 +1497,8 @@ export const EncryptedCredentialOptions = {
       (obj.data = message.data
         ? EncryptedData.toJSON(message.data)
         : undefined);
+    message.expirationDate !== undefined &&
+      (obj.expirationDate = message.expirationDate.toISOString());
     return obj;
   },
 
@@ -1513,6 +1532,11 @@ export const EncryptedCredentialOptions = {
       message.data = EncryptedData.fromPartial(object.data);
     } else {
       message.data = undefined;
+    }
+    if (object.expirationDate !== undefined && object.expirationDate !== null) {
+      message.expirationDate = object.expirationDate;
+    } else {
+      message.expirationDate = undefined;
     }
     return message;
   },

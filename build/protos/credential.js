@@ -1071,6 +1071,9 @@ exports.EncryptedCredentialOptions = {
         if (message.data !== undefined) {
             crypto_1.EncryptedData.encode(message.data, writer.uint32(42).fork()).ldelim();
         }
+        if (message.expirationDate !== undefined) {
+            timestamp_1.Timestamp.encode(toTimestamp(message.expirationDate), writer.uint32(50).fork()).ldelim();
+        }
         return writer;
     },
     decode: function (input, length) {
@@ -1094,6 +1097,9 @@ exports.EncryptedCredentialOptions = {
                     break;
                 case 5:
                     message.data = crypto_1.EncryptedData.decode(reader, reader.uint32());
+                    break;
+                case 6:
+                    message.expirationDate = fromTimestamp(timestamp_1.Timestamp.decode(reader, reader.uint32()));
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -1134,6 +1140,12 @@ exports.EncryptedCredentialOptions = {
         else {
             message.data = undefined;
         }
+        if (object.expirationDate !== undefined && object.expirationDate !== null) {
+            message.expirationDate = fromJsonTimestamp(object.expirationDate);
+        }
+        else {
+            message.expirationDate = undefined;
+        }
         return message;
     },
     toJSON: function (message) {
@@ -1147,6 +1159,8 @@ exports.EncryptedCredentialOptions = {
             (obj.data = message.data
                 ? crypto_1.EncryptedData.toJSON(message.data)
                 : undefined);
+        message.expirationDate !== undefined &&
+            (obj.expirationDate = message.expirationDate.toISOString());
         return obj;
     },
     fromPartial: function (object) {
@@ -1180,6 +1194,12 @@ exports.EncryptedCredentialOptions = {
         }
         else {
             message.data = undefined;
+        }
+        if (object.expirationDate !== undefined && object.expirationDate !== null) {
+            message.expirationDate = object.expirationDate;
+        }
+        else {
+            message.expirationDate = undefined;
         }
         return message;
     },
