@@ -141,7 +141,7 @@ export interface EncryptedCredential extends EncryptedCredentialPb {
 export interface EncryptedCredentialDto extends Omit<EncryptedCredential, 'createdAt' | 'updatedAt' | 'expirationDate'> {
     createdAt: string;
     updatedAt: string;
-    expirationDate: string;
+    expirationDate?: string;
 }
 /**
  * Data transfer object for a single EncryptedCredentialEnriched

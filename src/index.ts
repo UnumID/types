@@ -253,7 +253,7 @@ export interface EncryptedCredential extends EncryptedCredentialPb {
   export interface EncryptedCredentialDto extends Omit<EncryptedCredential, 'createdAt' | 'updatedAt' | 'expirationDate'> {
   createdAt: string; // dates should be converted to ISO strings, since this is how they will be represented in the JSON at runtime
   updatedAt: string; // dates should be converted to ISO strings, since this is how they will be represented in the JSON at runtime
-  expirationDate: string; // dates should be converted to ISO strings, since this is how they will be represented in the JSON at runtime
+  expirationDate?: string; // dates should be converted to ISO strings, since this is how they will be represented in the JSON at runtime
 }
 
 /**

@@ -133,7 +133,7 @@ export interface EncryptedCredential {
     version: string;
     createdAt: Date | undefined;
     updatedAt: Date | undefined;
-    expirationDate: Date | undefined;
+    expirationDate?: Date | undefined;
 }
 /** Object that encapsulates an EncryptedCredential and a DidDocument corresponding the credential's issuer. */
 export interface EncryptedCredentialEnriched {
