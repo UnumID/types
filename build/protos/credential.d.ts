@@ -21,7 +21,7 @@ export interface UnsignedCredential {
     id: string;
     issuanceDate: Date | undefined;
     /** optional in the ts types */
-    expirationDate: Date | undefined;
+    expirationDate?: Date | undefined;
 }
 /**
  * Object which incorporates the relevant credential information in addition to a cryptographic proof so that the Credential is verifiable.
@@ -92,7 +92,7 @@ export interface EncryptedCredentialOptions {
     issuer: string;
     type: string;
     data: EncryptedData | undefined;
-    expirationDate: Date | undefined;
+    expirationDate?: Date | undefined;
 }
 /**
  * Object that encapsulates a request to Unum ID SaaS to issue credentials.
@@ -133,6 +133,7 @@ export interface EncryptedCredential {
     version: string;
     createdAt: Date | undefined;
     updatedAt: Date | undefined;
+    expirationDate: Date | undefined;
 }
 /** Object that encapsulates an EncryptedCredential and a DidDocument corresponding the credential's issuer. */
 export interface EncryptedCredentialEnriched {

@@ -1011,6 +1011,7 @@ export type DidKeyType = 'secp256r1' | 'RSA';
  */
 export interface EncryptedCredentialOptions extends EncryptedCredentialOptionsPb{
   data: EncryptedData; // to force non undefined type
+  // expirationDate?: Date;
 }
 
 /**
