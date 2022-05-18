@@ -193,6 +193,15 @@ export interface CredentialSubject {
 }
 
 /**
+ * Interface for a CredentialSchema in JSON-LD syntax with arbitrary number (0 to n) of string keys with values of type ClaimValue.
+ */
+ export interface CredentialSchema {
+  '@context': string; // credential context
+  '@type': string; // credential type
+  [claimName: string]: ClaimValue; // credential schema
+}
+
+/**
  * Interface to encapsulate a JSON object with unknown keys
  */
  export interface JSONObj {
