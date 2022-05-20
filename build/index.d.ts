@@ -12,6 +12,7 @@ import { PresentationRequestEnriched, PresentationRequestDisplayMessage } from "
 import { VerifierInfo as VerifierInfoPb } from "./protos/verifier";
 import { SubjectAbsentCredentials, SubjectCredentialsAbsentDto, SubjectCredentialIssuerInfoDto } from "./protos/subject";
 import { IssuerInfo } from "./protos/issuer";
+import { SchemaPresentationRequestDto, PresentationSchemaAttributes, PresentationSchema, CredentialSchemaData, SchemaGroupings, SchemaPresentationDto } from "./protos/schema";
 /**
  * Note the proto defined types import with a 'Pb' suffix that also have older, vanilla ts types defined.
  * The "Pb" serves to differentiate until we can ditch the legacy ts defined types.
@@ -26,6 +27,7 @@ export { VerifierInfoPb, };
 export { IssuerInfo, };
 export { HolderAppInfo };
 export { SubjectAbsentCredentials, SubjectCredentialsAbsentDto, SubjectCredentialIssuerInfoDto };
+export { SchemaPresentationRequestDto, PresentationSchemaAttributes, PresentationSchema, CredentialSchemaData, SchemaGroupings, SchemaPresentationDto };
 /**
  * Maps Dates to strings, including nested.
  * Effectively equals the type change caused by JSON.parse(JSON.stringify(x))
