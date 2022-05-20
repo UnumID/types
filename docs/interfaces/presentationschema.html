@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>CredentialStatusesOptions | @unumid/types</title>
+	<title>PresentationSchema | @unumid/types</title>
 	<meta name="description" content="Documentation for @unumid/types">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,28 +55,21 @@
 					<a href="../modules.html">@unumid/types</a>
 				</li>
 				<li>
-					<a href="credentialstatusesoptions.html">CredentialStatusesOptions</a>
+					<a href="presentationschema.html">PresentationSchema</a>
 				</li>
 			</ul>
-			<h1>Interface CredentialStatusesOptions</h1>
+			<h1>Interface PresentationSchema</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Interface to encapsulate information for updating many CredentialStatuses simultaneously</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">CredentialStatusesOptions</span>
+						<span class="target">PresentationSchema</span>
 					</li>
 				</ul>
 			</section>
@@ -87,8 +80,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="credentialstatusesoptions.html#credentialids" class="tsd-kind-icon">credential<wbr>Ids</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="credentialstatusesoptions.html#status" class="tsd-kind-icon">status</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationschema.html#attributes" class="tsd-kind-icon">attributes</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationschema.html#type" class="tsd-kind-icon">type</a></li>
 							</ul>
 						</section>
 					</div>
@@ -97,24 +90,29 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="credentialids" class="tsd-anchor"></a>
-					<h3>credential<wbr>Ids</h3>
-					<div class="tsd-signature tsd-kind-icon">credential<wbr>Ids<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<a name="attributes" class="tsd-anchor"></a>
+					<h3>attributes</h3>
+					<div class="tsd-signature tsd-kind-icon">attributes<span class="tsd-signature-symbol">:</span> <a href="../modules.html#presentationschemaattributes" class="tsd-signature-type" data-tsd-kind="Variable">PresentationSchemaAttributes</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/28550b7/src/index.ts#L1137">index.ts:1137</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/28550b7/src/protos/schema.ts#L23">protos/schema.ts:23</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="status" class="tsd-anchor"></a>
-					<h3>status</h3>
-					<div class="tsd-signature tsd-kind-icon">status<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;valid&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;revoked&quot;</span></div>
+					<a name="type" class="tsd-anchor"></a>
+					<h3>type</h3>
+					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/28550b7/src/index.ts#L1136">index.ts:1136</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/28550b7/src/protos/schema.ts#L22">protos/schema.ts:22</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>credentialType</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -131,13 +129,13 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="credentialstatusesoptions.html" class="tsd-kind-icon">Credential<wbr>Statuses<wbr>Options</a>
+						<a href="presentationschema.html" class="tsd-kind-icon">Presentation<wbr>Schema</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="credentialstatusesoptions.html#credentialids" class="tsd-kind-icon">credential<wbr>Ids</a>
+								<a href="presentationschema.html#attributes" class="tsd-kind-icon">attributes</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="credentialstatusesoptions.html#status" class="tsd-kind-icon">status</a>
+								<a href="presentationschema.html#type" class="tsd-kind-icon">type</a>
 							</li>
 						</ul>
 					</li>

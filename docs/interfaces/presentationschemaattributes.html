@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>CredentialStatusesOptions | @unumid/types</title>
+	<title>PresentationSchemaAttributes | @unumid/types</title>
 	<meta name="description" content="Documentation for @unumid/types">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,28 +55,21 @@
 					<a href="../modules.html">@unumid/types</a>
 				</li>
 				<li>
-					<a href="credentialstatusesoptions.html">CredentialStatusesOptions</a>
+					<a href="presentationschemaattributes.html">PresentationSchemaAttributes</a>
 				</li>
 			</ul>
-			<h1>Interface CredentialStatusesOptions</h1>
+			<h1>Interface PresentationSchemaAttributes</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Interface to encapsulate information for updating many CredentialStatuses simultaneously</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">CredentialStatusesOptions</span>
+						<span class="target">PresentationSchemaAttributes</span>
 					</li>
 				</ul>
 			</section>
@@ -87,8 +80,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="credentialstatusesoptions.html#credentialids" class="tsd-kind-icon">credential<wbr>Ids</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="credentialstatusesoptions.html#status" class="tsd-kind-icon">status</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationschemaattributes.html#comment" class="tsd-kind-icon">comment</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationschemaattributes.html#key" class="tsd-kind-icon">key</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationschemaattributes.html#label" class="tsd-kind-icon">label</a></li>
 							</ul>
 						</section>
 					</div>
@@ -97,24 +91,49 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="credentialids" class="tsd-anchor"></a>
-					<h3>credential<wbr>Ids</h3>
-					<div class="tsd-signature tsd-kind-icon">credential<wbr>Ids<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<a name="comment" class="tsd-anchor"></a>
+					<h3>comment</h3>
+					<div class="tsd-signature tsd-kind-icon">comment<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/28550b7/src/index.ts#L1137">index.ts:1137</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/28550b7/src/protos/schema.ts#L17">protos/schema.ts:17</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>comment for the credential value</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="status" class="tsd-anchor"></a>
-					<h3>status</h3>
-					<div class="tsd-signature tsd-kind-icon">status<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;valid&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;revoked&quot;</span></div>
+					<a name="key" class="tsd-anchor"></a>
+					<h3>key</h3>
+					<div class="tsd-signature tsd-kind-icon">key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/28550b7/src/index.ts#L1136">index.ts:1136</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/28550b7/src/protos/schema.ts#L13">protos/schema.ts:13</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>credential value key</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="label" class="tsd-anchor"></a>
+					<h3>label</h3>
+					<div class="tsd-signature tsd-kind-icon">label<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/28550b7/src/protos/schema.ts#L15">protos/schema.ts:15</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>label for the credential value</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -131,13 +150,16 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="credentialstatusesoptions.html" class="tsd-kind-icon">Credential<wbr>Statuses<wbr>Options</a>
+						<a href="presentationschemaattributes.html" class="tsd-kind-icon">Presentation<wbr>Schema<wbr>Attributes</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="credentialstatusesoptions.html#credentialids" class="tsd-kind-icon">credential<wbr>Ids</a>
+								<a href="presentationschemaattributes.html#comment" class="tsd-kind-icon">comment</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="credentialstatusesoptions.html#status" class="tsd-kind-icon">status</a>
+								<a href="presentationschemaattributes.html#key" class="tsd-kind-icon">key</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="presentationschemaattributes.html#label" class="tsd-kind-icon">label</a>
 							</li>
 						</ul>
 					</li>
