@@ -86,7 +86,6 @@ export interface SubjectCredentialRequestsDto {
 export interface SubjectCredentialRequestsEnrichedDto {
     credentialRequestsInfo?: SubjectCredentialRequestsDto | undefined;
     userDidAssociation?: UserDidAssociation | undefined;
-    issuerDid: string;
 }
 /** Object that encapsulates an EncryptedCredentialOptions for persisting an EncryptedCredential. */
 export interface EncryptedCredentialOptions {

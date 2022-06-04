@@ -99,7 +99,6 @@ export interface SubjectCredentialRequestsDto {
 export interface SubjectCredentialRequestsEnrichedDto {
   credentialRequestsInfo?: SubjectCredentialRequestsDto | undefined;
   userDidAssociation?: UserDidAssociation | undefined;
-  issuerDid: string;
 }
 
 /** Object that encapsulates an EncryptedCredentialOptions for persisting an EncryptedCredential. */
@@ -1253,7 +1252,7 @@ export const SubjectCredentialRequestsDto = {
   },
 };
 
-const baseSubjectCredentialRequestsEnrichedDto: object = { issuerDid: "" };
+const baseSubjectCredentialRequestsEnrichedDto: object = {};
 
 export const SubjectCredentialRequestsEnrichedDto = {
   encode(
@@ -1271,9 +1270,6 @@ export const SubjectCredentialRequestsEnrichedDto = {
         message.userDidAssociation,
         writer.uint32(18).fork()
       ).ldelim();
-    }
-    if (message.issuerDid !== "") {
-      writer.uint32(26).string(message.issuerDid);
     }
     return writer;
   },
@@ -1301,9 +1297,6 @@ export const SubjectCredentialRequestsEnrichedDto = {
             reader,
             reader.uint32()
           );
-          break;
-        case 3:
-          message.issuerDid = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -1337,11 +1330,6 @@ export const SubjectCredentialRequestsEnrichedDto = {
     } else {
       message.userDidAssociation = undefined;
     }
-    if (object.issuerDid !== undefined && object.issuerDid !== null) {
-      message.issuerDid = String(object.issuerDid);
-    } else {
-      message.issuerDid = "";
-    }
     return message;
   },
 
@@ -1355,7 +1343,6 @@ export const SubjectCredentialRequestsEnrichedDto = {
       (obj.userDidAssociation = message.userDidAssociation
         ? UserDidAssociation.toJSON(message.userDidAssociation)
         : undefined);
-    message.issuerDid !== undefined && (obj.issuerDid = message.issuerDid);
     return obj;
   },
 
@@ -1384,11 +1371,6 @@ export const SubjectCredentialRequestsEnrichedDto = {
       );
     } else {
       message.userDidAssociation = undefined;
-    }
-    if (object.issuerDid !== undefined && object.issuerDid !== null) {
-      message.issuerDid = object.issuerDid;
-    } else {
-      message.issuerDid = "";
     }
     return message;
   },

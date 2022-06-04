@@ -605,7 +605,7 @@ exports.DID = {
         return message;
     },
 };
-var baseUserDidAssociation = { userCode: "" };
+var baseUserDidAssociation = { userCode: "", issuerDid: "" };
 exports.UserDidAssociation = {
     encode: function (message, writer) {
         if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
@@ -614,6 +614,9 @@ exports.UserDidAssociation = {
         }
         if (message.did !== undefined) {
             exports.DID.encode(message.did, writer.uint32(18).fork()).ldelim();
+        }
+        if (message.issuerDid !== "") {
+            writer.uint32(26).string(message.issuerDid);
         }
         return writer;
     },
@@ -629,6 +632,9 @@ exports.UserDidAssociation = {
                     break;
                 case 2:
                     message.did = exports.DID.decode(reader, reader.uint32());
+                    break;
+                case 3:
+                    message.issuerDid = reader.string();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -651,6 +657,12 @@ exports.UserDidAssociation = {
         else {
             message.did = undefined;
         }
+        if (object.issuerDid !== undefined && object.issuerDid !== null) {
+            message.issuerDid = String(object.issuerDid);
+        }
+        else {
+            message.issuerDid = "";
+        }
         return message;
     },
     toJSON: function (message) {
@@ -658,6 +670,7 @@ exports.UserDidAssociation = {
         message.userCode !== undefined && (obj.userCode = message.userCode);
         message.did !== undefined &&
             (obj.did = message.did ? exports.DID.toJSON(message.did) : undefined);
+        message.issuerDid !== undefined && (obj.issuerDid = message.issuerDid);
         return obj;
     },
     fromPartial: function (object) {
@@ -673,6 +686,12 @@ exports.UserDidAssociation = {
         }
         else {
             message.did = undefined;
+        }
+        if (object.issuerDid !== undefined && object.issuerDid !== null) {
+            message.issuerDid = object.issuerDid;
+        }
+        else {
+            message.issuerDid = "";
         }
         return message;
     },
