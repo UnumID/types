@@ -966,7 +966,7 @@ exports.SubjectCredentialRequestsDto = {
         return message;
     },
 };
-var baseSubjectCredentialRequestsEnrichedDto = {};
+var baseSubjectCredentialRequestsEnrichedDto = { issuerDid: "" };
 exports.SubjectCredentialRequestsEnrichedDto = {
     encode: function (message, writer) {
         if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
@@ -975,6 +975,9 @@ exports.SubjectCredentialRequestsEnrichedDto = {
         }
         if (message.userDidAssociation !== undefined) {
             didDocument_1.UserDidAssociation.encode(message.userDidAssociation, writer.uint32(18).fork()).ldelim();
+        }
+        if (message.issuerDid !== "") {
+            writer.uint32(26).string(message.issuerDid);
         }
         return writer;
     },
@@ -990,6 +993,9 @@ exports.SubjectCredentialRequestsEnrichedDto = {
                     break;
                 case 2:
                     message.userDidAssociation = didDocument_1.UserDidAssociation.decode(reader, reader.uint32());
+                    break;
+                case 3:
+                    message.issuerDid = reader.string();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -1014,6 +1020,12 @@ exports.SubjectCredentialRequestsEnrichedDto = {
         else {
             message.userDidAssociation = undefined;
         }
+        if (object.issuerDid !== undefined && object.issuerDid !== null) {
+            message.issuerDid = String(object.issuerDid);
+        }
+        else {
+            message.issuerDid = "";
+        }
         return message;
     },
     toJSON: function (message) {
@@ -1026,6 +1038,7 @@ exports.SubjectCredentialRequestsEnrichedDto = {
             (obj.userDidAssociation = message.userDidAssociation
                 ? didDocument_1.UserDidAssociation.toJSON(message.userDidAssociation)
                 : undefined);
+        message.issuerDid !== undefined && (obj.issuerDid = message.issuerDid);
         return obj;
     },
     fromPartial: function (object) {
@@ -1043,6 +1056,12 @@ exports.SubjectCredentialRequestsEnrichedDto = {
         }
         else {
             message.userDidAssociation = undefined;
+        }
+        if (object.issuerDid !== undefined && object.issuerDid !== null) {
+            message.issuerDid = object.issuerDid;
+        }
+        else {
+            message.issuerDid = "";
         }
         return message;
     },
