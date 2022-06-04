@@ -1193,19 +1193,17 @@ export interface SubjectCredentialRequestsDto extends Omit<SubjectCredentialRequ
  * 
  * Note: userDidAssociation is optional because will not always be necessary. However is needed for the initial credential requests in order for the customer's user to get an associated DID.
  * Opted to include as part of the credential requests to eliminate the possibility for a user did / credential request race condition.
- */
-/**
+ *
+ * Note: credentialRequestsInfo is optional becuase this type can be used strictly for userDidAssocation, despite its name. We opted to keep this functionality under the SubjectCredentialRequet
+ * flow for simplicity of customers implementation. They only have to implement one endpoint in this manner than can perform in either manner. 
+ *
  * Interface to enforce the presence of the SubjectCredentialRequestsDto attribute on the SubjectCredentialRequestsEnrichedDto protobuf definition and
  * the optional UserDidAssociation with, when present, enforces the presence of Proof attribute on the UserDidAssociation protobuf definition.
  */
  export interface SubjectCredentialRequestsEnrichedDto extends Omit<SubjectCredentialRequestsEnrichedDtoPb, 'credentialRequestsInfo' | 'userDidAssociation'> {
-  credentialRequestsInfo: SubjectCredentialRequestsDto;
-  userDidAssociation?: UserDidAssociation; // note: optional
+  credentialRequestsInfo?: SubjectCredentialRequestsDto;
+  userDidAssociation?: UserDidAssociation;
 }
-// export interface SubjectCredentialRequestsEnrichedDto {
-//   credentialRequestsInfo: SubjectCredentialRequestsDto;
-//   userDidAssociation?: UserDidAssociation; // note: optional
-// }
 
 /**
  * Interface to encapsulate the response that the UnumID SaaS is expecting after forwarding the encrypted presentation to the verifier app for verification.

@@ -49,7 +49,9 @@ export interface DID {
 export interface UserDidAssociation {
     /** the userCode should be a short lived, one time use user alias. */
     userCode: string;
+    /** the subject did to be associated to the user. */
     did: DID | undefined;
+    issuerDid: string;
 }
 export declare const DidDocument: {
     encode(message: DidDocument, writer?: _m0.Writer): _m0.Writer;
