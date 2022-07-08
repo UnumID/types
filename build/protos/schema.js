@@ -183,9 +183,8 @@ exports.PresentationSchema = {
         if (message.type !== "") {
             writer.uint32(10).string(message.type);
         }
-        for (var _i = 0, _a = message.attributes; _i < _a.length; _i++) {
-            var v = _a[_i];
-            exports.PresentationSchemaAttributes.encode(v, writer.uint32(18).fork()).ldelim();
+        if (message.attributes !== undefined) {
+            exports.PresentationSchemaAttributes.encode(message.attributes, writer.uint32(18).fork()).ldelim();
         }
         return writer;
     },
@@ -193,7 +192,6 @@ exports.PresentationSchema = {
         var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         var end = length === undefined ? reader.len : reader.pos + length;
         var message = __assign({}, basePresentationSchema);
-        message.attributes = [];
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
@@ -201,7 +199,7 @@ exports.PresentationSchema = {
                     message.type = reader.string();
                     break;
                 case 2:
-                    message.attributes.push(exports.PresentationSchemaAttributes.decode(reader, reader.uint32()));
+                    message.attributes = exports.PresentationSchemaAttributes.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -212,7 +210,6 @@ exports.PresentationSchema = {
     },
     fromJSON: function (object) {
         var message = __assign({}, basePresentationSchema);
-        message.attributes = [];
         if (object.type !== undefined && object.type !== null) {
             message.type = String(object.type);
         }
@@ -220,29 +217,24 @@ exports.PresentationSchema = {
             message.type = "";
         }
         if (object.attributes !== undefined && object.attributes !== null) {
-            for (var _i = 0, _a = object.attributes; _i < _a.length; _i++) {
-                var e = _a[_i];
-                message.attributes.push(exports.PresentationSchemaAttributes.fromJSON(e));
-            }
+            message.attributes = exports.PresentationSchemaAttributes.fromJSON(object.attributes);
+        }
+        else {
+            message.attributes = undefined;
         }
         return message;
     },
     toJSON: function (message) {
         var obj = {};
         message.type !== undefined && (obj.type = message.type);
-        if (message.attributes) {
-            obj.attributes = message.attributes.map(function (e) {
-                return e ? exports.PresentationSchemaAttributes.toJSON(e) : undefined;
-            });
-        }
-        else {
-            obj.attributes = [];
-        }
+        message.attributes !== undefined &&
+            (obj.attributes = message.attributes
+                ? exports.PresentationSchemaAttributes.toJSON(message.attributes)
+                : undefined);
         return obj;
     },
     fromPartial: function (object) {
         var message = __assign({}, basePresentationSchema);
-        message.attributes = [];
         if (object.type !== undefined && object.type !== null) {
             message.type = object.type;
         }
@@ -250,10 +242,10 @@ exports.PresentationSchema = {
             message.type = "";
         }
         if (object.attributes !== undefined && object.attributes !== null) {
-            for (var _i = 0, _a = object.attributes; _i < _a.length; _i++) {
-                var e = _a[_i];
-                message.attributes.push(exports.PresentationSchemaAttributes.fromPartial(e));
-            }
+            message.attributes = exports.PresentationSchemaAttributes.fromPartial(object.attributes);
+        }
+        else {
+            message.attributes = undefined;
         }
         return message;
     },

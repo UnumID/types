@@ -64,6 +64,50 @@ export interface UserDidAssociation {
   issuerDid: string;
 }
 
+/** An options object used to create a Holder entity */
+export interface HolderOptions {
+  browserName?: string | undefined;
+  deviceOs?: string | undefined;
+  deviceModel?: string | undefined;
+  /** HolderType in ts types */
+  type?: string | undefined;
+}
+
+/**
+ * An options object used to update a DidDocument by adding or updating a public key
+ * If the DidDocument does not include a key with the same id, a new key will be added.
+ * If it does, that key will be updated
+ */
+export interface PublicKeyInfoUpdateOptions {
+  id: string;
+  /** optional, but required to add a new key */
+  publicKey?: string | undefined;
+  /** optional, required to add a new key */
+  encoding?: string | undefined;
+  /** optional, required to add a new key */
+  type?: string | undefined;
+  /** optional required to add a new key or update key status of an existing key. Can invaliate an existing by setting to value 'invalid' */
+  status?: string | undefined;
+}
+
+/**
+ * An options object used to update a Did Document by adding or updating one or more public keys
+ * It must contain the subject's updateKey and a signature by either one of the subject's existing
+ * signing keys or another key to which the correct authority has been delegated
+ */
+export interface DidDocumentPatchOptions {
+  /** identifies the DidDocument to update */
+  did: string;
+  /** the subject's updateKey */
+  updateKey: string;
+  /** keys to update/add */
+  publicKeyInfo: PublicKeyInfoUpdateOptions[];
+  /** proof containing a signature over the updateKey by an authorized private key */
+  proof: Proof | undefined;
+  /** optional: metadata options for creating a new Holder, if keys are being added */
+  holderOptions: HolderOptions | undefined;
+}
+
 const baseDidDocument: object = { context: "", id: "" };
 
 export const DidDocument = {
@@ -754,6 +798,409 @@ export const UserDidAssociation = {
       message.issuerDid = object.issuerDid;
     } else {
       message.issuerDid = "";
+    }
+    return message;
+  },
+};
+
+const baseHolderOptions: object = {};
+
+export const HolderOptions = {
+  encode(
+    message: HolderOptions,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.browserName !== undefined) {
+      writer.uint32(10).string(message.browserName);
+    }
+    if (message.deviceOs !== undefined) {
+      writer.uint32(18).string(message.deviceOs);
+    }
+    if (message.deviceModel !== undefined) {
+      writer.uint32(26).string(message.deviceModel);
+    }
+    if (message.type !== undefined) {
+      writer.uint32(34).string(message.type);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): HolderOptions {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseHolderOptions } as HolderOptions;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.browserName = reader.string();
+          break;
+        case 2:
+          message.deviceOs = reader.string();
+          break;
+        case 3:
+          message.deviceModel = reader.string();
+          break;
+        case 4:
+          message.type = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): HolderOptions {
+    const message = { ...baseHolderOptions } as HolderOptions;
+    if (object.browserName !== undefined && object.browserName !== null) {
+      message.browserName = String(object.browserName);
+    } else {
+      message.browserName = undefined;
+    }
+    if (object.deviceOs !== undefined && object.deviceOs !== null) {
+      message.deviceOs = String(object.deviceOs);
+    } else {
+      message.deviceOs = undefined;
+    }
+    if (object.deviceModel !== undefined && object.deviceModel !== null) {
+      message.deviceModel = String(object.deviceModel);
+    } else {
+      message.deviceModel = undefined;
+    }
+    if (object.type !== undefined && object.type !== null) {
+      message.type = String(object.type);
+    } else {
+      message.type = undefined;
+    }
+    return message;
+  },
+
+  toJSON(message: HolderOptions): unknown {
+    const obj: any = {};
+    message.browserName !== undefined &&
+      (obj.browserName = message.browserName);
+    message.deviceOs !== undefined && (obj.deviceOs = message.deviceOs);
+    message.deviceModel !== undefined &&
+      (obj.deviceModel = message.deviceModel);
+    message.type !== undefined && (obj.type = message.type);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<HolderOptions>): HolderOptions {
+    const message = { ...baseHolderOptions } as HolderOptions;
+    if (object.browserName !== undefined && object.browserName !== null) {
+      message.browserName = object.browserName;
+    } else {
+      message.browserName = undefined;
+    }
+    if (object.deviceOs !== undefined && object.deviceOs !== null) {
+      message.deviceOs = object.deviceOs;
+    } else {
+      message.deviceOs = undefined;
+    }
+    if (object.deviceModel !== undefined && object.deviceModel !== null) {
+      message.deviceModel = object.deviceModel;
+    } else {
+      message.deviceModel = undefined;
+    }
+    if (object.type !== undefined && object.type !== null) {
+      message.type = object.type;
+    } else {
+      message.type = undefined;
+    }
+    return message;
+  },
+};
+
+const basePublicKeyInfoUpdateOptions: object = { id: "" };
+
+export const PublicKeyInfoUpdateOptions = {
+  encode(
+    message: PublicKeyInfoUpdateOptions,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.id !== "") {
+      writer.uint32(10).string(message.id);
+    }
+    if (message.publicKey !== undefined) {
+      writer.uint32(18).string(message.publicKey);
+    }
+    if (message.encoding !== undefined) {
+      writer.uint32(26).string(message.encoding);
+    }
+    if (message.type !== undefined) {
+      writer.uint32(34).string(message.type);
+    }
+    if (message.status !== undefined) {
+      writer.uint32(42).string(message.status);
+    }
+    return writer;
+  },
+
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): PublicKeyInfoUpdateOptions {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...basePublicKeyInfoUpdateOptions,
+    } as PublicKeyInfoUpdateOptions;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.id = reader.string();
+          break;
+        case 2:
+          message.publicKey = reader.string();
+          break;
+        case 3:
+          message.encoding = reader.string();
+          break;
+        case 4:
+          message.type = reader.string();
+          break;
+        case 5:
+          message.status = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): PublicKeyInfoUpdateOptions {
+    const message = {
+      ...basePublicKeyInfoUpdateOptions,
+    } as PublicKeyInfoUpdateOptions;
+    if (object.id !== undefined && object.id !== null) {
+      message.id = String(object.id);
+    } else {
+      message.id = "";
+    }
+    if (object.publicKey !== undefined && object.publicKey !== null) {
+      message.publicKey = String(object.publicKey);
+    } else {
+      message.publicKey = undefined;
+    }
+    if (object.encoding !== undefined && object.encoding !== null) {
+      message.encoding = String(object.encoding);
+    } else {
+      message.encoding = undefined;
+    }
+    if (object.type !== undefined && object.type !== null) {
+      message.type = String(object.type);
+    } else {
+      message.type = undefined;
+    }
+    if (object.status !== undefined && object.status !== null) {
+      message.status = String(object.status);
+    } else {
+      message.status = undefined;
+    }
+    return message;
+  },
+
+  toJSON(message: PublicKeyInfoUpdateOptions): unknown {
+    const obj: any = {};
+    message.id !== undefined && (obj.id = message.id);
+    message.publicKey !== undefined && (obj.publicKey = message.publicKey);
+    message.encoding !== undefined && (obj.encoding = message.encoding);
+    message.type !== undefined && (obj.type = message.type);
+    message.status !== undefined && (obj.status = message.status);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<PublicKeyInfoUpdateOptions>
+  ): PublicKeyInfoUpdateOptions {
+    const message = {
+      ...basePublicKeyInfoUpdateOptions,
+    } as PublicKeyInfoUpdateOptions;
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    } else {
+      message.id = "";
+    }
+    if (object.publicKey !== undefined && object.publicKey !== null) {
+      message.publicKey = object.publicKey;
+    } else {
+      message.publicKey = undefined;
+    }
+    if (object.encoding !== undefined && object.encoding !== null) {
+      message.encoding = object.encoding;
+    } else {
+      message.encoding = undefined;
+    }
+    if (object.type !== undefined && object.type !== null) {
+      message.type = object.type;
+    } else {
+      message.type = undefined;
+    }
+    if (object.status !== undefined && object.status !== null) {
+      message.status = object.status;
+    } else {
+      message.status = undefined;
+    }
+    return message;
+  },
+};
+
+const baseDidDocumentPatchOptions: object = { did: "", updateKey: "" };
+
+export const DidDocumentPatchOptions = {
+  encode(
+    message: DidDocumentPatchOptions,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.did !== "") {
+      writer.uint32(10).string(message.did);
+    }
+    if (message.updateKey !== "") {
+      writer.uint32(18).string(message.updateKey);
+    }
+    for (const v of message.publicKeyInfo) {
+      PublicKeyInfoUpdateOptions.encode(v!, writer.uint32(26).fork()).ldelim();
+    }
+    if (message.proof !== undefined) {
+      Proof.encode(message.proof, writer.uint32(34).fork()).ldelim();
+    }
+    if (message.holderOptions !== undefined) {
+      HolderOptions.encode(
+        message.holderOptions,
+        writer.uint32(42).fork()
+      ).ldelim();
+    }
+    return writer;
+  },
+
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): DidDocumentPatchOptions {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseDidDocumentPatchOptions,
+    } as DidDocumentPatchOptions;
+    message.publicKeyInfo = [];
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.did = reader.string();
+          break;
+        case 2:
+          message.updateKey = reader.string();
+          break;
+        case 3:
+          message.publicKeyInfo.push(
+            PublicKeyInfoUpdateOptions.decode(reader, reader.uint32())
+          );
+          break;
+        case 4:
+          message.proof = Proof.decode(reader, reader.uint32());
+          break;
+        case 5:
+          message.holderOptions = HolderOptions.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): DidDocumentPatchOptions {
+    const message = {
+      ...baseDidDocumentPatchOptions,
+    } as DidDocumentPatchOptions;
+    message.publicKeyInfo = [];
+    if (object.did !== undefined && object.did !== null) {
+      message.did = String(object.did);
+    } else {
+      message.did = "";
+    }
+    if (object.updateKey !== undefined && object.updateKey !== null) {
+      message.updateKey = String(object.updateKey);
+    } else {
+      message.updateKey = "";
+    }
+    if (object.publicKeyInfo !== undefined && object.publicKeyInfo !== null) {
+      for (const e of object.publicKeyInfo) {
+        message.publicKeyInfo.push(PublicKeyInfoUpdateOptions.fromJSON(e));
+      }
+    }
+    if (object.proof !== undefined && object.proof !== null) {
+      message.proof = Proof.fromJSON(object.proof);
+    } else {
+      message.proof = undefined;
+    }
+    if (object.holderOptions !== undefined && object.holderOptions !== null) {
+      message.holderOptions = HolderOptions.fromJSON(object.holderOptions);
+    } else {
+      message.holderOptions = undefined;
+    }
+    return message;
+  },
+
+  toJSON(message: DidDocumentPatchOptions): unknown {
+    const obj: any = {};
+    message.did !== undefined && (obj.did = message.did);
+    message.updateKey !== undefined && (obj.updateKey = message.updateKey);
+    if (message.publicKeyInfo) {
+      obj.publicKeyInfo = message.publicKeyInfo.map((e) =>
+        e ? PublicKeyInfoUpdateOptions.toJSON(e) : undefined
+      );
+    } else {
+      obj.publicKeyInfo = [];
+    }
+    message.proof !== undefined &&
+      (obj.proof = message.proof ? Proof.toJSON(message.proof) : undefined);
+    message.holderOptions !== undefined &&
+      (obj.holderOptions = message.holderOptions
+        ? HolderOptions.toJSON(message.holderOptions)
+        : undefined);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<DidDocumentPatchOptions>
+  ): DidDocumentPatchOptions {
+    const message = {
+      ...baseDidDocumentPatchOptions,
+    } as DidDocumentPatchOptions;
+    message.publicKeyInfo = [];
+    if (object.did !== undefined && object.did !== null) {
+      message.did = object.did;
+    } else {
+      message.did = "";
+    }
+    if (object.updateKey !== undefined && object.updateKey !== null) {
+      message.updateKey = object.updateKey;
+    } else {
+      message.updateKey = "";
+    }
+    if (object.publicKeyInfo !== undefined && object.publicKeyInfo !== null) {
+      for (const e of object.publicKeyInfo) {
+        message.publicKeyInfo.push(PublicKeyInfoUpdateOptions.fromPartial(e));
+      }
+    }
+    if (object.proof !== undefined && object.proof !== null) {
+      message.proof = Proof.fromPartial(object.proof);
+    } else {
+      message.proof = undefined;
+    }
+    if (object.holderOptions !== undefined && object.holderOptions !== null) {
+      message.holderOptions = HolderOptions.fromPartial(object.holderOptions);
+    } else {
+      message.holderOptions = undefined;
     }
     return message;
   },

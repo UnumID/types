@@ -3,7 +3,7 @@ import { Literal, Static, Union } from "runtypes";
 import { SemVer } from 'semver';
 import { UnsignedPresentation as UnsignedPresentationPb, Presentation as PresentationPb } from "./protos/presentation";
 import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest";
-import { DidDocument as DidDocumentPb, SignedDidDocument as SignedDidDocumentPb, DidDocumentService, UnsignedDID, DID as DIDPb, UserDidAssociation as UserDidAssociationPb } from "./protos/didDocument";
+import { DidDocument as DidDocumentPb, SignedDidDocument as SignedDidDocumentPb, DidDocumentService, UnsignedDID, DID as DIDPb, UserDidAssociation as UserDidAssociationPb, HolderOptions as HolderOptionsPb, PublicKeyInfoUpdateOptions, DidDocumentPatchOptions as DidDocumentPatchOptionsPb } from "./protos/didDocument";
 import { Proof as ProofPb } from "./protos/proof";
 import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest as CredentialRequestPb, CredentialStatusInfo as CredentialStatusInfoPb, IssueCredentialOptions, IssueCredentialsOptions, EncryptedCredential as EncryptedCredentialPb, EncryptedCredentialOptions as EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, UnsignedSubjectCredentialRequests, SubjectCredentialRequests as SubjectCredentialRequestsPb, SubjectCredentialRequestsDto as SubjectCredentialRequestsDtoPb, CredentialsIssuedResponse, CredentialStatus, RevokeAllCredentials, UnsignedRevokeAllCredentials, SubjectCredentialRequestsEnrichedDto as SubjectCredentialRequestsEnrichedDtoPb } from "./protos/credential";
 import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb, UnsignedString, SignedString } from "./protos/crypto";
@@ -624,10 +624,7 @@ export declare type HolderType = 'web' | 'mobile';
 /**
  * An options object used to create a Holder entity
  */
-export interface HolderOptions {
-    browserName?: string;
-    deviceOs?: string;
-    deviceModel?: string;
+export interface HolderOptions extends HolderOptionsPb {
     type?: HolderType;
 }
 /**
@@ -666,27 +663,12 @@ export interface SubjectPostDto extends Subject {
     holder: HolderDto;
 }
 /**
- * An options object used to update a DidDocument by adding or updating a public key
- * If the DidDocument does not include a key with the same id, a new key will be added.
- * If it does, that key will be updated
- */
-export interface PublicKeyInfoUpdateOptions {
-    id: string;
-    publicKey?: string;
-    encoding?: string;
-    type?: string;
-    status?: string;
-}
-/**
  * An options object used to update a Did Document by adding or updating one or more public keys
  * It must contain the subject's updateKey and a signature by either one of the subject's existing
  * signing keys or another key to which the correct authority has been delegated
  */
-export interface DidDocumentPatchOptions {
-    did: string;
-    updateKey: string;
+export interface DidDocumentPatchOptions extends Omit<DidDocumentPatchOptionsPb, 'publicKeyInfo' | 'holderOptions'> {
     publicKeyInfo: PublicKeyInfoUpdateOptions[];
-    proof: ProofPb;
     holderOptions?: HolderOptions;
 }
 /**

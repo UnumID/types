@@ -14,7 +14,7 @@ export interface PresentationSchemaAttributes {
 export interface PresentationSchema {
     /** credentialType */
     type: string;
-    attributes: PresentationSchemaAttributes[];
+    attributes: PresentationSchemaAttributes | undefined;
 }
 export interface CredentialSchemaData {
     /** human readable GroupingHeaders */
