@@ -20,7 +20,7 @@ export interface PresentationSchemaAttributes {
 export interface PresentationSchema {
   /** credentialType */
   type: string;
-  attributes: PresentationSchemaAttributes | undefined;
+  attributes: PresentationSchemaAttributes[];
 }
 
 export interface CredentialSchemaData {
@@ -237,9 +237,9 @@ export const PresentationSchema = {
     if (message.type !== "") {
       writer.uint32(10).string(message.type);
     }
-    if (message.attributes !== undefined) {
+    for (const v of message.attributes) {
       PresentationSchemaAttributes.encode(
-        message.attributes,
+        v!,
         writer.uint32(18).fork()
       ).ldelim();
     }
@@ -250,6 +250,7 @@ export const PresentationSchema = {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = { ...basePresentationSchema } as PresentationSchema;
+    message.attributes = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -257,9 +258,8 @@ export const PresentationSchema = {
           message.type = reader.string();
           break;
         case 2:
-          message.attributes = PresentationSchemaAttributes.decode(
-            reader,
-            reader.uint32()
+          message.attributes.push(
+            PresentationSchemaAttributes.decode(reader, reader.uint32())
           );
           break;
         default:
@@ -272,17 +272,16 @@ export const PresentationSchema = {
 
   fromJSON(object: any): PresentationSchema {
     const message = { ...basePresentationSchema } as PresentationSchema;
+    message.attributes = [];
     if (object.type !== undefined && object.type !== null) {
       message.type = String(object.type);
     } else {
       message.type = "";
     }
     if (object.attributes !== undefined && object.attributes !== null) {
-      message.attributes = PresentationSchemaAttributes.fromJSON(
-        object.attributes
-      );
-    } else {
-      message.attributes = undefined;
+      for (const e of object.attributes) {
+        message.attributes.push(PresentationSchemaAttributes.fromJSON(e));
+      }
     }
     return message;
   },
@@ -290,26 +289,28 @@ export const PresentationSchema = {
   toJSON(message: PresentationSchema): unknown {
     const obj: any = {};
     message.type !== undefined && (obj.type = message.type);
-    message.attributes !== undefined &&
-      (obj.attributes = message.attributes
-        ? PresentationSchemaAttributes.toJSON(message.attributes)
-        : undefined);
+    if (message.attributes) {
+      obj.attributes = message.attributes.map((e) =>
+        e ? PresentationSchemaAttributes.toJSON(e) : undefined
+      );
+    } else {
+      obj.attributes = [];
+    }
     return obj;
   },
 
   fromPartial(object: DeepPartial<PresentationSchema>): PresentationSchema {
     const message = { ...basePresentationSchema } as PresentationSchema;
+    message.attributes = [];
     if (object.type !== undefined && object.type !== null) {
       message.type = object.type;
     } else {
       message.type = "";
     }
     if (object.attributes !== undefined && object.attributes !== null) {
-      message.attributes = PresentationSchemaAttributes.fromPartial(
-        object.attributes
-      );
-    } else {
-      message.attributes = undefined;
+      for (const e of object.attributes) {
+        message.attributes.push(PresentationSchemaAttributes.fromPartial(e));
+      }
     }
     return message;
   },
