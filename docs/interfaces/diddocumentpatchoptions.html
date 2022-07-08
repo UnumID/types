@@ -78,7 +78,12 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">DidDocumentPatchOptions</span>
+						<span class="tsd-signature-type">Omit</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">DidDocumentPatchOptionsPb</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;publicKeyInfo&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;holderOptions&quot;</span><span class="tsd-signature-symbol">&gt;</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">DidDocumentPatchOptions</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -89,11 +94,11 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diddocumentpatchoptions.html#did" class="tsd-kind-icon">did</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="diddocumentpatchoptions.html#did" class="tsd-kind-icon">did</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diddocumentpatchoptions.html#holderoptions" class="tsd-kind-icon">holder<wbr>Options</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diddocumentpatchoptions.html#proof" class="tsd-kind-icon">proof</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="diddocumentpatchoptions.html#proof" class="tsd-kind-icon">proof</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diddocumentpatchoptions.html#publickeyinfo" class="tsd-kind-icon">public<wbr>Key<wbr>Info</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="diddocumentpatchoptions.html#updatekey" class="tsd-kind-icon">update<wbr>Key</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="diddocumentpatchoptions.html#updatekey" class="tsd-kind-icon">update<wbr>Key</a></li>
 							</ul>
 						</section>
 					</div>
@@ -101,15 +106,21 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="did" class="tsd-anchor"></a>
 					<h3>did</h3>
 					<div class="tsd-signature tsd-kind-icon">did<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from Omit.did</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/c43072a/src/index.ts#L898">index.ts:898</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/a850dad/src/protos/didDocument.ts#L100">protos/didDocument.ts:100</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>identifies the DidDocument to update</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="holderoptions" class="tsd-anchor"></a>
@@ -117,39 +128,51 @@
 					<div class="tsd-signature tsd-kind-icon">holder<wbr>Options<span class="tsd-signature-symbol">:</span> <a href="holderoptions.html" class="tsd-signature-type" data-tsd-kind="Interface">HolderOptions</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/c43072a/src/index.ts#L902">index.ts:902</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/a850dad/src/index.ts#L893">index.ts:893</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="proof" class="tsd-anchor"></a>
 					<h3>proof</h3>
-					<div class="tsd-signature tsd-kind-icon">proof<span class="tsd-signature-symbol">:</span> <a href="../modules.html#proofpb" class="tsd-signature-type" data-tsd-kind="Variable">ProofPb</a></div>
+					<div class="tsd-signature tsd-kind-icon">proof<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="../modules.html#proofpb" class="tsd-signature-type" data-tsd-kind="Variable">ProofPb</a></div>
 					<aside class="tsd-sources">
+						<p>Inherited from Omit.proof</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/c43072a/src/index.ts#L901">index.ts:901</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/a850dad/src/protos/didDocument.ts#L106">protos/didDocument.ts:106</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>proof containing a signature over the updateKey by an authorized private key</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="publickeyinfo" class="tsd-anchor"></a>
 					<h3>public<wbr>Key<wbr>Info</h3>
-					<div class="tsd-signature tsd-kind-icon">public<wbr>Key<wbr>Info<span class="tsd-signature-symbol">:</span> <a href="publickeyinfoupdateoptions.html" class="tsd-signature-type" data-tsd-kind="Interface">PublicKeyInfoUpdateOptions</a><span class="tsd-signature-symbol">[]</span></div>
+					<div class="tsd-signature tsd-kind-icon">public<wbr>Key<wbr>Info<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">PublicKeyInfoUpdateOptions</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/c43072a/src/index.ts#L900">index.ts:900</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/a850dad/src/index.ts#L892">index.ts:892</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="updatekey" class="tsd-anchor"></a>
 					<h3>update<wbr>Key</h3>
 					<div class="tsd-signature tsd-kind-icon">update<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from Omit.updateKey</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/c43072a/src/index.ts#L899">index.ts:899</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/a850dad/src/protos/didDocument.ts#L102">protos/didDocument.ts:102</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>the subject&#39;s updateKey</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -168,19 +191,19 @@
 					<li class="current tsd-kind-interface">
 						<a href="diddocumentpatchoptions.html" class="tsd-kind-icon">Did<wbr>Document<wbr>Patch<wbr>Options</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="diddocumentpatchoptions.html#did" class="tsd-kind-icon">did</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="diddocumentpatchoptions.html#holderoptions" class="tsd-kind-icon">holder<wbr>Options</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="diddocumentpatchoptions.html#proof" class="tsd-kind-icon">proof</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="diddocumentpatchoptions.html#publickeyinfo" class="tsd-kind-icon">public<wbr>Key<wbr>Info</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="diddocumentpatchoptions.html#updatekey" class="tsd-kind-icon">update<wbr>Key</a>
 							</li>
 						</ul>
