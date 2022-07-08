@@ -2,7 +2,17 @@ import { Literal, Static, Union } from "runtypes";
 import { SemVer } from 'semver';
 import { UnsignedPresentation as UnsignedPresentationPb, Presentation as PresentationPb} from "./protos/presentation";
 import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest"
-import { DidDocument as DidDocumentPb, SignedDidDocument as SignedDidDocumentPb, DidDocumentService, UnsignedDID, DID as DIDPb, UserDidAssociation as UserDidAssociationPb } from "./protos/didDocument"
+import { 
+  DidDocument as DidDocumentPb, 
+  SignedDidDocument as SignedDidDocumentPb, 
+  DidDocumentService, 
+  UnsignedDID, 
+  DID as DIDPb, 
+  UserDidAssociation as UserDidAssociationPb,
+  HolderOptions as HolderOptionsPb,
+  PublicKeyInfoUpdateOptions,
+  DidDocumentPatchOptions as DidDocumentPatchOptionsPb
+} from "./protos/didDocument"
 import { Proof as ProofPb} from "./protos/proof";
 import {
   UnsignedCredential as UnsignedCredentialPb,
@@ -830,10 +840,7 @@ export type HolderType = 'web' | 'mobile';
 /**
  * An options object used to create a Holder entity
  */
-export interface HolderOptions {
-  browserName?: string;
-  deviceOs?: string;
-  deviceModel?: string;
+export interface HolderOptions extends HolderOptionsPb {
   type?: HolderType;
 }
 
@@ -877,28 +884,12 @@ export interface SubjectPostDto extends Subject {
 }
 
 /**
- * An options object used to update a DidDocument by adding or updating a public key
- * If the DidDocument does not include a key with the same id, a new key will be added.
- * If it does, that key will be updated
- */
-export interface PublicKeyInfoUpdateOptions {
-  id: string;
-  publicKey?: string; // required to add a new key
-  encoding?: string; // required to add a new key
-  type?: string; // required to add a new key
-  status?: string; // required to add a new key. invalidate an existing key by setting this value to 'invalid'
-}
-
-/**
  * An options object used to update a Did Document by adding or updating one or more public keys
  * It must contain the subject's updateKey and a signature by either one of the subject's existing
  * signing keys or another key to which the correct authority has been delegated
  */
-export interface DidDocumentPatchOptions {
-  did: string; // identifies the DidDocument to update
-  updateKey: string; // the subject's updateKey
+export interface DidDocumentPatchOptions extends Omit<DidDocumentPatchOptionsPb, 'publicKeyInfo' | 'holderOptions'> {
   publicKeyInfo: PublicKeyInfoUpdateOptions[]; // keys to update/add
-  proof: ProofPb; // proof containing a signature over the updateKey by an authorized private key
   holderOptions?: HolderOptions; // metadata options for creating a new Holder, if keys are being added
 }
 
@@ -1149,16 +1140,6 @@ export interface ExternalChannelMessageInput {
   deeplink: string;
 }
 
-// /**
-//  * Interface to encapsulate the parameters needed for associating a subject Did to a application User.
-//  */
-// export interface UserDidAssociation {
-//   /**
-//    * The userCode should be a short lived, one time use user alias.
-//    */
-//   userCode: string; 
-//   subjectDidDocument: SignedDidDocument;
-// }
 /**
  * Interface to enforce the presence of the DID attribute on the UserDidAssociationPb protobuf definition.
  */
