@@ -61,6 +61,7 @@ export {
   UnsignedDID,
   DIDPb,
   UserDidAssociationPb,
+  PublicKeyInfoUpdateOptions
 }
 
 export {
