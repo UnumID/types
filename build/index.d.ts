@@ -18,7 +18,7 @@ import { SchemaPresentationRequestDto, PresentationSchemaAttributes, Presentatio
  * The "Pb" serves to differentiate until we can ditch the legacy ts defined types.
  */
 export { UnsignedPresentationPb, PresentationPb, };
-export { DidDocumentPb, DidDocumentService, SignedDidDocumentPb, UnsignedDID, DIDPb, UserDidAssociationPb, };
+export { DidDocumentPb, DidDocumentService, SignedDidDocumentPb, UnsignedDID, DIDPb, UserDidAssociationPb, PublicKeyInfoUpdateOptions };
 export { UnsignedPresentationRequestPb, PresentationRequestPb, };
 export { IssueCredentialOptions, IssueCredentialsOptions, CredentialStatusInfoPb, CredentialStatus, CredentialRequestPb, UnsignedCredentialPb, CredentialPb, EncryptedCredentialPb, EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, RSAPadding, CredentialsIssuedResponse, UnsignedRevokeAllCredentials, RevokeAllCredentials, UnsignedSubjectCredentialRequests, SubjectCredentialRequestsEnrichedDtoPb, };
 export { PresentationRequestEnriched, PresentationRequestDisplayMessage };
