@@ -37,7 +37,7 @@ export interface Credential {
     issuanceDate: Date | undefined;
     proof: Proof | undefined;
     /** optional in the ts types */
-    expirationDate: Date | undefined;
+    expirationDate?: Date | undefined;
 }
 /**
  * Object that encapsulates Credential information requested.
