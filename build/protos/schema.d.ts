@@ -1,5 +1,8 @@
 import _m0 from "protobufjs/minimal";
 export declare const protobufPackage = "schema.v1";
+export interface SchemaAttributesRequestsDto {
+    credentialTypes: string[];
+}
 export interface SchemaPresentationRequestDto {
     credentialTypes: string[];
 }
@@ -28,6 +31,16 @@ export interface SchemaGroupings {
 export interface SchemaPresentationDto {
     groupings: SchemaGroupings | undefined;
 }
+export interface SchemaAttributesDto {
+    credentials: PresentationSchema[];
+}
+export declare const SchemaAttributesRequestsDto: {
+    encode(message: SchemaAttributesRequestsDto, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): SchemaAttributesRequestsDto;
+    fromJSON(object: any): SchemaAttributesRequestsDto;
+    toJSON(message: SchemaAttributesRequestsDto): unknown;
+    fromPartial(object: DeepPartial<SchemaAttributesRequestsDto>): SchemaAttributesRequestsDto;
+};
 export declare const SchemaPresentationRequestDto: {
     encode(message: SchemaPresentationRequestDto, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number | undefined): SchemaPresentationRequestDto;
@@ -69,6 +82,13 @@ export declare const SchemaPresentationDto: {
     fromJSON(object: any): SchemaPresentationDto;
     toJSON(message: SchemaPresentationDto): unknown;
     fromPartial(object: DeepPartial<SchemaPresentationDto>): SchemaPresentationDto;
+};
+export declare const SchemaAttributesDto: {
+    encode(message: SchemaAttributesDto, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): SchemaAttributesDto;
+    fromJSON(object: any): SchemaAttributesDto;
+    toJSON(message: SchemaAttributesDto): unknown;
+    fromPartial(object: DeepPartial<SchemaAttributesDto>): SchemaAttributesDto;
 };
 declare type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 export declare type DeepPartial<T> = T extends Builtin ? T : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {

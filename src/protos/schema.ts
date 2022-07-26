@@ -4,6 +4,10 @@ import _m0 from "protobufjs/minimal";
 
 export const protobufPackage = "schema.v1";
 
+export interface SchemaAttributesRequestsDto {
+  credentialTypes: string[];
+}
+
 export interface SchemaPresentationRequestDto {
   credentialTypes: string[];
 }
@@ -37,6 +41,92 @@ export interface SchemaGroupings {
 export interface SchemaPresentationDto {
   groupings: SchemaGroupings | undefined;
 }
+
+export interface SchemaAttributesDto {
+  credentials: PresentationSchema[];
+}
+
+const baseSchemaAttributesRequestsDto: object = { credentialTypes: "" };
+
+export const SchemaAttributesRequestsDto = {
+  encode(
+    message: SchemaAttributesRequestsDto,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    for (const v of message.credentialTypes) {
+      writer.uint32(10).string(v!);
+    }
+    return writer;
+  },
+
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): SchemaAttributesRequestsDto {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseSchemaAttributesRequestsDto,
+    } as SchemaAttributesRequestsDto;
+    message.credentialTypes = [];
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.credentialTypes.push(reader.string());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): SchemaAttributesRequestsDto {
+    const message = {
+      ...baseSchemaAttributesRequestsDto,
+    } as SchemaAttributesRequestsDto;
+    message.credentialTypes = [];
+    if (
+      object.credentialTypes !== undefined &&
+      object.credentialTypes !== null
+    ) {
+      for (const e of object.credentialTypes) {
+        message.credentialTypes.push(String(e));
+      }
+    }
+    return message;
+  },
+
+  toJSON(message: SchemaAttributesRequestsDto): unknown {
+    const obj: any = {};
+    if (message.credentialTypes) {
+      obj.credentialTypes = message.credentialTypes.map((e) => e);
+    } else {
+      obj.credentialTypes = [];
+    }
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<SchemaAttributesRequestsDto>
+  ): SchemaAttributesRequestsDto {
+    const message = {
+      ...baseSchemaAttributesRequestsDto,
+    } as SchemaAttributesRequestsDto;
+    message.credentialTypes = [];
+    if (
+      object.credentialTypes !== undefined &&
+      object.credentialTypes !== null
+    ) {
+      for (const e of object.credentialTypes) {
+        message.credentialTypes.push(e);
+      }
+    }
+    return message;
+  },
+};
 
 const baseSchemaPresentationRequestDto: object = { credentialTypes: "" };
 
@@ -561,6 +651,75 @@ export const SchemaPresentationDto = {
       message.groupings = SchemaGroupings.fromPartial(object.groupings);
     } else {
       message.groupings = undefined;
+    }
+    return message;
+  },
+};
+
+const baseSchemaAttributesDto: object = {};
+
+export const SchemaAttributesDto = {
+  encode(
+    message: SchemaAttributesDto,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    for (const v of message.credentials) {
+      PresentationSchema.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): SchemaAttributesDto {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseSchemaAttributesDto } as SchemaAttributesDto;
+    message.credentials = [];
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.credentials.push(
+            PresentationSchema.decode(reader, reader.uint32())
+          );
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): SchemaAttributesDto {
+    const message = { ...baseSchemaAttributesDto } as SchemaAttributesDto;
+    message.credentials = [];
+    if (object.credentials !== undefined && object.credentials !== null) {
+      for (const e of object.credentials) {
+        message.credentials.push(PresentationSchema.fromJSON(e));
+      }
+    }
+    return message;
+  },
+
+  toJSON(message: SchemaAttributesDto): unknown {
+    const obj: any = {};
+    if (message.credentials) {
+      obj.credentials = message.credentials.map((e) =>
+        e ? PresentationSchema.toJSON(e) : undefined
+      );
+    } else {
+      obj.credentials = [];
+    }
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<SchemaAttributesDto>): SchemaAttributesDto {
+    const message = { ...baseSchemaAttributesDto } as SchemaAttributesDto;
+    message.credentials = [];
+    if (object.credentials !== undefined && object.credentials !== null) {
+      for (const e of object.credentials) {
+        message.credentials.push(PresentationSchema.fromPartial(e));
+      }
     }
     return message;
   },

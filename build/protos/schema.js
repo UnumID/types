@@ -14,11 +14,74 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SchemaPresentationDto = exports.SchemaGroupings = exports.CredentialSchemaData = exports.PresentationSchema = exports.PresentationSchemaAttributes = exports.SchemaPresentationRequestDto = exports.protobufPackage = void 0;
+exports.SchemaAttributesDto = exports.SchemaPresentationDto = exports.SchemaGroupings = exports.CredentialSchemaData = exports.PresentationSchema = exports.PresentationSchemaAttributes = exports.SchemaPresentationRequestDto = exports.SchemaAttributesRequestsDto = exports.protobufPackage = void 0;
 /* eslint-disable */
 var long_1 = __importDefault(require("long"));
 var minimal_1 = __importDefault(require("protobufjs/minimal"));
 exports.protobufPackage = "schema.v1";
+var baseSchemaAttributesRequestsDto = { credentialTypes: "" };
+exports.SchemaAttributesRequestsDto = {
+    encode: function (message, writer) {
+        if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
+        for (var _i = 0, _a = message.credentialTypes; _i < _a.length; _i++) {
+            var v = _a[_i];
+            writer.uint32(10).string(v);
+        }
+        return writer;
+    },
+    decode: function (input, length) {
+        var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
+        var end = length === undefined ? reader.len : reader.pos + length;
+        var message = __assign({}, baseSchemaAttributesRequestsDto);
+        message.credentialTypes = [];
+        while (reader.pos < end) {
+            var tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.credentialTypes.push(reader.string());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON: function (object) {
+        var message = __assign({}, baseSchemaAttributesRequestsDto);
+        message.credentialTypes = [];
+        if (object.credentialTypes !== undefined &&
+            object.credentialTypes !== null) {
+            for (var _i = 0, _a = object.credentialTypes; _i < _a.length; _i++) {
+                var e = _a[_i];
+                message.credentialTypes.push(String(e));
+            }
+        }
+        return message;
+    },
+    toJSON: function (message) {
+        var obj = {};
+        if (message.credentialTypes) {
+            obj.credentialTypes = message.credentialTypes.map(function (e) { return e; });
+        }
+        else {
+            obj.credentialTypes = [];
+        }
+        return obj;
+    },
+    fromPartial: function (object) {
+        var message = __assign({}, baseSchemaAttributesRequestsDto);
+        message.credentialTypes = [];
+        if (object.credentialTypes !== undefined &&
+            object.credentialTypes !== null) {
+            for (var _i = 0, _a = object.credentialTypes; _i < _a.length; _i++) {
+                var e = _a[_i];
+                message.credentialTypes.push(e);
+            }
+        }
+        return message;
+    },
+};
 var baseSchemaPresentationRequestDto = { credentialTypes: "" };
 exports.SchemaPresentationRequestDto = {
     encode: function (message, writer) {
@@ -468,6 +531,69 @@ exports.SchemaPresentationDto = {
         }
         else {
             message.groupings = undefined;
+        }
+        return message;
+    },
+};
+var baseSchemaAttributesDto = {};
+exports.SchemaAttributesDto = {
+    encode: function (message, writer) {
+        if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
+        for (var _i = 0, _a = message.credentials; _i < _a.length; _i++) {
+            var v = _a[_i];
+            exports.PresentationSchema.encode(v, writer.uint32(10).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode: function (input, length) {
+        var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
+        var end = length === undefined ? reader.len : reader.pos + length;
+        var message = __assign({}, baseSchemaAttributesDto);
+        message.credentials = [];
+        while (reader.pos < end) {
+            var tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.credentials.push(exports.PresentationSchema.decode(reader, reader.uint32()));
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON: function (object) {
+        var message = __assign({}, baseSchemaAttributesDto);
+        message.credentials = [];
+        if (object.credentials !== undefined && object.credentials !== null) {
+            for (var _i = 0, _a = object.credentials; _i < _a.length; _i++) {
+                var e = _a[_i];
+                message.credentials.push(exports.PresentationSchema.fromJSON(e));
+            }
+        }
+        return message;
+    },
+    toJSON: function (message) {
+        var obj = {};
+        if (message.credentials) {
+            obj.credentials = message.credentials.map(function (e) {
+                return e ? exports.PresentationSchema.toJSON(e) : undefined;
+            });
+        }
+        else {
+            obj.credentials = [];
+        }
+        return obj;
+    },
+    fromPartial: function (object) {
+        var message = __assign({}, baseSchemaAttributesDto);
+        message.credentials = [];
+        if (object.credentials !== undefined && object.credentials !== null) {
+            for (var _i = 0, _a = object.credentials; _i < _a.length; _i++) {
+                var e = _a[_i];
+                message.credentials.push(exports.PresentationSchema.fromPartial(e));
+            }
         }
         return message;
     },
