@@ -141,7 +141,7 @@ export interface SchemaPresentationDto extends Omit<SchemaPresentationDtoPb, 'gr
   groupings: SchemaGroupings;
 }
 
-export interface SchemaPresentationDto extends Omit<SchemaAttributesDtoPb, 'credentials'> {
+export interface SchemaAttributesDto extends Omit<SchemaAttributesDtoPb, 'credentials'> {
   credentials: PresentationSchema;
 }
 
