@@ -1,6 +1,6 @@
 import _m0 from "protobufjs/minimal";
 export declare const protobufPackage = "schema.v1";
-export interface SchemaAttributesRequestDto {
+export interface SchemaAttributesRequestsDto {
     credentialTypes: string[];
 }
 export interface SchemaPresentationRequestDto {
@@ -31,12 +31,12 @@ export interface SchemaGroupings {
 export interface SchemaPresentationDto {
     groupings: SchemaGroupings | undefined;
 }
-export declare const SchemaAttributesRequestDto: {
-    encode(message: SchemaAttributesRequestDto, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): SchemaAttributesRequestDto;
-    fromJSON(object: any): SchemaAttributesRequestDto;
-    toJSON(message: SchemaAttributesRequestDto): unknown;
-    fromPartial(object: DeepPartial<SchemaAttributesRequestDto>): SchemaAttributesRequestDto;
+export declare const SchemaAttributesRequestsDto: {
+    encode(message: SchemaAttributesRequestsDto, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): SchemaAttributesRequestsDto;
+    fromJSON(object: any): SchemaAttributesRequestsDto;
+    toJSON(message: SchemaAttributesRequestsDto): unknown;
+    fromPartial(object: DeepPartial<SchemaAttributesRequestsDto>): SchemaAttributesRequestsDto;
 };
 export declare const SchemaPresentationRequestDto: {
     encode(message: SchemaPresentationRequestDto, writer?: _m0.Writer): _m0.Writer;

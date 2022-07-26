@@ -14,13 +14,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SchemaPresentationDto = exports.SchemaGroupings = exports.CredentialSchemaData = exports.PresentationSchema = exports.PresentationSchemaAttributes = exports.SchemaPresentationRequestDto = exports.SchemaAttributesRequestDto = exports.protobufPackage = void 0;
+exports.SchemaPresentationDto = exports.SchemaGroupings = exports.CredentialSchemaData = exports.PresentationSchema = exports.PresentationSchemaAttributes = exports.SchemaPresentationRequestDto = exports.SchemaAttributesRequestsDto = exports.protobufPackage = void 0;
 /* eslint-disable */
 var long_1 = __importDefault(require("long"));
 var minimal_1 = __importDefault(require("protobufjs/minimal"));
 exports.protobufPackage = "schema.v1";
-var baseSchemaAttributesRequestDto = { credentialTypes: "" };
-exports.SchemaAttributesRequestDto = {
+var baseSchemaAttributesRequestsDto = { credentialTypes: "" };
+exports.SchemaAttributesRequestsDto = {
     encode: function (message, writer) {
         if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
         for (var _i = 0, _a = message.credentialTypes; _i < _a.length; _i++) {
@@ -32,7 +32,7 @@ exports.SchemaAttributesRequestDto = {
     decode: function (input, length) {
         var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         var end = length === undefined ? reader.len : reader.pos + length;
-        var message = __assign({}, baseSchemaAttributesRequestDto);
+        var message = __assign({}, baseSchemaAttributesRequestsDto);
         message.credentialTypes = [];
         while (reader.pos < end) {
             var tag = reader.uint32();
@@ -48,7 +48,7 @@ exports.SchemaAttributesRequestDto = {
         return message;
     },
     fromJSON: function (object) {
-        var message = __assign({}, baseSchemaAttributesRequestDto);
+        var message = __assign({}, baseSchemaAttributesRequestsDto);
         message.credentialTypes = [];
         if (object.credentialTypes !== undefined &&
             object.credentialTypes !== null) {
@@ -70,7 +70,7 @@ exports.SchemaAttributesRequestDto = {
         return obj;
     },
     fromPartial: function (object) {
-        var message = __assign({}, baseSchemaAttributesRequestDto);
+        var message = __assign({}, baseSchemaAttributesRequestsDto);
         message.credentialTypes = [];
         if (object.credentialTypes !== undefined &&
             object.credentialTypes !== null) {

@@ -40,7 +40,7 @@ import { PresentationRequestEnriched, PresentationRequestDisplayMessage } from "
 import { VerifierInfo as VerifierInfoPb } from "./protos/verifier";
 import { SubjectAbsentCredentials, SubjectCredentialsAbsentDto, SubjectCredentialIssuerInfoDto } from "./protos/subject";
 import { IssuerInfo } from "./protos/issuer";
-import { SchemaPresentationRequestDto, PresentationSchemaAttributes, PresentationSchema, CredentialSchemaData, SchemaGroupings, SchemaPresentationDto as SchemaPresentationDtoPb} from "./protos/schema"
+import { SchemaPresentationRequestDto, SchemaAttributesRequestsDto, PresentationSchemaAttributes, PresentationSchema, CredentialSchemaData, SchemaGroupings, SchemaPresentationDto as SchemaPresentationDtoPb} from "./protos/schema"
 
 /**
  * Note the proto defined types import with a 'Pb' suffix that also have older, vanilla ts types defined. 
@@ -129,6 +129,7 @@ export {
 
 export {
   // protos/schema
+  SchemaAttributesRequestsDto,
   SchemaPresentationRequestDto,
   PresentationSchemaAttributes,
   PresentationSchema,

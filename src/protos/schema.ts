@@ -4,7 +4,7 @@ import _m0 from "protobufjs/minimal";
 
 export const protobufPackage = "schema.v1";
 
-export interface SchemaAttributesRequestDto {
+export interface SchemaAttributesRequestsDto {
   credentialTypes: string[];
 }
 
@@ -42,11 +42,11 @@ export interface SchemaPresentationDto {
   groupings: SchemaGroupings | undefined;
 }
 
-const baseSchemaAttributesRequestDto: object = { credentialTypes: "" };
+const baseSchemaAttributesRequestsDto: object = { credentialTypes: "" };
 
-export const SchemaAttributesRequestDto = {
+export const SchemaAttributesRequestsDto = {
   encode(
-    message: SchemaAttributesRequestDto,
+    message: SchemaAttributesRequestsDto,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
     for (const v of message.credentialTypes) {
@@ -58,12 +58,12 @@ export const SchemaAttributesRequestDto = {
   decode(
     input: _m0.Reader | Uint8Array,
     length?: number
-  ): SchemaAttributesRequestDto {
+  ): SchemaAttributesRequestsDto {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = {
-      ...baseSchemaAttributesRequestDto,
-    } as SchemaAttributesRequestDto;
+      ...baseSchemaAttributesRequestsDto,
+    } as SchemaAttributesRequestsDto;
     message.credentialTypes = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
@@ -79,10 +79,10 @@ export const SchemaAttributesRequestDto = {
     return message;
   },
 
-  fromJSON(object: any): SchemaAttributesRequestDto {
+  fromJSON(object: any): SchemaAttributesRequestsDto {
     const message = {
-      ...baseSchemaAttributesRequestDto,
-    } as SchemaAttributesRequestDto;
+      ...baseSchemaAttributesRequestsDto,
+    } as SchemaAttributesRequestsDto;
     message.credentialTypes = [];
     if (
       object.credentialTypes !== undefined &&
@@ -95,7 +95,7 @@ export const SchemaAttributesRequestDto = {
     return message;
   },
 
-  toJSON(message: SchemaAttributesRequestDto): unknown {
+  toJSON(message: SchemaAttributesRequestsDto): unknown {
     const obj: any = {};
     if (message.credentialTypes) {
       obj.credentialTypes = message.credentialTypes.map((e) => e);
@@ -106,11 +106,11 @@ export const SchemaAttributesRequestDto = {
   },
 
   fromPartial(
-    object: DeepPartial<SchemaAttributesRequestDto>
-  ): SchemaAttributesRequestDto {
+    object: DeepPartial<SchemaAttributesRequestsDto>
+  ): SchemaAttributesRequestsDto {
     const message = {
-      ...baseSchemaAttributesRequestDto,
-    } as SchemaAttributesRequestDto;
+      ...baseSchemaAttributesRequestsDto,
+    } as SchemaAttributesRequestsDto;
     message.credentialTypes = [];
     if (
       object.credentialTypes !== undefined &&
