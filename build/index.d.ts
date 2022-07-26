@@ -12,7 +12,7 @@ import { PresentationRequestEnriched, PresentationRequestDisplayMessage } from "
 import { VerifierInfo as VerifierInfoPb } from "./protos/verifier";
 import { SubjectAbsentCredentials, SubjectCredentialsAbsentDto, SubjectCredentialIssuerInfoDto } from "./protos/subject";
 import { IssuerInfo } from "./protos/issuer";
-import { SchemaPresentationRequestDto, SchemaAttributesRequestsDto, PresentationSchemaAttributes, PresentationSchema, CredentialSchemaData, SchemaGroupings, SchemaPresentationDto as SchemaPresentationDtoPb, SchemaAttributesDto as SchemaAttributesDtoPb } from "./protos/schema";
+import { SchemaPresentationRequestDto, SchemaAttributesRequestsDto, PresentationSchemaAttributes, PresentationSchema, CredentialSchemaData, SchemaGroupings, SchemaPresentationDto as SchemaPresentationDtoPb, SchemaAttributesDto } from "./protos/schema";
 /**
  * Note the proto defined types import with a 'Pb' suffix that also have older, vanilla ts types defined.
  * The "Pb" serves to differentiate until we can ditch the legacy ts defined types.
@@ -27,12 +27,9 @@ export { VerifierInfoPb, };
 export { IssuerInfo, };
 export { HolderAppInfo };
 export { SubjectAbsentCredentials, SubjectCredentialsAbsentDto, SubjectCredentialIssuerInfoDto };
-export { SchemaAttributesRequestsDto, SchemaPresentationRequestDto, PresentationSchemaAttributes, PresentationSchema, CredentialSchemaData, SchemaGroupings };
+export { SchemaAttributesRequestsDto, SchemaPresentationRequestDto, PresentationSchemaAttributes, PresentationSchema, CredentialSchemaData, SchemaGroupings, SchemaAttributesDto };
 export interface SchemaPresentationDto extends Omit<SchemaPresentationDtoPb, 'groupings'> {
     groupings: SchemaGroupings;
-}
-export interface SchemaAttributesDto extends Omit<SchemaAttributesDtoPb, 'credentials'> {
-    credentials: PresentationSchema;
 }
 /**
  * Maps Dates to strings, including nested.
