@@ -890,8 +890,8 @@ export interface SubjectPostDto extends Subject {
  * It must contain the subject's updateKey and a signature by either one of the subject's existing
  * signing keys or another key to which the correct authority has been delegated
  */
-export interface DidDocumentPatchOptions extends Omit<DidDocumentPatchOptionsPb, 'publicKeyInfo' | 'holderOptions'> {
-  publicKeyInfo: PublicKeyInfoUpdateOptions[]; // keys to update/add
+ export interface DidDocumentPatchOptions extends Omit<DidDocumentPatchOptionsPb, 'proof' | 'holderOptions'> {
+  proof: ProofPb;
   holderOptions?: HolderOptions; // metadata options for creating a new Holder, if keys are being added
 }
 
