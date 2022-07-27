@@ -104,7 +104,7 @@ export interface SubjectCredentialRequestsEnrichedDto {
 /** Object that encapsulates an EncryptedCredentialOptions for persisting an EncryptedCredential. */
 export interface EncryptedCredentialOptions {
   credentialId: string;
-  subject: string;
+  subject?: string | undefined;
   issuer: string;
   type: string;
   data: EncryptedData | undefined;
@@ -1378,7 +1378,6 @@ export const SubjectCredentialRequestsEnrichedDto = {
 
 const baseEncryptedCredentialOptions: object = {
   credentialId: "",
-  subject: "",
   issuer: "",
   type: "",
 };
@@ -1391,7 +1390,7 @@ export const EncryptedCredentialOptions = {
     if (message.credentialId !== "") {
       writer.uint32(10).string(message.credentialId);
     }
-    if (message.subject !== "") {
+    if (message.subject !== undefined) {
       writer.uint32(18).string(message.subject);
     }
     if (message.issuer !== "") {
@@ -1464,7 +1463,7 @@ export const EncryptedCredentialOptions = {
     if (object.subject !== undefined && object.subject !== null) {
       message.subject = String(object.subject);
     } else {
-      message.subject = "";
+      message.subject = undefined;
     }
     if (object.issuer !== undefined && object.issuer !== null) {
       message.issuer = String(object.issuer);
@@ -1519,7 +1518,7 @@ export const EncryptedCredentialOptions = {
     if (object.subject !== undefined && object.subject !== null) {
       message.subject = object.subject;
     } else {
-      message.subject = "";
+      message.subject = undefined;
     }
     if (object.issuer !== undefined && object.issuer !== null) {
       message.issuer = object.issuer;

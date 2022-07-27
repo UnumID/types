@@ -90,7 +90,7 @@ export interface SubjectCredentialRequestsEnrichedDto {
 /** Object that encapsulates an EncryptedCredentialOptions for persisting an EncryptedCredential. */
 export interface EncryptedCredentialOptions {
     credentialId: string;
-    subject: string;
+    subject?: string | undefined;
     issuer: string;
     type: string;
     data: EncryptedData | undefined;

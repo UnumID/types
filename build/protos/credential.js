@@ -1049,7 +1049,6 @@ exports.SubjectCredentialRequestsEnrichedDto = {
 };
 var baseEncryptedCredentialOptions = {
     credentialId: "",
-    subject: "",
     issuer: "",
     type: "",
 };
@@ -1059,7 +1058,7 @@ exports.EncryptedCredentialOptions = {
         if (message.credentialId !== "") {
             writer.uint32(10).string(message.credentialId);
         }
-        if (message.subject !== "") {
+        if (message.subject !== undefined) {
             writer.uint32(18).string(message.subject);
         }
         if (message.issuer !== "") {
@@ -1120,7 +1119,7 @@ exports.EncryptedCredentialOptions = {
             message.subject = String(object.subject);
         }
         else {
-            message.subject = "";
+            message.subject = undefined;
         }
         if (object.issuer !== undefined && object.issuer !== null) {
             message.issuer = String(object.issuer);
@@ -1175,7 +1174,7 @@ exports.EncryptedCredentialOptions = {
             message.subject = object.subject;
         }
         else {
-            message.subject = "";
+            message.subject = undefined;
         }
         if (object.issuer !== undefined && object.issuer !== null) {
             message.issuer = object.issuer;
