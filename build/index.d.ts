@@ -2,7 +2,7 @@
 import { Literal, Static, Union } from "runtypes";
 import { SemVer } from 'semver';
 import { UnsignedPresentation, Presentation as PresentationPb } from "./protos/presentation";
-import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest";
+import { PresentationRequestOptions as PresentationRequestOptionsPb, UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest";
 import { DidDocument as DidDocumentPb, SignedDidDocument as SignedDidDocumentPb, DidDocumentService, UnsignedDID, DID as DIDPb, UserDidAssociation as UserDidAssociationPb, HolderOptions as HolderOptionsPb, PublicKeyInfoUpdateOptions, DidDocumentPatchOptions as DidDocumentPatchOptionsPb } from "./protos/didDocument";
 import { Proof as ProofPb } from "./protos/proof";
 import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest, CredentialStatusInfo as CredentialStatusInfoPb, CredentialStatusesOptions as CredentialStatusesOptionsPb, IssueCredentialOptions, IssueCredentialsOptions, EncryptedCredential as EncryptedCredentialPb, EncryptedCredentialOptions as EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, UnsignedSubjectCredentialRequests, SubjectCredentialRequests as SubjectCredentialRequestsPb, SubjectCredentialRequestsDto as SubjectCredentialRequestsDtoPb, CredentialsIssuedResponse, CredentialStatus, RevokeAllCredentials, UnsignedRevokeAllCredentials, SubjectCredentialRequestsEnrichedDto as SubjectCredentialRequestsEnrichedDtoPb } from "./protos/credential";
@@ -177,35 +177,33 @@ export interface EncryptedCredentialsDto {
         [version: string]: EncryptedCredentialDto[];
     };
 }
-export interface PresentationRequestOptions {
-    credentialRequests: CredentialRequest[];
-    createdAt?: Date;
-    updatedAt?: Date;
-    expiresAt?: Date;
-    holderAppUuid: string;
-    metadata?: any;
-    verifier: string;
+/**
+ * Encapsulates addition request attributes to the general presentation request type for the purposes of sending an unsigned presentation request.
+ */
+export interface PresentationRequestOptions extends PresentationRequestOptionsPb {
+    expiresAt: Date;
 }
 /**
  * Encapsulates addition request attributes to the general presentation request type for the purposes of sending an unsigned presentation request.
  */
-export interface UnsignedPresentationRequest extends PresentationRequestOptions {
-    uuid: string;
-    /**
-     * For related requests across versions.
-     */
-    id: string;
+export interface UnsignedPresentationRequest extends UnsignedPresentationRequestPb {
+    expiresAt: Date;
+    createdAt: Date;
+    updatedAt: Date;
 }
 /**
  * Encapsulates addition request attributes to the unsigned presentation request type for the purposes of sending a signed presentation request.
  */
-export interface SignedPresentationRequest extends UnsignedPresentationRequest {
+export interface PresentationRequest extends PresentationRequestPb {
+    expiresAt: Date;
+    createdAt: Date;
+    updatedAt: Date;
     proof: Proof;
 }
 /**
  * Encapsulates addition request attributes to the signed presentation request type for the purposes of valid presentation request with metadata.
  */
-export interface PresentationRequest extends SignedPresentationRequest {
+export interface PresentationRequest extends PresentationRequestPb {
     createdAt: Date;
     updatedAt: Date;
 }
@@ -675,7 +673,7 @@ export interface PresentationRequestDto {
  * Note: this is not used when dealing with json / http network interfaces.
  */
 export interface PresentationRequestDtoPb {
-    presentationRequest: PresentationRequestPb;
+    presentationRequest: PresentationRequest;
     verifier: VerifierInfo;
     issuers: IssuerInfoMap;
 }
