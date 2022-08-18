@@ -1,6 +1,6 @@
 import { Literal, Static, Union } from "runtypes";
 import { SemVer } from 'semver';
-import { UnsignedPresentation as UnsignedPresentationPb, Presentation as PresentationPb} from "./protos/presentation";
+import { UnsignedPresentation, Presentation as PresentationPb} from "./protos/presentation";
 import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest"
 import { 
   DidDocument as DidDocumentPb, 
@@ -17,8 +17,10 @@ import { Proof as ProofPb} from "./protos/proof";
 import {
   UnsignedCredential as UnsignedCredentialPb,
   Credential as CredentialPb,
-  CredentialRequest as CredentialRequestPb,
+  CredentialRequest,
   CredentialStatusInfo as CredentialStatusInfoPb,
+  CredentialStatusOptions as CredentialStatusOptionsPb,
+  CredentialStatusesOptions as CredentialStatusesOptionsPb,
   IssueCredentialOptions,
   IssueCredentialsOptions,
   EncryptedCredential as EncryptedCredentialPb,
@@ -49,7 +51,7 @@ import { SchemaPresentationRequestDto, SchemaAttributesRequestsDto, Presentation
 
 export { 
   // protos/presentation
-  UnsignedPresentationPb, 
+  UnsignedPresentation, 
   PresentationPb,
 }
 
@@ -76,7 +78,9 @@ export {
   IssueCredentialsOptions,
   CredentialStatusInfoPb,
   CredentialStatus,
-  CredentialRequestPb,
+  CredentialStatusOptionsPb,
+  CredentialStatusesOptionsPb,
+  CredentialRequest,
   UnsignedCredentialPb, 
   CredentialPb,
   EncryptedCredentialPb,
@@ -279,6 +283,7 @@ export interface EncryptedData extends EncryptedDataPb {
 
 /**
  * Extends protobuf definition to make fields required
+ * Note: extending the protobuf definition to enforce attribute existence. 
  */
 export interface EncryptedCredential extends EncryptedCredentialPb {
   data: EncryptedData;
@@ -300,19 +305,9 @@ export interface EncryptedCredential extends EncryptedCredentialPb {
  * Data transfer object for a single EncryptedCredentialEnriched
  * Note: extending the protobuf definition of EncryptedCredentialEnriched in order to make the date fields string for json serialization and did document align with @context
  */
-// TODO use in v4 instead of EncryptedCredentialDto. Not using now because all service would need to be using the proto didDoc def, which does not have @context, instead just context... break change
-//  export interface EncryptedCredentialEnrichedDto extends EncryptedCredentialEnriched {
-//   createdAt: string; // dates should be converted to ISO strings, since this is how they will be represented in the JSON at runtime
-//   updatedAt: string; // dates should be converted to ISO strings, since this is how they will be represented in the JSON at runtime
-// }
-
-/**
- * Interface to encapsulate a single CredentialRepositoryDto response
- * Note: ought to be deprecated in v4 in favor of EncryptedCredentialEnriched.
- */
-export interface EncryptedCredentialEnrichedDto {
-  encryptedCredential: EncryptedCredentialDto;
-  didDocument: DidDocument;
+ export interface EncryptedCredentialEnrichedDto extends EncryptedCredentialEnriched {
+  createdAt: string; // dates should be converted to ISO strings, since this is how they will be represented in the JSON at runtime
+  updatedAt: string; // dates should be converted to ISO strings, since this is how they will be represented in the JSON at runtime
 }
 
 /**
@@ -323,6 +318,7 @@ export interface EncryptedCredentialsDto {
     [version: string]: EncryptedCredentialDto[];
   }
 }
+
 
 export interface PresentationRequestOptions {
   credentialRequests: CredentialRequest[];
@@ -986,7 +982,6 @@ export type DidKeyType = 'secp256r1' | 'RSA';
  */
 export interface EncryptedCredentialOptions extends EncryptedCredentialOptionsPb{
   data: EncryptedData; // to force non undefined type
-  // expirationDate?: Date;
 }
 
 /**
@@ -1082,9 +1077,8 @@ export type CredentialStatusOptions = Static<typeof _CredentialStatusOptions>
 /**
  * Interface to encapsulate information for updating many CredentialStatuses simultaneously
  */
-export interface CredentialStatusesOptions {
+export interface CredentialStatusesOptions extends CredentialStatusesOptionsPb {
   status: CredentialStatusOptions;
-  credentialIds: string[];
 }
 
 /**
@@ -1117,7 +1111,7 @@ export interface UserDidAssociation extends Omit<UserDidAssociationPb, 'did'> {
  * Interface to enforce the presence of the Proof and CredentialRequest[] attribute on the SubjectCredentialRequests protobuf definition
  */
  export interface SubjectCredentialRequests extends Omit<SubjectCredentialRequestsPb, 'proof' | 'credentialRequests'> {
-  credentialRequests: CredentialRequestPb[];
+  credentialRequests: CredentialRequest[];
   proof: ProofPb;
 }
 
@@ -1177,6 +1171,7 @@ export type WithVersion<T> = WithKeyAndValue<T, 'version', string>;
 
 /**
  * extends protobuf definition to make Date fields required
+ * Note: extending the protobuf definition to enforce attribute existence. 
  */
 export interface CredentialStatusInfo extends CredentialStatusInfoPb {
   createdAt: Date;

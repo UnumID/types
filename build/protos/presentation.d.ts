@@ -8,6 +8,7 @@ export interface UnsignedPresentation {
     type: string[];
     presentationRequestId: string;
     verifierDid: string;
+    /** Optional. If undefined or empty it means the presentation request was declined */
     verifiableCredential: Credential[];
 }
 /**
@@ -19,6 +20,7 @@ export interface Presentation {
     type: string;
     presentationRequestId: string;
     verifierDid: string;
+    /** Optional. If undefined or empty it means the presentation request was declined */
     verifiableCredential: Credential[];
     proof: Proof | undefined;
 }
