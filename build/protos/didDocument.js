@@ -26,8 +26,9 @@ var baseDidDocument = { context: "", id: "" };
 exports.DidDocument = {
     encode: function (message, writer) {
         if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
-        if (message.context !== "") {
-            writer.uint32(10).string(message.context);
+        for (var _i = 0, _a = message.context; _i < _a.length; _i++) {
+            var v = _a[_i];
+            writer.uint32(10).string(v);
         }
         if (message.id !== "") {
             writer.uint32(18).string(message.id);
@@ -38,12 +39,12 @@ exports.DidDocument = {
         if (message.updated !== undefined) {
             timestamp_1.Timestamp.encode(toTimestamp(message.updated), writer.uint32(34).fork()).ldelim();
         }
-        for (var _i = 0, _a = message.publicKey; _i < _a.length; _i++) {
-            var v = _a[_i];
+        for (var _b = 0, _c = message.publicKey; _b < _c.length; _b++) {
+            var v = _c[_b];
             crypto_1.PublicKeyInfo.encode(v, writer.uint32(42).fork()).ldelim();
         }
-        for (var _b = 0, _c = message.service; _b < _c.length; _b++) {
-            var v = _c[_b];
+        for (var _d = 0, _e = message.service; _d < _e.length; _d++) {
+            var v = _e[_d];
             exports.DidDocumentService.encode(v, writer.uint32(50).fork()).ldelim();
         }
         return writer;
@@ -52,13 +53,14 @@ exports.DidDocument = {
         var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         var end = length === undefined ? reader.len : reader.pos + length;
         var message = __assign({}, baseDidDocument);
+        message.context = [];
         message.publicKey = [];
         message.service = [];
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.context = reader.string();
+                    message.context.push(reader.string());
                     break;
                 case 2:
                     message.id = reader.string();
@@ -84,13 +86,14 @@ exports.DidDocument = {
     },
     fromJSON: function (object) {
         var message = __assign({}, baseDidDocument);
+        message.context = [];
         message.publicKey = [];
         message.service = [];
         if (object.context !== undefined && object.context !== null) {
-            message.context = String(object.context);
-        }
-        else {
-            message.context = "";
+            for (var _i = 0, _a = object.context; _i < _a.length; _i++) {
+                var e = _a[_i];
+                message.context.push(String(e));
+            }
         }
         if (object.id !== undefined && object.id !== null) {
             message.id = String(object.id);
@@ -111,14 +114,14 @@ exports.DidDocument = {
             message.updated = undefined;
         }
         if (object.publicKey !== undefined && object.publicKey !== null) {
-            for (var _i = 0, _a = object.publicKey; _i < _a.length; _i++) {
-                var e = _a[_i];
+            for (var _b = 0, _c = object.publicKey; _b < _c.length; _b++) {
+                var e = _c[_b];
                 message.publicKey.push(crypto_1.PublicKeyInfo.fromJSON(e));
             }
         }
         if (object.service !== undefined && object.service !== null) {
-            for (var _b = 0, _c = object.service; _b < _c.length; _b++) {
-                var e = _c[_b];
+            for (var _d = 0, _e = object.service; _d < _e.length; _d++) {
+                var e = _e[_d];
                 message.service.push(exports.DidDocumentService.fromJSON(e));
             }
         }
@@ -126,7 +129,12 @@ exports.DidDocument = {
     },
     toJSON: function (message) {
         var obj = {};
-        message.context !== undefined && (obj.context = message.context);
+        if (message.context) {
+            obj.context = message.context.map(function (e) { return e; });
+        }
+        else {
+            obj.context = [];
+        }
         message.id !== undefined && (obj.id = message.id);
         message.created !== undefined &&
             (obj.created = message.created.toISOString());
@@ -152,13 +160,14 @@ exports.DidDocument = {
     },
     fromPartial: function (object) {
         var message = __assign({}, baseDidDocument);
+        message.context = [];
         message.publicKey = [];
         message.service = [];
         if (object.context !== undefined && object.context !== null) {
-            message.context = object.context;
-        }
-        else {
-            message.context = "";
+            for (var _i = 0, _a = object.context; _i < _a.length; _i++) {
+                var e = _a[_i];
+                message.context.push(e);
+            }
         }
         if (object.id !== undefined && object.id !== null) {
             message.id = object.id;
@@ -179,14 +188,14 @@ exports.DidDocument = {
             message.updated = undefined;
         }
         if (object.publicKey !== undefined && object.publicKey !== null) {
-            for (var _i = 0, _a = object.publicKey; _i < _a.length; _i++) {
-                var e = _a[_i];
+            for (var _b = 0, _c = object.publicKey; _b < _c.length; _b++) {
+                var e = _c[_b];
                 message.publicKey.push(crypto_1.PublicKeyInfo.fromPartial(e));
             }
         }
         if (object.service !== undefined && object.service !== null) {
-            for (var _b = 0, _c = object.service; _b < _c.length; _b++) {
-                var e = _c[_b];
+            for (var _d = 0, _e = object.service; _d < _e.length; _d++) {
+                var e = _e[_d];
                 message.service.push(exports.DidDocumentService.fromPartial(e));
             }
         }
@@ -294,8 +303,9 @@ var baseSignedDidDocument = { context: "", id: "" };
 exports.SignedDidDocument = {
     encode: function (message, writer) {
         if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
-        if (message.context !== "") {
-            writer.uint32(10).string(message.context);
+        for (var _i = 0, _a = message.context; _i < _a.length; _i++) {
+            var v = _a[_i];
+            writer.uint32(10).string(v);
         }
         if (message.id !== "") {
             writer.uint32(18).string(message.id);
@@ -306,12 +316,12 @@ exports.SignedDidDocument = {
         if (message.updated !== undefined) {
             timestamp_1.Timestamp.encode(toTimestamp(message.updated), writer.uint32(34).fork()).ldelim();
         }
-        for (var _i = 0, _a = message.publicKey; _i < _a.length; _i++) {
-            var v = _a[_i];
+        for (var _b = 0, _c = message.publicKey; _b < _c.length; _b++) {
+            var v = _c[_b];
             crypto_1.PublicKeyInfo.encode(v, writer.uint32(42).fork()).ldelim();
         }
-        for (var _b = 0, _c = message.service; _b < _c.length; _b++) {
-            var v = _c[_b];
+        for (var _d = 0, _e = message.service; _d < _e.length; _d++) {
+            var v = _e[_d];
             exports.DidDocumentService.encode(v, writer.uint32(50).fork()).ldelim();
         }
         if (message.proof !== undefined) {
@@ -323,13 +333,14 @@ exports.SignedDidDocument = {
         var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         var end = length === undefined ? reader.len : reader.pos + length;
         var message = __assign({}, baseSignedDidDocument);
+        message.context = [];
         message.publicKey = [];
         message.service = [];
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.context = reader.string();
+                    message.context.push(reader.string());
                     break;
                 case 2:
                     message.id = reader.string();
@@ -358,13 +369,14 @@ exports.SignedDidDocument = {
     },
     fromJSON: function (object) {
         var message = __assign({}, baseSignedDidDocument);
+        message.context = [];
         message.publicKey = [];
         message.service = [];
         if (object.context !== undefined && object.context !== null) {
-            message.context = String(object.context);
-        }
-        else {
-            message.context = "";
+            for (var _i = 0, _a = object.context; _i < _a.length; _i++) {
+                var e = _a[_i];
+                message.context.push(String(e));
+            }
         }
         if (object.id !== undefined && object.id !== null) {
             message.id = String(object.id);
@@ -385,14 +397,14 @@ exports.SignedDidDocument = {
             message.updated = undefined;
         }
         if (object.publicKey !== undefined && object.publicKey !== null) {
-            for (var _i = 0, _a = object.publicKey; _i < _a.length; _i++) {
-                var e = _a[_i];
+            for (var _b = 0, _c = object.publicKey; _b < _c.length; _b++) {
+                var e = _c[_b];
                 message.publicKey.push(crypto_1.PublicKeyInfo.fromJSON(e));
             }
         }
         if (object.service !== undefined && object.service !== null) {
-            for (var _b = 0, _c = object.service; _b < _c.length; _b++) {
-                var e = _c[_b];
+            for (var _d = 0, _e = object.service; _d < _e.length; _d++) {
+                var e = _e[_d];
                 message.service.push(exports.DidDocumentService.fromJSON(e));
             }
         }
@@ -406,7 +418,12 @@ exports.SignedDidDocument = {
     },
     toJSON: function (message) {
         var obj = {};
-        message.context !== undefined && (obj.context = message.context);
+        if (message.context) {
+            obj.context = message.context.map(function (e) { return e; });
+        }
+        else {
+            obj.context = [];
+        }
         message.id !== undefined && (obj.id = message.id);
         message.created !== undefined &&
             (obj.created = message.created.toISOString());
@@ -434,13 +451,14 @@ exports.SignedDidDocument = {
     },
     fromPartial: function (object) {
         var message = __assign({}, baseSignedDidDocument);
+        message.context = [];
         message.publicKey = [];
         message.service = [];
         if (object.context !== undefined && object.context !== null) {
-            message.context = object.context;
-        }
-        else {
-            message.context = "";
+            for (var _i = 0, _a = object.context; _i < _a.length; _i++) {
+                var e = _a[_i];
+                message.context.push(e);
+            }
         }
         if (object.id !== undefined && object.id !== null) {
             message.id = object.id;
@@ -461,14 +479,14 @@ exports.SignedDidDocument = {
             message.updated = undefined;
         }
         if (object.publicKey !== undefined && object.publicKey !== null) {
-            for (var _i = 0, _a = object.publicKey; _i < _a.length; _i++) {
-                var e = _a[_i];
+            for (var _b = 0, _c = object.publicKey; _b < _c.length; _b++) {
+                var e = _c[_b];
                 message.publicKey.push(crypto_1.PublicKeyInfo.fromPartial(e));
             }
         }
         if (object.service !== undefined && object.service !== null) {
-            for (var _b = 0, _c = object.service; _b < _c.length; _b++) {
-                var e = _c[_b];
+            for (var _d = 0, _e = object.service; _d < _e.length; _d++) {
+                var e = _e[_d];
                 message.service.push(exports.DidDocumentService.fromPartial(e));
             }
         }

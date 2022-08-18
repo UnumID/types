@@ -22,7 +22,7 @@ export { DidDocumentPb, DidDocumentService, SignedDidDocumentPb, UnsignedDID, DI
 export { UnsignedPresentationRequestPb, PresentationRequestPb, };
 export { IssueCredentialOptions, IssueCredentialsOptions, CredentialStatusInfoPb, CredentialStatus, CredentialRequest, UnsignedCredentialPb, CredentialPb, EncryptedCredentialPb, EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, CredentialsIssuedResponse, UnsignedRevokeAllCredentials, RevokeAllCredentials, UnsignedSubjectCredentialRequests, SubjectCredentialRequestsEnrichedDtoPb, };
 export { PresentationRequestEnriched, PresentationRequestDisplayMessage };
-export { EncryptedKey, RSAPadding, ProofPb, PublicKeyInfoPb, UnsignedString, SignedString, KeyPair, KeyPairSet };
+export { EncryptedKey, RSAPadding, UnsignedString, SignedString, KeyPair, KeyPairSet };
 export { VerifierInfoPb, };
 export { IssuerInfo, };
 export { HolderAppInfo };
@@ -714,26 +714,23 @@ export interface PublicKeyInfo extends PublicKeyInfoPb {
 }
 /**
  * Interface to encapsulate Did Document information.
+ * Note: extending the protobuf definition to enforce attribute existence.
  */
-export interface DidDocument {
-    '@context': ['https://www.w3.org/ns/did/v1', ...string[]];
-    id: string;
+export interface DidDocument extends DidDocumentPb {
+    context: ['https://www.w3.org/ns/did/v1', ...string[]];
     created: Date;
     updated: Date;
     publicKey: PublicKeyInfo[];
-    service: DidDocumentService[];
 }
 /**
  * Interface to encapsulate a signed Subject Did Document.
  * Note: it breaks the name convention of the singed type counterpart being the simpler name of the two, however because the unsigned DidDocument definition was claimed first, this is an exception to the rule.
  */
-export interface SignedDidDocument {
-    '@context': ['https://www.w3.org/ns/did/v1', ...string[]];
-    id: string;
+export interface SignedDidDocument extends SignedDidDocumentPb {
+    context: ['https://www.w3.org/ns/did/v1', ...string[]];
     created: Date;
     updated: Date;
     publicKey: PublicKeyInfo[];
-    service: DidDocumentService[];
     proof: Proof;
 }
 /**
@@ -842,14 +839,14 @@ export interface UserDidAssociation extends Omit<UserDidAssociationPb, 'did'> {
  * Interface to enforce the presence of the Proof attribute on the DID protobuf definition.
  */
 export interface DID extends Omit<DIDPb, 'proof'> {
-    proof: ProofPb;
+    proof: Proof;
 }
 /**
  * Interface to enforce the presence of the Proof and CredentialRequest[] attribute on the SubjectCredentialRequests protobuf definition
  */
 export interface SubjectCredentialRequests extends Omit<SubjectCredentialRequestsPb, 'proof' | 'credentialRequests'> {
     credentialRequests: CredentialRequest[];
-    proof: ProofPb;
+    proof: Proof;
 }
 /**
  * Interface to enforce the presence of the SubjectCredentialRequests attribute on the SubjectCredentialRequestsDto protobuf definition.

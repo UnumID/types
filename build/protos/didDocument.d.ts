@@ -4,7 +4,7 @@ import { Proof } from "./proof";
 export declare const protobufPackage = "didDocument.v1";
 /** Object to encapsulate a DID document object from the saas. */
 export interface DidDocument {
-    context: string;
+    context: string[];
     id: string;
     created: Date | undefined;
     updated: Date | undefined;
@@ -22,7 +22,7 @@ export interface DidDocumentService {
  * Note: it breaks the name convention of the singed type counterpart being the simpler name of the two, however because the unsigned DidDocument definition was claimed first, this is an exception to the rule.
  */
 export interface SignedDidDocument {
-    context: string;
+    context: string[];
     id: string;
     created: Date | undefined;
     updated: Date | undefined;
