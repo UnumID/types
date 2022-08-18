@@ -13,7 +13,6 @@ import {
   PublicKeyInfoUpdateOptions,
   DidDocumentPatchOptions as DidDocumentPatchOptionsPb
 } from "./protos/didDocument";
-import { ExternalMessage } from "./protos/externalMessage";
 import { Proof as ProofPb} from "./protos/proof";
 import {
   UnsignedCredential as UnsignedCredentialPb,
@@ -42,7 +41,7 @@ import { PresentationRequestEnriched, PresentationRequestDisplayMessage } from "
 // import { VerifierInfo as VerifierInfoPb } from "./protos/verifier";
 import { VerifierInfo as VerifierInfoPb } from "./protos/verifier";
 import { SubjectAbsentCredentials, SubjectCredentialsAbsentDto, SubjectCredentialIssuerInfoDto } from "./protos/subject";
-import { IssuerInfo } from "./protos/issuer";
+import { IssuerInfo, } from "./protos/issuer";
 import { SchemaPresentationRequestDto, SchemaAttributesRequestsDto, PresentationSchemaAttributes, PresentationSchema, CredentialSchemaData, SchemaGroupings, SchemaPresentationDto as SchemaPresentationDtoPb, SchemaAttributesDto} from "./protos/schema"
 
 /**
@@ -90,11 +89,6 @@ export {
   RevokeAllCredentials,
   UnsignedSubjectCredentialRequests,
   SubjectCredentialRequestsEnrichedDtoPb,
-}
-
-export {
-  // protos/externalMessage
-  ExternalMessage,
 }
 
 export {
