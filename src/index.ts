@@ -12,7 +12,8 @@ import {
   HolderOptions as HolderOptionsPb,
   PublicKeyInfoUpdateOptions,
   DidDocumentPatchOptions as DidDocumentPatchOptionsPb
-} from "./protos/didDocument"
+} from "./protos/didDocument";
+import { ExternalMessage } from "./protos/externalMessage";
 import { Proof as ProofPb} from "./protos/proof";
 import {
   UnsignedCredential as UnsignedCredentialPb,
@@ -89,6 +90,11 @@ export {
   RevokeAllCredentials,
   UnsignedSubjectCredentialRequests,
   SubjectCredentialRequestsEnrichedDtoPb,
+}
+
+export {
+  // protos/externalMessage
+  ExternalMessage,
 }
 
 export {
