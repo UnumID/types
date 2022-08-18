@@ -138,6 +138,15 @@ export {
   SchemaAttributesDto
 }
 
+/**
+ * Encapsulates addition attributes to the unsigned presentation entity to create a Presentation entity.
+ * Tightly coupled with UnsignedPresentation.
+ * Note: extending the protobuf definition to enforce attribute existence.
+ */
+export interface Presentation extends PresentationPb {
+  proof: Proof
+}
+
 export interface SchemaPresentationDto extends Omit<SchemaPresentationDtoPb, 'groupings'> {
   groupings: SchemaGroupings;
 }
@@ -164,13 +173,10 @@ export interface BaseEntity {
 
 /**
  * Interface to encapsulate cryptographic proof for any signed object: Credentials, Presentations, PresentationRequests.
+ * Note: extending the protobuf definition to enforce attribute existence.
  */
-export interface Proof {
-  created: string;
-  signatureValue: string;
-  type: string;
-  verificationMethod: string;
-  proofPurpose: string;
+export interface Proof extends ProofPb {
+  created: Date;
 }
 
 /**
@@ -237,32 +243,30 @@ export interface CredentialSubject {
 
 /**
  * Interface to encapsulate relevant credential information.
+ * Note: extending the protobuf definition to enforce attribute existence. 
  */
-export interface UnsignedCredential {
-  '@context': ['https://www.w3.org/2018/credentials/v1', ...string[]];
-  // credentialSubject: CredentialSubject;
-  /**
-   * Due to its ambiguous format going to handle as JSON string when passing around.
-   */
-  credentialSubject: string; 
-  credentialStatus: {
-    id: string;
-    type: string;
-  }
-  issuer: string;
+export interface UnsignedCredential extends UnsignedCredentialPb {
   /**
    * As dictated by the W3 spec. ref: https://www.w3.org/TR/vc-data-model/#example-1-a-simple-example-of-a-verifiable-credential.
    */
+  context: ['https://www.w3.org/2018/credentials/v1', ...string[]];
   type: ['VerifiableCredential', ...string[]];
-  id: string;
+  credentialStatus: CredentialStatus;
   issuanceDate: Date;
-  expirationDate?: Date;
 }
 
 /**
  * Interface which incorporates the relevant credential information in addition to a cryptographic proof so that the Credential is verifiable.
+ * Note: extending the protobuf definition to enforce attribute existence. 
  */
-export interface Credential extends UnsignedCredential {
+export interface Credential extends CredentialPb {
+  /**
+   * As dictated by the W3 spec. ref: https://www.w3.org/TR/vc-data-model/#example-1-a-simple-example-of-a-verifiable-credential.
+   */
+  context: ['https://www.w3.org/2018/credentials/v1', ...string[]];
+  type: ['VerifiableCredential', ...string[]];
+  credentialStatus: CredentialStatus;
+  issuanceDate: Date;
   proof: Proof;
 }
 
@@ -318,53 +322,6 @@ export interface EncryptedCredentialsDto {
   encryptedCredentials: {
     [version: string]: EncryptedCredentialDto[];
   }
-}
-
-/**
- * Encapsulates an unsigned presentation attributes.
- */
-export interface UnsignedPresentation {
-  '@context': ['https://www.w3.org/2018/credentials/v1', ...string[]];
-  type: ['VerifiablePresentation', ...string[]];
-  presentationRequestId: string;
-  verifierDid: string;
-  /**
-   * Note: that verifiableCredential is singular but it's of array type. This is thanks to the w3 spec dictating as such, not by choice. ref: https://www.w3.org/TR/vc-data-model/#presentations-0.
-   */
-  /**
-   * Optional. If undefined or empty it means the presentation request was declined
-   */
-  verifiableCredential?: Credential[]; // Optional, if undefined or empty it means the presentation request was declined
-  // verifiableCredential?: Credential_pb[]; 
-  /**
-   * Optional nonce
-   */
-  uuid?: string;
-}
-
-/**
- * Encapsulates addition attributes to the unsigned presentation entity to create a Presentation entity.
- */
-export interface Presentation extends UnsignedPresentation {
-  proof: Proof;
-}
-
-/**
- * Encapsulates Credential information requested.
- */
-export interface CredentialRequest {
-  /**
-   * The string matching the desire credential type.
-   */
-  type: string; 
-  /**
-   * List of acceptable issuer DIDs that have issued the credential.
-   */
-  issuers: string[]; 
-  /**
-   * To denote wether this particular credential is required in response to the PresentationRequest. Defaults behavior resolves this to true.
-   */
-  required: boolean; 
 }
 
 export interface PresentationRequestOptions {
