@@ -35,7 +35,7 @@ import {
   UnsignedRevokeAllCredentials,
   SubjectCredentialRequestsEnrichedDto as SubjectCredentialRequestsEnrichedDtoPb,
 } from "./protos/credential";
-import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb, UnsignedString, SignedString } from "./protos/crypto"
+import { KeyPair, KeyPairSet, EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb, UnsignedString, SignedString } from "./protos/crypto"
 import { HolderAppInfo } from "./protos/holderApp";
 import { PresentationRequestEnriched, PresentationRequestDisplayMessage } from "./protos/presentationRequestEnriched";
 // import { VerifierInfo as VerifierInfoPb } from "./protos/verifier";
@@ -78,15 +78,12 @@ export {
   IssueCredentialsOptions,
   CredentialStatusInfoPb,
   CredentialStatus,
-  CredentialStatusOptionsPb,
-  CredentialStatusesOptionsPb,
   CredentialRequest,
   UnsignedCredentialPb, 
   CredentialPb,
   EncryptedCredentialPb,
   EncryptedCredentialOptionsPb,
   EncryptedCredentialEnriched,
-  RSAPadding,
   CredentialsIssuedResponse,
   UnsignedRevokeAllCredentials,
   RevokeAllCredentials,
@@ -103,10 +100,13 @@ export {
 export {
   // protos/crypto
   EncryptedKey,
+  RSAPadding,
   ProofPb,
   PublicKeyInfoPb,
   UnsignedString,
-  SignedString
+  SignedString,
+  KeyPair,
+  KeyPairSet
 }
 
 export { 
@@ -931,20 +931,14 @@ export interface ApiKey {
 
 /**
  * Interface to encapsulate information related to a public key.
+ * Note: extending the protobuf definition to enforce attribute existence. 
  */
-export interface PublicKeyInfo {
-  id: string;
-  publicKey: string;
+ export interface PublicKeyInfo extends PublicKeyInfoPb {
   encoding: 'pem' | 'base58';
-  type: string;
   status: 'valid' | 'invalid';
   createdAt: Date;
   updatedAt: Date;
-  // for RSA keys.
-  // encrypt/decrypt implementations should default to 'PKCS1-v1_5' for backwards compatibilty
-  // if possible (web crypto only allows OAEP padding for encrypt/decrypt operations)
-  rsaPadding?: RSAPadding;
-}
+ }
 
 /**
  * Interface to encapsulate Did Document information.
@@ -989,15 +983,6 @@ export interface EncryptedCredentialOptions extends EncryptedCredentialOptionsPb
  */
 export interface IssuerInfoMap {
   [did: string]: IssuerInfo;
-}
-
-/**
- * Interface for Public and Private corresponding key pair
- */
-export interface KeyPair {
-  id: string;
-  privateKey: string;
-  publicKey: string;
 }
 
 /**

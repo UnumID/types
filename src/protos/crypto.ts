@@ -69,6 +69,10 @@ export interface PublicKeyInfo {
   status: string;
   createdAt: Date | undefined;
   updatedAt: Date | undefined;
+  /**
+   * For RSA keys: encrypt/decrypt implementations should default to 'PKCS1-v1_5' for backwards compatibilty.
+   * If possible (web crypto only allows OAEP padding for encrypt/decrypt operations).
+   */
   rsaPadding?: RSAPadding | undefined;
 }
 
@@ -76,6 +80,7 @@ export interface PublicKeyInfo {
 export interface KeyPair {
   privateKey: string;
   publicKey: string;
+  id: string;
 }
 
 /** Object to encapsulate a key pair set */
@@ -506,7 +511,7 @@ export const PublicKeyInfo = {
   },
 };
 
-const baseKeyPair: object = { privateKey: "", publicKey: "" };
+const baseKeyPair: object = { privateKey: "", publicKey: "", id: "" };
 
 export const KeyPair = {
   encode(
@@ -518,6 +523,9 @@ export const KeyPair = {
     }
     if (message.publicKey !== "") {
       writer.uint32(18).string(message.publicKey);
+    }
+    if (message.id !== "") {
+      writer.uint32(26).string(message.id);
     }
     return writer;
   },
@@ -534,6 +542,9 @@ export const KeyPair = {
           break;
         case 2:
           message.publicKey = reader.string();
+          break;
+        case 3:
+          message.id = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -555,6 +566,11 @@ export const KeyPair = {
     } else {
       message.publicKey = "";
     }
+    if (object.id !== undefined && object.id !== null) {
+      message.id = String(object.id);
+    } else {
+      message.id = "";
+    }
     return message;
   },
 
@@ -562,6 +578,7 @@ export const KeyPair = {
     const obj: any = {};
     message.privateKey !== undefined && (obj.privateKey = message.privateKey);
     message.publicKey !== undefined && (obj.publicKey = message.publicKey);
+    message.id !== undefined && (obj.id = message.id);
     return obj;
   },
 
@@ -576,6 +593,11 @@ export const KeyPair = {
       message.publicKey = object.publicKey;
     } else {
       message.publicKey = "";
+    }
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    } else {
+      message.id = "";
     }
     return message;
   },

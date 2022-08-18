@@ -5,8 +5,8 @@ import { UnsignedPresentation, Presentation as PresentationPb } from "./protos/p
 import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest";
 import { DidDocument as DidDocumentPb, SignedDidDocument as SignedDidDocumentPb, DidDocumentService, UnsignedDID, DID as DIDPb, UserDidAssociation as UserDidAssociationPb, HolderOptions as HolderOptionsPb, PublicKeyInfoUpdateOptions, DidDocumentPatchOptions as DidDocumentPatchOptionsPb } from "./protos/didDocument";
 import { Proof as ProofPb } from "./protos/proof";
-import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest, CredentialStatusInfo as CredentialStatusInfoPb, CredentialStatusOptions as CredentialStatusOptionsPb, CredentialStatusesOptions as CredentialStatusesOptionsPb, IssueCredentialOptions, IssueCredentialsOptions, EncryptedCredential as EncryptedCredentialPb, EncryptedCredentialOptions as EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, UnsignedSubjectCredentialRequests, SubjectCredentialRequests as SubjectCredentialRequestsPb, SubjectCredentialRequestsDto as SubjectCredentialRequestsDtoPb, CredentialsIssuedResponse, CredentialStatus, RevokeAllCredentials, UnsignedRevokeAllCredentials, SubjectCredentialRequestsEnrichedDto as SubjectCredentialRequestsEnrichedDtoPb } from "./protos/credential";
-import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb, UnsignedString, SignedString } from "./protos/crypto";
+import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest, CredentialStatusInfo as CredentialStatusInfoPb, CredentialStatusesOptions as CredentialStatusesOptionsPb, IssueCredentialOptions, IssueCredentialsOptions, EncryptedCredential as EncryptedCredentialPb, EncryptedCredentialOptions as EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, UnsignedSubjectCredentialRequests, SubjectCredentialRequests as SubjectCredentialRequestsPb, SubjectCredentialRequestsDto as SubjectCredentialRequestsDtoPb, CredentialsIssuedResponse, CredentialStatus, RevokeAllCredentials, UnsignedRevokeAllCredentials, SubjectCredentialRequestsEnrichedDto as SubjectCredentialRequestsEnrichedDtoPb } from "./protos/credential";
+import { KeyPair, KeyPairSet, EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb, UnsignedString, SignedString } from "./protos/crypto";
 import { HolderAppInfo } from "./protos/holderApp";
 import { PresentationRequestEnriched, PresentationRequestDisplayMessage } from "./protos/presentationRequestEnriched";
 import { VerifierInfo as VerifierInfoPb } from "./protos/verifier";
@@ -20,9 +20,9 @@ import { SchemaPresentationRequestDto, SchemaAttributesRequestsDto, Presentation
 export { UnsignedPresentation, PresentationPb, };
 export { DidDocumentPb, DidDocumentService, SignedDidDocumentPb, UnsignedDID, DIDPb, UserDidAssociationPb, PublicKeyInfoUpdateOptions };
 export { UnsignedPresentationRequestPb, PresentationRequestPb, };
-export { IssueCredentialOptions, IssueCredentialsOptions, CredentialStatusInfoPb, CredentialStatus, CredentialStatusOptionsPb, CredentialStatusesOptionsPb, CredentialRequest, UnsignedCredentialPb, CredentialPb, EncryptedCredentialPb, EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, RSAPadding, CredentialsIssuedResponse, UnsignedRevokeAllCredentials, RevokeAllCredentials, UnsignedSubjectCredentialRequests, SubjectCredentialRequestsEnrichedDtoPb, };
+export { IssueCredentialOptions, IssueCredentialsOptions, CredentialStatusInfoPb, CredentialStatus, CredentialRequest, UnsignedCredentialPb, CredentialPb, EncryptedCredentialPb, EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, CredentialsIssuedResponse, UnsignedRevokeAllCredentials, RevokeAllCredentials, UnsignedSubjectCredentialRequests, SubjectCredentialRequestsEnrichedDtoPb, };
 export { PresentationRequestEnriched, PresentationRequestDisplayMessage };
-export { EncryptedKey, ProofPb, PublicKeyInfoPb, UnsignedString, SignedString };
+export { EncryptedKey, RSAPadding, ProofPb, PublicKeyInfoPb, UnsignedString, SignedString, KeyPair, KeyPairSet };
 export { VerifierInfoPb, };
 export { IssuerInfo, };
 export { HolderAppInfo };
@@ -704,16 +704,13 @@ export interface ApiKey {
 }
 /**
  * Interface to encapsulate information related to a public key.
+ * Note: extending the protobuf definition to enforce attribute existence.
  */
-export interface PublicKeyInfo {
-    id: string;
-    publicKey: string;
+export interface PublicKeyInfo extends PublicKeyInfoPb {
     encoding: 'pem' | 'base58';
-    type: string;
     status: 'valid' | 'invalid';
     createdAt: Date;
     updatedAt: Date;
-    rsaPadding?: RSAPadding;
 }
 /**
  * Interface to encapsulate Did Document information.
@@ -754,14 +751,6 @@ export interface EncryptedCredentialOptions extends EncryptedCredentialOptionsPb
  */
 export interface IssuerInfoMap {
     [did: string]: IssuerInfo;
-}
-/**
- * Interface for Public and Private corresponding key pair
- */
-export interface KeyPair {
-    id: string;
-    privateKey: string;
-    publicKey: string;
 }
 /**
  * Type to encapsulate an encrypted presentation sent from the UnumID SaaS

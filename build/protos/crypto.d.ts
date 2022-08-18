@@ -37,12 +37,17 @@ export interface PublicKeyInfo {
     status: string;
     createdAt: Date | undefined;
     updatedAt: Date | undefined;
+    /**
+     * For RSA keys: encrypt/decrypt implementations should default to 'PKCS1-v1_5' for backwards compatibilty.
+     * If possible (web crypto only allows OAEP padding for encrypt/decrypt operations).
+     */
     rsaPadding?: RSAPadding | undefined;
 }
 /** Object to encapsulate a key pair */
 export interface KeyPair {
     privateKey: string;
     publicKey: string;
+    id: string;
 }
 /** Object to encapsulate a key pair set */
 export interface KeyPairSet {
