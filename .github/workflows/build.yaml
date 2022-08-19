@@ -2,6 +2,7 @@ name: Node.js CI
 
 on: push
 
+# ref: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
 jobs:
   build:
 
