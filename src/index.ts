@@ -856,6 +856,33 @@ export interface PresentationRequestEnriched extends Omit<PresentationRequestEnr
 }
 
 /**
+ * Type to encapsulate the response body returned when a PresentationRequest is created
+ * AKA PresentationRequestEnriched
+ */
+ export interface PresentationRequestPostDto {
+  presentationRequest: PresentationRequest;
+  verifier: Pick<Verifier, 'did' | 'name' | 'url'>;
+  issuers: Record<string, Pick<Issuer, 'did' | 'name'>>;
+  holderApp: Pick<HolderApp, 'name' | 'deeplinkButtonImg'>;
+  deeplink: string;
+  qrCode: string;
+}
+
+/**
+ * Type to encapsulate a PresentationRequest Data Transfer Object get response used in interfacing services.
+ * AKA PresentationRequestEnriched
+ */
+ export interface PresentationRequestDto {
+  presentationRequest: WithVersion<PresentationRequest>;
+  verifier: VerifierInfo;
+  issuers: IssuerInfoMap;
+  holderApp?: Pick<HolderApp, 'name' | 'deeplinkButtonImg' | 'appStoreUrl' | 'playStoreUrl'>;
+  deeplink?: string;
+  qrCode?: string;
+  displayMessage: PresentationRequestDisplayMessage;
+}
+
+/**
  * Type to encapsulate a Protobuf PresentationRequest Data Transfer Object get response used in interfacing services.
  * Note: this is not used when dealing with json / http network interfaces.
  */
