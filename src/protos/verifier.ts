@@ -2,22 +2,10 @@
 import Long from "long";
 import _m0 from "protobufjs/minimal";
 import { Timestamp } from "./google/protobuf/timestamp";
+import { VersionInfo } from "./versionInfo";
 import { PublicKeyInfo } from "./crypto";
 
 export const protobufPackage = "verifier.v1";
-
-/** Object to encapsulate Target information regarding customer's api versioning. */
-export interface TargetInfo {
-  version: string;
-  /** TODO map of any string to any string for any headers; */
-  url: string;
-}
-
-/** Object to encapsulate Version information. */
-export interface VersionInfo {
-  sdkVersion: string;
-  target: TargetInfo | undefined;
-}
 
 /** Object to encapsulate a Verifier entity */
 export interface Verifier {
@@ -33,6 +21,13 @@ export interface Verifier {
   versionInfo: VersionInfo[];
 }
 
+/** Object to encapsulate an VerifierOptions entity */
+export interface VerifierOptions {
+  publicKeyInfo: PublicKeyInfo[];
+  url: string;
+  versionInfo: VersionInfo[];
+}
+
 /** Object to encapsulate basic verifier info */
 export interface VerifierInfo {
   did: string;
@@ -40,159 +35,6 @@ export interface VerifierInfo {
   encryptionPublicKey: PublicKeyInfo | undefined;
   signingPublicKey: PublicKeyInfo | undefined;
 }
-
-const baseTargetInfo: object = { version: "", url: "" };
-
-export const TargetInfo = {
-  encode(
-    message: TargetInfo,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
-    if (message.version !== "") {
-      writer.uint32(10).string(message.version);
-    }
-    if (message.url !== "") {
-      writer.uint32(18).string(message.url);
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): TargetInfo {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = { ...baseTargetInfo } as TargetInfo;
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.version = reader.string();
-          break;
-        case 2:
-          message.url = reader.string();
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-
-  fromJSON(object: any): TargetInfo {
-    const message = { ...baseTargetInfo } as TargetInfo;
-    if (object.version !== undefined && object.version !== null) {
-      message.version = String(object.version);
-    } else {
-      message.version = "";
-    }
-    if (object.url !== undefined && object.url !== null) {
-      message.url = String(object.url);
-    } else {
-      message.url = "";
-    }
-    return message;
-  },
-
-  toJSON(message: TargetInfo): unknown {
-    const obj: any = {};
-    message.version !== undefined && (obj.version = message.version);
-    message.url !== undefined && (obj.url = message.url);
-    return obj;
-  },
-
-  fromPartial(object: DeepPartial<TargetInfo>): TargetInfo {
-    const message = { ...baseTargetInfo } as TargetInfo;
-    if (object.version !== undefined && object.version !== null) {
-      message.version = object.version;
-    } else {
-      message.version = "";
-    }
-    if (object.url !== undefined && object.url !== null) {
-      message.url = object.url;
-    } else {
-      message.url = "";
-    }
-    return message;
-  },
-};
-
-const baseVersionInfo: object = { sdkVersion: "" };
-
-export const VersionInfo = {
-  encode(
-    message: VersionInfo,
-    writer: _m0.Writer = _m0.Writer.create()
-  ): _m0.Writer {
-    if (message.sdkVersion !== "") {
-      writer.uint32(10).string(message.sdkVersion);
-    }
-    if (message.target !== undefined) {
-      TargetInfo.encode(message.target, writer.uint32(18).fork()).ldelim();
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): VersionInfo {
-    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = { ...baseVersionInfo } as VersionInfo;
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.sdkVersion = reader.string();
-          break;
-        case 2:
-          message.target = TargetInfo.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-
-  fromJSON(object: any): VersionInfo {
-    const message = { ...baseVersionInfo } as VersionInfo;
-    if (object.sdkVersion !== undefined && object.sdkVersion !== null) {
-      message.sdkVersion = String(object.sdkVersion);
-    } else {
-      message.sdkVersion = "";
-    }
-    if (object.target !== undefined && object.target !== null) {
-      message.target = TargetInfo.fromJSON(object.target);
-    } else {
-      message.target = undefined;
-    }
-    return message;
-  },
-
-  toJSON(message: VersionInfo): unknown {
-    const obj: any = {};
-    message.sdkVersion !== undefined && (obj.sdkVersion = message.sdkVersion);
-    message.target !== undefined &&
-      (obj.target = message.target
-        ? TargetInfo.toJSON(message.target)
-        : undefined);
-    return obj;
-  },
-
-  fromPartial(object: DeepPartial<VersionInfo>): VersionInfo {
-    const message = { ...baseVersionInfo } as VersionInfo;
-    if (object.sdkVersion !== undefined && object.sdkVersion !== null) {
-      message.sdkVersion = object.sdkVersion;
-    } else {
-      message.sdkVersion = "";
-    }
-    if (object.target !== undefined && object.target !== null) {
-      message.target = TargetInfo.fromPartial(object.target);
-    } else {
-      message.target = undefined;
-    }
-    return message;
-  },
-};
 
 const baseVerifier: object = {
   uuid: "",
@@ -421,6 +263,118 @@ export const Verifier = {
       message.apiKey = object.apiKey;
     } else {
       message.apiKey = "";
+    }
+    if (object.url !== undefined && object.url !== null) {
+      message.url = object.url;
+    } else {
+      message.url = "";
+    }
+    if (object.versionInfo !== undefined && object.versionInfo !== null) {
+      for (const e of object.versionInfo) {
+        message.versionInfo.push(VersionInfo.fromPartial(e));
+      }
+    }
+    return message;
+  },
+};
+
+const baseVerifierOptions: object = { url: "" };
+
+export const VerifierOptions = {
+  encode(
+    message: VerifierOptions,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    for (const v of message.publicKeyInfo) {
+      PublicKeyInfo.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.url !== "") {
+      writer.uint32(18).string(message.url);
+    }
+    for (const v of message.versionInfo) {
+      VersionInfo.encode(v!, writer.uint32(26).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): VerifierOptions {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseVerifierOptions } as VerifierOptions;
+    message.publicKeyInfo = [];
+    message.versionInfo = [];
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.publicKeyInfo.push(
+            PublicKeyInfo.decode(reader, reader.uint32())
+          );
+          break;
+        case 2:
+          message.url = reader.string();
+          break;
+        case 3:
+          message.versionInfo.push(VersionInfo.decode(reader, reader.uint32()));
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): VerifierOptions {
+    const message = { ...baseVerifierOptions } as VerifierOptions;
+    message.publicKeyInfo = [];
+    message.versionInfo = [];
+    if (object.publicKeyInfo !== undefined && object.publicKeyInfo !== null) {
+      for (const e of object.publicKeyInfo) {
+        message.publicKeyInfo.push(PublicKeyInfo.fromJSON(e));
+      }
+    }
+    if (object.url !== undefined && object.url !== null) {
+      message.url = String(object.url);
+    } else {
+      message.url = "";
+    }
+    if (object.versionInfo !== undefined && object.versionInfo !== null) {
+      for (const e of object.versionInfo) {
+        message.versionInfo.push(VersionInfo.fromJSON(e));
+      }
+    }
+    return message;
+  },
+
+  toJSON(message: VerifierOptions): unknown {
+    const obj: any = {};
+    if (message.publicKeyInfo) {
+      obj.publicKeyInfo = message.publicKeyInfo.map((e) =>
+        e ? PublicKeyInfo.toJSON(e) : undefined
+      );
+    } else {
+      obj.publicKeyInfo = [];
+    }
+    message.url !== undefined && (obj.url = message.url);
+    if (message.versionInfo) {
+      obj.versionInfo = message.versionInfo.map((e) =>
+        e ? VersionInfo.toJSON(e) : undefined
+      );
+    } else {
+      obj.versionInfo = [];
+    }
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<VerifierOptions>): VerifierOptions {
+    const message = { ...baseVerifierOptions } as VerifierOptions;
+    message.publicKeyInfo = [];
+    message.versionInfo = [];
+    if (object.publicKeyInfo !== undefined && object.publicKeyInfo !== null) {
+      for (const e of object.publicKeyInfo) {
+        message.publicKeyInfo.push(PublicKeyInfo.fromPartial(e));
+      }
     }
     if (object.url !== undefined && object.url !== null) {
       message.url = object.url;

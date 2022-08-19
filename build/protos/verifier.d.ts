@@ -1,17 +1,7 @@
 import _m0 from "protobufjs/minimal";
+import { VersionInfo } from "./versionInfo";
 import { PublicKeyInfo } from "./crypto";
 export declare const protobufPackage = "verifier.v1";
-/** Object to encapsulate Target information regarding customer's api versioning. */
-export interface TargetInfo {
-    version: string;
-    /** TODO map of any string to any string for any headers; */
-    url: string;
-}
-/** Object to encapsulate Version information. */
-export interface VersionInfo {
-    sdkVersion: string;
-    target: TargetInfo | undefined;
-}
 /** Object to encapsulate a Verifier entity */
 export interface Verifier {
     uuid: string;
@@ -25,6 +15,12 @@ export interface Verifier {
     url: string;
     versionInfo: VersionInfo[];
 }
+/** Object to encapsulate an VerifierOptions entity */
+export interface VerifierOptions {
+    publicKeyInfo: PublicKeyInfo[];
+    url: string;
+    versionInfo: VersionInfo[];
+}
 /** Object to encapsulate basic verifier info */
 export interface VerifierInfo {
     did: string;
@@ -32,26 +28,19 @@ export interface VerifierInfo {
     encryptionPublicKey: PublicKeyInfo | undefined;
     signingPublicKey: PublicKeyInfo | undefined;
 }
-export declare const TargetInfo: {
-    encode(message: TargetInfo, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): TargetInfo;
-    fromJSON(object: any): TargetInfo;
-    toJSON(message: TargetInfo): unknown;
-    fromPartial(object: DeepPartial<TargetInfo>): TargetInfo;
-};
-export declare const VersionInfo: {
-    encode(message: VersionInfo, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): VersionInfo;
-    fromJSON(object: any): VersionInfo;
-    toJSON(message: VersionInfo): unknown;
-    fromPartial(object: DeepPartial<VersionInfo>): VersionInfo;
-};
 export declare const Verifier: {
     encode(message: Verifier, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number | undefined): Verifier;
     fromJSON(object: any): Verifier;
     toJSON(message: Verifier): unknown;
     fromPartial(object: DeepPartial<Verifier>): Verifier;
+};
+export declare const VerifierOptions: {
+    encode(message: VerifierOptions, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): VerifierOptions;
+    fromJSON(object: any): VerifierOptions;
+    toJSON(message: VerifierOptions): unknown;
+    fromPartial(object: DeepPartial<VerifierOptions>): VerifierOptions;
 };
 export declare const VerifierInfo: {
     encode(message: VerifierInfo, writer?: _m0.Writer): _m0.Writer;

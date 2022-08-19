@@ -9,9 +9,9 @@ import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb,
 import { KeyPair, KeyPairSet, EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb, UnsignedString, SignedString } from "./protos/crypto";
 import { HolderAppInfo } from "./protos/holderApp";
 import { PresentationRequestEnriched as PresentationRequestEnrichedPb, PresentationRequestDisplayMessage } from "./protos/presentationRequestEnriched";
-import { VerifierInfo as VerifierInfoPb } from "./protos/verifier";
+import { VerifierInfo as VerifierInfoPb, Verifier as VerifierPb, VerifierOptions as VerifierOptionsPb } from "./protos/verifier";
 import { SubjectAbsentCredentials, SubjectCredentialsAbsentDto, SubjectCredentialIssuerInfoDto } from "./protos/subject";
-import { IssuerInfo } from "./protos/issuer";
+import { IssuerInfo, Issuer as IssuerPb, IssuerOptions as IssuerOptionsPb } from "./protos/issuer";
 import { SchemaPresentationRequestDto, SchemaAttributesRequestsDto, PresentationSchemaAttributes, PresentationSchema, CredentialSchemaData, SchemaGroupings, SchemaPresentationDto as SchemaPresentationDtoPb, SchemaAttributesDto } from "./protos/schema";
 /**
  * Note the proto defined types import with a 'Pb' suffix that also have older, vanilla ts types defined.
@@ -210,33 +210,24 @@ export interface PresentationRequest extends PresentationRequestPb {
 /**
  * Encapsulates necessary Issuer entity attributes during creation.
  */
-export interface IssuerOptions {
+export interface IssuerOptions extends Omit<IssuerOptionsPb, 'versionInfo'> {
     publicKeyInfo: Array<PublicKeyInfo>;
-    url: string;
     versionInfo: VersionInfo[];
 }
 /**
  * Encapsulates necessary Verifier entity attributes during creation.
  */
-export interface VerifierOptions {
+export interface VerifierOptions extends Omit<VerifierOptionsPb, 'versionInfo'> {
     publicKeyInfo: PublicKeyInfo[];
-    url: string;
     versionInfo: VersionInfo[];
 }
 /**
  * Encapsulates Verifier entity attributes.
  */
-export interface Verifier {
-    did: string;
-    uuid: string;
-    createdAt: string;
-    updatedAt: string;
-    name: string;
-    customerUuid: string;
-    url: string;
-    isAuthorized: boolean;
+export interface Verifier extends Omit<VerifierPb, 'versionInfo'> {
+    createdAt: Date;
+    updatedAt: Date;
     versionInfo: VersionInfo[];
-    apiKey: string;
 }
 /**
  * Interface to encapsulate corresponding mappings between UnumID Mobile (aka Holder) SDK and Server SDK versions.
@@ -282,18 +273,10 @@ export interface TargetInfo {
 /**
  * Encapsulates Issuer entity attributes.
  */
-export interface Issuer {
-    uuid: string;
-    customerUuid: string;
-    name: string;
-    did: string;
+export interface Issuer extends Omit<IssuerPb, 'versionInfo'> {
     createdAt: Date;
     updatedAt: Date;
-    isAuthorized: boolean;
-    apiKey: string;
-    url: string;
     versionInfo: VersionInfo[];
-    cardImageUrl?: string;
 }
 /**
  * Saas supported receipt group types
