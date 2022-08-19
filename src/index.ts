@@ -1,7 +1,7 @@
 import { Literal, Static, Union } from "runtypes";
 import { SemVer } from 'semver';
 import { UnsignedPresentation, Presentation as PresentationPb} from "./protos/presentation";
-import { PresentationRequestOptions as PresentationRequestOptionsPb, UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest"
+import { PresentationRequestOptions as PresentationRequestOptionsPb, UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb} from "./protos/presentationRequest"
 import { 
   DidDocument as DidDocumentPb, 
   SignedDidDocument as SignedDidDocumentPb, 
@@ -37,7 +37,7 @@ import {
 } from "./protos/credential";
 import { KeyPair, KeyPairSet, EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb, UnsignedString, SignedString } from "./protos/crypto"
 import { HolderAppInfo } from "./protos/holderApp";
-import { PresentationRequestEnriched, PresentationRequestDisplayMessage } from "./protos/presentationRequestEnriched";
+import { PresentationRequestEnriched as PresentationRequestEnrichedPb, PresentationRequestDisplayMessage  } from "./protos/presentationRequestEnriched";
 // import { VerifierInfo as VerifierInfoPb } from "./protos/verifier";
 import { VerifierInfo as VerifierInfoPb } from "./protos/verifier";
 import { SubjectAbsentCredentials, SubjectCredentialsAbsentDto, SubjectCredentialIssuerInfoDto } from "./protos/subject";
@@ -93,7 +93,6 @@ export {
 
 export {
   // protos/presentationRequestEnriched
-  PresentationRequestEnriched,
   PresentationRequestDisplayMessage
 }
 
@@ -862,30 +861,15 @@ export type VersionedDto<N extends string, T = any> = {
 }
 
 /**
- * Type to encapsulate the response body returned when a PresentationRequest is created
- * AKA PresentationRequestEnriched
+ * Encapsulates presentation request attributes as they are export interface PresentationRequestEnriched extends Omit<PresentationRequestEnrichedPb, 'issuers'> { from Unum ID saas.
+ * Note: extending the protobuf definition to enforce attribute existence. 
  */
-export interface PresentationRequestPostDto {
+export interface PresentationRequestEnriched extends Omit<PresentationRequestEnrichedPb, 'issuers'> {
   presentationRequest: PresentationRequest;
-  verifier: Pick<Verifier, 'did' | 'name' | 'url'>;
-  issuers: Record<string, Pick<Issuer, 'did' | 'name'>>;
-  holderApp: Pick<HolderApp, 'name' | 'deeplinkButtonImg'>;
-  deeplink: string;
-  qrCode: string;
-}
-
-/**
- * Type to encapsulate a PresentationRequest Data Transfer Object get response used in interfacing services.
- * AKA PresentationRequestEnriched
- */
- export interface PresentationRequestDto {
-  presentationRequest: WithVersion<PresentationRequest>;
   verifier: VerifierInfo;
   issuers: IssuerInfoMap;
-  holderApp?: Pick<HolderApp, 'name' | 'deeplinkButtonImg' | 'appStoreUrl' | 'playStoreUrl'>;
-  deeplink?: string;
-  qrCode?: string;
   displayMessage: PresentationRequestDisplayMessage;
+  holderAppInfo: HolderAppInfo;
 }
 
 /**
@@ -897,18 +881,6 @@ export interface PresentationRequestPostDto {
   verifier: VerifierInfo;
   issuers: IssuerInfoMap;
 }
-
-/**
- * Type to encapsulate a PresentationRequest Data Transfer Object from the PresentationRequestRepository service.
- */
-export interface PresentationRequestRepoDto {
-  presentationRequests: Record<string, PresentationRequestDto> ;
-}
-
-/**
- * Type to encapsulate mapping of versions to PresentationRequestDto.
- */
-export type VersionedPresentationRequestDto = VersionedDto<'presentationRequests', PresentationRequestDto>;
 
 /**
  * Interface to encapsulate an ApiKey Entity from Unum ID's SaaS.
@@ -981,7 +953,7 @@ export interface IssuerInfoMap {
  * Type to encapsulate an encrypted presentation sent from the UnumID SaaS
  */
  export interface EncryptedPresentation {
-  presentationRequestInfo: PresentationRequestDto; // Going with trailing "Info" to avoid confusing references like presentationRequest.presentationRequest.uuid
+  presentationRequestInfo: PresentationRequestEnriched; // Going with trailing "Info" to avoid confusing references like presentationRequest.presentationRequest.uuid
   encryptedPresentation: EncryptedData;
 }
 

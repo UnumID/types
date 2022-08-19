@@ -8,7 +8,7 @@ import { Proof as ProofPb } from "./protos/proof";
 import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest, CredentialStatusInfo as CredentialStatusInfoPb, CredentialStatusesOptions as CredentialStatusesOptionsPb, IssueCredentialOptions, IssueCredentialsOptions, EncryptedCredential as EncryptedCredentialPb, EncryptedCredentialOptions as EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, UnsignedSubjectCredentialRequests, SubjectCredentialRequests as SubjectCredentialRequestsPb, SubjectCredentialRequestsDto as SubjectCredentialRequestsDtoPb, CredentialsIssuedResponse, CredentialStatus, RevokeAllCredentials, UnsignedRevokeAllCredentials, SubjectCredentialRequestsEnrichedDto as SubjectCredentialRequestsEnrichedDtoPb } from "./protos/credential";
 import { KeyPair, KeyPairSet, EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb, UnsignedString, SignedString } from "./protos/crypto";
 import { HolderAppInfo } from "./protos/holderApp";
-import { PresentationRequestEnriched, PresentationRequestDisplayMessage } from "./protos/presentationRequestEnriched";
+import { PresentationRequestEnriched as PresentationRequestEnrichedPb, PresentationRequestDisplayMessage } from "./protos/presentationRequestEnriched";
 import { VerifierInfo as VerifierInfoPb } from "./protos/verifier";
 import { SubjectAbsentCredentials, SubjectCredentialsAbsentDto, SubjectCredentialIssuerInfoDto } from "./protos/subject";
 import { IssuerInfo } from "./protos/issuer";
@@ -21,7 +21,7 @@ export { UnsignedPresentation, PresentationPb, };
 export { DidDocumentPb, DidDocumentService, SignedDidDocumentPb, UnsignedDID, DIDPb, UserDidAssociationPb, PublicKeyInfoUpdateOptions };
 export { UnsignedPresentationRequestPb, PresentationRequestPb, };
 export { IssueCredentialOptions, IssueCredentialsOptions, CredentialStatusInfoPb, CredentialStatus, CredentialRequest, UnsignedCredentialPb, CredentialPb, EncryptedCredentialPb, EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, CredentialsIssuedResponse, UnsignedRevokeAllCredentials, RevokeAllCredentials, UnsignedSubjectCredentialRequests, SubjectCredentialRequestsEnrichedDtoPb, };
-export { PresentationRequestEnriched, PresentationRequestDisplayMessage };
+export { PresentationRequestDisplayMessage };
 export { EncryptedKey, RSAPadding, UnsignedString, SignedString, KeyPair, KeyPairSet };
 export { VerifierInfoPb, };
 export { IssuerInfo, };
@@ -644,29 +644,15 @@ export declare type VersionedDto<N extends string, T = any> = {
     };
 };
 /**
- * Type to encapsulate the response body returned when a PresentationRequest is created
- * AKA PresentationRequestEnriched
+ * Encapsulates presentation request attributes as they are export interface PresentationRequestEnriched extends Omit<PresentationRequestEnrichedPb, 'issuers'> { from Unum ID saas.
+ * Note: extending the protobuf definition to enforce attribute existence.
  */
-export interface PresentationRequestPostDto {
+export interface PresentationRequestEnriched extends Omit<PresentationRequestEnrichedPb, 'issuers'> {
     presentationRequest: PresentationRequest;
-    verifier: Pick<Verifier, 'did' | 'name' | 'url'>;
-    issuers: Record<string, Pick<Issuer, 'did' | 'name'>>;
-    holderApp: Pick<HolderApp, 'name' | 'deeplinkButtonImg'>;
-    deeplink: string;
-    qrCode: string;
-}
-/**
- * Type to encapsulate a PresentationRequest Data Transfer Object get response used in interfacing services.
- * AKA PresentationRequestEnriched
- */
-export interface PresentationRequestDto {
-    presentationRequest: WithVersion<PresentationRequest>;
     verifier: VerifierInfo;
     issuers: IssuerInfoMap;
-    holderApp?: Pick<HolderApp, 'name' | 'deeplinkButtonImg' | 'appStoreUrl' | 'playStoreUrl'>;
-    deeplink?: string;
-    qrCode?: string;
     displayMessage: PresentationRequestDisplayMessage;
+    holderAppInfo: HolderAppInfo;
 }
 /**
  * Type to encapsulate a Protobuf PresentationRequest Data Transfer Object get response used in interfacing services.
@@ -677,16 +663,6 @@ export interface PresentationRequestDtoPb {
     verifier: VerifierInfo;
     issuers: IssuerInfoMap;
 }
-/**
- * Type to encapsulate a PresentationRequest Data Transfer Object from the PresentationRequestRepository service.
- */
-export interface PresentationRequestRepoDto {
-    presentationRequests: Record<string, PresentationRequestDto>;
-}
-/**
- * Type to encapsulate mapping of versions to PresentationRequestDto.
- */
-export declare type VersionedPresentationRequestDto = VersionedDto<'presentationRequests', PresentationRequestDto>;
 /**
  * Interface to encapsulate an ApiKey Entity from Unum ID's SaaS.
  */
@@ -751,7 +727,7 @@ export interface IssuerInfoMap {
  * Type to encapsulate an encrypted presentation sent from the UnumID SaaS
  */
 export interface EncryptedPresentation {
-    presentationRequestInfo: PresentationRequestDto;
+    presentationRequestInfo: PresentationRequestEnriched;
     encryptedPresentation: EncryptedData;
 }
 /**
