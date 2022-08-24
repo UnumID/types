@@ -22,7 +22,7 @@ export { DidDocumentPb, DidDocumentService, SignedDidDocumentPb, UnsignedDID, DI
 export { UnsignedPresentationRequestPb, PresentationRequestPb, };
 export { IssueCredentialOptions, IssueCredentialsOptions, CredentialStatusInfoPb, CredentialStatus, CredentialRequest, UnsignedCredentialPb, CredentialPb, EncryptedCredentialPb, EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, CredentialsIssuedResponse, UnsignedRevokeAllCredentials, RevokeAllCredentials, UnsignedSubjectCredentialRequests, SubjectCredentialRequestsEnrichedDtoPb, };
 export { PresentationRequestDisplayMessage };
-export { EncryptedKey, RSAPadding, UnsignedString, SignedString, KeyPair, KeyPairSet };
+export { EncryptedKey, RSAPadding, UnsignedString, SignedString, KeyPair, KeyPairSet, ProofPb };
 export { VerifierInfoPb, };
 export { IssuerInfo, };
 export { HolderAppInfo };

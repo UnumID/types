@@ -103,7 +103,8 @@ export {
   UnsignedString,
   SignedString,
   KeyPair,
-  KeyPairSet
+  KeyPairSet,
+  ProofPb
 }
 
 export { 
