@@ -5,7 +5,7 @@ import { UnsignedPresentation, Presentation as PresentationPb } from "./protos/p
 import { PresentationRequestOptions as PresentationRequestOptionsPb, UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest";
 import { DidDocument as DidDocumentPb, SignedDidDocument as SignedDidDocumentPb, DidDocumentService, UnsignedDID, DID as DIDPb, UserDidAssociation as UserDidAssociationPb, HolderOptions as HolderOptionsPb, PublicKeyInfoUpdateOptions, DidDocumentPatchOptions as DidDocumentPatchOptionsPb } from "./protos/didDocument";
 import { Proof as ProofPb } from "./protos/proof";
-import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest, CredentialStatusInfo as CredentialStatusInfoPb, CredentialStatusesOptions as CredentialStatusesOptionsPb, IssueCredentialOptions, IssueCredentialsOptions, EncryptedCredential as EncryptedCredentialPb, EncryptedCredentialOptions as EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, UnsignedSubjectCredentialRequests, SubjectCredentialRequests as SubjectCredentialRequestsPb, SubjectCredentialRequestsDto as SubjectCredentialRequestsDtoPb, CredentialsIssuedResponse, CredentialStatus, RevokeAllCredentials, UnsignedRevokeAllCredentials, SubjectCredentialRequestsEnrichedDto as SubjectCredentialRequestsEnrichedDtoPb } from "./protos/credential";
+import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest, CredentialStatusInfo as CredentialStatusInfoPb, CredentialStatusesOptions as CredentialStatusesOptionsPb, IssueCredentialOptions, IssueCredentialsOptions, EncryptedCredential as EncryptedCredentialPb, EncryptedCredentialOptions as EncryptedCredentialOptionsPb, EncryptedCredentialEnriched as EncryptedCredentialEnrichedPb, UnsignedSubjectCredentialRequests, SubjectCredentialRequests as SubjectCredentialRequestsPb, SubjectCredentialRequestsDto as SubjectCredentialRequestsDtoPb, CredentialsIssuedResponse, CredentialStatus, RevokeAllCredentials, UnsignedRevokeAllCredentials, SubjectCredentialRequestsEnrichedDto as SubjectCredentialRequestsEnrichedDtoPb } from "./protos/credential";
 import { KeyPair, KeyPairSet, EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb, UnsignedString, SignedString } from "./protos/crypto";
 import { HolderAppInfo } from "./protos/holderApp";
 import { PresentationRequestEnriched as PresentationRequestEnrichedPb, PresentationRequestDisplayMessage } from "./protos/presentationRequestEnriched";
@@ -20,7 +20,7 @@ import { SchemaPresentationRequestDto, SchemaAttributesRequestsDto, Presentation
 export { UnsignedPresentation, PresentationPb, };
 export { DidDocumentPb, DidDocumentService, SignedDidDocumentPb, UnsignedDID, DIDPb, UserDidAssociationPb, PublicKeyInfoUpdateOptions };
 export { UnsignedPresentationRequestPb, PresentationRequestPb, };
-export { IssueCredentialOptions, IssueCredentialsOptions, CredentialStatusInfoPb, CredentialStatus, CredentialRequest, UnsignedCredentialPb, CredentialPb, EncryptedCredentialPb, EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, CredentialsIssuedResponse, UnsignedRevokeAllCredentials, RevokeAllCredentials, UnsignedSubjectCredentialRequests, SubjectCredentialRequestsEnrichedDtoPb, };
+export { IssueCredentialOptions, IssueCredentialsOptions, CredentialStatusInfoPb, CredentialStatus, CredentialRequest, UnsignedCredentialPb, CredentialPb, EncryptedCredentialPb, EncryptedCredentialOptionsPb, EncryptedCredentialEnrichedPb, CredentialsIssuedResponse, UnsignedRevokeAllCredentials, RevokeAllCredentials, UnsignedSubjectCredentialRequests, SubjectCredentialRequestsEnrichedDtoPb, };
 export { PresentationRequestDisplayMessage };
 export { EncryptedKey, RSAPadding, UnsignedString, SignedString, KeyPair, KeyPairSet, ProofPb };
 export { VerifierInfoPb, };
@@ -160,6 +160,10 @@ export interface EncryptedCredentialDto extends Omit<EncryptedCredential, 'creat
     createdAt: string;
     updatedAt: string;
     expirationDate?: string;
+}
+export interface EncryptedCredentialEnriched extends EncryptedCredentialEnrichedPb {
+    encryptedCredential: EncryptedCredential;
+    didDocument: DidDocument;
 }
 /**
  * Data transfer object for a single EncryptedCredentialEnriched

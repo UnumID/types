@@ -25,7 +25,7 @@ import {
   IssueCredentialsOptions,
   EncryptedCredential as EncryptedCredentialPb,
   EncryptedCredentialOptions as EncryptedCredentialOptionsPb, 
-  EncryptedCredentialEnriched,
+  EncryptedCredentialEnriched as EncryptedCredentialEnrichedPb,
   UnsignedSubjectCredentialRequests,
   SubjectCredentialRequests as SubjectCredentialRequestsPb,
   SubjectCredentialRequestsDto as SubjectCredentialRequestsDtoPb,
@@ -83,7 +83,7 @@ export {
   CredentialPb,
   EncryptedCredentialPb,
   EncryptedCredentialOptionsPb,
-  EncryptedCredentialEnriched,
+  EncryptedCredentialEnrichedPb,
   CredentialsIssuedResponse,
   UnsignedRevokeAllCredentials,
   RevokeAllCredentials,
@@ -297,6 +297,11 @@ export interface EncryptedCredential extends EncryptedCredentialPb {
   createdAt: string; // dates should be converted to ISO strings, since this is how they will be represented in the JSON at runtime
   updatedAt: string; // dates should be converted to ISO strings, since this is how they will be represented in the JSON at runtime
   expirationDate?: string; // dates should be converted to ISO strings, since this is how they will be represented in the JSON at runtime
+}
+
+export interface EncryptedCredentialEnriched extends EncryptedCredentialEnrichedPb {
+  encryptedCredential: EncryptedCredential;
+  didDocument: DidDocument;
 }
 
 /**
