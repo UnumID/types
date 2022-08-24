@@ -1,13 +1,14 @@
 import _m0 from "protobufjs/minimal";
 import { Credential } from "./credential";
 import { Proof } from "./proof";
-export declare const protobufPackage = "presentation.v1";
+export declare const protobufPackage = "presentation.v4";
 /** Encapsulates an unsigned presentation attributes. */
 export interface UnsignedPresentation {
     context: string[];
     type: string[];
     presentationRequestId: string;
     verifierDid: string;
+    /** Optional. If undefined or empty it means the presentation request was declined */
     verifiableCredential: Credential[];
 }
 /**
@@ -16,9 +17,10 @@ export interface UnsignedPresentation {
  */
 export interface Presentation {
     context: string[];
-    type: string[];
+    type: string;
     presentationRequestId: string;
     verifierDid: string;
+    /** Optional. If undefined or empty it means the presentation request was declined */
     verifiableCredential: Credential[];
     proof: Proof | undefined;
 }

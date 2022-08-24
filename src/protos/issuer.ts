@@ -2,6 +2,7 @@
 import Long from "long";
 import _m0 from "protobufjs/minimal";
 import { Timestamp } from "./google/protobuf/timestamp";
+import { VersionInfo } from "./versionInfo";
 import { PublicKeyInfo } from "./crypto";
 
 export const protobufPackage = "issuer.v1";
@@ -16,12 +17,16 @@ export interface Issuer {
   updatedAt: Date | undefined;
   isAuthorized: boolean;
   apiKey: string;
+  url: string;
+  versionInfo: VersionInfo[];
+  cardImageUrl: string;
 }
 
-/** Object to encapsulate an Issuer entity */
-export interface RegisterIssuerOptions {
-  customerUuid: string;
+/** Object to encapsulate an IssuerOptions entity */
+export interface IssuerOptions {
   publicKeyInfo: PublicKeyInfo[];
+  url: string;
+  versionInfo: VersionInfo[];
 }
 
 /** Encapsulates Issuer metadata attributes. */
@@ -38,6 +43,8 @@ const baseIssuer: object = {
   did: "",
   isAuthorized: false,
   apiKey: "",
+  url: "",
+  cardImageUrl: "",
 };
 
 export const Issuer = {
@@ -75,6 +82,15 @@ export const Issuer = {
     if (message.apiKey !== "") {
       writer.uint32(66).string(message.apiKey);
     }
+    if (message.url !== "") {
+      writer.uint32(74).string(message.url);
+    }
+    for (const v of message.versionInfo) {
+      VersionInfo.encode(v!, writer.uint32(82).fork()).ldelim();
+    }
+    if (message.cardImageUrl !== "") {
+      writer.uint32(90).string(message.cardImageUrl);
+    }
     return writer;
   },
 
@@ -82,6 +98,7 @@ export const Issuer = {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = { ...baseIssuer } as Issuer;
+    message.versionInfo = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -113,6 +130,15 @@ export const Issuer = {
         case 8:
           message.apiKey = reader.string();
           break;
+        case 9:
+          message.url = reader.string();
+          break;
+        case 10:
+          message.versionInfo.push(VersionInfo.decode(reader, reader.uint32()));
+          break;
+        case 11:
+          message.cardImageUrl = reader.string();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -123,6 +149,7 @@ export const Issuer = {
 
   fromJSON(object: any): Issuer {
     const message = { ...baseIssuer } as Issuer;
+    message.versionInfo = [];
     if (object.uuid !== undefined && object.uuid !== null) {
       message.uuid = String(object.uuid);
     } else {
@@ -163,6 +190,21 @@ export const Issuer = {
     } else {
       message.apiKey = "";
     }
+    if (object.url !== undefined && object.url !== null) {
+      message.url = String(object.url);
+    } else {
+      message.url = "";
+    }
+    if (object.versionInfo !== undefined && object.versionInfo !== null) {
+      for (const e of object.versionInfo) {
+        message.versionInfo.push(VersionInfo.fromJSON(e));
+      }
+    }
+    if (object.cardImageUrl !== undefined && object.cardImageUrl !== null) {
+      message.cardImageUrl = String(object.cardImageUrl);
+    } else {
+      message.cardImageUrl = "";
+    }
     return message;
   },
 
@@ -180,11 +222,22 @@ export const Issuer = {
     message.isAuthorized !== undefined &&
       (obj.isAuthorized = message.isAuthorized);
     message.apiKey !== undefined && (obj.apiKey = message.apiKey);
+    message.url !== undefined && (obj.url = message.url);
+    if (message.versionInfo) {
+      obj.versionInfo = message.versionInfo.map((e) =>
+        e ? VersionInfo.toJSON(e) : undefined
+      );
+    } else {
+      obj.versionInfo = [];
+    }
+    message.cardImageUrl !== undefined &&
+      (obj.cardImageUrl = message.cardImageUrl);
     return obj;
   },
 
   fromPartial(object: DeepPartial<Issuer>): Issuer {
     const message = { ...baseIssuer } as Issuer;
+    message.versionInfo = [];
     if (object.uuid !== undefined && object.uuid !== null) {
       message.uuid = object.uuid;
     } else {
@@ -225,44 +278,63 @@ export const Issuer = {
     } else {
       message.apiKey = "";
     }
+    if (object.url !== undefined && object.url !== null) {
+      message.url = object.url;
+    } else {
+      message.url = "";
+    }
+    if (object.versionInfo !== undefined && object.versionInfo !== null) {
+      for (const e of object.versionInfo) {
+        message.versionInfo.push(VersionInfo.fromPartial(e));
+      }
+    }
+    if (object.cardImageUrl !== undefined && object.cardImageUrl !== null) {
+      message.cardImageUrl = object.cardImageUrl;
+    } else {
+      message.cardImageUrl = "";
+    }
     return message;
   },
 };
 
-const baseRegisterIssuerOptions: object = { customerUuid: "" };
+const baseIssuerOptions: object = { url: "" };
 
-export const RegisterIssuerOptions = {
+export const IssuerOptions = {
   encode(
-    message: RegisterIssuerOptions,
+    message: IssuerOptions,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
-    if (message.customerUuid !== "") {
-      writer.uint32(10).string(message.customerUuid);
-    }
     for (const v of message.publicKeyInfo) {
-      PublicKeyInfo.encode(v!, writer.uint32(18).fork()).ldelim();
+      PublicKeyInfo.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.url !== "") {
+      writer.uint32(18).string(message.url);
+    }
+    for (const v of message.versionInfo) {
+      VersionInfo.encode(v!, writer.uint32(26).fork()).ldelim();
     }
     return writer;
   },
 
-  decode(
-    input: _m0.Reader | Uint8Array,
-    length?: number
-  ): RegisterIssuerOptions {
+  decode(input: _m0.Reader | Uint8Array, length?: number): IssuerOptions {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = { ...baseRegisterIssuerOptions } as RegisterIssuerOptions;
+    const message = { ...baseIssuerOptions } as IssuerOptions;
     message.publicKeyInfo = [];
+    message.versionInfo = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.customerUuid = reader.string();
-          break;
-        case 2:
           message.publicKeyInfo.push(
             PublicKeyInfo.decode(reader, reader.uint32())
           );
+          break;
+        case 2:
+          message.url = reader.string();
+          break;
+        case 3:
+          message.versionInfo.push(VersionInfo.decode(reader, reader.uint32()));
           break;
         default:
           reader.skipType(tag & 7);
@@ -272,26 +344,30 @@ export const RegisterIssuerOptions = {
     return message;
   },
 
-  fromJSON(object: any): RegisterIssuerOptions {
-    const message = { ...baseRegisterIssuerOptions } as RegisterIssuerOptions;
+  fromJSON(object: any): IssuerOptions {
+    const message = { ...baseIssuerOptions } as IssuerOptions;
     message.publicKeyInfo = [];
-    if (object.customerUuid !== undefined && object.customerUuid !== null) {
-      message.customerUuid = String(object.customerUuid);
-    } else {
-      message.customerUuid = "";
-    }
+    message.versionInfo = [];
     if (object.publicKeyInfo !== undefined && object.publicKeyInfo !== null) {
       for (const e of object.publicKeyInfo) {
         message.publicKeyInfo.push(PublicKeyInfo.fromJSON(e));
       }
     }
+    if (object.url !== undefined && object.url !== null) {
+      message.url = String(object.url);
+    } else {
+      message.url = "";
+    }
+    if (object.versionInfo !== undefined && object.versionInfo !== null) {
+      for (const e of object.versionInfo) {
+        message.versionInfo.push(VersionInfo.fromJSON(e));
+      }
+    }
     return message;
   },
 
-  toJSON(message: RegisterIssuerOptions): unknown {
+  toJSON(message: IssuerOptions): unknown {
     const obj: any = {};
-    message.customerUuid !== undefined &&
-      (obj.customerUuid = message.customerUuid);
     if (message.publicKeyInfo) {
       obj.publicKeyInfo = message.publicKeyInfo.map((e) =>
         e ? PublicKeyInfo.toJSON(e) : undefined
@@ -299,22 +375,34 @@ export const RegisterIssuerOptions = {
     } else {
       obj.publicKeyInfo = [];
     }
+    message.url !== undefined && (obj.url = message.url);
+    if (message.versionInfo) {
+      obj.versionInfo = message.versionInfo.map((e) =>
+        e ? VersionInfo.toJSON(e) : undefined
+      );
+    } else {
+      obj.versionInfo = [];
+    }
     return obj;
   },
 
-  fromPartial(
-    object: DeepPartial<RegisterIssuerOptions>
-  ): RegisterIssuerOptions {
-    const message = { ...baseRegisterIssuerOptions } as RegisterIssuerOptions;
+  fromPartial(object: DeepPartial<IssuerOptions>): IssuerOptions {
+    const message = { ...baseIssuerOptions } as IssuerOptions;
     message.publicKeyInfo = [];
-    if (object.customerUuid !== undefined && object.customerUuid !== null) {
-      message.customerUuid = object.customerUuid;
-    } else {
-      message.customerUuid = "";
-    }
+    message.versionInfo = [];
     if (object.publicKeyInfo !== undefined && object.publicKeyInfo !== null) {
       for (const e of object.publicKeyInfo) {
         message.publicKeyInfo.push(PublicKeyInfo.fromPartial(e));
+      }
+    }
+    if (object.url !== undefined && object.url !== null) {
+      message.url = object.url;
+    } else {
+      message.url = "";
+    }
+    if (object.versionInfo !== undefined && object.versionInfo !== null) {
+      for (const e of object.versionInfo) {
+        message.versionInfo.push(VersionInfo.fromPartial(e));
       }
     }
     return message;

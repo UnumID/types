@@ -14,158 +14,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.VerifierInfo = exports.Verifier = exports.VersionInfo = exports.TargetInfo = exports.protobufPackage = void 0;
+exports.VerifierInfo = exports.VerifierOptions = exports.Verifier = exports.protobufPackage = void 0;
 /* eslint-disable */
 var long_1 = __importDefault(require("long"));
 var minimal_1 = __importDefault(require("protobufjs/minimal"));
 var timestamp_1 = require("./google/protobuf/timestamp");
+var versionInfo_1 = require("./versionInfo");
 var crypto_1 = require("./crypto");
 exports.protobufPackage = "verifier.v1";
-var baseTargetInfo = { version: "", url: "" };
-exports.TargetInfo = {
-    encode: function (message, writer) {
-        if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
-        if (message.version !== "") {
-            writer.uint32(10).string(message.version);
-        }
-        if (message.url !== "") {
-            writer.uint32(18).string(message.url);
-        }
-        return writer;
-    },
-    decode: function (input, length) {
-        var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
-        var end = length === undefined ? reader.len : reader.pos + length;
-        var message = __assign({}, baseTargetInfo);
-        while (reader.pos < end) {
-            var tag = reader.uint32();
-            switch (tag >>> 3) {
-                case 1:
-                    message.version = reader.string();
-                    break;
-                case 2:
-                    message.url = reader.string();
-                    break;
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-            }
-        }
-        return message;
-    },
-    fromJSON: function (object) {
-        var message = __assign({}, baseTargetInfo);
-        if (object.version !== undefined && object.version !== null) {
-            message.version = String(object.version);
-        }
-        else {
-            message.version = "";
-        }
-        if (object.url !== undefined && object.url !== null) {
-            message.url = String(object.url);
-        }
-        else {
-            message.url = "";
-        }
-        return message;
-    },
-    toJSON: function (message) {
-        var obj = {};
-        message.version !== undefined && (obj.version = message.version);
-        message.url !== undefined && (obj.url = message.url);
-        return obj;
-    },
-    fromPartial: function (object) {
-        var message = __assign({}, baseTargetInfo);
-        if (object.version !== undefined && object.version !== null) {
-            message.version = object.version;
-        }
-        else {
-            message.version = "";
-        }
-        if (object.url !== undefined && object.url !== null) {
-            message.url = object.url;
-        }
-        else {
-            message.url = "";
-        }
-        return message;
-    },
-};
-var baseVersionInfo = { sdkVersion: "" };
-exports.VersionInfo = {
-    encode: function (message, writer) {
-        if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
-        if (message.sdkVersion !== "") {
-            writer.uint32(10).string(message.sdkVersion);
-        }
-        if (message.target !== undefined) {
-            exports.TargetInfo.encode(message.target, writer.uint32(18).fork()).ldelim();
-        }
-        return writer;
-    },
-    decode: function (input, length) {
-        var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
-        var end = length === undefined ? reader.len : reader.pos + length;
-        var message = __assign({}, baseVersionInfo);
-        while (reader.pos < end) {
-            var tag = reader.uint32();
-            switch (tag >>> 3) {
-                case 1:
-                    message.sdkVersion = reader.string();
-                    break;
-                case 2:
-                    message.target = exports.TargetInfo.decode(reader, reader.uint32());
-                    break;
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-            }
-        }
-        return message;
-    },
-    fromJSON: function (object) {
-        var message = __assign({}, baseVersionInfo);
-        if (object.sdkVersion !== undefined && object.sdkVersion !== null) {
-            message.sdkVersion = String(object.sdkVersion);
-        }
-        else {
-            message.sdkVersion = "";
-        }
-        if (object.target !== undefined && object.target !== null) {
-            message.target = exports.TargetInfo.fromJSON(object.target);
-        }
-        else {
-            message.target = undefined;
-        }
-        return message;
-    },
-    toJSON: function (message) {
-        var obj = {};
-        message.sdkVersion !== undefined && (obj.sdkVersion = message.sdkVersion);
-        message.target !== undefined &&
-            (obj.target = message.target
-                ? exports.TargetInfo.toJSON(message.target)
-                : undefined);
-        return obj;
-    },
-    fromPartial: function (object) {
-        var message = __assign({}, baseVersionInfo);
-        if (object.sdkVersion !== undefined && object.sdkVersion !== null) {
-            message.sdkVersion = object.sdkVersion;
-        }
-        else {
-            message.sdkVersion = "";
-        }
-        if (object.target !== undefined && object.target !== null) {
-            message.target = exports.TargetInfo.fromPartial(object.target);
-        }
-        else {
-            message.target = undefined;
-        }
-        return message;
-    },
-};
 var baseVerifier = {
     uuid: "",
     customerUuid: "",
@@ -207,7 +63,7 @@ exports.Verifier = {
         }
         for (var _i = 0, _a = message.versionInfo; _i < _a.length; _i++) {
             var v = _a[_i];
-            exports.VersionInfo.encode(v, writer.uint32(82).fork()).ldelim();
+            versionInfo_1.VersionInfo.encode(v, writer.uint32(82).fork()).ldelim();
         }
         return writer;
     },
@@ -247,7 +103,7 @@ exports.Verifier = {
                     message.url = reader.string();
                     break;
                 case 10:
-                    message.versionInfo.push(exports.VersionInfo.decode(reader, reader.uint32()));
+                    message.versionInfo.push(versionInfo_1.VersionInfo.decode(reader, reader.uint32()));
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -316,7 +172,7 @@ exports.Verifier = {
         if (object.versionInfo !== undefined && object.versionInfo !== null) {
             for (var _i = 0, _a = object.versionInfo; _i < _a.length; _i++) {
                 var e = _a[_i];
-                message.versionInfo.push(exports.VersionInfo.fromJSON(e));
+                message.versionInfo.push(versionInfo_1.VersionInfo.fromJSON(e));
             }
         }
         return message;
@@ -338,7 +194,7 @@ exports.Verifier = {
         message.url !== undefined && (obj.url = message.url);
         if (message.versionInfo) {
             obj.versionInfo = message.versionInfo.map(function (e) {
-                return e ? exports.VersionInfo.toJSON(e) : undefined;
+                return e ? versionInfo_1.VersionInfo.toJSON(e) : undefined;
             });
         }
         else {
@@ -406,7 +262,119 @@ exports.Verifier = {
         if (object.versionInfo !== undefined && object.versionInfo !== null) {
             for (var _i = 0, _a = object.versionInfo; _i < _a.length; _i++) {
                 var e = _a[_i];
-                message.versionInfo.push(exports.VersionInfo.fromPartial(e));
+                message.versionInfo.push(versionInfo_1.VersionInfo.fromPartial(e));
+            }
+        }
+        return message;
+    },
+};
+var baseVerifierOptions = { url: "" };
+exports.VerifierOptions = {
+    encode: function (message, writer) {
+        if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
+        for (var _i = 0, _a = message.publicKeyInfo; _i < _a.length; _i++) {
+            var v = _a[_i];
+            crypto_1.PublicKeyInfo.encode(v, writer.uint32(10).fork()).ldelim();
+        }
+        if (message.url !== "") {
+            writer.uint32(18).string(message.url);
+        }
+        for (var _b = 0, _c = message.versionInfo; _b < _c.length; _b++) {
+            var v = _c[_b];
+            versionInfo_1.VersionInfo.encode(v, writer.uint32(26).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode: function (input, length) {
+        var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
+        var end = length === undefined ? reader.len : reader.pos + length;
+        var message = __assign({}, baseVerifierOptions);
+        message.publicKeyInfo = [];
+        message.versionInfo = [];
+        while (reader.pos < end) {
+            var tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.publicKeyInfo.push(crypto_1.PublicKeyInfo.decode(reader, reader.uint32()));
+                    break;
+                case 2:
+                    message.url = reader.string();
+                    break;
+                case 3:
+                    message.versionInfo.push(versionInfo_1.VersionInfo.decode(reader, reader.uint32()));
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON: function (object) {
+        var message = __assign({}, baseVerifierOptions);
+        message.publicKeyInfo = [];
+        message.versionInfo = [];
+        if (object.publicKeyInfo !== undefined && object.publicKeyInfo !== null) {
+            for (var _i = 0, _a = object.publicKeyInfo; _i < _a.length; _i++) {
+                var e = _a[_i];
+                message.publicKeyInfo.push(crypto_1.PublicKeyInfo.fromJSON(e));
+            }
+        }
+        if (object.url !== undefined && object.url !== null) {
+            message.url = String(object.url);
+        }
+        else {
+            message.url = "";
+        }
+        if (object.versionInfo !== undefined && object.versionInfo !== null) {
+            for (var _b = 0, _c = object.versionInfo; _b < _c.length; _b++) {
+                var e = _c[_b];
+                message.versionInfo.push(versionInfo_1.VersionInfo.fromJSON(e));
+            }
+        }
+        return message;
+    },
+    toJSON: function (message) {
+        var obj = {};
+        if (message.publicKeyInfo) {
+            obj.publicKeyInfo = message.publicKeyInfo.map(function (e) {
+                return e ? crypto_1.PublicKeyInfo.toJSON(e) : undefined;
+            });
+        }
+        else {
+            obj.publicKeyInfo = [];
+        }
+        message.url !== undefined && (obj.url = message.url);
+        if (message.versionInfo) {
+            obj.versionInfo = message.versionInfo.map(function (e) {
+                return e ? versionInfo_1.VersionInfo.toJSON(e) : undefined;
+            });
+        }
+        else {
+            obj.versionInfo = [];
+        }
+        return obj;
+    },
+    fromPartial: function (object) {
+        var message = __assign({}, baseVerifierOptions);
+        message.publicKeyInfo = [];
+        message.versionInfo = [];
+        if (object.publicKeyInfo !== undefined && object.publicKeyInfo !== null) {
+            for (var _i = 0, _a = object.publicKeyInfo; _i < _a.length; _i++) {
+                var e = _a[_i];
+                message.publicKeyInfo.push(crypto_1.PublicKeyInfo.fromPartial(e));
+            }
+        }
+        if (object.url !== undefined && object.url !== null) {
+            message.url = object.url;
+        }
+        else {
+            message.url = "";
+        }
+        if (object.versionInfo !== undefined && object.versionInfo !== null) {
+            for (var _b = 0, _c = object.versionInfo; _b < _c.length; _b++) {
+                var e = _c[_b];
+                message.versionInfo.push(versionInfo_1.VersionInfo.fromPartial(e));
             }
         }
         return message;

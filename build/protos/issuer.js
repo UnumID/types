@@ -14,11 +14,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.IssuerInfo = exports.RegisterIssuerOptions = exports.Issuer = exports.protobufPackage = void 0;
+exports.IssuerInfo = exports.IssuerOptions = exports.Issuer = exports.protobufPackage = void 0;
 /* eslint-disable */
 var long_1 = __importDefault(require("long"));
 var minimal_1 = __importDefault(require("protobufjs/minimal"));
 var timestamp_1 = require("./google/protobuf/timestamp");
+var versionInfo_1 = require("./versionInfo");
 var crypto_1 = require("./crypto");
 exports.protobufPackage = "issuer.v1";
 var baseIssuer = {
@@ -28,6 +29,8 @@ var baseIssuer = {
     did: "",
     isAuthorized: false,
     apiKey: "",
+    url: "",
+    cardImageUrl: "",
 };
 exports.Issuer = {
     encode: function (message, writer) {
@@ -56,12 +59,23 @@ exports.Issuer = {
         if (message.apiKey !== "") {
             writer.uint32(66).string(message.apiKey);
         }
+        if (message.url !== "") {
+            writer.uint32(74).string(message.url);
+        }
+        for (var _i = 0, _a = message.versionInfo; _i < _a.length; _i++) {
+            var v = _a[_i];
+            versionInfo_1.VersionInfo.encode(v, writer.uint32(82).fork()).ldelim();
+        }
+        if (message.cardImageUrl !== "") {
+            writer.uint32(90).string(message.cardImageUrl);
+        }
         return writer;
     },
     decode: function (input, length) {
         var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         var end = length === undefined ? reader.len : reader.pos + length;
         var message = __assign({}, baseIssuer);
+        message.versionInfo = [];
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
@@ -89,6 +103,15 @@ exports.Issuer = {
                 case 8:
                     message.apiKey = reader.string();
                     break;
+                case 9:
+                    message.url = reader.string();
+                    break;
+                case 10:
+                    message.versionInfo.push(versionInfo_1.VersionInfo.decode(reader, reader.uint32()));
+                    break;
+                case 11:
+                    message.cardImageUrl = reader.string();
+                    break;
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -98,6 +121,7 @@ exports.Issuer = {
     },
     fromJSON: function (object) {
         var message = __assign({}, baseIssuer);
+        message.versionInfo = [];
         if (object.uuid !== undefined && object.uuid !== null) {
             message.uuid = String(object.uuid);
         }
@@ -146,6 +170,24 @@ exports.Issuer = {
         else {
             message.apiKey = "";
         }
+        if (object.url !== undefined && object.url !== null) {
+            message.url = String(object.url);
+        }
+        else {
+            message.url = "";
+        }
+        if (object.versionInfo !== undefined && object.versionInfo !== null) {
+            for (var _i = 0, _a = object.versionInfo; _i < _a.length; _i++) {
+                var e = _a[_i];
+                message.versionInfo.push(versionInfo_1.VersionInfo.fromJSON(e));
+            }
+        }
+        if (object.cardImageUrl !== undefined && object.cardImageUrl !== null) {
+            message.cardImageUrl = String(object.cardImageUrl);
+        }
+        else {
+            message.cardImageUrl = "";
+        }
         return message;
     },
     toJSON: function (message) {
@@ -162,10 +204,22 @@ exports.Issuer = {
         message.isAuthorized !== undefined &&
             (obj.isAuthorized = message.isAuthorized);
         message.apiKey !== undefined && (obj.apiKey = message.apiKey);
+        message.url !== undefined && (obj.url = message.url);
+        if (message.versionInfo) {
+            obj.versionInfo = message.versionInfo.map(function (e) {
+                return e ? versionInfo_1.VersionInfo.toJSON(e) : undefined;
+            });
+        }
+        else {
+            obj.versionInfo = [];
+        }
+        message.cardImageUrl !== undefined &&
+            (obj.cardImageUrl = message.cardImageUrl);
         return obj;
     },
     fromPartial: function (object) {
         var message = __assign({}, baseIssuer);
+        message.versionInfo = [];
         if (object.uuid !== undefined && object.uuid !== null) {
             message.uuid = object.uuid;
         }
@@ -214,35 +268,61 @@ exports.Issuer = {
         else {
             message.apiKey = "";
         }
+        if (object.url !== undefined && object.url !== null) {
+            message.url = object.url;
+        }
+        else {
+            message.url = "";
+        }
+        if (object.versionInfo !== undefined && object.versionInfo !== null) {
+            for (var _i = 0, _a = object.versionInfo; _i < _a.length; _i++) {
+                var e = _a[_i];
+                message.versionInfo.push(versionInfo_1.VersionInfo.fromPartial(e));
+            }
+        }
+        if (object.cardImageUrl !== undefined && object.cardImageUrl !== null) {
+            message.cardImageUrl = object.cardImageUrl;
+        }
+        else {
+            message.cardImageUrl = "";
+        }
         return message;
     },
 };
-var baseRegisterIssuerOptions = { customerUuid: "" };
-exports.RegisterIssuerOptions = {
+var baseIssuerOptions = { url: "" };
+exports.IssuerOptions = {
     encode: function (message, writer) {
         if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
-        if (message.customerUuid !== "") {
-            writer.uint32(10).string(message.customerUuid);
-        }
         for (var _i = 0, _a = message.publicKeyInfo; _i < _a.length; _i++) {
             var v = _a[_i];
-            crypto_1.PublicKeyInfo.encode(v, writer.uint32(18).fork()).ldelim();
+            crypto_1.PublicKeyInfo.encode(v, writer.uint32(10).fork()).ldelim();
+        }
+        if (message.url !== "") {
+            writer.uint32(18).string(message.url);
+        }
+        for (var _b = 0, _c = message.versionInfo; _b < _c.length; _b++) {
+            var v = _c[_b];
+            versionInfo_1.VersionInfo.encode(v, writer.uint32(26).fork()).ldelim();
         }
         return writer;
     },
     decode: function (input, length) {
         var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         var end = length === undefined ? reader.len : reader.pos + length;
-        var message = __assign({}, baseRegisterIssuerOptions);
+        var message = __assign({}, baseIssuerOptions);
         message.publicKeyInfo = [];
+        message.versionInfo = [];
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.customerUuid = reader.string();
+                    message.publicKeyInfo.push(crypto_1.PublicKeyInfo.decode(reader, reader.uint32()));
                     break;
                 case 2:
-                    message.publicKeyInfo.push(crypto_1.PublicKeyInfo.decode(reader, reader.uint32()));
+                    message.url = reader.string();
+                    break;
+                case 3:
+                    message.versionInfo.push(versionInfo_1.VersionInfo.decode(reader, reader.uint32()));
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -252,26 +332,31 @@ exports.RegisterIssuerOptions = {
         return message;
     },
     fromJSON: function (object) {
-        var message = __assign({}, baseRegisterIssuerOptions);
+        var message = __assign({}, baseIssuerOptions);
         message.publicKeyInfo = [];
-        if (object.customerUuid !== undefined && object.customerUuid !== null) {
-            message.customerUuid = String(object.customerUuid);
-        }
-        else {
-            message.customerUuid = "";
-        }
+        message.versionInfo = [];
         if (object.publicKeyInfo !== undefined && object.publicKeyInfo !== null) {
             for (var _i = 0, _a = object.publicKeyInfo; _i < _a.length; _i++) {
                 var e = _a[_i];
                 message.publicKeyInfo.push(crypto_1.PublicKeyInfo.fromJSON(e));
             }
         }
+        if (object.url !== undefined && object.url !== null) {
+            message.url = String(object.url);
+        }
+        else {
+            message.url = "";
+        }
+        if (object.versionInfo !== undefined && object.versionInfo !== null) {
+            for (var _b = 0, _c = object.versionInfo; _b < _c.length; _b++) {
+                var e = _c[_b];
+                message.versionInfo.push(versionInfo_1.VersionInfo.fromJSON(e));
+            }
+        }
         return message;
     },
     toJSON: function (message) {
         var obj = {};
-        message.customerUuid !== undefined &&
-            (obj.customerUuid = message.customerUuid);
         if (message.publicKeyInfo) {
             obj.publicKeyInfo = message.publicKeyInfo.map(function (e) {
                 return e ? crypto_1.PublicKeyInfo.toJSON(e) : undefined;
@@ -280,21 +365,37 @@ exports.RegisterIssuerOptions = {
         else {
             obj.publicKeyInfo = [];
         }
+        message.url !== undefined && (obj.url = message.url);
+        if (message.versionInfo) {
+            obj.versionInfo = message.versionInfo.map(function (e) {
+                return e ? versionInfo_1.VersionInfo.toJSON(e) : undefined;
+            });
+        }
+        else {
+            obj.versionInfo = [];
+        }
         return obj;
     },
     fromPartial: function (object) {
-        var message = __assign({}, baseRegisterIssuerOptions);
+        var message = __assign({}, baseIssuerOptions);
         message.publicKeyInfo = [];
-        if (object.customerUuid !== undefined && object.customerUuid !== null) {
-            message.customerUuid = object.customerUuid;
-        }
-        else {
-            message.customerUuid = "";
-        }
+        message.versionInfo = [];
         if (object.publicKeyInfo !== undefined && object.publicKeyInfo !== null) {
             for (var _i = 0, _a = object.publicKeyInfo; _i < _a.length; _i++) {
                 var e = _a[_i];
                 message.publicKeyInfo.push(crypto_1.PublicKeyInfo.fromPartial(e));
+            }
+        }
+        if (object.url !== undefined && object.url !== null) {
+            message.url = object.url;
+        }
+        else {
+            message.url = "";
+        }
+        if (object.versionInfo !== undefined && object.versionInfo !== null) {
+            for (var _b = 0, _c = object.versionInfo; _b < _c.length; _b++) {
+                var e = _c[_b];
+                message.versionInfo.push(versionInfo_1.VersionInfo.fromPartial(e));
             }
         }
         return message;

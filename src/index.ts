@@ -1,7 +1,7 @@
 import { Literal, Static, Union } from "runtypes";
 import { SemVer } from 'semver';
-import { UnsignedPresentation as UnsignedPresentationPb, Presentation as PresentationPb} from "./protos/presentation";
-import { UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest"
+import { UnsignedPresentation, Presentation as PresentationPb} from "./protos/presentation";
+import { PresentationRequestOptions as PresentationRequestOptionsPb, UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb} from "./protos/presentationRequest"
 import { 
   DidDocument as DidDocumentPb, 
   SignedDidDocument as SignedDidDocumentPb, 
@@ -12,13 +12,15 @@ import {
   HolderOptions as HolderOptionsPb,
   PublicKeyInfoUpdateOptions,
   DidDocumentPatchOptions as DidDocumentPatchOptionsPb
-} from "./protos/didDocument"
+} from "./protos/didDocument";
 import { Proof as ProofPb} from "./protos/proof";
 import {
   UnsignedCredential as UnsignedCredentialPb,
   Credential as CredentialPb,
-  CredentialRequest as CredentialRequestPb,
+  CredentialRequest,
   CredentialStatusInfo as CredentialStatusInfoPb,
+  CredentialStatusOptions as CredentialStatusOptionsPb,
+  CredentialStatusesOptions as CredentialStatusesOptionsPb,
   IssueCredentialOptions,
   IssueCredentialsOptions,
   EncryptedCredential as EncryptedCredentialPb,
@@ -33,13 +35,13 @@ import {
   UnsignedRevokeAllCredentials,
   SubjectCredentialRequestsEnrichedDto as SubjectCredentialRequestsEnrichedDtoPb,
 } from "./protos/credential";
-import { EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb, UnsignedString, SignedString } from "./protos/crypto"
+import { KeyPair, KeyPairSet, EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb, UnsignedString, SignedString } from "./protos/crypto"
 import { HolderAppInfo } from "./protos/holderApp";
-import { PresentationRequestEnriched, PresentationRequestDisplayMessage } from "./protos/presentationRequestEnriched";
+import { PresentationRequestEnriched as PresentationRequestEnrichedPb, PresentationRequestDisplayMessage  } from "./protos/presentationRequestEnriched";
 // import { VerifierInfo as VerifierInfoPb } from "./protos/verifier";
-import { VerifierInfo as VerifierInfoPb } from "./protos/verifier";
+import { VerifierInfo as VerifierInfoPb, Verifier as VerifierPb, VerifierOptions as VerifierOptionsPb } from "./protos/verifier";
 import { SubjectAbsentCredentials, SubjectCredentialsAbsentDto, SubjectCredentialIssuerInfoDto } from "./protos/subject";
-import { IssuerInfo } from "./protos/issuer";
+import { IssuerInfo, Issuer as IssuerPb, IssuerOptions as IssuerOptionsPb } from "./protos/issuer";
 import { SchemaPresentationRequestDto, SchemaAttributesRequestsDto, PresentationSchemaAttributes, PresentationSchema, CredentialSchemaData, SchemaGroupings, SchemaPresentationDto as SchemaPresentationDtoPb, SchemaAttributesDto} from "./protos/schema"
 
 /**
@@ -49,7 +51,7 @@ import { SchemaPresentationRequestDto, SchemaAttributesRequestsDto, Presentation
 
 export { 
   // protos/presentation
-  UnsignedPresentationPb, 
+  UnsignedPresentation, 
   PresentationPb,
 }
 
@@ -76,13 +78,12 @@ export {
   IssueCredentialsOptions,
   CredentialStatusInfoPb,
   CredentialStatus,
-  CredentialRequestPb,
+  CredentialRequest,
   UnsignedCredentialPb, 
   CredentialPb,
   EncryptedCredentialPb,
   EncryptedCredentialOptionsPb,
   EncryptedCredentialEnriched,
-  RSAPadding,
   CredentialsIssuedResponse,
   UnsignedRevokeAllCredentials,
   RevokeAllCredentials,
@@ -92,17 +93,17 @@ export {
 
 export {
   // protos/presentationRequestEnriched
-  PresentationRequestEnriched,
   PresentationRequestDisplayMessage
 }
 
 export {
   // protos/crypto
   EncryptedKey,
-  ProofPb,
-  PublicKeyInfoPb,
+  RSAPadding,
   UnsignedString,
-  SignedString
+  SignedString,
+  KeyPair,
+  KeyPairSet
 }
 
 export { 
@@ -138,6 +139,15 @@ export {
   SchemaAttributesDto
 }
 
+/**
+ * Encapsulates addition attributes to the unsigned presentation entity to create a Presentation entity.
+ * Tightly coupled with UnsignedPresentation.
+ * Note: extending the protobuf definition to enforce attribute existence.
+ */
+export interface Presentation extends PresentationPb {
+  proof: Proof
+}
+
 export interface SchemaPresentationDto extends Omit<SchemaPresentationDtoPb, 'groupings'> {
   groupings: SchemaGroupings;
 }
@@ -164,13 +174,10 @@ export interface BaseEntity {
 
 /**
  * Interface to encapsulate cryptographic proof for any signed object: Credentials, Presentations, PresentationRequests.
+ * Note: extending the protobuf definition to enforce attribute existence.
  */
-export interface Proof {
-  created: string;
-  signatureValue: string;
-  type: string;
-  verificationMethod: string;
-  proofPurpose: string;
+export interface Proof extends ProofPb {
+  created: Date;
 }
 
 /**
@@ -237,32 +244,30 @@ export interface CredentialSubject {
 
 /**
  * Interface to encapsulate relevant credential information.
+ * Note: extending the protobuf definition to enforce attribute existence. 
  */
-export interface UnsignedCredential {
-  '@context': ['https://www.w3.org/2018/credentials/v1', ...string[]];
-  // credentialSubject: CredentialSubject;
-  /**
-   * Due to its ambiguous format going to handle as JSON string when passing around.
-   */
-  credentialSubject: string; 
-  credentialStatus: {
-    id: string;
-    type: string;
-  }
-  issuer: string;
+export interface UnsignedCredential extends UnsignedCredentialPb {
   /**
    * As dictated by the W3 spec. ref: https://www.w3.org/TR/vc-data-model/#example-1-a-simple-example-of-a-verifiable-credential.
    */
+  context: ['https://www.w3.org/2018/credentials/v1', ...string[]];
   type: ['VerifiableCredential', ...string[]];
-  id: string;
+  credentialStatus: CredentialStatus;
   issuanceDate: Date;
-  expirationDate?: Date;
 }
 
 /**
  * Interface which incorporates the relevant credential information in addition to a cryptographic proof so that the Credential is verifiable.
+ * Note: extending the protobuf definition to enforce attribute existence. 
  */
-export interface Credential extends UnsignedCredential {
+export interface Credential extends CredentialPb {
+  /**
+   * As dictated by the W3 spec. ref: https://www.w3.org/TR/vc-data-model/#example-1-a-simple-example-of-a-verifiable-credential.
+   */
+  context: ['https://www.w3.org/2018/credentials/v1', ...string[]];
+  type: ['VerifiableCredential', ...string[]];
+  credentialStatus: CredentialStatus;
+  issuanceDate: Date;
   proof: Proof;
 }
 
@@ -275,6 +280,7 @@ export interface EncryptedData extends EncryptedDataPb {
 
 /**
  * Extends protobuf definition to make fields required
+ * Note: extending the protobuf definition to enforce attribute existence. 
  */
 export interface EncryptedCredential extends EncryptedCredentialPb {
   data: EncryptedData;
@@ -296,19 +302,9 @@ export interface EncryptedCredential extends EncryptedCredentialPb {
  * Data transfer object for a single EncryptedCredentialEnriched
  * Note: extending the protobuf definition of EncryptedCredentialEnriched in order to make the date fields string for json serialization and did document align with @context
  */
-// TODO use in v4 instead of EncryptedCredentialDto. Not using now because all service would need to be using the proto didDoc def, which does not have @context, instead just context... break change
-//  export interface EncryptedCredentialEnrichedDto extends EncryptedCredentialEnriched {
-//   createdAt: string; // dates should be converted to ISO strings, since this is how they will be represented in the JSON at runtime
-//   updatedAt: string; // dates should be converted to ISO strings, since this is how they will be represented in the JSON at runtime
-// }
-
-/**
- * Interface to encapsulate a single CredentialRepositoryDto response
- * Note: ought to be deprecated in v4 in favor of EncryptedCredentialEnriched.
- */
-export interface EncryptedCredentialEnrichedDto {
-  encryptedCredential: EncryptedCredentialDto;
-  didDocument: DidDocument;
+ export interface EncryptedCredentialEnrichedDto extends EncryptedCredentialEnriched {
+  createdAt: string; // dates should be converted to ISO strings, since this is how they will be represented in the JSON at runtime
+  updatedAt: string; // dates should be converted to ISO strings, since this is how they will be represented in the JSON at runtime
 }
 
 /**
@@ -321,84 +317,35 @@ export interface EncryptedCredentialsDto {
 }
 
 /**
- * Encapsulates an unsigned presentation attributes.
+ * Encapsulates addition request attributes to the general presentation request type for the purposes of sending an unsigned presentation request.
  */
-export interface UnsignedPresentation {
-  '@context': ['https://www.w3.org/2018/credentials/v1', ...string[]];
-  type: ['VerifiablePresentation', ...string[]];
-  presentationRequestId: string;
-  verifierDid: string;
-  /**
-   * Note: that verifiableCredential is singular but it's of array type. This is thanks to the w3 spec dictating as such, not by choice. ref: https://www.w3.org/TR/vc-data-model/#presentations-0.
-   */
-  /**
-   * Optional. If undefined or empty it means the presentation request was declined
-   */
-  verifiableCredential?: Credential[]; // Optional, if undefined or empty it means the presentation request was declined
-  // verifiableCredential?: Credential_pb[]; 
-  /**
-   * Optional nonce
-   */
-  uuid?: string;
-}
-
-/**
- * Encapsulates addition attributes to the unsigned presentation entity to create a Presentation entity.
- */
-export interface Presentation extends UnsignedPresentation {
-  proof: Proof;
-}
-
-/**
- * Encapsulates Credential information requested.
- */
-export interface CredentialRequest {
-  /**
-   * The string matching the desire credential type.
-   */
-  type: string; 
-  /**
-   * List of acceptable issuer DIDs that have issued the credential.
-   */
-  issuers: string[]; 
-  /**
-   * To denote wether this particular credential is required in response to the PresentationRequest. Defaults behavior resolves this to true.
-   */
-  required: boolean; 
-}
-
-export interface PresentationRequestOptions {
-  credentialRequests: CredentialRequest[];
-  createdAt?: Date;
-  updatedAt?: Date;
-  expiresAt?: Date;
-  holderAppUuid: string;
-  metadata?: any;
-  verifier: string;
+export interface PresentationRequestOptions extends PresentationRequestOptionsPb {
+  expiresAt: Date;
 }
 
 /**
  * Encapsulates addition request attributes to the general presentation request type for the purposes of sending an unsigned presentation request.
  */
-export interface UnsignedPresentationRequest extends PresentationRequestOptions {
-  uuid: string;
-  /**
-   * For related requests across versions.
-   */
-  id: string;
+ export interface UnsignedPresentationRequest extends UnsignedPresentationRequestPb {
+  expiresAt: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 /**
  * Encapsulates addition request attributes to the unsigned presentation request type for the purposes of sending a signed presentation request.
  */
-export interface SignedPresentationRequest extends UnsignedPresentationRequest {
+export interface PresentationRequest extends PresentationRequestPb {
+  expiresAt: Date;
+  createdAt: Date;
+  updatedAt: Date;
   proof: Proof;
 }
 
 /**
  * Encapsulates addition request attributes to the signed presentation request type for the purposes of valid presentation request with metadata.
  */
-export interface PresentationRequest extends SignedPresentationRequest {
+export interface PresentationRequest extends PresentationRequestPb {
   createdAt: Date;
   updatedAt: Date;
 }
@@ -406,35 +353,26 @@ export interface PresentationRequest extends SignedPresentationRequest {
 /**
  * Encapsulates necessary Issuer entity attributes during creation.
  */
- export interface IssuerOptions {
+ export interface IssuerOptions extends Omit<IssuerOptionsPb, 'versionInfo'> {
   publicKeyInfo: Array<PublicKeyInfo>;
-  url: string;
   versionInfo: VersionInfo[];
 }
 
 /**
  * Encapsulates necessary Verifier entity attributes during creation.
  */
-export interface VerifierOptions {
+ export interface VerifierOptions extends Omit<VerifierOptionsPb, 'versionInfo'> {
   publicKeyInfo: PublicKeyInfo[];
-  url: string;
   versionInfo: VersionInfo[],
-}
+ }
 
 /**
  * Encapsulates Verifier entity attributes.
  */
-export interface Verifier {
-  did: string;
-  uuid: string;
-  createdAt: string;
-  updatedAt: string;
-  name: string;
-  customerUuid: string;
-  url: string;
-  isAuthorized: boolean;
-  versionInfo: VersionInfo[],
-  apiKey: string;
+export interface Verifier extends Omit<VerifierPb, 'versionInfo'> {
+  createdAt: Date;
+  updatedAt: Date;
+  versionInfo: VersionInfo[];
 }
 
 /**
@@ -485,19 +423,11 @@ export interface TargetInfo {
 /**
  * Encapsulates Issuer entity attributes.
  */
-export interface Issuer {
-  uuid: string;
-  customerUuid: string;
-  name: string;
-  did: string;
+ export interface Issuer extends Omit<IssuerPb, 'versionInfo'> {
   createdAt: Date;
   updatedAt: Date;
-  isAuthorized: boolean;
-  apiKey: string;
-  url: string;
   versionInfo: VersionInfo[];
-  cardImageUrl?: string;
-}
+ }
 
 /**
  * Saas supported receipt group types
@@ -914,10 +844,22 @@ export type VersionedDto<N extends string, T = any> = {
 }
 
 /**
+ * Encapsulates presentation request attributes as they are export interface PresentationRequestEnriched extends Omit<PresentationRequestEnrichedPb, 'issuers'> { from Unum ID saas.
+ * Note: extending the protobuf definition to enforce attribute existence. 
+ */
+export interface PresentationRequestEnriched extends Omit<PresentationRequestEnrichedPb, 'issuers'> {
+  presentationRequest: PresentationRequest;
+  verifier: VerifierInfo;
+  issuers: IssuerInfoMap;
+  displayMessage: PresentationRequestDisplayMessage;
+  holderAppInfo: HolderAppInfo;
+}
+
+/**
  * Type to encapsulate the response body returned when a PresentationRequest is created
  * AKA PresentationRequestEnriched
  */
-export interface PresentationRequestPostDto {
+ export interface PresentationRequestPostDto {
   presentationRequest: PresentationRequest;
   verifier: Pick<Verifier, 'did' | 'name' | 'url'>;
   issuers: Record<string, Pick<Issuer, 'did' | 'name'>>;
@@ -945,22 +887,10 @@ export interface PresentationRequestPostDto {
  * Note: this is not used when dealing with json / http network interfaces.
  */
  export interface PresentationRequestDtoPb {
-  presentationRequest: PresentationRequestPb;
+  presentationRequest: PresentationRequest;
   verifier: VerifierInfo;
   issuers: IssuerInfoMap;
 }
-
-/**
- * Type to encapsulate a PresentationRequest Data Transfer Object from the PresentationRequestRepository service.
- */
-export interface PresentationRequestRepoDto {
-  presentationRequests: Record<string, PresentationRequestDto> ;
-}
-
-/**
- * Type to encapsulate mapping of versions to PresentationRequestDto.
- */
-export type VersionedPresentationRequestDto = VersionedDto<'presentationRequests', PresentationRequestDto>;
 
 /**
  * Interface to encapsulate an ApiKey Entity from Unum ID's SaaS.
@@ -978,46 +908,37 @@ export interface ApiKey {
 
 /**
  * Interface to encapsulate information related to a public key.
+ * Note: extending the protobuf definition to enforce attribute existence. 
  */
-export interface PublicKeyInfo {
-  id: string;
-  publicKey: string;
+ export interface PublicKeyInfo extends PublicKeyInfoPb {
   encoding: 'pem' | 'base58';
-  type: string;
   status: 'valid' | 'invalid';
   createdAt: Date;
   updatedAt: Date;
-  // for RSA keys.
-  // encrypt/decrypt implementations should default to 'PKCS1-v1_5' for backwards compatibilty
-  // if possible (web crypto only allows OAEP padding for encrypt/decrypt operations)
-  rsaPadding?: RSAPadding;
-}
+ }
 
 /**
  * Interface to encapsulate Did Document information.
+ * Note: extending the protobuf definition to enforce attribute existence.
  */
-export interface DidDocument {
-  '@context': ['https://www.w3.org/ns/did/v1', ...string[]];
-  id: string;
+ export interface DidDocument extends DidDocumentPb {
+  context: ['https://www.w3.org/ns/did/v1', ...string[]];
   created: Date;
   updated: Date;
   publicKey: PublicKeyInfo[];
-  service: DidDocumentService[];
-}
+ }
 
 /**
  * Interface to encapsulate a signed Subject Did Document.
  * Note: it breaks the name convention of the singed type counterpart being the simpler name of the two, however because the unsigned DidDocument definition was claimed first, this is an exception to the rule.
  */
- export interface SignedDidDocument {
-  '@context': ['https://www.w3.org/ns/did/v1', ...string[]];
-  id: string;
+ export interface SignedDidDocument extends SignedDidDocumentPb {
+  context: ['https://www.w3.org/ns/did/v1', ...string[]];
   created: Date;
   updated: Date;
   publicKey: PublicKeyInfo[];
-  service: DidDocumentService[];
   proof: Proof;
-}
+ }
 
 /**
  * Type to encapsulate supported key types in did documents.
@@ -1029,7 +950,6 @@ export type DidKeyType = 'secp256r1' | 'RSA';
  */
 export interface EncryptedCredentialOptions extends EncryptedCredentialOptionsPb{
   data: EncryptedData; // to force non undefined type
-  // expirationDate?: Date;
 }
 
 /**
@@ -1040,19 +960,10 @@ export interface IssuerInfoMap {
 }
 
 /**
- * Interface for Public and Private corresponding key pair
- */
-export interface KeyPair {
-  id: string;
-  privateKey: string;
-  publicKey: string;
-}
-
-/**
  * Type to encapsulate an encrypted presentation sent from the UnumID SaaS
  */
  export interface EncryptedPresentation {
-  presentationRequestInfo: PresentationRequestDto; // Going with trailing "Info" to avoid confusing references like presentationRequest.presentationRequest.uuid
+  presentationRequestInfo: PresentationRequestEnriched; // Going with trailing "Info" to avoid confusing references like presentationRequest.presentationRequest.uuid
   encryptedPresentation: EncryptedData;
 }
 
@@ -1125,9 +1036,8 @@ export type CredentialStatusOptions = Static<typeof _CredentialStatusOptions>
 /**
  * Interface to encapsulate information for updating many CredentialStatuses simultaneously
  */
-export interface CredentialStatusesOptions {
+export interface CredentialStatusesOptions extends CredentialStatusesOptionsPb {
   status: CredentialStatusOptions;
-  credentialIds: string[];
 }
 
 /**
@@ -1153,15 +1063,15 @@ export interface UserDidAssociation extends Omit<UserDidAssociationPb, 'did'> {
  * Interface to enforce the presence of the Proof attribute on the DID protobuf definition.
  */
  export interface DID extends Omit<DIDPb, 'proof'> {
-  proof: ProofPb;
+  proof: Proof;
 }
 
 /**
  * Interface to enforce the presence of the Proof and CredentialRequest[] attribute on the SubjectCredentialRequests protobuf definition
  */
  export interface SubjectCredentialRequests extends Omit<SubjectCredentialRequestsPb, 'proof' | 'credentialRequests'> {
-  credentialRequests: CredentialRequestPb[];
-  proof: ProofPb;
+  credentialRequests: CredentialRequest[];
+  proof: Proof;
 }
 
 /**
@@ -1220,6 +1130,7 @@ export type WithVersion<T> = WithKeyAndValue<T, 'version', string>;
 
 /**
  * extends protobuf definition to make Date fields required
+ * Note: extending the protobuf definition to enforce attribute existence. 
  */
 export interface CredentialStatusInfo extends CredentialStatusInfoPb {
   createdAt: Date;

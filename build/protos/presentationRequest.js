@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PresentationRequest = exports.UnsignedPresentationRequest = exports.protobufPackage = void 0;
+exports.PresentationRequest = exports.UnsignedPresentationRequest = exports.PresentationRequestOptions = exports.protobufPackage = void 0;
 /* eslint-disable */
 var long_1 = __importDefault(require("long"));
 var minimal_1 = __importDefault(require("protobufjs/minimal"));
@@ -22,6 +22,213 @@ var timestamp_1 = require("./google/protobuf/timestamp");
 var credential_1 = require("./credential");
 var proof_1 = require("./proof");
 exports.protobufPackage = "presentationRequest.v1";
+var basePresentationRequestOptions = {
+    holderAppUuid: "",
+    verifier: "",
+    metadata: "",
+    uuid: "",
+    id: "",
+    version: "",
+};
+exports.PresentationRequestOptions = {
+    encode: function (message, writer) {
+        if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
+        for (var _i = 0, _a = message.credentialRequests; _i < _a.length; _i++) {
+            var v = _a[_i];
+            credential_1.CredentialRequest.encode(v, writer.uint32(10).fork()).ldelim();
+        }
+        if (message.holderAppUuid !== "") {
+            writer.uint32(18).string(message.holderAppUuid);
+        }
+        if (message.verifier !== "") {
+            writer.uint32(26).string(message.verifier);
+        }
+        if (message.expiresAt !== undefined) {
+            timestamp_1.Timestamp.encode(toTimestamp(message.expiresAt), writer.uint32(34).fork()).ldelim();
+        }
+        if (message.metadata !== "") {
+            writer.uint32(42).string(message.metadata);
+        }
+        if (message.uuid !== "") {
+            writer.uint32(50).string(message.uuid);
+        }
+        if (message.id !== "") {
+            writer.uint32(58).string(message.id);
+        }
+        if (message.version !== "") {
+            writer.uint32(66).string(message.version);
+        }
+        return writer;
+    },
+    decode: function (input, length) {
+        var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
+        var end = length === undefined ? reader.len : reader.pos + length;
+        var message = __assign({}, basePresentationRequestOptions);
+        message.credentialRequests = [];
+        while (reader.pos < end) {
+            var tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.credentialRequests.push(credential_1.CredentialRequest.decode(reader, reader.uint32()));
+                    break;
+                case 2:
+                    message.holderAppUuid = reader.string();
+                    break;
+                case 3:
+                    message.verifier = reader.string();
+                    break;
+                case 4:
+                    message.expiresAt = fromTimestamp(timestamp_1.Timestamp.decode(reader, reader.uint32()));
+                    break;
+                case 5:
+                    message.metadata = reader.string();
+                    break;
+                case 6:
+                    message.uuid = reader.string();
+                    break;
+                case 7:
+                    message.id = reader.string();
+                    break;
+                case 8:
+                    message.version = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON: function (object) {
+        var message = __assign({}, basePresentationRequestOptions);
+        message.credentialRequests = [];
+        if (object.credentialRequests !== undefined &&
+            object.credentialRequests !== null) {
+            for (var _i = 0, _a = object.credentialRequests; _i < _a.length; _i++) {
+                var e = _a[_i];
+                message.credentialRequests.push(credential_1.CredentialRequest.fromJSON(e));
+            }
+        }
+        if (object.holderAppUuid !== undefined && object.holderAppUuid !== null) {
+            message.holderAppUuid = String(object.holderAppUuid);
+        }
+        else {
+            message.holderAppUuid = "";
+        }
+        if (object.verifier !== undefined && object.verifier !== null) {
+            message.verifier = String(object.verifier);
+        }
+        else {
+            message.verifier = "";
+        }
+        if (object.expiresAt !== undefined && object.expiresAt !== null) {
+            message.expiresAt = fromJsonTimestamp(object.expiresAt);
+        }
+        else {
+            message.expiresAt = undefined;
+        }
+        if (object.metadata !== undefined && object.metadata !== null) {
+            message.metadata = String(object.metadata);
+        }
+        else {
+            message.metadata = "";
+        }
+        if (object.uuid !== undefined && object.uuid !== null) {
+            message.uuid = String(object.uuid);
+        }
+        else {
+            message.uuid = "";
+        }
+        if (object.id !== undefined && object.id !== null) {
+            message.id = String(object.id);
+        }
+        else {
+            message.id = "";
+        }
+        if (object.version !== undefined && object.version !== null) {
+            message.version = String(object.version);
+        }
+        else {
+            message.version = "";
+        }
+        return message;
+    },
+    toJSON: function (message) {
+        var obj = {};
+        if (message.credentialRequests) {
+            obj.credentialRequests = message.credentialRequests.map(function (e) {
+                return e ? credential_1.CredentialRequest.toJSON(e) : undefined;
+            });
+        }
+        else {
+            obj.credentialRequests = [];
+        }
+        message.holderAppUuid !== undefined &&
+            (obj.holderAppUuid = message.holderAppUuid);
+        message.verifier !== undefined && (obj.verifier = message.verifier);
+        message.expiresAt !== undefined &&
+            (obj.expiresAt = message.expiresAt.toISOString());
+        message.metadata !== undefined && (obj.metadata = message.metadata);
+        message.uuid !== undefined && (obj.uuid = message.uuid);
+        message.id !== undefined && (obj.id = message.id);
+        message.version !== undefined && (obj.version = message.version);
+        return obj;
+    },
+    fromPartial: function (object) {
+        var message = __assign({}, basePresentationRequestOptions);
+        message.credentialRequests = [];
+        if (object.credentialRequests !== undefined &&
+            object.credentialRequests !== null) {
+            for (var _i = 0, _a = object.credentialRequests; _i < _a.length; _i++) {
+                var e = _a[_i];
+                message.credentialRequests.push(credential_1.CredentialRequest.fromPartial(e));
+            }
+        }
+        if (object.holderAppUuid !== undefined && object.holderAppUuid !== null) {
+            message.holderAppUuid = object.holderAppUuid;
+        }
+        else {
+            message.holderAppUuid = "";
+        }
+        if (object.verifier !== undefined && object.verifier !== null) {
+            message.verifier = object.verifier;
+        }
+        else {
+            message.verifier = "";
+        }
+        if (object.expiresAt !== undefined && object.expiresAt !== null) {
+            message.expiresAt = object.expiresAt;
+        }
+        else {
+            message.expiresAt = undefined;
+        }
+        if (object.metadata !== undefined && object.metadata !== null) {
+            message.metadata = object.metadata;
+        }
+        else {
+            message.metadata = "";
+        }
+        if (object.uuid !== undefined && object.uuid !== null) {
+            message.uuid = object.uuid;
+        }
+        else {
+            message.uuid = "";
+        }
+        if (object.id !== undefined && object.id !== null) {
+            message.id = object.id;
+        }
+        else {
+            message.id = "";
+        }
+        if (object.version !== undefined && object.version !== null) {
+            message.version = object.version;
+        }
+        else {
+            message.version = "";
+        }
+        return message;
+    },
+};
 var baseUnsignedPresentationRequest = {
     holderAppUuid: "",
     verifier: "",

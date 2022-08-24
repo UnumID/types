@@ -3,6 +3,19 @@ import { CredentialRequest } from "./credential";
 import { Proof } from "./proof";
 export declare const protobufPackage = "presentationRequest.v1";
 /** Encapsulates request attributes for the purposes of requesting presentation of credentials. */
+export interface PresentationRequestOptions {
+    credentialRequests: CredentialRequest[];
+    holderAppUuid: string;
+    verifier: string;
+    expiresAt: Date | undefined;
+    /** a string representation of an ambiguous object. Note: the Any type does not work because still needs a scheme (but can be assigned dymanically) & Struct does not work becuase not determinsitcally serialzied across langauges */
+    metadata: string;
+    uuid: string;
+    /** an indentifier for related presetnation requests across versions */
+    id: string;
+    version: string;
+}
+/** Encapsulates request attributes for the purposes of requesting presentation of credentials. */
 export interface UnsignedPresentationRequest {
     credentialRequests: CredentialRequest[];
     holderAppUuid: string;
@@ -10,10 +23,13 @@ export interface UnsignedPresentationRequest {
     createdAt: Date | undefined;
     updatedAt: Date | undefined;
     expiresAt: Date | undefined;
-    /** a string representation of an ambiguous object. Note: the Any type does not work because still needs a scheme (but can be assigned dymanically) & Struct does not work becuase not determinsitcally serialzied across langauges */
+    /**
+     * A string representation of an ambiguous object.
+     * Note: the Any type does not work because still needs a scheme (but can be assigned dymanically) & Struct does not work becuase not determinsitcally serialzied across langauges
+     */
     metadata: string;
     uuid: string;
-    /** an indentifier for related presetnation requests across versions */
+    /** An indentifier for related presetnation requests across versions */
     id: string;
     version: string;
 }
@@ -28,14 +44,24 @@ export interface PresentationRequest {
     createdAt: Date | undefined;
     updatedAt: Date | undefined;
     expiresAt: Date | undefined;
-    /** a string representation of an ambiguous object. Note: the Any type does not work because still needs a scheme (but can be assigned dymanically) & Struct does not work becuase not determinsitcally serialzied across langauges */
+    /**
+     * A string representation of an ambiguous object.
+     * Note: the Any type does not work because still needs a scheme (but can be assigned dymanically) & Struct does not work becuase not determinsitcally serialzied across langauges
+     */
     metadata: string;
     uuid: string;
     proof: Proof | undefined;
-    /** an indentifier for related presetnation requests across versions */
+    /** An indentifier for related presetnation requests across versions */
     id: string;
     version: string;
 }
+export declare const PresentationRequestOptions: {
+    encode(message: PresentationRequestOptions, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): PresentationRequestOptions;
+    fromJSON(object: any): PresentationRequestOptions;
+    toJSON(message: PresentationRequestOptions): unknown;
+    fromPartial(object: DeepPartial<PresentationRequestOptions>): PresentationRequestOptions;
+};
 export declare const UnsignedPresentationRequest: {
     encode(message: UnsignedPresentationRequest, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number | undefined): UnsignedPresentationRequest;

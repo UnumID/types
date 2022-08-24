@@ -455,7 +455,7 @@ exports.PublicKeyInfo = {
         return message;
     },
 };
-var baseKeyPair = { privateKey: "", publicKey: "" };
+var baseKeyPair = { privateKey: "", publicKey: "", id: "" };
 exports.KeyPair = {
     encode: function (message, writer) {
         if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
@@ -464,6 +464,9 @@ exports.KeyPair = {
         }
         if (message.publicKey !== "") {
             writer.uint32(18).string(message.publicKey);
+        }
+        if (message.id !== "") {
+            writer.uint32(26).string(message.id);
         }
         return writer;
     },
@@ -479,6 +482,9 @@ exports.KeyPair = {
                     break;
                 case 2:
                     message.publicKey = reader.string();
+                    break;
+                case 3:
+                    message.id = reader.string();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -501,12 +507,19 @@ exports.KeyPair = {
         else {
             message.publicKey = "";
         }
+        if (object.id !== undefined && object.id !== null) {
+            message.id = String(object.id);
+        }
+        else {
+            message.id = "";
+        }
         return message;
     },
     toJSON: function (message) {
         var obj = {};
         message.privateKey !== undefined && (obj.privateKey = message.privateKey);
         message.publicKey !== undefined && (obj.publicKey = message.publicKey);
+        message.id !== undefined && (obj.id = message.id);
         return obj;
     },
     fromPartial: function (object) {
@@ -522,6 +535,12 @@ exports.KeyPair = {
         }
         else {
             message.publicKey = "";
+        }
+        if (object.id !== undefined && object.id !== null) {
+            message.id = object.id;
+        }
+        else {
+            message.id = "";
         }
         return message;
     },

@@ -4,7 +4,7 @@ import { VerifierInfo } from "./verifier";
 import { Struct } from "./google/protobuf/struct";
 import { HolderAppInfo } from "./holderApp";
 export declare const protobufPackage = "presentationRequestEnriched.v1";
-/** Encapsulates presentation request attributes as they are retuned from Unum ID saas. */
+/** Encapsulates presentation request attributes as they are returned from Unum ID saas. */
 export interface PresentationRequestEnriched {
     presentationRequest: PresentationRequest | undefined;
     verifier: VerifierInfo | undefined;
@@ -14,16 +14,6 @@ export interface PresentationRequestEnriched {
     deeplink: string;
     qrCode: string;
     displayMessage: PresentationRequestDisplayMessage | undefined;
-}
-/** Note: this type does not follow conventions because ought to be removed come v4. No need for such a type thanks to service query params. */
-export interface PresentationRequestRepoDto {
-    presentationRequests: {
-        [key: string]: PresentationRequestEnriched;
-    };
-}
-export interface PresentationRequestRepoDto_PresentationRequestsEntry {
-    key: string;
-    value: PresentationRequestEnriched | undefined;
 }
 export interface PresentationRequestDisplayMessage {
     text: string;
@@ -35,20 +25,6 @@ export declare const PresentationRequestEnriched: {
     fromJSON(object: any): PresentationRequestEnriched;
     toJSON(message: PresentationRequestEnriched): unknown;
     fromPartial(object: DeepPartial<PresentationRequestEnriched>): PresentationRequestEnriched;
-};
-export declare const PresentationRequestRepoDto: {
-    encode(message: PresentationRequestRepoDto, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): PresentationRequestRepoDto;
-    fromJSON(object: any): PresentationRequestRepoDto;
-    toJSON(message: PresentationRequestRepoDto): unknown;
-    fromPartial(object: DeepPartial<PresentationRequestRepoDto>): PresentationRequestRepoDto;
-};
-export declare const PresentationRequestRepoDto_PresentationRequestsEntry: {
-    encode(message: PresentationRequestRepoDto_PresentationRequestsEntry, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): PresentationRequestRepoDto_PresentationRequestsEntry;
-    fromJSON(object: any): PresentationRequestRepoDto_PresentationRequestsEntry;
-    toJSON(message: PresentationRequestRepoDto_PresentationRequestsEntry): unknown;
-    fromPartial(object: DeepPartial<PresentationRequestRepoDto_PresentationRequestsEntry>): PresentationRequestRepoDto_PresentationRequestsEntry;
 };
 export declare const PresentationRequestDisplayMessage: {
     encode(message: PresentationRequestDisplayMessage, writer?: _m0.Writer): _m0.Writer;

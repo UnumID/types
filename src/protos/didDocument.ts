@@ -9,7 +9,7 @@ export const protobufPackage = "didDocument.v1";
 
 /** Object to encapsulate a DID document object from the saas. */
 export interface DidDocument {
-  context: string;
+  context: string[];
   id: string;
   created: Date | undefined;
   updated: Date | undefined;
@@ -29,7 +29,7 @@ export interface DidDocumentService {
  * Note: it breaks the name convention of the singed type counterpart being the simpler name of the two, however because the unsigned DidDocument definition was claimed first, this is an exception to the rule.
  */
 export interface SignedDidDocument {
-  context: string;
+  context: string[];
   id: string;
   created: Date | undefined;
   updated: Date | undefined;
@@ -115,8 +115,8 @@ export const DidDocument = {
     message: DidDocument,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
-    if (message.context !== "") {
-      writer.uint32(10).string(message.context);
+    for (const v of message.context) {
+      writer.uint32(10).string(v!);
     }
     if (message.id !== "") {
       writer.uint32(18).string(message.id);
@@ -146,13 +146,14 @@ export const DidDocument = {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = { ...baseDidDocument } as DidDocument;
+    message.context = [];
     message.publicKey = [];
     message.service = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.context = reader.string();
+          message.context.push(reader.string());
           break;
         case 2:
           message.id = reader.string();
@@ -185,12 +186,13 @@ export const DidDocument = {
 
   fromJSON(object: any): DidDocument {
     const message = { ...baseDidDocument } as DidDocument;
+    message.context = [];
     message.publicKey = [];
     message.service = [];
     if (object.context !== undefined && object.context !== null) {
-      message.context = String(object.context);
-    } else {
-      message.context = "";
+      for (const e of object.context) {
+        message.context.push(String(e));
+      }
     }
     if (object.id !== undefined && object.id !== null) {
       message.id = String(object.id);
@@ -222,7 +224,11 @@ export const DidDocument = {
 
   toJSON(message: DidDocument): unknown {
     const obj: any = {};
-    message.context !== undefined && (obj.context = message.context);
+    if (message.context) {
+      obj.context = message.context.map((e) => e);
+    } else {
+      obj.context = [];
+    }
     message.id !== undefined && (obj.id = message.id);
     message.created !== undefined &&
       (obj.created = message.created.toISOString());
@@ -247,12 +253,13 @@ export const DidDocument = {
 
   fromPartial(object: DeepPartial<DidDocument>): DidDocument {
     const message = { ...baseDidDocument } as DidDocument;
+    message.context = [];
     message.publicKey = [];
     message.service = [];
     if (object.context !== undefined && object.context !== null) {
-      message.context = object.context;
-    } else {
-      message.context = "";
+      for (const e of object.context) {
+        message.context.push(e);
+      }
     }
     if (object.id !== undefined && object.id !== null) {
       message.id = object.id;
@@ -393,8 +400,8 @@ export const SignedDidDocument = {
     message: SignedDidDocument,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
-    if (message.context !== "") {
-      writer.uint32(10).string(message.context);
+    for (const v of message.context) {
+      writer.uint32(10).string(v!);
     }
     if (message.id !== "") {
       writer.uint32(18).string(message.id);
@@ -427,13 +434,14 @@ export const SignedDidDocument = {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = { ...baseSignedDidDocument } as SignedDidDocument;
+    message.context = [];
     message.publicKey = [];
     message.service = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.context = reader.string();
+          message.context.push(reader.string());
           break;
         case 2:
           message.id = reader.string();
@@ -469,12 +477,13 @@ export const SignedDidDocument = {
 
   fromJSON(object: any): SignedDidDocument {
     const message = { ...baseSignedDidDocument } as SignedDidDocument;
+    message.context = [];
     message.publicKey = [];
     message.service = [];
     if (object.context !== undefined && object.context !== null) {
-      message.context = String(object.context);
-    } else {
-      message.context = "";
+      for (const e of object.context) {
+        message.context.push(String(e));
+      }
     }
     if (object.id !== undefined && object.id !== null) {
       message.id = String(object.id);
@@ -511,7 +520,11 @@ export const SignedDidDocument = {
 
   toJSON(message: SignedDidDocument): unknown {
     const obj: any = {};
-    message.context !== undefined && (obj.context = message.context);
+    if (message.context) {
+      obj.context = message.context.map((e) => e);
+    } else {
+      obj.context = [];
+    }
     message.id !== undefined && (obj.id = message.id);
     message.created !== undefined &&
       (obj.created = message.created.toISOString());
@@ -538,12 +551,13 @@ export const SignedDidDocument = {
 
   fromPartial(object: DeepPartial<SignedDidDocument>): SignedDidDocument {
     const message = { ...baseSignedDidDocument } as SignedDidDocument;
+    message.context = [];
     message.publicKey = [];
     message.service = [];
     if (object.context !== undefined && object.context !== null) {
-      message.context = object.context;
-    } else {
-      message.context = "";
+      for (const e of object.context) {
+        message.context.push(e);
+      }
     }
     if (object.id !== undefined && object.id !== null) {
       message.id = object.id;
