@@ -68,7 +68,9 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Encapsulates addition attributes to the unsigned presentation entity to create a Presentation entity.</p>
+						<p>Encapsulates addition attributes to the unsigned presentation entity to create a Presentation entity.
+							Tightly coupled with UnsignedPresentation.
+						Note: extending the protobuf definition to enforce attribute existence.</p>
 					</div>
 				</div>
 			</section>
@@ -76,7 +78,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="unsignedpresentation.html" class="tsd-signature-type" data-tsd-kind="Interface">UnsignedPresentation</a>
+						<a href="../modules.html#presentationpb" class="tsd-signature-type" data-tsd-kind="Variable">PresentationPb</a>
 						<ul class="tsd-hierarchy">
 							<li>
 								<span class="target">Presentation</span>
@@ -92,11 +94,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="presentation.html#_context" class="tsd-kind-icon">@context</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="presentation.html#context" class="tsd-kind-icon">context</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="presentation.html#presentationrequestid" class="tsd-kind-icon">presentation<wbr>Request<wbr>Id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentation.html#proof" class="tsd-kind-icon">proof</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="presentation.html#proof" class="tsd-kind-icon">proof</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="presentation.html#type" class="tsd-kind-icon">type</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="presentation.html#uuid" class="tsd-kind-icon">uuid</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="presentation.html#verifiablecredential" class="tsd-kind-icon">verifiable<wbr>Credential</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="presentation.html#verifierdid" class="tsd-kind-icon">verifier<wbr>Did</a></li>
 							</ul>
@@ -107,13 +108,13 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="_context" class="tsd-anchor"></a>
-					<h3>@context</h3>
-					<div class="tsd-signature tsd-kind-icon">@context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">&quot;https://www.w3.org/2018/credentials/v1&quot;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">...</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">]</span></div>
+					<a name="context" class="tsd-anchor"></a>
+					<h3>context</h3>
+					<div class="tsd-signature tsd-kind-icon">context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="unsignedpresentation.html">UnsignedPresentation</a>.<a href="unsignedpresentation.html#_context">@context</a></p>
+						<p>Inherited from PresentationPb.context</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/index.ts#L326">index.ts:326</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/protos/presentation.ts#L24">protos/presentation.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -122,57 +123,42 @@
 					<h3>presentation<wbr>Request<wbr>Id</h3>
 					<div class="tsd-signature tsd-kind-icon">presentation<wbr>Request<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="unsignedpresentation.html">UnsignedPresentation</a>.<a href="unsignedpresentation.html#presentationrequestid">presentationRequestId</a></p>
+						<p>Inherited from PresentationPb.presentationRequestId</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/index.ts#L329">index.ts:329</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/protos/presentation.ts#L26">protos/presentation.ts:26</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 					<a name="proof" class="tsd-anchor"></a>
 					<h3>proof</h3>
 					<div class="tsd-signature tsd-kind-icon">proof<span class="tsd-signature-symbol">:</span> <a href="proof.html" class="tsd-signature-type" data-tsd-kind="Interface">Proof</a></div>
 					<aside class="tsd-sources">
+						<p>Overrides PresentationPb.proof</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/index.ts#L349">index.ts:349</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/index.ts#L148">index.ts:148</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="type" class="tsd-anchor"></a>
 					<h3>type</h3>
-					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">&quot;VerifiablePresentation&quot;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">...</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">]</span></div>
+					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="unsignedpresentation.html">UnsignedPresentation</a>.<a href="unsignedpresentation.html#type">type</a></p>
+						<p>Inherited from PresentationPb.type</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/index.ts#L328">index.ts:328</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/protos/presentation.ts#L25">protos/presentation.ts:25</a></li>
 						</ul>
 					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="uuid" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> uuid</h3>
-					<div class="tsd-signature tsd-kind-icon">uuid<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from <a href="unsignedpresentation.html">UnsignedPresentation</a>.<a href="unsignedpresentation.html#uuid">uuid</a></p>
-						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/index.ts#L342">index.ts:342</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Optional nonce</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="verifiablecredential" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> verifiable<wbr>Credential</h3>
-					<div class="tsd-signature tsd-kind-icon">verifiable<wbr>Credential<span class="tsd-signature-symbol">:</span> <a href="credential.html" class="tsd-signature-type" data-tsd-kind="Interface">Credential</a><span class="tsd-signature-symbol">[]</span></div>
+					<h3>verifiable<wbr>Credential</h3>
+					<div class="tsd-signature tsd-kind-icon">verifiable<wbr>Credential<span class="tsd-signature-symbol">:</span> <a href="../modules.html#credentialpb" class="tsd-signature-type" data-tsd-kind="Variable">CredentialPb</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="unsignedpresentation.html">UnsignedPresentation</a>.<a href="unsignedpresentation.html#verifiablecredential">verifiableCredential</a></p>
+						<p>Inherited from PresentationPb.verifiableCredential</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/index.ts#L337">index.ts:337</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/protos/presentation.ts#L29">protos/presentation.ts:29</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -186,9 +172,9 @@
 					<h3>verifier<wbr>Did</h3>
 					<div class="tsd-signature tsd-kind-icon">verifier<wbr>Did<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="unsignedpresentation.html">UnsignedPresentation</a>.<a href="unsignedpresentation.html#verifierdid">verifierDid</a></p>
+						<p>Inherited from PresentationPb.verifierDid</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/index.ts#L330">index.ts:330</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/protos/presentation.ts#L27">protos/presentation.ts:27</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -210,19 +196,16 @@
 						<a href="presentation.html" class="tsd-kind-icon">Presentation</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="presentation.html#_context" class="tsd-kind-icon">@context</a>
+								<a href="presentation.html#context" class="tsd-kind-icon">context</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="presentation.html#presentationrequestid" class="tsd-kind-icon">presentation<wbr>Request<wbr>Id</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 								<a href="presentation.html#proof" class="tsd-kind-icon">proof</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="presentation.html#type" class="tsd-kind-icon">type</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="presentation.html#uuid" class="tsd-kind-icon">uuid</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="presentation.html#verifiablecredential" class="tsd-kind-icon">verifiable<wbr>Credential</a>

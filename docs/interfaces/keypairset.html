@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>PresentationRequestRepoDto | @unumid/types</title>
+	<title>KeyPairSet | @unumid/types</title>
 	<meta name="description" content="Documentation for @unumid/types">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">@unumid/types</a>
 				</li>
 				<li>
-					<a href="presentationrequestrepodto.html">PresentationRequestRepoDto</a>
+					<a href="keypairset.html">KeyPairSet</a>
 				</li>
 			</ul>
-			<h1>Interface PresentationRequestRepoDto</h1>
+			<h1>Interface KeyPairSet</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Type to encapsulate a PresentationRequest Data Transfer Object from the PresentationRequestRepository service.</p>
+						<p>Object to encapsulate a key pair set</p>
 					</div>
 				</div>
 			</section>
@@ -76,7 +76,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">PresentationRequestRepoDto</span>
+						<span class="target">KeyPairSet</span>
 					</li>
 				</ul>
 			</section>
@@ -87,7 +87,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationrequestrepodto.html#presentationrequests" class="tsd-kind-icon">presentation<wbr>Requests</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="keypairset.html#encryption" class="tsd-kind-icon">encryption</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="keypairset.html#signing" class="tsd-kind-icon">signing</a></li>
 							</ul>
 						</section>
 					</div>
@@ -96,12 +97,22 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="presentationrequests" class="tsd-anchor"></a>
-					<h3>presentation<wbr>Requests</h3>
-					<div class="tsd-signature tsd-kind-icon">presentation<wbr>Requests<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="presentationrequestdto.html" class="tsd-signature-type" data-tsd-kind="Interface">PresentationRequestDto</a><span class="tsd-signature-symbol">&gt;</span></div>
+					<a name="encryption" class="tsd-anchor"></a>
+					<h3>encryption</h3>
+					<div class="tsd-signature tsd-kind-icon">encryption<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="../modules.html#keypair" class="tsd-signature-type" data-tsd-kind="Variable">KeyPair</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/index.ts#L957">index.ts:957</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/protos/crypto.ts#L89">protos/crypto.ts:89</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="signing" class="tsd-anchor"></a>
+					<h3>signing</h3>
+					<div class="tsd-signature tsd-kind-icon">signing<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="../modules.html#keypair" class="tsd-signature-type" data-tsd-kind="Variable">KeyPair</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/protos/crypto.ts#L88">protos/crypto.ts:88</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -120,10 +131,13 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="presentationrequestrepodto.html" class="tsd-kind-icon">Presentation<wbr>Request<wbr>Repo<wbr>Dto</a>
+						<a href="keypairset.html" class="tsd-kind-icon">Key<wbr>Pair<wbr>Set</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="presentationrequestrepodto.html#presentationrequests" class="tsd-kind-icon">presentation<wbr>Requests</a>
+								<a href="keypairset.html#encryption" class="tsd-kind-icon">encryption</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="keypairset.html#signing" class="tsd-kind-icon">signing</a>
 							</li>
 						</ul>
 					</li>

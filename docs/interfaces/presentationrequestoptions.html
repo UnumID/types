@@ -65,14 +65,21 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Encapsulates addition request attributes to the general presentation request type for the purposes of sending an unsigned presentation request.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">PresentationRequestOptions</span>
+						<span class="tsd-signature-type">PresentationRequestOptionsPb</span>
 						<ul class="tsd-hierarchy">
 							<li>
-								<a href="unsignedpresentationrequest.html" class="tsd-signature-type" data-tsd-kind="Interface">UnsignedPresentationRequest</a>
+								<span class="target">PresentationRequestOptions</span>
 							</li>
 						</ul>
 					</li>
@@ -85,13 +92,14 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationrequestoptions.html#createdat" class="tsd-kind-icon">created<wbr>At</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationrequestoptions.html#credentialrequests" class="tsd-kind-icon">credential<wbr>Requests</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationrequestoptions.html#expiresat" class="tsd-kind-icon">expires<wbr>At</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationrequestoptions.html#holderappuuid" class="tsd-kind-icon">holder<wbr>App<wbr>Uuid</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationrequestoptions.html#metadata" class="tsd-kind-icon">metadata</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationrequestoptions.html#updatedat" class="tsd-kind-icon">updated<wbr>At</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationrequestoptions.html#verifier" class="tsd-kind-icon">verifier</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="presentationrequestoptions.html#credentialrequests" class="tsd-kind-icon">credential<wbr>Requests</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="presentationrequestoptions.html#expiresat" class="tsd-kind-icon">expires<wbr>At</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="presentationrequestoptions.html#holderappuuid" class="tsd-kind-icon">holder<wbr>App<wbr>Uuid</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="presentationrequestoptions.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="presentationrequestoptions.html#metadata" class="tsd-kind-icon">metadata</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="presentationrequestoptions.html#uuid" class="tsd-kind-icon">uuid</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="presentationrequestoptions.html#verifier" class="tsd-kind-icon">verifier</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="presentationrequestoptions.html#version" class="tsd-kind-icon">version</a></li>
 							</ul>
 						</section>
 					</div>
@@ -99,73 +107,101 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="createdat" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> created<wbr>At</h3>
-					<div class="tsd-signature tsd-kind-icon">created<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Date</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/index.ts#L372">index.ts:372</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="credentialrequests" class="tsd-anchor"></a>
 					<h3>credential<wbr>Requests</h3>
-					<div class="tsd-signature tsd-kind-icon">credential<wbr>Requests<span class="tsd-signature-symbol">:</span> <a href="credentialrequest.html" class="tsd-signature-type" data-tsd-kind="Interface">CredentialRequest</a><span class="tsd-signature-symbol">[]</span></div>
+					<div class="tsd-signature tsd-kind-icon">credential<wbr>Requests<span class="tsd-signature-symbol">:</span> <a href="../modules.html#credentialrequest" class="tsd-signature-type" data-tsd-kind="Variable">CredentialRequest</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from PresentationRequestOptionsPb.credentialRequests</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/index.ts#L371">index.ts:371</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/protos/presentationRequest.ts#L12">protos/presentationRequest.ts:12</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 					<a name="expiresat" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> expires<wbr>At</h3>
+					<h3>expires<wbr>At</h3>
 					<div class="tsd-signature tsd-kind-icon">expires<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Date</span></div>
 					<aside class="tsd-sources">
+						<p>Overrides PresentationRequestOptionsPb.expiresAt</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/index.ts#L374">index.ts:374</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/index.ts#L323">index.ts:323</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="holderappuuid" class="tsd-anchor"></a>
 					<h3>holder<wbr>App<wbr>Uuid</h3>
 					<div class="tsd-signature tsd-kind-icon">holder<wbr>App<wbr>Uuid<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from PresentationRequestOptionsPb.holderAppUuid</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/index.ts#L375">index.ts:375</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/protos/presentationRequest.ts#L13">protos/presentationRequest.ts:13</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="id" class="tsd-anchor"></a>
+					<h3>id</h3>
+					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from PresentationRequestOptionsPb.id</p>
+						<ul>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/protos/presentationRequest.ts#L20">protos/presentationRequest.ts:20</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>an indentifier for related presetnation requests across versions</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="metadata" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> metadata</h3>
-					<div class="tsd-signature tsd-kind-icon">metadata<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<h3>metadata</h3>
+					<div class="tsd-signature tsd-kind-icon">metadata<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from PresentationRequestOptionsPb.metadata</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/index.ts#L376">index.ts:376</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/protos/presentationRequest.ts#L17">protos/presentationRequest.ts:17</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>a string representation of an ambiguous object. Note: the Any type does not work because still needs a scheme (but can be assigned dymanically) &amp; Struct does not work becuase not determinsitcally serialzied across langauges</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="uuid" class="tsd-anchor"></a>
+					<h3>uuid</h3>
+					<div class="tsd-signature tsd-kind-icon">uuid<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from PresentationRequestOptionsPb.uuid</p>
+						<ul>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/protos/presentationRequest.ts#L18">protos/presentationRequest.ts:18</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="updatedat" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> updated<wbr>At</h3>
-					<div class="tsd-signature tsd-kind-icon">updated<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Date</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/index.ts#L373">index.ts:373</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="verifier" class="tsd-anchor"></a>
 					<h3>verifier</h3>
 					<div class="tsd-signature tsd-kind-icon">verifier<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from PresentationRequestOptionsPb.verifier</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/index.ts#L377">index.ts:377</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/protos/presentationRequest.ts#L14">protos/presentationRequest.ts:14</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="version" class="tsd-anchor"></a>
+					<h3>version</h3>
+					<div class="tsd-signature tsd-kind-icon">version<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from PresentationRequestOptionsPb.version</p>
+						<ul>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/protos/presentationRequest.ts#L21">protos/presentationRequest.ts:21</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -186,26 +222,29 @@
 					<li class="current tsd-kind-interface">
 						<a href="presentationrequestoptions.html" class="tsd-kind-icon">Presentation<wbr>Request<wbr>Options</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="presentationrequestoptions.html#createdat" class="tsd-kind-icon">created<wbr>At</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="presentationrequestoptions.html#credentialrequests" class="tsd-kind-icon">credential<wbr>Requests</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 								<a href="presentationrequestoptions.html#expiresat" class="tsd-kind-icon">expires<wbr>At</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="presentationrequestoptions.html#holderappuuid" class="tsd-kind-icon">holder<wbr>App<wbr>Uuid</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="presentationrequestoptions.html#id" class="tsd-kind-icon">id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="presentationrequestoptions.html#metadata" class="tsd-kind-icon">metadata</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="presentationrequestoptions.html#updatedat" class="tsd-kind-icon">updated<wbr>At</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="presentationrequestoptions.html#uuid" class="tsd-kind-icon">uuid</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="presentationrequestoptions.html#verifier" class="tsd-kind-icon">verifier</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="presentationrequestoptions.html#version" class="tsd-kind-icon">version</a>
 							</li>
 						</ul>
 					</li>

@@ -68,7 +68,8 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Encapsulates presentation request attributes as they are retuned from Unum ID saas.</p>
+						<p>Encapsulates presentation request attributes as they are export interface PresentationRequestEnriched extends Omit&lt;PresentationRequestEnrichedPb, &#39;issuers&#39;&gt; { from Unum ID saas.
+						Note: extending the protobuf definition to enforce attribute existence.</p>
 					</div>
 				</div>
 			</section>
@@ -76,7 +77,12 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">PresentationRequestEnriched</span>
+						<span class="tsd-signature-type">Omit</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">PresentationRequestEnrichedPb</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;issuers&quot;</span><span class="tsd-signature-symbol">&gt;</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">PresentationRequestEnriched</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -87,13 +93,14 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationrequestenriched.html#deeplink" class="tsd-kind-icon">deeplink</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationrequestenriched.html#displaymessage" class="tsd-kind-icon">display<wbr>Message</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationrequestenriched.html#holderapp" class="tsd-kind-icon">holder<wbr>App</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="presentationrequestenriched.html#deeplink" class="tsd-kind-icon">deeplink</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="presentationrequestenriched.html#displaymessage" class="tsd-kind-icon">display<wbr>Message</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="presentationrequestenriched.html#holderapp" class="tsd-kind-icon">holder<wbr>App</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationrequestenriched.html#holderappinfo" class="tsd-kind-icon">holder<wbr>App<wbr>Info</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationrequestenriched.html#issuers" class="tsd-kind-icon">issuers</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationrequestenriched.html#presentationrequest" class="tsd-kind-icon">presentation<wbr>Request</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationrequestenriched.html#qrcode" class="tsd-kind-icon">qr<wbr>Code</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="presentationrequestenriched.html#verifier" class="tsd-kind-icon">verifier</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="presentationrequestenriched.html#presentationrequest" class="tsd-kind-icon">presentation<wbr>Request</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="presentationrequestenriched.html#qrcode" class="tsd-kind-icon">qr<wbr>Code</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="presentationrequestenriched.html#verifier" class="tsd-kind-icon">verifier</a></li>
 							</ul>
 						</section>
 					</div>
@@ -101,78 +108,89 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="deeplink" class="tsd-anchor"></a>
 					<h3>deeplink</h3>
 					<div class="tsd-signature tsd-kind-icon">deeplink<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from Omit.deeplink</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/protos/presentationRequestEnriched.ts#L18">protos/presentationRequestEnriched.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/protos/presentationRequestEnriched.ts#L18">protos/presentationRequestEnriched.ts:18</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 					<a name="displaymessage" class="tsd-anchor"></a>
 					<h3>display<wbr>Message</h3>
-					<div class="tsd-signature tsd-kind-icon">display<wbr>Message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="../modules.html#presentationrequestdisplaymessage" class="tsd-signature-type" data-tsd-kind="Variable">PresentationRequestDisplayMessage</a></div>
+					<div class="tsd-signature tsd-kind-icon">display<wbr>Message<span class="tsd-signature-symbol">:</span> <a href="../modules.html#presentationrequestdisplaymessage" class="tsd-signature-type" data-tsd-kind="Variable">PresentationRequestDisplayMessage</a></div>
 					<aside class="tsd-sources">
+						<p>Overrides Omit.displayMessage</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/protos/presentationRequestEnriched.ts#L20">protos/presentationRequestEnriched.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/index.ts#L854">index.ts:854</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="holderapp" class="tsd-anchor"></a>
 					<h3>holder<wbr>App</h3>
 					<div class="tsd-signature tsd-kind-icon">holder<wbr>App<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="../modules.html#holderappinfo" class="tsd-signature-type" data-tsd-kind="Variable">HolderAppInfo</a></div>
 					<aside class="tsd-sources">
+						<p>Inherited from Omit.holderApp</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/protos/presentationRequestEnriched.ts#L17">protos/presentationRequestEnriched.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/protos/presentationRequestEnriched.ts#L17">protos/presentationRequestEnriched.ts:17</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="holderappinfo" class="tsd-anchor"></a>
+					<h3>holder<wbr>App<wbr>Info</h3>
+					<div class="tsd-signature tsd-kind-icon">holder<wbr>App<wbr>Info<span class="tsd-signature-symbol">:</span> <a href="../modules.html#holderappinfo" class="tsd-signature-type" data-tsd-kind="Variable">HolderAppInfo</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/index.ts#L855">index.ts:855</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="issuers" class="tsd-anchor"></a>
 					<h3>issuers</h3>
-					<div class="tsd-signature tsd-kind-icon">issuers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Struct</span></div>
+					<div class="tsd-signature tsd-kind-icon">issuers<span class="tsd-signature-symbol">:</span> <a href="issuerinfomap.html" class="tsd-signature-type" data-tsd-kind="Interface">IssuerInfoMap</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/protos/presentationRequestEnriched.ts#L16">protos/presentationRequestEnriched.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/index.ts#L853">index.ts:853</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>a map of issuer metadata keyed on the issuer&#39;s did</p>
-						</div>
-					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 					<a name="presentationrequest" class="tsd-anchor"></a>
 					<h3>presentation<wbr>Request</h3>
-					<div class="tsd-signature tsd-kind-icon">presentation<wbr>Request<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="../modules.html#presentationrequestpb" class="tsd-signature-type" data-tsd-kind="Variable">PresentationRequestPb</a></div>
+					<div class="tsd-signature tsd-kind-icon">presentation<wbr>Request<span class="tsd-signature-symbol">:</span> <a href="presentationrequest.html" class="tsd-signature-type" data-tsd-kind="Interface">PresentationRequest</a></div>
 					<aside class="tsd-sources">
+						<p>Overrides Omit.presentationRequest</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/protos/presentationRequestEnriched.ts#L13">protos/presentationRequestEnriched.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/index.ts#L851">index.ts:851</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="qrcode" class="tsd-anchor"></a>
 					<h3>qr<wbr>Code</h3>
 					<div class="tsd-signature tsd-kind-icon">qr<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from Omit.qrCode</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/protos/presentationRequestEnriched.ts#L19">protos/presentationRequestEnriched.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/protos/presentationRequestEnriched.ts#L19">protos/presentationRequestEnriched.ts:19</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 					<a name="verifier" class="tsd-anchor"></a>
 					<h3>verifier</h3>
-					<div class="tsd-signature tsd-kind-icon">verifier<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="../modules.html#verifierinfopb" class="tsd-signature-type" data-tsd-kind="Variable">VerifierInfoPb</a></div>
+					<div class="tsd-signature tsd-kind-icon">verifier<span class="tsd-signature-symbol">:</span> <a href="verifierinfo.html" class="tsd-signature-type" data-tsd-kind="Interface">VerifierInfo</a></div>
 					<aside class="tsd-sources">
+						<p>Overrides Omit.verifier</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/protos/presentationRequestEnriched.ts#L14">protos/presentationRequestEnriched.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/index.ts#L852">index.ts:852</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -193,25 +211,28 @@
 					<li class="current tsd-kind-interface">
 						<a href="presentationrequestenriched.html" class="tsd-kind-icon">Presentation<wbr>Request<wbr>Enriched</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="presentationrequestenriched.html#deeplink" class="tsd-kind-icon">deeplink</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 								<a href="presentationrequestenriched.html#displaymessage" class="tsd-kind-icon">display<wbr>Message</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="presentationrequestenriched.html#holderapp" class="tsd-kind-icon">holder<wbr>App</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="presentationrequestenriched.html#holderappinfo" class="tsd-kind-icon">holder<wbr>App<wbr>Info</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="presentationrequestenriched.html#issuers" class="tsd-kind-icon">issuers</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 								<a href="presentationrequestenriched.html#presentationrequest" class="tsd-kind-icon">presentation<wbr>Request</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="presentationrequestenriched.html#qrcode" class="tsd-kind-icon">qr<wbr>Code</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 								<a href="presentationrequestenriched.html#verifier" class="tsd-kind-icon">verifier</a>
 							</li>
 						</ul>

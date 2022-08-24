@@ -76,7 +76,12 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Verifier</span>
+						<span class="tsd-signature-type">Omit</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">VerifierPb</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;versionInfo&quot;</span><span class="tsd-signature-symbol">&gt;</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">Verifier</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -87,15 +92,15 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="verifier.html#apikey" class="tsd-kind-icon">api<wbr>Key</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="verifier.html#createdat" class="tsd-kind-icon">created<wbr>At</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="verifier.html#customeruuid" class="tsd-kind-icon">customer<wbr>Uuid</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="verifier.html#did" class="tsd-kind-icon">did</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="verifier.html#isauthorized" class="tsd-kind-icon">is<wbr>Authorized</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="verifier.html#name" class="tsd-kind-icon">name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="verifier.html#updatedat" class="tsd-kind-icon">updated<wbr>At</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="verifier.html#url" class="tsd-kind-icon">url</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="verifier.html#uuid" class="tsd-kind-icon">uuid</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="verifier.html#apikey" class="tsd-kind-icon">api<wbr>Key</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="verifier.html#createdat" class="tsd-kind-icon">created<wbr>At</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="verifier.html#customeruuid" class="tsd-kind-icon">customer<wbr>Uuid</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="verifier.html#did" class="tsd-kind-icon">did</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="verifier.html#isauthorized" class="tsd-kind-icon">is<wbr>Authorized</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="verifier.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="verifier.html#updatedat" class="tsd-kind-icon">updated<wbr>At</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="verifier.html#url" class="tsd-kind-icon">url</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="verifier.html#uuid" class="tsd-kind-icon">uuid</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="verifier.html#versioninfo" class="tsd-kind-icon">version<wbr>Info</a></li>
 							</ul>
 						</section>
@@ -104,93 +109,102 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="apikey" class="tsd-anchor"></a>
 					<h3>api<wbr>Key</h3>
 					<div class="tsd-signature tsd-kind-icon">api<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from Omit.apiKey</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/index.ts#L437">index.ts:437</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/protos/verifier.ts#L19">protos/verifier.ts:19</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 					<a name="createdat" class="tsd-anchor"></a>
 					<h3>created<wbr>At</h3>
-					<div class="tsd-signature tsd-kind-icon">created<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<div class="tsd-signature tsd-kind-icon">created<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Date</span></div>
 					<aside class="tsd-sources">
+						<p>Overrides Omit.createdAt</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/index.ts#L430">index.ts:430</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/index.ts#L373">index.ts:373</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="customeruuid" class="tsd-anchor"></a>
 					<h3>customer<wbr>Uuid</h3>
 					<div class="tsd-signature tsd-kind-icon">customer<wbr>Uuid<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from Omit.customerUuid</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/index.ts#L433">index.ts:433</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/protos/verifier.ts#L13">protos/verifier.ts:13</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="did" class="tsd-anchor"></a>
 					<h3>did</h3>
 					<div class="tsd-signature tsd-kind-icon">did<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from Omit.did</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/index.ts#L428">index.ts:428</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/protos/verifier.ts#L15">protos/verifier.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="isauthorized" class="tsd-anchor"></a>
 					<h3>is<wbr>Authorized</h3>
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Authorized<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from Omit.isAuthorized</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/index.ts#L435">index.ts:435</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/protos/verifier.ts#L18">protos/verifier.ts:18</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="name" class="tsd-anchor"></a>
 					<h3>name</h3>
 					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from Omit.name</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/index.ts#L432">index.ts:432</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/protos/verifier.ts#L14">protos/verifier.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 					<a name="updatedat" class="tsd-anchor"></a>
 					<h3>updated<wbr>At</h3>
-					<div class="tsd-signature tsd-kind-icon">updated<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<div class="tsd-signature tsd-kind-icon">updated<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Date</span></div>
 					<aside class="tsd-sources">
+						<p>Overrides Omit.updatedAt</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/index.ts#L431">index.ts:431</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/index.ts#L374">index.ts:374</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="url" class="tsd-anchor"></a>
 					<h3>url</h3>
 					<div class="tsd-signature tsd-kind-icon">url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from Omit.url</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/index.ts#L434">index.ts:434</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/protos/verifier.ts#L20">protos/verifier.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="uuid" class="tsd-anchor"></a>
 					<h3>uuid</h3>
 					<div class="tsd-signature tsd-kind-icon">uuid<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from Omit.uuid</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/index.ts#L429">index.ts:429</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/protos/verifier.ts#L12">protos/verifier.ts:12</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -200,7 +214,7 @@
 					<div class="tsd-signature tsd-kind-icon">version<wbr>Info<span class="tsd-signature-symbol">:</span> <a href="versioninfo.html" class="tsd-signature-type" data-tsd-kind="Interface">VersionInfo</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/index.ts#L436">index.ts:436</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/index.ts#L375">index.ts:375</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -221,31 +235,31 @@
 					<li class="current tsd-kind-interface">
 						<a href="verifier.html" class="tsd-kind-icon">Verifier</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="verifier.html#apikey" class="tsd-kind-icon">api<wbr>Key</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 								<a href="verifier.html#createdat" class="tsd-kind-icon">created<wbr>At</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="verifier.html#customeruuid" class="tsd-kind-icon">customer<wbr>Uuid</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="verifier.html#did" class="tsd-kind-icon">did</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="verifier.html#isauthorized" class="tsd-kind-icon">is<wbr>Authorized</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="verifier.html#name" class="tsd-kind-icon">name</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 								<a href="verifier.html#updatedat" class="tsd-kind-icon">updated<wbr>At</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="verifier.html#url" class="tsd-kind-icon">url</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="verifier.html#uuid" class="tsd-kind-icon">uuid</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">

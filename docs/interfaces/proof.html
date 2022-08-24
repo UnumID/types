@@ -68,7 +68,8 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Interface to encapsulate cryptographic proof for any signed object: Credentials, Presentations, PresentationRequests.</p>
+						<p>Interface to encapsulate cryptographic proof for any signed object: Credentials, Presentations, PresentationRequests.
+						Note: extending the protobuf definition to enforce attribute existence.</p>
 					</div>
 				</div>
 			</section>
@@ -76,7 +77,12 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Proof</span>
+						<span class="tsd-signature-type">ProofPb</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">Proof</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -87,11 +93,11 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="proof.html#created" class="tsd-kind-icon">created</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="proof.html#proofpurpose" class="tsd-kind-icon">proof<wbr>Purpose</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="proof.html#signaturevalue" class="tsd-kind-icon">signature<wbr>Value</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="proof.html#type" class="tsd-kind-icon">type</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="proof.html#verificationmethod" class="tsd-kind-icon">verification<wbr>Method</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="proof.html#created" class="tsd-kind-icon">created</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="proof.html#proofpurpose" class="tsd-kind-icon">proof<wbr>Purpose</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="proof.html#signaturevalue" class="tsd-kind-icon">signature<wbr>Value</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="proof.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="proof.html#verificationmethod" class="tsd-kind-icon">verification<wbr>Method</a></li>
 							</ul>
 						</section>
 					</div>
@@ -99,53 +105,58 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 					<a name="created" class="tsd-anchor"></a>
 					<h3>created</h3>
-					<div class="tsd-signature tsd-kind-icon">created<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<div class="tsd-signature tsd-kind-icon">created<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Date</span></div>
 					<aside class="tsd-sources">
+						<p>Overrides ProofPb.created</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/index.ts#L169">index.ts:169</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/index.ts#L180">index.ts:180</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="proofpurpose" class="tsd-anchor"></a>
 					<h3>proof<wbr>Purpose</h3>
 					<div class="tsd-signature tsd-kind-icon">proof<wbr>Purpose<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from ProofPb.proofPurpose</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/index.ts#L173">index.ts:173</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/protos/proof.ts#L14">protos/proof.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="signaturevalue" class="tsd-anchor"></a>
 					<h3>signature<wbr>Value</h3>
 					<div class="tsd-signature tsd-kind-icon">signature<wbr>Value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from ProofPb.signatureValue</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/index.ts#L170">index.ts:170</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/protos/proof.ts#L10">protos/proof.ts:10</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="type" class="tsd-anchor"></a>
 					<h3>type</h3>
 					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from ProofPb.type</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/index.ts#L171">index.ts:171</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/protos/proof.ts#L11">protos/proof.ts:11</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="verificationmethod" class="tsd-anchor"></a>
 					<h3>verification<wbr>Method</h3>
 					<div class="tsd-signature tsd-kind-icon">verification<wbr>Method<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from ProofPb.verificationMethod</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/UnumID/types/blob/5b54e95/src/index.ts#L172">index.ts:172</a></li>
+							<li>Defined in <a href="https://github.com/UnumID/types/blob/31165aa/src/protos/proof.ts#L12">protos/proof.ts:12</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -166,19 +177,19 @@
 					<li class="current tsd-kind-interface">
 						<a href="proof.html" class="tsd-kind-icon">Proof</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 								<a href="proof.html#created" class="tsd-kind-icon">created</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="proof.html#proofpurpose" class="tsd-kind-icon">proof<wbr>Purpose</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="proof.html#signaturevalue" class="tsd-kind-icon">signature<wbr>Value</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="proof.html#type" class="tsd-kind-icon">type</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="proof.html#verificationmethod" class="tsd-kind-icon">verification<wbr>Method</a>
 							</li>
 						</ul>
