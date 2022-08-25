@@ -161,7 +161,7 @@ export interface EncryptedCredentialDto extends Omit<EncryptedCredential, 'creat
     updatedAt: string;
     expirationDate?: string;
 }
-export interface EncryptedCredentialEnriched extends EncryptedCredentialEnrichedPb {
+export interface EncryptedCredentialEnriched extends Omit<EncryptedCredentialEnrichedPb, 'didDocument'> {
     encryptedCredential: EncryptedCredential;
     didDocument: DidDocument;
 }
@@ -700,13 +700,14 @@ export interface PublicKeyInfo extends PublicKeyInfoPb {
 }
 /**
  * Interface to encapsulate Did Document information.
- * Note: extending the protobuf definition to enforce attribute existence.
  */
-export interface DidDocument extends DidDocumentPb {
-    context: ['https://www.w3.org/ns/did/v1', ...string[]];
+export interface DidDocument {
+    '@context': ['https://www.w3.org/ns/did/v1', ...string[]];
+    id: string;
     created: Date;
     updated: Date;
     publicKey: PublicKeyInfo[];
+    service: DidDocumentService[];
 }
 /**
  * Interface to encapsulate a signed Subject Did Document.
