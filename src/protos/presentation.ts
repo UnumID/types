@@ -22,7 +22,7 @@ export interface UnsignedPresentation {
  */
 export interface Presentation {
   context: string[];
-  type: string;
+  type: string[];
   presentationRequestId: string;
   verifierDid: string;
   /** Optional. If undefined or empty it means the presentation request was declined */
@@ -218,8 +218,8 @@ export const Presentation = {
     for (const v of message.context) {
       writer.uint32(10).string(v!);
     }
-    if (message.type !== "") {
-      writer.uint32(18).string(message.type);
+    for (const v of message.type) {
+      writer.uint32(18).string(v!);
     }
     if (message.presentationRequestId !== "") {
       writer.uint32(26).string(message.presentationRequestId);
@@ -241,6 +241,7 @@ export const Presentation = {
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = { ...basePresentation } as Presentation;
     message.context = [];
+    message.type = [];
     message.verifiableCredential = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
@@ -249,7 +250,7 @@ export const Presentation = {
           message.context.push(reader.string());
           break;
         case 2:
-          message.type = reader.string();
+          message.type.push(reader.string());
           break;
         case 3:
           message.presentationRequestId = reader.string();
@@ -276,6 +277,7 @@ export const Presentation = {
   fromJSON(object: any): Presentation {
     const message = { ...basePresentation } as Presentation;
     message.context = [];
+    message.type = [];
     message.verifiableCredential = [];
     if (object.context !== undefined && object.context !== null) {
       for (const e of object.context) {
@@ -283,9 +285,9 @@ export const Presentation = {
       }
     }
     if (object.type !== undefined && object.type !== null) {
-      message.type = String(object.type);
-    } else {
-      message.type = "";
+      for (const e of object.type) {
+        message.type.push(String(e));
+      }
     }
     if (
       object.presentationRequestId !== undefined &&
@@ -323,7 +325,11 @@ export const Presentation = {
     } else {
       obj.context = [];
     }
-    message.type !== undefined && (obj.type = message.type);
+    if (message.type) {
+      obj.type = message.type.map((e) => e);
+    } else {
+      obj.type = [];
+    }
     message.presentationRequestId !== undefined &&
       (obj.presentationRequestId = message.presentationRequestId);
     message.verifierDid !== undefined &&
@@ -343,6 +349,7 @@ export const Presentation = {
   fromPartial(object: DeepPartial<Presentation>): Presentation {
     const message = { ...basePresentation } as Presentation;
     message.context = [];
+    message.type = [];
     message.verifiableCredential = [];
     if (object.context !== undefined && object.context !== null) {
       for (const e of object.context) {
@@ -350,9 +357,9 @@ export const Presentation = {
       }
     }
     if (object.type !== undefined && object.type !== null) {
-      message.type = object.type;
-    } else {
-      message.type = "";
+      for (const e of object.type) {
+        message.type.push(e);
+      }
     }
     if (
       object.presentationRequestId !== undefined &&

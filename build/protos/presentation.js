@@ -202,8 +202,9 @@ exports.Presentation = {
             var v = _a[_i];
             writer.uint32(10).string(v);
         }
-        if (message.type !== "") {
-            writer.uint32(18).string(message.type);
+        for (var _b = 0, _c = message.type; _b < _c.length; _b++) {
+            var v = _c[_b];
+            writer.uint32(18).string(v);
         }
         if (message.presentationRequestId !== "") {
             writer.uint32(26).string(message.presentationRequestId);
@@ -211,8 +212,8 @@ exports.Presentation = {
         if (message.verifierDid !== "") {
             writer.uint32(34).string(message.verifierDid);
         }
-        for (var _b = 0, _c = message.verifiableCredential; _b < _c.length; _b++) {
-            var v = _c[_b];
+        for (var _d = 0, _e = message.verifiableCredential; _d < _e.length; _d++) {
+            var v = _e[_d];
             credential_1.Credential.encode(v, writer.uint32(42).fork()).ldelim();
         }
         if (message.proof !== undefined) {
@@ -225,6 +226,7 @@ exports.Presentation = {
         var end = length === undefined ? reader.len : reader.pos + length;
         var message = __assign({}, basePresentation);
         message.context = [];
+        message.type = [];
         message.verifiableCredential = [];
         while (reader.pos < end) {
             var tag = reader.uint32();
@@ -233,7 +235,7 @@ exports.Presentation = {
                     message.context.push(reader.string());
                     break;
                 case 2:
-                    message.type = reader.string();
+                    message.type.push(reader.string());
                     break;
                 case 3:
                     message.presentationRequestId = reader.string();
@@ -257,6 +259,7 @@ exports.Presentation = {
     fromJSON: function (object) {
         var message = __assign({}, basePresentation);
         message.context = [];
+        message.type = [];
         message.verifiableCredential = [];
         if (object.context !== undefined && object.context !== null) {
             for (var _i = 0, _a = object.context; _i < _a.length; _i++) {
@@ -265,10 +268,10 @@ exports.Presentation = {
             }
         }
         if (object.type !== undefined && object.type !== null) {
-            message.type = String(object.type);
-        }
-        else {
-            message.type = "";
+            for (var _b = 0, _c = object.type; _b < _c.length; _b++) {
+                var e = _c[_b];
+                message.type.push(String(e));
+            }
         }
         if (object.presentationRequestId !== undefined &&
             object.presentationRequestId !== null) {
@@ -285,8 +288,8 @@ exports.Presentation = {
         }
         if (object.verifiableCredential !== undefined &&
             object.verifiableCredential !== null) {
-            for (var _b = 0, _c = object.verifiableCredential; _b < _c.length; _b++) {
-                var e = _c[_b];
+            for (var _d = 0, _e = object.verifiableCredential; _d < _e.length; _d++) {
+                var e = _e[_d];
                 message.verifiableCredential.push(credential_1.Credential.fromJSON(e));
             }
         }
@@ -306,7 +309,12 @@ exports.Presentation = {
         else {
             obj.context = [];
         }
-        message.type !== undefined && (obj.type = message.type);
+        if (message.type) {
+            obj.type = message.type.map(function (e) { return e; });
+        }
+        else {
+            obj.type = [];
+        }
         message.presentationRequestId !== undefined &&
             (obj.presentationRequestId = message.presentationRequestId);
         message.verifierDid !== undefined &&
@@ -326,6 +334,7 @@ exports.Presentation = {
     fromPartial: function (object) {
         var message = __assign({}, basePresentation);
         message.context = [];
+        message.type = [];
         message.verifiableCredential = [];
         if (object.context !== undefined && object.context !== null) {
             for (var _i = 0, _a = object.context; _i < _a.length; _i++) {
@@ -334,10 +343,10 @@ exports.Presentation = {
             }
         }
         if (object.type !== undefined && object.type !== null) {
-            message.type = object.type;
-        }
-        else {
-            message.type = "";
+            for (var _b = 0, _c = object.type; _b < _c.length; _b++) {
+                var e = _c[_b];
+                message.type.push(e);
+            }
         }
         if (object.presentationRequestId !== undefined &&
             object.presentationRequestId !== null) {
@@ -354,8 +363,8 @@ exports.Presentation = {
         }
         if (object.verifiableCredential !== undefined &&
             object.verifiableCredential !== null) {
-            for (var _b = 0, _c = object.verifiableCredential; _b < _c.length; _b++) {
-                var e = _c[_b];
+            for (var _d = 0, _e = object.verifiableCredential; _d < _e.length; _d++) {
+                var e = _e[_d];
                 message.verifiableCredential.push(credential_1.Credential.fromPartial(e));
             }
         }
