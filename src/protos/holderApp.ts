@@ -9,16 +9,11 @@ export interface HolderAppInfo {
   name: string;
   /** base64 string representation of image */
   deeplinkButtonImg: string;
-  appStoreUrl: string;
-  playStoreUrl: string;
+  appStoreUrl?: string | undefined;
+  playStoreUrl?: string | undefined;
 }
 
-const baseHolderAppInfo: object = {
-  name: "",
-  deeplinkButtonImg: "",
-  appStoreUrl: "",
-  playStoreUrl: "",
-};
+const baseHolderAppInfo: object = { name: "", deeplinkButtonImg: "" };
 
 export const HolderAppInfo = {
   encode(
@@ -31,10 +26,10 @@ export const HolderAppInfo = {
     if (message.deeplinkButtonImg !== "") {
       writer.uint32(18).string(message.deeplinkButtonImg);
     }
-    if (message.appStoreUrl !== "") {
+    if (message.appStoreUrl !== undefined) {
       writer.uint32(26).string(message.appStoreUrl);
     }
-    if (message.playStoreUrl !== "") {
+    if (message.playStoreUrl !== undefined) {
       writer.uint32(34).string(message.playStoreUrl);
     }
     return writer;
@@ -85,12 +80,12 @@ export const HolderAppInfo = {
     if (object.appStoreUrl !== undefined && object.appStoreUrl !== null) {
       message.appStoreUrl = String(object.appStoreUrl);
     } else {
-      message.appStoreUrl = "";
+      message.appStoreUrl = undefined;
     }
     if (object.playStoreUrl !== undefined && object.playStoreUrl !== null) {
       message.playStoreUrl = String(object.playStoreUrl);
     } else {
-      message.playStoreUrl = "";
+      message.playStoreUrl = undefined;
     }
     return message;
   },
@@ -125,12 +120,12 @@ export const HolderAppInfo = {
     if (object.appStoreUrl !== undefined && object.appStoreUrl !== null) {
       message.appStoreUrl = object.appStoreUrl;
     } else {
-      message.appStoreUrl = "";
+      message.appStoreUrl = undefined;
     }
     if (object.playStoreUrl !== undefined && object.playStoreUrl !== null) {
       message.playStoreUrl = object.playStoreUrl;
     } else {
-      message.playStoreUrl = "";
+      message.playStoreUrl = undefined;
     }
     return message;
   },

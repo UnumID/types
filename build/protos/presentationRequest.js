@@ -25,7 +25,6 @@ exports.protobufPackage = "presentationRequest.v1";
 var basePresentationRequestOptions = {
     holderAppUuid: "",
     verifier: "",
-    metadata: "",
     uuid: "",
     id: "",
     version: "",
@@ -46,7 +45,7 @@ exports.PresentationRequestOptions = {
         if (message.expiresAt !== undefined) {
             timestamp_1.Timestamp.encode(toTimestamp(message.expiresAt), writer.uint32(34).fork()).ldelim();
         }
-        if (message.metadata !== "") {
+        if (message.metadata !== undefined) {
             writer.uint32(42).string(message.metadata);
         }
         if (message.uuid !== "") {
@@ -131,7 +130,7 @@ exports.PresentationRequestOptions = {
             message.metadata = String(object.metadata);
         }
         else {
-            message.metadata = "";
+            message.metadata = undefined;
         }
         if (object.uuid !== undefined && object.uuid !== null) {
             message.uuid = String(object.uuid);
@@ -206,7 +205,7 @@ exports.PresentationRequestOptions = {
             message.metadata = object.metadata;
         }
         else {
-            message.metadata = "";
+            message.metadata = undefined;
         }
         if (object.uuid !== undefined && object.uuid !== null) {
             message.uuid = object.uuid;
@@ -232,7 +231,6 @@ exports.PresentationRequestOptions = {
 var baseUnsignedPresentationRequest = {
     holderAppUuid: "",
     verifier: "",
-    metadata: "",
     uuid: "",
     id: "",
     version: "",
@@ -259,7 +257,7 @@ exports.UnsignedPresentationRequest = {
         if (message.expiresAt !== undefined) {
             timestamp_1.Timestamp.encode(toTimestamp(message.expiresAt), writer.uint32(50).fork()).ldelim();
         }
-        if (message.metadata !== "") {
+        if (message.metadata !== undefined) {
             writer.uint32(58).string(message.metadata);
         }
         if (message.uuid !== "") {
@@ -362,7 +360,7 @@ exports.UnsignedPresentationRequest = {
             message.metadata = String(object.metadata);
         }
         else {
-            message.metadata = "";
+            message.metadata = undefined;
         }
         if (object.uuid !== undefined && object.uuid !== null) {
             message.uuid = String(object.uuid);
@@ -453,7 +451,7 @@ exports.UnsignedPresentationRequest = {
             message.metadata = object.metadata;
         }
         else {
-            message.metadata = "";
+            message.metadata = undefined;
         }
         if (object.uuid !== undefined && object.uuid !== null) {
             message.uuid = object.uuid;

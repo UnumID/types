@@ -9,7 +9,7 @@ export interface PresentationRequestOptions {
     verifier: string;
     expiresAt: Date | undefined;
     /** a string representation of an ambiguous object. Note: the Any type does not work because still needs a scheme (but can be assigned dymanically) & Struct does not work becuase not determinsitcally serialzied across langauges */
-    metadata: string;
+    metadata?: string | undefined;
     uuid: string;
     /** an indentifier for related presetnation requests across versions */
     id: string;
@@ -27,7 +27,7 @@ export interface UnsignedPresentationRequest {
      * A string representation of an ambiguous object.
      * Note: the Any type does not work because still needs a scheme (but can be assigned dymanically) & Struct does not work becuase not determinsitcally serialzied across langauges
      */
-    metadata: string;
+    metadata?: string | undefined;
     uuid: string;
     /** An indentifier for related presetnation requests across versions */
     id: string;
