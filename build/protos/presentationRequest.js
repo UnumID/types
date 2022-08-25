@@ -479,7 +479,6 @@ exports.UnsignedPresentationRequest = {
 var basePresentationRequest = {
     holderAppUuid: "",
     verifier: "",
-    metadata: "",
     uuid: "",
     id: "",
     version: "",
@@ -506,7 +505,7 @@ exports.PresentationRequest = {
         if (message.expiresAt !== undefined) {
             timestamp_1.Timestamp.encode(toTimestamp(message.expiresAt), writer.uint32(50).fork()).ldelim();
         }
-        if (message.metadata !== "") {
+        if (message.metadata !== undefined) {
             writer.uint32(58).string(message.metadata);
         }
         if (message.uuid !== "") {
@@ -615,7 +614,7 @@ exports.PresentationRequest = {
             message.metadata = String(object.metadata);
         }
         else {
-            message.metadata = "";
+            message.metadata = undefined;
         }
         if (object.uuid !== undefined && object.uuid !== null) {
             message.uuid = String(object.uuid);
@@ -714,7 +713,7 @@ exports.PresentationRequest = {
             message.metadata = object.metadata;
         }
         else {
-            message.metadata = "";
+            message.metadata = undefined;
         }
         if (object.uuid !== undefined && object.uuid !== null) {
             message.uuid = object.uuid;

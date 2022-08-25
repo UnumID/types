@@ -55,7 +55,7 @@ export interface PresentationRequest {
    * A string representation of an ambiguous object.
    * Note: the Any type does not work because still needs a scheme (but can be assigned dymanically) & Struct does not work becuase not determinsitcally serialzied across langauges
    */
-  metadata: string;
+  metadata?: string | undefined;
   uuid: string;
   proof: Proof | undefined;
   /** An indentifier for related presetnation requests across versions */
@@ -550,7 +550,6 @@ export const UnsignedPresentationRequest = {
 const basePresentationRequest: object = {
   holderAppUuid: "",
   verifier: "",
-  metadata: "",
   uuid: "",
   id: "",
   version: "",
@@ -588,7 +587,7 @@ export const PresentationRequest = {
         writer.uint32(50).fork()
       ).ldelim();
     }
-    if (message.metadata !== "") {
+    if (message.metadata !== undefined) {
       writer.uint32(58).string(message.metadata);
     }
     if (message.uuid !== "") {
@@ -702,7 +701,7 @@ export const PresentationRequest = {
     if (object.metadata !== undefined && object.metadata !== null) {
       message.metadata = String(object.metadata);
     } else {
-      message.metadata = "";
+      message.metadata = undefined;
     }
     if (object.uuid !== undefined && object.uuid !== null) {
       message.uuid = String(object.uuid);
@@ -793,7 +792,7 @@ export const PresentationRequest = {
     if (object.metadata !== undefined && object.metadata !== null) {
       message.metadata = object.metadata;
     } else {
-      message.metadata = "";
+      message.metadata = undefined;
     }
     if (object.uuid !== undefined && object.uuid !== null) {
       message.uuid = object.uuid;
