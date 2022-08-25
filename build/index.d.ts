@@ -639,7 +639,7 @@ export interface PresentationRequestEnriched extends Omit<PresentationRequestEnr
     verifier: VerifierInfo;
     issuers: IssuerInfoMap;
     displayMessage: PresentationRequestDisplayMessage;
-    holderAppInfo: HolderAppInfo;
+    holderApp: HolderAppInfo;
 }
 /**
  * Type to encapsulate the response body returned when a PresentationRequest is created

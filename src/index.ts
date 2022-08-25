@@ -858,7 +858,7 @@ export interface PresentationRequestEnriched extends Omit<PresentationRequestEnr
   verifier: VerifierInfo;
   issuers: IssuerInfoMap;
   displayMessage: PresentationRequestDisplayMessage;
-  holderAppInfo: HolderAppInfo;
+  holderApp: HolderAppInfo;
 }
 
 /**
