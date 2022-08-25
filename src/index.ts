@@ -354,6 +354,7 @@ export interface PresentationRequest extends PresentationRequestPb {
 export interface PresentationRequest extends PresentationRequestPb {
   createdAt: Date;
   updatedAt: Date;
+  metadata?: string;
 }
 
 /**

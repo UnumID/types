@@ -210,6 +210,7 @@ export interface PresentationRequest extends PresentationRequestPb {
 export interface PresentationRequest extends PresentationRequestPb {
     createdAt: Date;
     updatedAt: Date;
+    metadata?: string;
 }
 /**
  * Encapsulates necessary Issuer entity attributes during creation.
