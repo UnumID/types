@@ -865,6 +865,7 @@ export interface PresentationRequestEnriched extends Omit<PresentationRequestEnr
 /**
  * Type to encapsulate the response body returned when a PresentationRequest is created
  * AKA PresentationRequestEnriched
+ * @deprecated only used in legacy saas service PresentationRequestRepo that needs to be removed (and can be now on v4)
  */
  export interface PresentationRequestPostDto {
   presentationRequest: PresentationRequest;
@@ -878,6 +879,7 @@ export interface PresentationRequestEnriched extends Omit<PresentationRequestEnr
 /**
  * Type to encapsulate a PresentationRequest Data Transfer Object get response used in interfacing services.
  * AKA PresentationRequestEnriched
+ * @deprecated only used in legacy saas service PresentationRequestRepo that needs to be removed (and can be now on v4)
  */
  export interface PresentationRequestDto {
   presentationRequest: WithVersion<PresentationRequest>;
