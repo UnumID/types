@@ -25,7 +25,7 @@ import {
   IssueCredentialsOptions,
   EncryptedCredential as EncryptedCredentialPb,
   EncryptedCredentialOptions as EncryptedCredentialOptionsPb, 
-  EncryptedCredentialEnriched,
+  EncryptedCredentialEnriched as EncryptedCredentialEnrichedPb,
   UnsignedSubjectCredentialRequests,
   SubjectCredentialRequests as SubjectCredentialRequestsPb,
   SubjectCredentialRequestsDto as SubjectCredentialRequestsDtoPb,
@@ -83,7 +83,7 @@ export {
   CredentialPb,
   EncryptedCredentialPb,
   EncryptedCredentialOptionsPb,
-  EncryptedCredentialEnriched,
+  EncryptedCredentialEnrichedPb,
   CredentialsIssuedResponse,
   UnsignedRevokeAllCredentials,
   RevokeAllCredentials,
@@ -103,7 +103,8 @@ export {
   UnsignedString,
   SignedString,
   KeyPair,
-  KeyPairSet
+  KeyPairSet,
+  ProofPb
 }
 
 export { 
@@ -298,6 +299,11 @@ export interface EncryptedCredential extends EncryptedCredentialPb {
   expirationDate?: string; // dates should be converted to ISO strings, since this is how they will be represented in the JSON at runtime
 }
 
+export interface EncryptedCredentialEnriched extends Omit<EncryptedCredentialEnrichedPb, 'didDocument'> {
+  encryptedCredential: EncryptedCredential;
+  didDocument: DidDocument;
+}
+
 /**
  * Data transfer object for a single EncryptedCredentialEnriched
  * Note: extending the protobuf definition of EncryptedCredentialEnriched in order to make the date fields string for json serialization and did document align with @context
@@ -348,6 +354,7 @@ export interface PresentationRequest extends PresentationRequestPb {
 export interface PresentationRequest extends PresentationRequestPb {
   createdAt: Date;
   updatedAt: Date;
+  metadata?: string;
 }
 
 /**
@@ -852,12 +859,13 @@ export interface PresentationRequestEnriched extends Omit<PresentationRequestEnr
   verifier: VerifierInfo;
   issuers: IssuerInfoMap;
   displayMessage: PresentationRequestDisplayMessage;
-  holderAppInfo: HolderAppInfo;
+  holderApp: HolderAppInfo;
 }
 
 /**
  * Type to encapsulate the response body returned when a PresentationRequest is created
  * AKA PresentationRequestEnriched
+ * @deprecated only used in legacy saas service PresentationRequestRepo that needs to be removed (and can be now on v4)
  */
  export interface PresentationRequestPostDto {
   presentationRequest: PresentationRequest;
@@ -871,6 +879,7 @@ export interface PresentationRequestEnriched extends Omit<PresentationRequestEnr
 /**
  * Type to encapsulate a PresentationRequest Data Transfer Object get response used in interfacing services.
  * AKA PresentationRequestEnriched
+ * @deprecated only used in legacy saas service PresentationRequestRepo that needs to be removed (and can be now on v4)
  */
  export interface PresentationRequestDto {
   presentationRequest: WithVersion<PresentationRequest>;
@@ -917,16 +926,29 @@ export interface ApiKey {
   updatedAt: Date;
  }
 
+// /**
+// TO BE USED IN V5
+//  * Interface to encapsulate Did Document information.
+//  * Note: extending the protobuf definition to enforce attribute existence.
+//  */
+//  export interface DidDocument extends DidDocumentPb {
+//   context: ['https://www.w3.org/ns/did/v1', ...string[]];
+//   created: Date;
+//   updated: Date;
+//   publicKey: PublicKeyInfo[];
+//  }
+
 /**
  * Interface to encapsulate Did Document information.
- * Note: extending the protobuf definition to enforce attribute existence.
  */
- export interface DidDocument extends DidDocumentPb {
-  context: ['https://www.w3.org/ns/did/v1', ...string[]];
+ export interface DidDocument {
+  '@context': ['https://www.w3.org/ns/did/v1', ...string[]];
+  id: string;
   created: Date;
   updated: Date;
   publicKey: PublicKeyInfo[];
- }
+  service: DidDocumentService[];
+}
 
 /**
  * Interface to encapsulate a signed Subject Did Document.

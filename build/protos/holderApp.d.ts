@@ -5,8 +5,8 @@ export interface HolderAppInfo {
     name: string;
     /** base64 string representation of image */
     deeplinkButtonImg: string;
-    appStoreUrl: string;
-    playStoreUrl: string;
+    appStoreUrl?: string | undefined;
+    playStoreUrl?: string | undefined;
 }
 export declare const HolderAppInfo: {
     encode(message: HolderAppInfo, writer?: _m0.Writer): _m0.Writer;

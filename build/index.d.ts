@@ -5,7 +5,7 @@ import { UnsignedPresentation, Presentation as PresentationPb } from "./protos/p
 import { PresentationRequestOptions as PresentationRequestOptionsPb, UnsignedPresentationRequest as UnsignedPresentationRequestPb, PresentationRequest as PresentationRequestPb } from "./protos/presentationRequest";
 import { DidDocument as DidDocumentPb, SignedDidDocument as SignedDidDocumentPb, DidDocumentService, UnsignedDID, DID as DIDPb, UserDidAssociation as UserDidAssociationPb, HolderOptions as HolderOptionsPb, PublicKeyInfoUpdateOptions, DidDocumentPatchOptions as DidDocumentPatchOptionsPb } from "./protos/didDocument";
 import { Proof as ProofPb } from "./protos/proof";
-import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest, CredentialStatusInfo as CredentialStatusInfoPb, CredentialStatusesOptions as CredentialStatusesOptionsPb, IssueCredentialOptions, IssueCredentialsOptions, EncryptedCredential as EncryptedCredentialPb, EncryptedCredentialOptions as EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, UnsignedSubjectCredentialRequests, SubjectCredentialRequests as SubjectCredentialRequestsPb, SubjectCredentialRequestsDto as SubjectCredentialRequestsDtoPb, CredentialsIssuedResponse, CredentialStatus, RevokeAllCredentials, UnsignedRevokeAllCredentials, SubjectCredentialRequestsEnrichedDto as SubjectCredentialRequestsEnrichedDtoPb } from "./protos/credential";
+import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb, CredentialRequest, CredentialStatusInfo as CredentialStatusInfoPb, CredentialStatusesOptions as CredentialStatusesOptionsPb, IssueCredentialOptions, IssueCredentialsOptions, EncryptedCredential as EncryptedCredentialPb, EncryptedCredentialOptions as EncryptedCredentialOptionsPb, EncryptedCredentialEnriched as EncryptedCredentialEnrichedPb, UnsignedSubjectCredentialRequests, SubjectCredentialRequests as SubjectCredentialRequestsPb, SubjectCredentialRequestsDto as SubjectCredentialRequestsDtoPb, CredentialsIssuedResponse, CredentialStatus, RevokeAllCredentials, UnsignedRevokeAllCredentials, SubjectCredentialRequestsEnrichedDto as SubjectCredentialRequestsEnrichedDtoPb } from "./protos/credential";
 import { KeyPair, KeyPairSet, EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb, UnsignedString, SignedString } from "./protos/crypto";
 import { HolderAppInfo } from "./protos/holderApp";
 import { PresentationRequestEnriched as PresentationRequestEnrichedPb, PresentationRequestDisplayMessage } from "./protos/presentationRequestEnriched";
@@ -20,9 +20,9 @@ import { SchemaPresentationRequestDto, SchemaAttributesRequestsDto, Presentation
 export { UnsignedPresentation, PresentationPb, };
 export { DidDocumentPb, DidDocumentService, SignedDidDocumentPb, UnsignedDID, DIDPb, UserDidAssociationPb, PublicKeyInfoUpdateOptions };
 export { UnsignedPresentationRequestPb, PresentationRequestPb, };
-export { IssueCredentialOptions, IssueCredentialsOptions, CredentialStatusInfoPb, CredentialStatus, CredentialRequest, UnsignedCredentialPb, CredentialPb, EncryptedCredentialPb, EncryptedCredentialOptionsPb, EncryptedCredentialEnriched, CredentialsIssuedResponse, UnsignedRevokeAllCredentials, RevokeAllCredentials, UnsignedSubjectCredentialRequests, SubjectCredentialRequestsEnrichedDtoPb, };
+export { IssueCredentialOptions, IssueCredentialsOptions, CredentialStatusInfoPb, CredentialStatus, CredentialRequest, UnsignedCredentialPb, CredentialPb, EncryptedCredentialPb, EncryptedCredentialOptionsPb, EncryptedCredentialEnrichedPb, CredentialsIssuedResponse, UnsignedRevokeAllCredentials, RevokeAllCredentials, UnsignedSubjectCredentialRequests, SubjectCredentialRequestsEnrichedDtoPb, };
 export { PresentationRequestDisplayMessage };
-export { EncryptedKey, RSAPadding, UnsignedString, SignedString, KeyPair, KeyPairSet };
+export { EncryptedKey, RSAPadding, UnsignedString, SignedString, KeyPair, KeyPairSet, ProofPb };
 export { VerifierInfoPb, };
 export { IssuerInfo, };
 export { HolderAppInfo };
@@ -161,6 +161,10 @@ export interface EncryptedCredentialDto extends Omit<EncryptedCredential, 'creat
     updatedAt: string;
     expirationDate?: string;
 }
+export interface EncryptedCredentialEnriched extends Omit<EncryptedCredentialEnrichedPb, 'didDocument'> {
+    encryptedCredential: EncryptedCredential;
+    didDocument: DidDocument;
+}
 /**
  * Data transfer object for a single EncryptedCredentialEnriched
  * Note: extending the protobuf definition of EncryptedCredentialEnriched in order to make the date fields string for json serialization and did document align with @context
@@ -206,6 +210,7 @@ export interface PresentationRequest extends PresentationRequestPb {
 export interface PresentationRequest extends PresentationRequestPb {
     createdAt: Date;
     updatedAt: Date;
+    metadata?: string;
 }
 /**
  * Encapsulates necessary Issuer entity attributes during creation.
@@ -635,11 +640,12 @@ export interface PresentationRequestEnriched extends Omit<PresentationRequestEnr
     verifier: VerifierInfo;
     issuers: IssuerInfoMap;
     displayMessage: PresentationRequestDisplayMessage;
-    holderAppInfo: HolderAppInfo;
+    holderApp: HolderAppInfo;
 }
 /**
  * Type to encapsulate the response body returned when a PresentationRequest is created
  * AKA PresentationRequestEnriched
+ * @deprecated only used in legacy saas service PresentationRequestRepo that needs to be removed (and can be now on v4)
  */
 export interface PresentationRequestPostDto {
     presentationRequest: PresentationRequest;
@@ -652,6 +658,7 @@ export interface PresentationRequestPostDto {
 /**
  * Type to encapsulate a PresentationRequest Data Transfer Object get response used in interfacing services.
  * AKA PresentationRequestEnriched
+ * @deprecated only used in legacy saas service PresentationRequestRepo that needs to be removed (and can be now on v4)
  */
 export interface PresentationRequestDto {
     presentationRequest: WithVersion<PresentationRequest>;
@@ -696,13 +703,14 @@ export interface PublicKeyInfo extends PublicKeyInfoPb {
 }
 /**
  * Interface to encapsulate Did Document information.
- * Note: extending the protobuf definition to enforce attribute existence.
  */
-export interface DidDocument extends DidDocumentPb {
-    context: ['https://www.w3.org/ns/did/v1', ...string[]];
+export interface DidDocument {
+    '@context': ['https://www.w3.org/ns/did/v1', ...string[]];
+    id: string;
     created: Date;
     updated: Date;
     publicKey: PublicKeyInfo[];
+    service: DidDocumentService[];
 }
 /**
  * Interface to encapsulate a signed Subject Did Document.

@@ -17,7 +17,7 @@ export interface UnsignedPresentation {
  */
 export interface Presentation {
     context: string[];
-    type: string;
+    type: string[];
     presentationRequestId: string;
     verifierDid: string;
     /** Optional. If undefined or empty it means the presentation request was declined */

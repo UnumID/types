@@ -19,12 +19,7 @@ exports.HolderAppInfo = exports.protobufPackage = void 0;
 var long_1 = __importDefault(require("long"));
 var minimal_1 = __importDefault(require("protobufjs/minimal"));
 exports.protobufPackage = "holderApp.v1";
-var baseHolderAppInfo = {
-    name: "",
-    deeplinkButtonImg: "",
-    appStoreUrl: "",
-    playStoreUrl: "",
-};
+var baseHolderAppInfo = { name: "", deeplinkButtonImg: "" };
 exports.HolderAppInfo = {
     encode: function (message, writer) {
         if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
@@ -34,10 +29,10 @@ exports.HolderAppInfo = {
         if (message.deeplinkButtonImg !== "") {
             writer.uint32(18).string(message.deeplinkButtonImg);
         }
-        if (message.appStoreUrl !== "") {
+        if (message.appStoreUrl !== undefined) {
             writer.uint32(26).string(message.appStoreUrl);
         }
-        if (message.playStoreUrl !== "") {
+        if (message.playStoreUrl !== undefined) {
             writer.uint32(34).string(message.playStoreUrl);
         }
         return writer;
@@ -87,13 +82,13 @@ exports.HolderAppInfo = {
             message.appStoreUrl = String(object.appStoreUrl);
         }
         else {
-            message.appStoreUrl = "";
+            message.appStoreUrl = undefined;
         }
         if (object.playStoreUrl !== undefined && object.playStoreUrl !== null) {
             message.playStoreUrl = String(object.playStoreUrl);
         }
         else {
-            message.playStoreUrl = "";
+            message.playStoreUrl = undefined;
         }
         return message;
     },
@@ -127,13 +122,13 @@ exports.HolderAppInfo = {
             message.appStoreUrl = object.appStoreUrl;
         }
         else {
-            message.appStoreUrl = "";
+            message.appStoreUrl = undefined;
         }
         if (object.playStoreUrl !== undefined && object.playStoreUrl !== null) {
             message.playStoreUrl = object.playStoreUrl;
         }
         else {
-            message.playStoreUrl = "";
+            message.playStoreUrl = undefined;
         }
         return message;
     },
