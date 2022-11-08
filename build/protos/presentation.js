@@ -26,6 +26,7 @@ var baseUnsignedPresentation = {
     type: "",
     presentationRequestId: "",
     verifierDid: "",
+    uuid: "",
 };
 exports.UnsignedPresentation = {
     encode: function (message, writer) {
@@ -47,6 +48,9 @@ exports.UnsignedPresentation = {
         for (var _d = 0, _e = message.verifiableCredential; _d < _e.length; _d++) {
             var v = _e[_d];
             credential_1.Credential.encode(v, writer.uint32(42).fork()).ldelim();
+        }
+        if (message.uuid !== "") {
+            writer.uint32(50).string(message.uuid);
         }
         return writer;
     },
@@ -74,6 +78,9 @@ exports.UnsignedPresentation = {
                     break;
                 case 5:
                     message.verifiableCredential.push(credential_1.Credential.decode(reader, reader.uint32()));
+                    break;
+                case 6:
+                    message.uuid = reader.string();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -119,6 +126,12 @@ exports.UnsignedPresentation = {
                 message.verifiableCredential.push(credential_1.Credential.fromJSON(e));
             }
         }
+        if (object.uuid !== undefined && object.uuid !== null) {
+            message.uuid = String(object.uuid);
+        }
+        else {
+            message.uuid = "";
+        }
         return message;
     },
     toJSON: function (message) {
@@ -147,6 +160,7 @@ exports.UnsignedPresentation = {
         else {
             obj.verifiableCredential = [];
         }
+        message.uuid !== undefined && (obj.uuid = message.uuid);
         return obj;
     },
     fromPartial: function (object) {
@@ -186,6 +200,12 @@ exports.UnsignedPresentation = {
                 message.verifiableCredential.push(credential_1.Credential.fromPartial(e));
             }
         }
+        if (object.uuid !== undefined && object.uuid !== null) {
+            message.uuid = object.uuid;
+        }
+        else {
+            message.uuid = "";
+        }
         return message;
     },
 };
@@ -194,6 +214,7 @@ var basePresentation = {
     type: "",
     presentationRequestId: "",
     verifierDid: "",
+    uuid: "",
 };
 exports.Presentation = {
     encode: function (message, writer) {
@@ -218,6 +239,9 @@ exports.Presentation = {
         }
         if (message.proof !== undefined) {
             proof_1.Proof.encode(message.proof, writer.uint32(50).fork()).ldelim();
+        }
+        if (message.uuid !== "") {
+            writer.uint32(58).string(message.uuid);
         }
         return writer;
     },
@@ -248,6 +272,9 @@ exports.Presentation = {
                     break;
                 case 6:
                     message.proof = proof_1.Proof.decode(reader, reader.uint32());
+                    break;
+                case 7:
+                    message.uuid = reader.string();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -299,6 +326,12 @@ exports.Presentation = {
         else {
             message.proof = undefined;
         }
+        if (object.uuid !== undefined && object.uuid !== null) {
+            message.uuid = String(object.uuid);
+        }
+        else {
+            message.uuid = "";
+        }
         return message;
     },
     toJSON: function (message) {
@@ -329,6 +362,7 @@ exports.Presentation = {
         }
         message.proof !== undefined &&
             (obj.proof = message.proof ? proof_1.Proof.toJSON(message.proof) : undefined);
+        message.uuid !== undefined && (obj.uuid = message.uuid);
         return obj;
     },
     fromPartial: function (object) {
@@ -373,6 +407,12 @@ exports.Presentation = {
         }
         else {
             message.proof = undefined;
+        }
+        if (object.uuid !== undefined && object.uuid !== null) {
+            message.uuid = object.uuid;
+        }
+        else {
+            message.uuid = "";
         }
         return message;
     },
