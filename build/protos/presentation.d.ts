@@ -10,6 +10,7 @@ export interface UnsignedPresentation {
     verifierDid: string;
     /** Optional. If undefined or empty it means the presentation request was declined */
     verifiableCredential: Credential[];
+    uuid: string;
 }
 /**
  * Encapsulates addition attributes to the unsigned presentation entity to create a Presentation entity.
@@ -23,6 +24,7 @@ export interface Presentation {
     /** Optional. If undefined or empty it means the presentation request was declined */
     verifiableCredential: Credential[];
     proof: Proof | undefined;
+    uuid: string;
 }
 export declare const UnsignedPresentation: {
     encode(message: UnsignedPresentation, writer?: _m0.Writer): _m0.Writer;
