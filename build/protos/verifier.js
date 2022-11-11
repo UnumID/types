@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.VerifierInfo = exports.VerifierOptions = exports.Verifier = exports.protobufPackage = void 0;
+exports.RegisterVerifierOptions = exports.VerifierInfo = exports.VerifierOptions = exports.Verifier = exports.protobufPackage = void 0;
 /* eslint-disable */
 var long_1 = __importDefault(require("long"));
 var minimal_1 = __importDefault(require("protobufjs/minimal"));
@@ -495,6 +495,58 @@ exports.VerifierInfo = {
         }
         else {
             message.signingPublicKey = undefined;
+        }
+        return message;
+    },
+};
+var baseRegisterVerifierOptions = { url: "" };
+exports.RegisterVerifierOptions = {
+    encode: function (message, writer) {
+        if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
+        if (message.url !== "") {
+            writer.uint32(10).string(message.url);
+        }
+        return writer;
+    },
+    decode: function (input, length) {
+        var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
+        var end = length === undefined ? reader.len : reader.pos + length;
+        var message = __assign({}, baseRegisterVerifierOptions);
+        while (reader.pos < end) {
+            var tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.url = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON: function (object) {
+        var message = __assign({}, baseRegisterVerifierOptions);
+        if (object.url !== undefined && object.url !== null) {
+            message.url = String(object.url);
+        }
+        else {
+            message.url = "";
+        }
+        return message;
+    },
+    toJSON: function (message) {
+        var obj = {};
+        message.url !== undefined && (obj.url = message.url);
+        return obj;
+    },
+    fromPartial: function (object) {
+        var message = __assign({}, baseRegisterVerifierOptions);
+        if (object.url !== undefined && object.url !== null) {
+            message.url = object.url;
+        }
+        else {
+            message.url = "";
         }
         return message;
     },

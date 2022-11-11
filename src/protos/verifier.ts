@@ -36,6 +36,10 @@ export interface VerifierInfo {
   signingPublicKey: PublicKeyInfo | undefined;
 }
 
+export interface RegisterVerifierOptions {
+  url: string;
+}
+
 const baseVerifier: object = {
   uuid: "",
   customerUuid: "",
@@ -532,6 +536,75 @@ export const VerifierInfo = {
       );
     } else {
       message.signingPublicKey = undefined;
+    }
+    return message;
+  },
+};
+
+const baseRegisterVerifierOptions: object = { url: "" };
+
+export const RegisterVerifierOptions = {
+  encode(
+    message: RegisterVerifierOptions,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.url !== "") {
+      writer.uint32(10).string(message.url);
+    }
+    return writer;
+  },
+
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): RegisterVerifierOptions {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseRegisterVerifierOptions,
+    } as RegisterVerifierOptions;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.url = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): RegisterVerifierOptions {
+    const message = {
+      ...baseRegisterVerifierOptions,
+    } as RegisterVerifierOptions;
+    if (object.url !== undefined && object.url !== null) {
+      message.url = String(object.url);
+    } else {
+      message.url = "";
+    }
+    return message;
+  },
+
+  toJSON(message: RegisterVerifierOptions): unknown {
+    const obj: any = {};
+    message.url !== undefined && (obj.url = message.url);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<RegisterVerifierOptions>
+  ): RegisterVerifierOptions {
+    const message = {
+      ...baseRegisterVerifierOptions,
+    } as RegisterVerifierOptions;
+    if (object.url !== undefined && object.url !== null) {
+      message.url = object.url;
+    } else {
+      message.url = "";
     }
     return message;
   },
