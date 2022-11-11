@@ -28,6 +28,9 @@ export interface VerifierInfo {
     encryptionPublicKey: PublicKeyInfo | undefined;
     signingPublicKey: PublicKeyInfo | undefined;
 }
+export interface RegisterVerifierOptions {
+    url: string;
+}
 export declare const Verifier: {
     encode(message: Verifier, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number | undefined): Verifier;
@@ -48,6 +51,13 @@ export declare const VerifierInfo: {
     fromJSON(object: any): VerifierInfo;
     toJSON(message: VerifierInfo): unknown;
     fromPartial(object: DeepPartial<VerifierInfo>): VerifierInfo;
+};
+export declare const RegisterVerifierOptions: {
+    encode(message: RegisterVerifierOptions, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): RegisterVerifierOptions;
+    fromJSON(object: any): RegisterVerifierOptions;
+    toJSON(message: RegisterVerifierOptions): unknown;
+    fromPartial(object: DeepPartial<RegisterVerifierOptions>): RegisterVerifierOptions;
 };
 declare type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 export declare type DeepPartial<T> = T extends Builtin ? T : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
