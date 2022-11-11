@@ -750,6 +750,7 @@ export interface EncryptedPresentation {
  * Type to encapsulate the non sensitive decrypted presentation information to help enrich UnumID's SaaS reporting dashboard.
  */
 export interface PresentationReceiptInfo {
+    presentationUuid: string;
     subjectDid: string;
     verifierDid: string;
     holderApp: string;
