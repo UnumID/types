@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RegisterVerifierOptions = exports.VerifierInfo = exports.VerifierOptions = exports.Verifier = exports.protobufPackage = void 0;
+exports.VerifierDto = exports.RegisterVerifierOptions = exports.VerifierInfo = exports.VerifierOptions = exports.Verifier = exports.protobufPackage = void 0;
 /* eslint-disable */
 var long_1 = __importDefault(require("long"));
 var minimal_1 = __importDefault(require("protobufjs/minimal"));
@@ -547,6 +547,96 @@ exports.RegisterVerifierOptions = {
         }
         else {
             message.url = "";
+        }
+        return message;
+    },
+};
+var baseVerifierDto = { apiKey: "", did: "", name: "" };
+exports.VerifierDto = {
+    encode: function (message, writer) {
+        if (writer === void 0) { writer = minimal_1.default.Writer.create(); }
+        if (message.apiKey !== "") {
+            writer.uint32(10).string(message.apiKey);
+        }
+        if (message.did !== "") {
+            writer.uint32(18).string(message.did);
+        }
+        if (message.name !== "") {
+            writer.uint32(26).string(message.name);
+        }
+        return writer;
+    },
+    decode: function (input, length) {
+        var reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
+        var end = length === undefined ? reader.len : reader.pos + length;
+        var message = __assign({}, baseVerifierDto);
+        while (reader.pos < end) {
+            var tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.apiKey = reader.string();
+                    break;
+                case 2:
+                    message.did = reader.string();
+                    break;
+                case 3:
+                    message.name = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON: function (object) {
+        var message = __assign({}, baseVerifierDto);
+        if (object.apiKey !== undefined && object.apiKey !== null) {
+            message.apiKey = String(object.apiKey);
+        }
+        else {
+            message.apiKey = "";
+        }
+        if (object.did !== undefined && object.did !== null) {
+            message.did = String(object.did);
+        }
+        else {
+            message.did = "";
+        }
+        if (object.name !== undefined && object.name !== null) {
+            message.name = String(object.name);
+        }
+        else {
+            message.name = "";
+        }
+        return message;
+    },
+    toJSON: function (message) {
+        var obj = {};
+        message.apiKey !== undefined && (obj.apiKey = message.apiKey);
+        message.did !== undefined && (obj.did = message.did);
+        message.name !== undefined && (obj.name = message.name);
+        return obj;
+    },
+    fromPartial: function (object) {
+        var message = __assign({}, baseVerifierDto);
+        if (object.apiKey !== undefined && object.apiKey !== null) {
+            message.apiKey = object.apiKey;
+        }
+        else {
+            message.apiKey = "";
+        }
+        if (object.did !== undefined && object.did !== null) {
+            message.did = object.did;
+        }
+        else {
+            message.did = "";
+        }
+        if (object.name !== undefined && object.name !== null) {
+            message.name = object.name;
+        }
+        else {
+            message.name = "";
         }
         return message;
     },

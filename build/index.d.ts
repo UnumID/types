@@ -9,7 +9,7 @@ import { UnsignedCredential as UnsignedCredentialPb, Credential as CredentialPb,
 import { KeyPair, KeyPairSet, EncryptedData as EncryptedDataPb, EncryptedKey, RSAPadding, PublicKeyInfo as PublicKeyInfoPb, UnsignedString, SignedString } from "./protos/crypto";
 import { HolderAppInfo } from "./protos/holderApp";
 import { PresentationRequestEnriched as PresentationRequestEnrichedPb, PresentationRequestDisplayMessage } from "./protos/presentationRequestEnriched";
-import { VerifierInfo as VerifierInfoPb, Verifier as VerifierPb, VerifierOptions as VerifierOptionsPb, RegisterVerifierOptions } from "./protos/verifier";
+import { VerifierInfo as VerifierInfoPb, Verifier as VerifierPb, VerifierOptions as VerifierOptionsPb, RegisterVerifierOptions, VerifierDto } from "./protos/verifier";
 import { SubjectAbsentCredentials, SubjectCredentialsAbsentDto, SubjectCredentialIssuerInfoDto } from "./protos/subject";
 import { IssuerInfo, Issuer as IssuerPb, IssuerOptions as IssuerOptionsPb } from "./protos/issuer";
 import { SchemaPresentationRequestDto, SchemaAttributesRequestsDto, PresentationSchemaAttributes, PresentationSchema, CredentialSchemaData, SchemaGroupings, SchemaPresentationDto as SchemaPresentationDtoPb, SchemaAttributesDto } from "./protos/schema";
@@ -23,7 +23,7 @@ export { UnsignedPresentationRequestPb, PresentationRequestPb, };
 export { IssueCredentialOptions, IssueCredentialsOptions, CredentialStatusInfoPb, CredentialStatus, CredentialRequest, UnsignedCredentialPb, CredentialPb, EncryptedCredentialPb, EncryptedCredentialOptionsPb, EncryptedCredentialEnrichedPb, CredentialsIssuedResponse, UnsignedRevokeAllCredentials, RevokeAllCredentials, UnsignedSubjectCredentialRequests, SubjectCredentialRequestsEnrichedDtoPb, };
 export { PresentationRequestDisplayMessage };
 export { EncryptedKey, RSAPadding, UnsignedString, SignedString, KeyPair, KeyPairSet, ProofPb };
-export { VerifierInfoPb, RegisterVerifierOptions, };
+export { VerifierInfoPb, RegisterVerifierOptions, VerifierDto };
 export { IssuerInfo, };
 export { HolderAppInfo };
 export { SubjectAbsentCredentials, SubjectCredentialsAbsentDto, SubjectCredentialIssuerInfoDto };

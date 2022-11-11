@@ -36,8 +36,16 @@ export interface VerifierInfo {
   signingPublicKey: PublicKeyInfo | undefined;
 }
 
+/** Object to encapsulate a Verifier's Registeration options via the Verifier Service */
 export interface RegisterVerifierOptions {
   url: string;
+}
+
+/** Object to encapsulate a Verifer DTO from the Verifier Service */
+export interface VerifierDto {
+  apiKey: string;
+  did: string;
+  name: string;
 }
 
 const baseVerifier: object = {
@@ -605,6 +613,98 @@ export const RegisterVerifierOptions = {
       message.url = object.url;
     } else {
       message.url = "";
+    }
+    return message;
+  },
+};
+
+const baseVerifierDto: object = { apiKey: "", did: "", name: "" };
+
+export const VerifierDto = {
+  encode(
+    message: VerifierDto,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.apiKey !== "") {
+      writer.uint32(10).string(message.apiKey);
+    }
+    if (message.did !== "") {
+      writer.uint32(18).string(message.did);
+    }
+    if (message.name !== "") {
+      writer.uint32(26).string(message.name);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): VerifierDto {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseVerifierDto } as VerifierDto;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.apiKey = reader.string();
+          break;
+        case 2:
+          message.did = reader.string();
+          break;
+        case 3:
+          message.name = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): VerifierDto {
+    const message = { ...baseVerifierDto } as VerifierDto;
+    if (object.apiKey !== undefined && object.apiKey !== null) {
+      message.apiKey = String(object.apiKey);
+    } else {
+      message.apiKey = "";
+    }
+    if (object.did !== undefined && object.did !== null) {
+      message.did = String(object.did);
+    } else {
+      message.did = "";
+    }
+    if (object.name !== undefined && object.name !== null) {
+      message.name = String(object.name);
+    } else {
+      message.name = "";
+    }
+    return message;
+  },
+
+  toJSON(message: VerifierDto): unknown {
+    const obj: any = {};
+    message.apiKey !== undefined && (obj.apiKey = message.apiKey);
+    message.did !== undefined && (obj.did = message.did);
+    message.name !== undefined && (obj.name = message.name);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<VerifierDto>): VerifierDto {
+    const message = { ...baseVerifierDto } as VerifierDto;
+    if (object.apiKey !== undefined && object.apiKey !== null) {
+      message.apiKey = object.apiKey;
+    } else {
+      message.apiKey = "";
+    }
+    if (object.did !== undefined && object.did !== null) {
+      message.did = object.did;
+    } else {
+      message.did = "";
+    }
+    if (object.name !== undefined && object.name !== null) {
+      message.name = object.name;
+    } else {
+      message.name = "";
     }
     return message;
   },
