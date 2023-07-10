@@ -82,10 +82,10 @@ brace-expansion@^2.0.1:
   dependencies:
     balanced-match "^1.0.0"
 
-google-protobuf@^3.17.0-rc.2:
-  version "3.17.0-rc.2"
-  resolved "https://registry.npmjs.org/google-protobuf/-/google-protobuf-3.17.0-rc.2.tgz"
-  integrity sha512-dZX+Xk6mbEdCt9vqFRcBCZ/ZxgD+vluCNW5JFATBuj9qROkavytSazTc+BbinTLp2lGi8159AO486srgoHmiDQ==
+google-protobuf@^3.21.2:
+  version "3.21.2"
+  resolved "https://registry.npmjs.org/google-protobuf/-/google-protobuf-3.21.2.tgz"
+  integrity sha512-3MSOYFO5U9mPGikIYCzK0SaThypfGgS6bHqrUGXG3DPHCrb+txNqeEcns1W0lkGfk0rCyNXm7xB9rMxnCiZOoA==
 
 jsonc-parser@^3.2.0:
   version "3.2.0"
