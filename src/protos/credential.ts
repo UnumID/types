@@ -58,6 +58,8 @@ export interface CredentialRequest {
   issuers: string[];
   /** to denote wether this particular credential is required in response to the PresentationRequest. Defaults behavior resolves this to true. */
   required: boolean;
+  /** the given description to be explained */
+  description?: string;
 }
 
 /** Type to encapsulate Credential type information of credentials issued, generally in response to Subject CredentialRequest. */
