@@ -71,55 +71,55 @@ export interface SignedString {
 }
 export declare const EncryptedKey: {
     encode(message: EncryptedKey, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): EncryptedKey;
+    decode(input: _m0.Reader | Uint8Array, length?: number): EncryptedKey;
     fromJSON(object: any): EncryptedKey;
     toJSON(message: EncryptedKey): unknown;
     fromPartial(object: DeepPartial<EncryptedKey>): EncryptedKey;
 };
 export declare const EncryptedData: {
     encode(message: EncryptedData, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): EncryptedData;
+    decode(input: _m0.Reader | Uint8Array, length?: number): EncryptedData;
     fromJSON(object: any): EncryptedData;
     toJSON(message: EncryptedData): unknown;
     fromPartial(object: DeepPartial<EncryptedData>): EncryptedData;
 };
 export declare const PublicKeyInfo: {
     encode(message: PublicKeyInfo, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): PublicKeyInfo;
+    decode(input: _m0.Reader | Uint8Array, length?: number): PublicKeyInfo;
     fromJSON(object: any): PublicKeyInfo;
     toJSON(message: PublicKeyInfo): unknown;
     fromPartial(object: DeepPartial<PublicKeyInfo>): PublicKeyInfo;
 };
 export declare const KeyPair: {
     encode(message: KeyPair, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): KeyPair;
+    decode(input: _m0.Reader | Uint8Array, length?: number): KeyPair;
     fromJSON(object: any): KeyPair;
     toJSON(message: KeyPair): unknown;
     fromPartial(object: DeepPartial<KeyPair>): KeyPair;
 };
 export declare const KeyPairSet: {
     encode(message: KeyPairSet, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): KeyPairSet;
+    decode(input: _m0.Reader | Uint8Array, length?: number): KeyPairSet;
     fromJSON(object: any): KeyPairSet;
     toJSON(message: KeyPairSet): unknown;
     fromPartial(object: DeepPartial<KeyPairSet>): KeyPairSet;
 };
 export declare const UnsignedString: {
     encode(message: UnsignedString, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): UnsignedString;
+    decode(input: _m0.Reader | Uint8Array, length?: number): UnsignedString;
     fromJSON(object: any): UnsignedString;
     toJSON(message: UnsignedString): unknown;
     fromPartial(object: DeepPartial<UnsignedString>): UnsignedString;
 };
 export declare const SignedString: {
     encode(message: SignedString, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): SignedString;
+    decode(input: _m0.Reader | Uint8Array, length?: number): SignedString;
     fromJSON(object: any): SignedString;
     toJSON(message: SignedString): unknown;
     fromPartial(object: DeepPartial<SignedString>): SignedString;
 };
-declare type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-export declare type DeepPartial<T> = T extends Builtin ? T : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
+export type DeepPartial<T> = T extends Builtin ? T : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export {};

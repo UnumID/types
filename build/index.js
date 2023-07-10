@@ -98,5 +98,5 @@ exports.pushProviders = ['FCM', 'APNS'];
  * Credential status value options Runtype, which has the benefit of runtime type checking and guards with literals.
  * More info here: https://github.com/pelotom/runtypes
  */
-exports._CredentialStatusOptions = runtypes_1.Union(runtypes_1.Literal('valid'), runtypes_1.Literal('revoked'));
+exports._CredentialStatusOptions = (0, runtypes_1.Union)((0, runtypes_1.Literal)('valid'), (0, runtypes_1.Literal)('revoked'));
 //# sourceMappingURL=index.js.map

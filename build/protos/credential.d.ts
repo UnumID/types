@@ -169,139 +169,139 @@ export interface CredentialStatusesOptions {
 }
 export declare const CredentialStatus: {
     encode(message: CredentialStatus, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): CredentialStatus;
+    decode(input: _m0.Reader | Uint8Array, length?: number): CredentialStatus;
     fromJSON(object: any): CredentialStatus;
     toJSON(message: CredentialStatus): unknown;
     fromPartial(object: DeepPartial<CredentialStatus>): CredentialStatus;
 };
 export declare const UnsignedCredential: {
     encode(message: UnsignedCredential, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): UnsignedCredential;
+    decode(input: _m0.Reader | Uint8Array, length?: number): UnsignedCredential;
     fromJSON(object: any): UnsignedCredential;
     toJSON(message: UnsignedCredential): unknown;
     fromPartial(object: DeepPartial<UnsignedCredential>): UnsignedCredential;
 };
 export declare const Credential: {
     encode(message: Credential, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): Credential;
+    decode(input: _m0.Reader | Uint8Array, length?: number): Credential;
     fromJSON(object: any): Credential;
     toJSON(message: Credential): unknown;
     fromPartial(object: DeepPartial<Credential>): Credential;
 };
 export declare const CredentialRequest: {
     encode(message: CredentialRequest, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): CredentialRequest;
+    decode(input: _m0.Reader | Uint8Array, length?: number): CredentialRequest;
     fromJSON(object: any): CredentialRequest;
     toJSON(message: CredentialRequest): unknown;
     fromPartial(object: DeepPartial<CredentialRequest>): CredentialRequest;
 };
 export declare const CredentialsIssuedResponse: {
     encode(message: CredentialsIssuedResponse, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): CredentialsIssuedResponse;
+    decode(input: _m0.Reader | Uint8Array, length?: number): CredentialsIssuedResponse;
     fromJSON(object: any): CredentialsIssuedResponse;
     toJSON(message: CredentialsIssuedResponse): unknown;
     fromPartial(object: DeepPartial<CredentialsIssuedResponse>): CredentialsIssuedResponse;
 };
 export declare const UnsignedSubjectCredentialRequests: {
     encode(message: UnsignedSubjectCredentialRequests, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): UnsignedSubjectCredentialRequests;
+    decode(input: _m0.Reader | Uint8Array, length?: number): UnsignedSubjectCredentialRequests;
     fromJSON(object: any): UnsignedSubjectCredentialRequests;
     toJSON(message: UnsignedSubjectCredentialRequests): unknown;
     fromPartial(object: DeepPartial<UnsignedSubjectCredentialRequests>): UnsignedSubjectCredentialRequests;
 };
 export declare const SubjectCredentialRequests: {
     encode(message: SubjectCredentialRequests, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): SubjectCredentialRequests;
+    decode(input: _m0.Reader | Uint8Array, length?: number): SubjectCredentialRequests;
     fromJSON(object: any): SubjectCredentialRequests;
     toJSON(message: SubjectCredentialRequests): unknown;
     fromPartial(object: DeepPartial<SubjectCredentialRequests>): SubjectCredentialRequests;
 };
 export declare const SubjectCredentialRequestsDto: {
     encode(message: SubjectCredentialRequestsDto, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): SubjectCredentialRequestsDto;
+    decode(input: _m0.Reader | Uint8Array, length?: number): SubjectCredentialRequestsDto;
     fromJSON(object: any): SubjectCredentialRequestsDto;
     toJSON(message: SubjectCredentialRequestsDto): unknown;
     fromPartial(object: DeepPartial<SubjectCredentialRequestsDto>): SubjectCredentialRequestsDto;
 };
 export declare const SubjectCredentialRequestsEnrichedDto: {
     encode(message: SubjectCredentialRequestsEnrichedDto, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): SubjectCredentialRequestsEnrichedDto;
+    decode(input: _m0.Reader | Uint8Array, length?: number): SubjectCredentialRequestsEnrichedDto;
     fromJSON(object: any): SubjectCredentialRequestsEnrichedDto;
     toJSON(message: SubjectCredentialRequestsEnrichedDto): unknown;
     fromPartial(object: DeepPartial<SubjectCredentialRequestsEnrichedDto>): SubjectCredentialRequestsEnrichedDto;
 };
 export declare const EncryptedCredentialOptions: {
     encode(message: EncryptedCredentialOptions, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): EncryptedCredentialOptions;
+    decode(input: _m0.Reader | Uint8Array, length?: number): EncryptedCredentialOptions;
     fromJSON(object: any): EncryptedCredentialOptions;
     toJSON(message: EncryptedCredentialOptions): unknown;
     fromPartial(object: DeepPartial<EncryptedCredentialOptions>): EncryptedCredentialOptions;
 };
 export declare const IssueCredentialOptions: {
     encode(message: IssueCredentialOptions, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): IssueCredentialOptions;
+    decode(input: _m0.Reader | Uint8Array, length?: number): IssueCredentialOptions;
     fromJSON(object: any): IssueCredentialOptions;
     toJSON(message: IssueCredentialOptions): unknown;
     fromPartial(object: DeepPartial<IssueCredentialOptions>): IssueCredentialOptions;
 };
 export declare const IssueCredentialsOptions: {
     encode(message: IssueCredentialsOptions, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): IssueCredentialsOptions;
+    decode(input: _m0.Reader | Uint8Array, length?: number): IssueCredentialsOptions;
     fromJSON(object: any): IssueCredentialsOptions;
     toJSON(message: IssueCredentialsOptions): unknown;
     fromPartial(object: DeepPartial<IssueCredentialsOptions>): IssueCredentialsOptions;
 };
 export declare const CredentialStatusInfo: {
     encode(message: CredentialStatusInfo, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): CredentialStatusInfo;
+    decode(input: _m0.Reader | Uint8Array, length?: number): CredentialStatusInfo;
     fromJSON(object: any): CredentialStatusInfo;
     toJSON(message: CredentialStatusInfo): unknown;
     fromPartial(object: DeepPartial<CredentialStatusInfo>): CredentialStatusInfo;
 };
 export declare const EncryptedCredential: {
     encode(message: EncryptedCredential, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): EncryptedCredential;
+    decode(input: _m0.Reader | Uint8Array, length?: number): EncryptedCredential;
     fromJSON(object: any): EncryptedCredential;
     toJSON(message: EncryptedCredential): unknown;
     fromPartial(object: DeepPartial<EncryptedCredential>): EncryptedCredential;
 };
 export declare const EncryptedCredentialEnriched: {
     encode(message: EncryptedCredentialEnriched, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): EncryptedCredentialEnriched;
+    decode(input: _m0.Reader | Uint8Array, length?: number): EncryptedCredentialEnriched;
     fromJSON(object: any): EncryptedCredentialEnriched;
     toJSON(message: EncryptedCredentialEnriched): unknown;
     fromPartial(object: DeepPartial<EncryptedCredentialEnriched>): EncryptedCredentialEnriched;
 };
 export declare const UnsignedRevokeAllCredentials: {
     encode(message: UnsignedRevokeAllCredentials, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): UnsignedRevokeAllCredentials;
+    decode(input: _m0.Reader | Uint8Array, length?: number): UnsignedRevokeAllCredentials;
     fromJSON(object: any): UnsignedRevokeAllCredentials;
     toJSON(message: UnsignedRevokeAllCredentials): unknown;
     fromPartial(object: DeepPartial<UnsignedRevokeAllCredentials>): UnsignedRevokeAllCredentials;
 };
 export declare const RevokeAllCredentials: {
     encode(message: RevokeAllCredentials, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): RevokeAllCredentials;
+    decode(input: _m0.Reader | Uint8Array, length?: number): RevokeAllCredentials;
     fromJSON(object: any): RevokeAllCredentials;
     toJSON(message: RevokeAllCredentials): unknown;
     fromPartial(object: DeepPartial<RevokeAllCredentials>): RevokeAllCredentials;
 };
 export declare const CredentialStatusOptions: {
     encode(message: CredentialStatusOptions, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): CredentialStatusOptions;
+    decode(input: _m0.Reader | Uint8Array, length?: number): CredentialStatusOptions;
     fromJSON(object: any): CredentialStatusOptions;
     toJSON(message: CredentialStatusOptions): unknown;
     fromPartial(object: DeepPartial<CredentialStatusOptions>): CredentialStatusOptions;
 };
 export declare const CredentialStatusesOptions: {
     encode(message: CredentialStatusesOptions, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): CredentialStatusesOptions;
+    decode(input: _m0.Reader | Uint8Array, length?: number): CredentialStatusesOptions;
     fromJSON(object: any): CredentialStatusesOptions;
     toJSON(message: CredentialStatusesOptions): unknown;
     fromPartial(object: DeepPartial<CredentialStatusesOptions>): CredentialStatusesOptions;
 };
-declare type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-export declare type DeepPartial<T> = T extends Builtin ? T : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
+export type DeepPartial<T> = T extends Builtin ? T : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export {};

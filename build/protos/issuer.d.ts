@@ -30,27 +30,27 @@ export interface IssuerInfo {
 }
 export declare const Issuer: {
     encode(message: Issuer, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): Issuer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): Issuer;
     fromJSON(object: any): Issuer;
     toJSON(message: Issuer): unknown;
     fromPartial(object: DeepPartial<Issuer>): Issuer;
 };
 export declare const IssuerOptions: {
     encode(message: IssuerOptions, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): IssuerOptions;
+    decode(input: _m0.Reader | Uint8Array, length?: number): IssuerOptions;
     fromJSON(object: any): IssuerOptions;
     toJSON(message: IssuerOptions): unknown;
     fromPartial(object: DeepPartial<IssuerOptions>): IssuerOptions;
 };
 export declare const IssuerInfo: {
     encode(message: IssuerInfo, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): IssuerInfo;
+    decode(input: _m0.Reader | Uint8Array, length?: number): IssuerInfo;
     fromJSON(object: any): IssuerInfo;
     toJSON(message: IssuerInfo): unknown;
     fromPartial(object: DeepPartial<IssuerInfo>): IssuerInfo;
 };
-declare type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-export declare type DeepPartial<T> = T extends Builtin ? T : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
+export type DeepPartial<T> = T extends Builtin ? T : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export {};

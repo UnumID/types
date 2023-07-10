@@ -43,7 +43,7 @@ export interface SchemaPresentationDto extends Omit<SchemaPresentationDtoPb, 'gr
  * Maps Dates to strings, including nested.
  * Effectively equals the type change caused by JSON.parse(JSON.stringify(x))
  */
-export declare type DatesToStrings<T> = T extends Date ? string : T extends Function ? T : {
+export type DatesToStrings<T> = T extends Date ? string : T extends Function ? T : {
     [k in keyof T]: DatesToStrings<T[k]>;
 };
 /**
@@ -67,21 +67,21 @@ export interface Proof extends ProofPb {
 /**
  * Type to encapsulate supported claim primitives.
  */
-export declare type ClaimPrimitive = string | number | boolean | Date | null;
+export type ClaimPrimitive = string | number | boolean | Date | null;
 /**
  * Type to encapsulate an array of ClaimValues.
  */
-export declare type ClaimList = ClaimValue[];
+export type ClaimList = ClaimValue[];
 /**
  * Interface to encapsulate an arbitrary number (0 to n) of string keys with values of type ClaimValue.
  */
-export declare type ClaimDict = {
+export type ClaimDict = {
     [key: string]: ClaimValue;
 };
 /**
  * Type to encapsulate valid ClaimValue types.
  */
-export declare type ClaimValue = ClaimPrimitive | ClaimList | ClaimDict;
+export type ClaimValue = ClaimPrimitive | ClaimList | ClaimDict;
 /**
  * Interface to associate an id attribute to an arbitrary number (0 to n) of string keys with values of type ClaimValue.
  */
@@ -564,7 +564,7 @@ export interface Subject {
 /**
  * Encapsulates Holder types
  */
-export declare type HolderType = 'web' | 'mobile';
+export type HolderType = 'web' | 'mobile';
 /**
  * An options object used to create a Holder entity
  */
@@ -574,7 +574,7 @@ export interface HolderOptions extends HolderOptionsPb {
 /**
  * Encapsulates possible Holder statuses
  */
-export declare type HolderStatus = 'active' | 'deactivated';
+export type HolderStatus = 'active' | 'deactivated';
 /**
  * Encapsulates Holder entity attributes
  */
@@ -626,7 +626,7 @@ export interface DidDocumentPatchDto {
 /**
  * Type to encapsulate generic response from SaaS API endpoints which return resources keyed by version.
  */
-export declare type VersionedDto<N extends string, T = any> = {
+export type VersionedDto<N extends string, T = any> = {
     [n in N]: {
         [version: string]: T;
     };
@@ -726,7 +726,7 @@ export interface SignedDidDocument extends SignedDidDocumentPb {
 /**
  * Type to encapsulate supported key types in did documents.
  */
-export declare type DidKeyType = 'secp256r1' | 'RSA';
+export type DidKeyType = 'secp256r1' | 'RSA';
 /**
  * Encapsulates necessary information relating to the encrypted credential data during creation.
  */
@@ -766,7 +766,7 @@ export declare const pushProviders: readonly ["FCM", "APNS"];
 /**
  * A type encapsulating all possible push provider values.
  */
-export declare type PushProvider = typeof pushProviders[number];
+export type PushProvider = typeof pushProviders[number];
 /**
  * Interface encapsulating an individual push notification token/identifier and its provider.
  */
@@ -797,7 +797,7 @@ export interface PushNotificationOptions {
 /**
  * Type to encapsulate Credential status value options
  */
-export declare type CredentialStatusOptions = Static<typeof _CredentialStatusOptions>;
+export type CredentialStatusOptions = Static<typeof _CredentialStatusOptions>;
 /**
  * Credential status value options Runtype, which has the benefit of runtime type checking and guards with literals.
  * More info here: https://github.com/pelotom/runtypes
@@ -873,11 +873,11 @@ export interface VerificationResponse {
 /**
  * Helper which adds a named key with a specific value type to an existing type.
  */
-export declare type WithKeyAndValue<T, K extends string, V> = T & Record<K, V>;
+export type WithKeyAndValue<T, K extends string, V> = T & Record<K, V>;
 /**
  * Helper type which adds a version string.
  */
-export declare type WithVersion<T> = WithKeyAndValue<T, 'version', string>;
+export type WithVersion<T> = WithKeyAndValue<T, 'version', string>;
 /**
  * Type to encapsulate result from Unum ID SaaS feather service upon a query with pagination
  */

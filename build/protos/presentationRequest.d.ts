@@ -57,27 +57,27 @@ export interface PresentationRequest {
 }
 export declare const PresentationRequestOptions: {
     encode(message: PresentationRequestOptions, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): PresentationRequestOptions;
+    decode(input: _m0.Reader | Uint8Array, length?: number): PresentationRequestOptions;
     fromJSON(object: any): PresentationRequestOptions;
     toJSON(message: PresentationRequestOptions): unknown;
     fromPartial(object: DeepPartial<PresentationRequestOptions>): PresentationRequestOptions;
 };
 export declare const UnsignedPresentationRequest: {
     encode(message: UnsignedPresentationRequest, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): UnsignedPresentationRequest;
+    decode(input: _m0.Reader | Uint8Array, length?: number): UnsignedPresentationRequest;
     fromJSON(object: any): UnsignedPresentationRequest;
     toJSON(message: UnsignedPresentationRequest): unknown;
     fromPartial(object: DeepPartial<UnsignedPresentationRequest>): UnsignedPresentationRequest;
 };
 export declare const PresentationRequest: {
     encode(message: PresentationRequest, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): PresentationRequest;
+    decode(input: _m0.Reader | Uint8Array, length?: number): PresentationRequest;
     fromJSON(object: any): PresentationRequest;
     toJSON(message: PresentationRequest): unknown;
     fromPartial(object: DeepPartial<PresentationRequest>): PresentationRequest;
 };
-declare type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-export declare type DeepPartial<T> = T extends Builtin ? T : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
+export type DeepPartial<T> = T extends Builtin ? T : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export {};

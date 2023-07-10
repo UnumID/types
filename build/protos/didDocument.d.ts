@@ -96,69 +96,69 @@ export interface DidDocumentPatchOptions {
 }
 export declare const DidDocument: {
     encode(message: DidDocument, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): DidDocument;
+    decode(input: _m0.Reader | Uint8Array, length?: number): DidDocument;
     fromJSON(object: any): DidDocument;
     toJSON(message: DidDocument): unknown;
     fromPartial(object: DeepPartial<DidDocument>): DidDocument;
 };
 export declare const DidDocumentService: {
     encode(message: DidDocumentService, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): DidDocumentService;
+    decode(input: _m0.Reader | Uint8Array, length?: number): DidDocumentService;
     fromJSON(object: any): DidDocumentService;
     toJSON(message: DidDocumentService): unknown;
     fromPartial(object: DeepPartial<DidDocumentService>): DidDocumentService;
 };
 export declare const SignedDidDocument: {
     encode(message: SignedDidDocument, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): SignedDidDocument;
+    decode(input: _m0.Reader | Uint8Array, length?: number): SignedDidDocument;
     fromJSON(object: any): SignedDidDocument;
     toJSON(message: SignedDidDocument): unknown;
     fromPartial(object: DeepPartial<SignedDidDocument>): SignedDidDocument;
 };
 export declare const UnsignedDID: {
     encode(message: UnsignedDID, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): UnsignedDID;
+    decode(input: _m0.Reader | Uint8Array, length?: number): UnsignedDID;
     fromJSON(object: any): UnsignedDID;
     toJSON(message: UnsignedDID): unknown;
     fromPartial(object: DeepPartial<UnsignedDID>): UnsignedDID;
 };
 export declare const DID: {
     encode(message: DID, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): DID;
+    decode(input: _m0.Reader | Uint8Array, length?: number): DID;
     fromJSON(object: any): DID;
     toJSON(message: DID): unknown;
     fromPartial(object: DeepPartial<DID>): DID;
 };
 export declare const UserDidAssociation: {
     encode(message: UserDidAssociation, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): UserDidAssociation;
+    decode(input: _m0.Reader | Uint8Array, length?: number): UserDidAssociation;
     fromJSON(object: any): UserDidAssociation;
     toJSON(message: UserDidAssociation): unknown;
     fromPartial(object: DeepPartial<UserDidAssociation>): UserDidAssociation;
 };
 export declare const HolderOptions: {
     encode(message: HolderOptions, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): HolderOptions;
+    decode(input: _m0.Reader | Uint8Array, length?: number): HolderOptions;
     fromJSON(object: any): HolderOptions;
     toJSON(message: HolderOptions): unknown;
     fromPartial(object: DeepPartial<HolderOptions>): HolderOptions;
 };
 export declare const PublicKeyInfoUpdateOptions: {
     encode(message: PublicKeyInfoUpdateOptions, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): PublicKeyInfoUpdateOptions;
+    decode(input: _m0.Reader | Uint8Array, length?: number): PublicKeyInfoUpdateOptions;
     fromJSON(object: any): PublicKeyInfoUpdateOptions;
     toJSON(message: PublicKeyInfoUpdateOptions): unknown;
     fromPartial(object: DeepPartial<PublicKeyInfoUpdateOptions>): PublicKeyInfoUpdateOptions;
 };
 export declare const DidDocumentPatchOptions: {
     encode(message: DidDocumentPatchOptions, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): DidDocumentPatchOptions;
+    decode(input: _m0.Reader | Uint8Array, length?: number): DidDocumentPatchOptions;
     fromJSON(object: any): DidDocumentPatchOptions;
     toJSON(message: DidDocumentPatchOptions): unknown;
     fromPartial(object: DeepPartial<DidDocumentPatchOptions>): DidDocumentPatchOptions;
 };
-declare type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-export declare type DeepPartial<T> = T extends Builtin ? T : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
+export type DeepPartial<T> = T extends Builtin ? T : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export {};

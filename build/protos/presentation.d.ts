@@ -28,20 +28,20 @@ export interface Presentation {
 }
 export declare const UnsignedPresentation: {
     encode(message: UnsignedPresentation, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): UnsignedPresentation;
+    decode(input: _m0.Reader | Uint8Array, length?: number): UnsignedPresentation;
     fromJSON(object: any): UnsignedPresentation;
     toJSON(message: UnsignedPresentation): unknown;
     fromPartial(object: DeepPartial<UnsignedPresentation>): UnsignedPresentation;
 };
 export declare const Presentation: {
     encode(message: Presentation, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number | undefined): Presentation;
+    decode(input: _m0.Reader | Uint8Array, length?: number): Presentation;
     fromJSON(object: any): Presentation;
     toJSON(message: Presentation): unknown;
     fromPartial(object: DeepPartial<Presentation>): Presentation;
 };
-declare type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-export declare type DeepPartial<T> = T extends Builtin ? T : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
+export type DeepPartial<T> = T extends Builtin ? T : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {
     [K in keyof T]?: DeepPartial<T[K]>;
 } : Partial<T>;
 export {};
